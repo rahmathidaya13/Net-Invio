@@ -1,0 +1,22 @@
+.alert-danger {
+    --bs-alert-color: #ffffff;
+    --bs-alert-bg: #B82132;
+    --bs-alert-border-color: #B82132;
+}
+
+.alert {
+    animation: fadeIn 0.5s ease-in-out;
+    /* Durasi dan jenis animasi */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        /* Mulai dengan opacity 0 */
+    }
+
+    to {
+        opacity: 1;
+        /* Akhiri dengan opacity 1 */
+    }
+}

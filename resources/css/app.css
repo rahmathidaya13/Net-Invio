@@ -1,0 +1,8 @@
+@import url("../assets/css/styles.css");
+@import url("../assets/plugin/fontawesome-free/css/all.min.css");
+@import url("../assets/plugin/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css");
+
+@import url("./alert.css");
+@import url("./modal_animation.css");
+@import url("./partials.css");
+@import url("bootstrap-icons/font/bootstrap-icons.min.css");

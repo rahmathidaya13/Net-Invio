@@ -1,0 +1,207 @@
+.highlight {
+    background-color: #3be8ff;
+    /* Warna kuning untuk penyorotan */
+    font-weight: bold;
+    /* Menebalkan teks yang disorot */
+}
+
+.page-link:focus,
+.datatable-pagination a:focus {
+    z-index: 3;
+    color: var(--bs-pagination-focus-color);
+    background-color: var(--bs-pagination-focus-bg);
+    outline: 0;
+    box-shadow: 0 0 0 0rem rgba(13, 110, 253, 0.25);
+}
+
+.form-control.form-select {
+    color: #000000 !important;
+    /* border: 1px solid #dadada !important; */
+    border-radius: unset !important;
+
+}
+
+.form-control:focus,
+.form-select:focus {
+    color: #242424;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 rgba(0, 123, 255, 0.25);
+}
+
+.form-label {
+    font-weight: bold;
+    color: #221b1b;
+    font-size: 15px;
+}
+
+.btn-close {
+    color: #495057;
+    background-color: transparent !important;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0rem rgba(13, 110, 253, 0.25) !important;
+}
+
+.form-check .form-check-input {
+    float: left;
+    margin-left: 0em;
+}
+
+.form-check-input:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 rgba(0, 123, 255, 0.25);
+}
+
+.was-validated .form-select:valid:focus,
+.was-validated .datatable-selector:valid:focus,
+.form-select.is-valid:focus,
+.is-valid.datatable-selector:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0rem rgba(25, 135, 84, 0.25);
+}
+
+.was-validated .form-control:valid:focus,
+.was-validated .datatable-input:valid:focus,
+.form-control.is-valid:focus,
+.is-valid.datatable-input:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0rem rgba(25, 135, 84, 0.25);
+}
+
+.was-validated .form-control:invalid:focus,
+.was-validated .datatable-input:invalid:focus,
+.form-control.is-invalid:focus,
+.is-invalid.datatable-input:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0rem rgba(220, 53, 69, 0.25);
+}
+
+/* Callout Variasi Info */
+.bd-callout-info {
+    color: #022f38 !important;
+    background-color: #cff4fc !important;
+    border-left: 0.35rem solid #3bc9db !important;
+}
+
+.bd-callout-success {
+    color: #002013 !important;
+    background-color: #b1f7c2 !important;
+    border-left: 0.35rem solid #104413 !important;
+}
+
+/* Gaya Umum Callout */
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-left: 0.25rem solid #dee2e6;
+    /* Default border */
+    border-radius: 0.375rem;
+    /* Tambahkan radius untuk tampilan lebih halus */
+    background-color: #f8f9fa;
+    /* Warna background default */
+    color: #212529;
+    /* Warna teks default */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* Tambahkan sedikit shadow */
+}
+
+.modal-body {
+    max-height: calc(100vh - 200px);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+
+    /* Gunakan scrollbar-color agar scrollbar memiliki warna */
+    /* Tambahkan CSS untuk scrollbar */
+    &::-webkit-scrollbar {
+        width: 10px;
+        /* Gunakan width agar scrollbar memiliki lebar */
+        background-color: rgba(0, 0, 0, 0.1);
+        /* Gunakan background-color agar scrollbar memiliki warna */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+        /* Gunakan background-color agar scrollbar memiliki warna */
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.1);
+        /* Gunakan background-color agar scrollbar memiliki warna */
+    }
+}
+
+input,
+select,
+textarea {
+    border-radius: 0 !important;
+}
+
+.select2-container--bootstrap-5 .select2-selection {
+    border-width: 1px !important;
+    /* Sesuaikan ketebalan */
+    border-radius: 1px !important;
+    /* Sesuaikan border radius */
+    box-shadow: 0 0 0 0rem rgba(13, 110, 253, 0.25) !important;
+}
+
+.select2-container--bootstrap-5 .select2-selection.is-valid {
+    border-color: #198754 !important;
+    /* Warna hijau valid */
+}
+
+.select2-container--bootstrap-5 .select2-selection.is-invalid {
+    border-color: #dc3545 !important;
+    /* Warna merah invalid */
+}
+
+input:read-only,
+textarea:read-only {
+    background-color: #eeeeee;
+    border: 1px solid #adb5bd;
+    color: #495057;
+}
+
+.badge {
+    font-size: 12px;
+}
+
+.modal-content {
+    background-color: #f8f8f8;
+}
+
+.nav-sub-link {
+    color: #212529;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
+    padding: 0.5rem 1rem;
+
+    &.active {
+        border-bottom: 1px solid #1a1a1a;
+        background-color: #7c7c7c;
+        color: #ffffff;
+        width: auto;
+        max-height: 40px;
+    }
+}
+
+.thumbnail {
+    flex-wrap: wrap;
+    display: flex;
+    position: relative;
+    max-width: 150px;
+    max-height: 150px;
+    background-size: cover;
+    border: 1px solid #000000;
+    border-radius: 0.1rem;
+}
+
+.form-check {
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 0em;
+    margin-bottom: 0.125rem;
+}
