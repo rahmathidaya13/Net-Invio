@@ -16,7 +16,7 @@
     @if ($iconLeft)
         <span class="input-group-text rounded-0"><i class="{{ $iconLeft }}"></i></span>
     @endif
-    <input {{ $attributes }} type="{{ $type }}" {{ $attributes->merge(['class' => $inputClass]) }}
+    <input type="{{ $type }}" {{ $attributes->merge(['class' => $inputClass]) }}
         id="{{ $name }}" name="{{ $name }}" value="{{ $type !== 'password' ? old($name, $value) : '' }}">
     @if ($iconRight)
         <span class="input-group-text rounded-0"><i class="{{ $iconRight }}"></i></span>

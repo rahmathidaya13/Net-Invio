@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Barang;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barang\BarangModel;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -10,9 +11,32 @@ class BarangController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Barang.index');
+        $limit = $request->get('limit', 10);
+        $query = $request->get('keyword', '');
+        $barang = BarangModel::when($query, function ($q) use ($query) {
+            $q->where(function ($subQuery) use ($query) {
+                $subQuery->where('kode_barang', 'like', '%' . $query . '%')
+                    ->orWhere('nama_barang', 'like', '%' . $query . '%')
+                    ->orWhere('serial_number', 'like', '%' . $query . '%')
+                    ->orWhere('tipe_model', 'like', '%' . $query . '%');
+            });
+        })->latest()
+            ->paginate($limit)
+            ->appends(['keyword' => $query, 'limit' => $limit]);
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('Barang.partials.table', compact('barang'))->render(),
+                'pagination' => view('Barang.partials.pagination', compact('barang'))->render(),
+                'info' => [
+                    'firstItem' => $barang->firstItem(),
+                    'lastItem' => $barang->lastItem(),
+                    'total' => $barang->total(),
+                ],
+            ]);
+        }
+        return view('Barang.index', compact('barang'));
     }
 
     /**
@@ -20,7 +44,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('Barang.Form.forms');
     }
 
     /**

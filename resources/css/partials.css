@@ -174,14 +174,14 @@ textarea:read-only {
 }
 
 .nav-sub-link {
-    color: #212529;
+    color: #ffffff !important;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
     padding: 0.5rem 1rem;
 
     &.active {
         border-bottom: 1px solid #1a1a1a;
-        background-color: #7c7c7c;
+        background-color: #b8b8b8;
         color: #ffffff;
         width: auto;
         max-height: 40px;

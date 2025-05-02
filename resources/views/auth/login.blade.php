@@ -10,7 +10,6 @@
                 bodyClass="text-bg-light shadow-sm border border-light"
                 titleClass="text-center fw-bold fs-1 text-uppercase p-2">
                 <x-form url="/login">
-                    <x-form-select name="limit" text="Tampilkan Data" :options="['20' => '20', '50' => '50', '100' => '100']" />
                     <div class="mb-3">
                         <x-form-label for="email" value="Email" />
                         <x-input-group iconLeft="bi bi-envelope-at-fill" name="email" type="email"
