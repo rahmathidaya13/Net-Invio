@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -33,5 +34,13 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::get('/user/edit/{id}', 'edit')->name('user.edit');
         Route::put('/user/update/{id}', 'update')->name('user.update');
         Route::delete('/user/destroy/{id}', 'destroy')->name('user.destroy');
+    });
+    Route::controller(BarangController::class)->group(function () {
+        Route::get('/barang/list', 'index')->name('barang.list');
+        Route::get('/barang/create', 'create')->name('barang.create');
+        Route::get('/barang/edit/{id}', 'edit')->name('barang.edit');
+        Route::post('/barang/store', 'store')->name('barang.store');
+        Route::put('/barang/update/{id}', 'update')->name('barang.update');
+        Route::delete('/barang/destroy/{id}', 'destroy')->name('barang.destroy');
     });
 });

@@ -1,25 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Daftar Pengguna')
-@section('icon', 'fas fa-users')
-@section('breadcrumb', Str::upper('Daftar Pengguna'))
+@section('title', 'Daftar Barang')
+@section('icon', 'fas fa-box')
+@section('breadcrumb', Str::upper('Daftar Barang'))
 @section('content')
     <div class="row">
         <div class="col-12 col-lg-12">
-            @if ($errors->any())
-                <div class="alert alert-danger" role="alert">
-                    <h5 class="alert-heading"><i class="fas fa-ban"></i> Alert!</h5>
-                    <ul class="align-items-center">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <x-alert-error-all type="danger" title="Alert!" />
             @if ($message = Session::get('success'))
-                <div class="alert alert-info fw-bold " role="alert" style="font-size: 16px;">
-                    <i class="far fa-check-circle text-success mr-2"></i>
-                    <span> {{ $message }}</span>
-                </div>
+                <x-alert type="info" message="{{ $message }}" />
             @endif
             <div class="d-lg-flex flex-wrap flex-column flex-lg-row justify-content-lg-between mt-3 mb-3">
                 <div class="d-flex flex-row flex-lg-column align-items-center order-2 order-lg-2 mb-lg-0 mb-3 col-lg-3">
@@ -44,14 +32,13 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <x-table theadColor="success" tbodyId="table_user" class="table-sm "
-                            :header="['No', 'Nama', 'Email', 'Role', 'Otorisasi', 'Aksi']">
-                            @include('User.partials.table', ['user' => $user])
+                        <x-table theadColor="success" tbodyId="table_user" class="table-sm " :header="['No', 'Nama', 'Email', 'Role', 'Otorisasi', 'Aksi']">
+                            {{-- @include('User.partials.table', ['user' => $user]) --}}
                         </x-table>
                     </div>
                     <div class="d-flex flex-wrap justify-content-lg-between align-items-center flex-column flex-lg-row p-3">
-                        @include('User.partials.informasi', ['user' => $user])
-                        @include('User.partials.pagination', ['user' => $user])
+                        {{-- @include('User.partials.informasi', ['user' => $user]) --}}
+                        {{-- @include('User.partials.pagination', ['user' => $user]) --}}
                     </div>
                 </div>
             </div>

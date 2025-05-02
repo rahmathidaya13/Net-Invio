@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_pelanggan', function (Blueprint $table) {
-            $table->uuid('id_pelanggan')->primary();
+        Schema::create('tb_supplier', function (Blueprint $table) {
+            $table->uuid('id_supplier')->primary();
             $table->string('nama', 50);
-            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->string('nohp', 13);
-            $table->string('email', 50)->nullable()->unique();
-            $table->string('alamat', 150);
+            $table->string('kontak', 13);
+            $table->string('email', 50)->unique();
+            $table->string('alamat', 200);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_pelanggan');
+        Schema::dropIfExists('tb_supplier');
     }
 };

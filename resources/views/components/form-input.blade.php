@@ -1,4 +1,4 @@
-@props(['type' => 'text', 'name', 'value', 'label' => ''])
+@props(['type' => 'text', 'name', 'value'])
 
 @php
     $inputClass = 'form-control';
@@ -9,5 +9,7 @@
 <input {{ $attributes }} type="{{ $type }}" {{ $attributes->merge(['class' => $inputClass]) }}
     id="{{ $name }}" name="{{ $name }}" value="{{ $type !== 'password' ? old($name, $value) : '' }}">
 @error($name)
-    <div class="invalid-feedback">{{ $message }}</div>
+    <div class="invalid-feedback d-block" role="alert">
+        <strong>{{ $message }}</strong>
+    </div>
 @enderror

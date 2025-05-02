@@ -8,6 +8,11 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </x-link>
+                <x-link class="nav-link {{ request()->is('barang*') ? 'active bg-success' : 'collapsed' }}"
+                    url="{{ route('barang.list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Daftar Barang
+                </x-link>
 
                 {{-- komponen pelanggan --}}
                 <x-link class="nav-link {{ request()->is('user*') ? 'active text-bg-success' : 'collapsed' }}"
