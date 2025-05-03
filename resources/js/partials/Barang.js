@@ -27,10 +27,8 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${
-                            data.info.firstItem ?? 0
-                        }</b> sampai <b>${
-                            data.info.lastItem ?? 0
+                        `Menampilkan <b>${data.info.firstItem ?? 0
+                        }</b> sampai <b>${data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -56,7 +54,7 @@ export default function barang() {
             let setLimit = parseInt($(this).val());
             $.ajax({
                 type: "GET",
-                url: "/barang/daftar_barang",
+                url: "/barang/list",
                 data: {
                     keyword: keyword,
                     _token: token,
@@ -68,10 +66,8 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${
-                            data.info.firstItem ?? 0
-                        }</b> sampai <b>${
-                            data.info.lastItem ?? 0
+                        `Menampilkan <b>${data.info.firstItem ?? 0
+                        }</b> sampai <b>${data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -100,10 +96,8 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${
-                            data.info.firstItem ?? 0
-                        }</b> sampai <b>${
-                            data.info.lastItem ?? 0
+                        `Menampilkan <b>${data.info.firstItem ?? 0
+                        }</b> sampai <b>${data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -113,5 +107,30 @@ export default function barang() {
                 },
             });
         });
+
+
+        // hapuss per item
+        $(document).on("click", ".hapus", function (e) {
+            e.stopPropagation(); // Mencegah event bubbling ke elemen parent
+            let data = $(this).data("data");
+            let form = $("#deleted_" + data.id_barang);
+
+            Swal.fire({
+                title: "Apakah kamu yakin?",
+                text: `Data barang ${data.nama_barang} akan dihapus!`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form if user confirms
+                    form.submit();
+                }
+            });
+        });
+
     });
 }

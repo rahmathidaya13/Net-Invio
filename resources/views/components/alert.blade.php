@@ -1,13 +1,14 @@
 @props([
     'type' => 'info', // info, success, danger, warning, dll
     'message' => null,
+    'icon' => null,
 ])
 @php
     $icons = [
-        'success' => 'far fa-check-circle text-success',
-        'info' => 'far fa-info-circle text-info',
-        'danger' => 'far fa-times-circle text-white',
-        'warning' => 'far fa-exclamation-circle text-warning',
+        'success' => 'fas fa-check-circle text-success',
+        'info' => 'fas fa-info-circle text-info',
+        'danger' => 'fas fa-times-circle text-white',
+        'warning' => 'fas fa-exclamation-circle text-warning',
     ];
 
     $iconClass = $icon ?? ($icons[$type] ?? '');
@@ -17,5 +18,5 @@
     @if ($iconClass)
         <i class="{{ $iconClass }} me-2"></i>
     @endif
-    <small>{{ $message ?? $slot }}</small>
+    <span>{{ $message ?? $slot }}</span>
 </div>

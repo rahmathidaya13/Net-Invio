@@ -20,7 +20,7 @@ class BarangController extends Controller
                 $subQuery->where('kode_barang', 'like', '%' . $query . '%')
                     ->orWhere('nama_barang', 'like', '%' . $query . '%')
                     ->orWhere('serial_number', 'like', '%' . $query . '%')
-                    ->orWhere('tipe_model', 'like', '%' . $query . '%');
+                    ->orWhere('', 'like', '%' . $query . '%');
             });
         })->latest()
             ->paginate($limit)
@@ -52,7 +52,17 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $barang = new BarangModel();
+        $barang->kode_barang = $request->input('kode_barang');
+        $barang->serial_number = $request->input('sn');
+        $barang->nama_barang = $request->input('nama_barang');
+        $barang->jenis = $request->input('jenis_barang');
+        $barang->merek = $request->input('merek');
+        $barang->tipe_model = $request->input('model');
+        $barang->satuan = $request->input('satuan');
+        $barang->keterangan = $request->input('keterangan');
+        $barang->save();
+        return redirect()->route('barang.list')->with('success', 'Data Barang Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -68,7 +78,8 @@ class BarangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $barang = BarangModel::findOrFail($id);
+        return view('Barang.Form.forms', compact('barang'));
     }
 
     /**
@@ -76,7 +87,17 @@ class BarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $barang =  BarangModel::findOrFail($id);
+        $barang->kode_barang = $request->input('kode_barang');
+        $barang->serial_number = $request->input('sn');
+        $barang->nama_barang = $request->input('nama_barang');
+        $barang->jenis = $request->input('jenis_barang');
+        $barang->merek = $request->input('merek');
+        $barang->tipe_model = $request->input('model');
+        $barang->satuan = $request->input('satuan');
+        $barang->keterangan = $request->input('keterangan');
+        $barang->update();
+        return redirect()->route('barang.list')->with('success', 'Data Barang Berhasil Diubah');
     }
 
     /**
@@ -84,6 +105,8 @@ class BarangController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $barang = BarangModel::findOrFail($id);
+        $barang->delete();
+        return redirect()->route('barang.list')->with('success', 'Data Barang Berhasil Dihapus');
     }
 }

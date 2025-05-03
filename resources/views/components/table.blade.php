@@ -2,10 +2,10 @@
 <table {{ $attributes->merge(['class' => 'table']) }}>
     <thead class="table-{{ $theadColor }}">
         <tr>
+            <th class="text-center" scope="col">Aksi</th>
             @foreach ($header as $row)
                 <th scope="col">{{ $row }}</th>
             @endforeach
-            <th scope="col">Aksi</th>
         </tr>
     </thead>
     <tbody id="{{ $tbodyId }}">

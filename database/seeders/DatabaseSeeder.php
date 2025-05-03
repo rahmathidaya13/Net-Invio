@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\User::factory()->create($rows);
         }
         // \App\Models\User::factory(10)->create();
+        \App\Models\Barang\BarangModel::factory(20)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
