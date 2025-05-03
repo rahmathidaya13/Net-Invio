@@ -1,5 +1,5 @@
 .highlight {
-    background-color: #3be8ff;
+    background-color: #76ffba;
     /* Warna kuning untuk penyorotan */
     font-weight: bold;
     /* Menebalkan teks yang disorot */
@@ -207,7 +207,7 @@ textarea:read-only {
 
 /* custom table hover */
 
-.table-striped > tbody > tr:nth-of-type(odd) {
+.table-striped>tbody>tr:nth-of-type(odd) {
     background-color: #f0f8ff !important;
     color: #333;
 }
@@ -220,11 +220,19 @@ textarea:read-only {
 
 .table-hover tbody tr:hover td {
     color: #ffffff;
+
+    .highlight {
+        color: #242424;
+    }
+
+
+}
+
+.w-15 {
+    width: 15% !important;
 }
 
 /* .table-hover tbody tr:active td {
     transform: scale(0.99);
     transition: transform 0.1s ease;
 } */
-
-

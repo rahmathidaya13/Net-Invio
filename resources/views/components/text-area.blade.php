@@ -6,7 +6,7 @@
         $inputClass .= ' is-invalid';
     }
 @endphp
-<textarea name="{{ $name }}" id="{{ $name }}" cols="3" rows="3"
+<textarea name="{{ $name }}" id="{{ $name }}" cols="4" rows="4"
     {{ $attributes->merge(['class' => $inputClass]) }}>{{ old($name, $value) }}
 </textarea>
 @error($name)

@@ -15,16 +15,20 @@ class BarangController extends Controller
     {
         $limit = $request->get('limit', 10);
         $query = $request->get('keyword', '');
+        $sortOrder = $request->get('sort_order', 'desc');
+
         $barang = BarangModel::when($query, function ($q) use ($query) {
             $q->where(function ($subQuery) use ($query) {
                 $subQuery->where('kode_barang', 'like', '%' . $query . '%')
                     ->orWhere('nama_barang', 'like', '%' . $query . '%')
                     ->orWhere('serial_number', 'like', '%' . $query . '%')
-                    ->orWhere('', 'like', '%' . $query . '%');
+                    ->orWhere('tipe_model', 'like', '%' . $query . '%');
             });
         })->latest()
+            ->orderBy('created_at', $sortOrder)
             ->paginate($limit)
-            ->appends(['keyword' => $query, 'limit' => $limit]);
+            ->appends(['keyword' => $query, 'limit' => $limit, 'sort_order' => $sortOrder]);
+
         if ($request->ajax()) {
             return response()->json([
                 'table' => view('Barang.partials.table', compact('barang'))->render(),

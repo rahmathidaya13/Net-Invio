@@ -1,6 +1,6 @@
 @foreach ($barang as $data)
     <tr data-id="{{ $data->id_barang }}" class="table-row" data-url="/barang">
-        <td class="align-middle px-3">
+        <td class="align-middle px-3 ">
             <x-link data-data="{{ $data }}" icon="fas fa-trash" class="btn btn-danger btn-sm hapus px-3 bg-gradient" />
             <x-form class="d-none" id="deleted_{{ $data->id_barang }}" url="/barang/destroy" :parameters="$data->id_barang"
                 method="delete">

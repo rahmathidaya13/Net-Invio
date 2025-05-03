@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('tb_retur_barang', function (Blueprint $table) {
             $table->uuid('id_retur')->primary();
-            $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete();
-            $table->foreignUuid('id_pelanggan')->nullable()->constrained('tb_pelanggan', 'id_pelanggan')->cascadeOnDelete();
-            $table->foreignUuid('id_supplier')->nullable()->constrained('tb_supplier', 'id_supplier')->cascadeOnDelete();
-            $table->date('tanggal');
-            $table->integer('jumlah');
-            $table->enum('tipe_retur', ['masuk', 'keluar']);
-            $table->enum('status_pergantian', ['diganti', 'tidak_diganti', 'diperbaiki']);
-            $table->text('alasan');
+            $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // ambil barang dari tb_barang
+            $table->foreignUuid('id_pelanggan')->nullable()->constrained('tb_pelanggan', 'id_pelanggan')->cascadeOnDelete(); // ambil pelanggan jika barang dari pelanggan
+            $table->foreignUuid('id_supplier')->nullable()->constrained('tb_supplier', 'id_supplier')->cascadeOnDelete(); // ambil supplier jika barang dari supplier
+            $table->date('tanggal'); // tanggal retur
+            $table->integer('jumlah'); // jumlah barang retur
+            $table->enum('tipe_retur', ['masuk', 'keluar']); // jenis retur masuk dari pelanggan, keluar dari supplier
+            $table->enum('status_pergantian', ['diganti', 'tidak_diganti', 'diperbaiki']); // retur ganti barang, tidak diganti atau perbaikan
+            $table->string('image', 250)->nullable();
+            $table->text('alasan'); // alasan retur
             $table->timestamps();
         });
     }

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('tb_barang_masuk', function (Blueprint $table) {
             $table->uuid('id_barang_masuk')->primary();
-            $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete();
-            $table->foreignUuid('id_supplier')->nullable()->constrained('tb_supplier', 'id_supplier')->cascadeOnDelete();
-            $table->date('tanggal');
-            $table->enum('sumber', ['internal', 'supplier'])->default('internal');
-            $table->string('pembeli', 50)->nullable();
-            $table->string('nota', 50);
-            $table->integer('jumlah');
+            $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // ambil barang dengan relasi tb barang
+            $table->foreignUuid('id_supplier')->nullable()->constrained('tb_supplier', 'id_supplier')->cascadeOnDelete(); // ambil supplier dengan relasi tb supplier jika ada
+            $table->date('tanggal'); // tanggal barang masuk atau barang dibeli
+            $table->enum('sumber', ['internal', 'supplier'])->default('internal'); // sumber barang masuk dibeli atau dari supplier
+            $table->string('pembeli', 50)->nullable(); // jika pembeli petugas atau karyawan (nama orang)
+            $table->string('nota', 50); // Bisa disimpan sebagai kode transaksi atau file
+            $table->integer('jumlah'); // jumlah barang masuk
             $table->text('keterangan')->nullable();
             $table->softDeletes();
             $table->timestamps();

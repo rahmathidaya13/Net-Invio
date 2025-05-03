@@ -18,15 +18,18 @@
                     <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
-                    <x-form-input placeholder="Masukan pencarian..." type="search" name="keyword"
+                    <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"
                         class="form-control-sm" />
                 </div>
             </div>
-            <div class="row mb-2 align-items-center">
-                <div class="d-flex flex-wrap align-items-center col-lg-6 gap-2">
+            <div class="row mb-3 align-items-center">
+                <div class="d-flex flex-wrap align-items-center gap-2 justify-content-between">
                     <div class="input-group align-items-center" style="width: 12rem">
                         <span class="me-2">Tampilkan hasil: </span>
                         <x-form-select class="form-select-sm" name="limit" :options="['10' => '10', '20' => '20', '50' => '50', '100' => '100']" />
+                    </div>
+                    <div class="input-group align-items-center w-15">
+                        <x-form-select class="form-select-sm" name="sort_order" text="Sort By" :options="['asc' => 'Ascending', 'desc' => 'Descending']" />
                     </div>
                 </div>
             </div>

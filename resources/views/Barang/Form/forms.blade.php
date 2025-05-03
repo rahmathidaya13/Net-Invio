@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Tambah Barang')
-@section('icon', 'bi bi-plus-square-fill')
-@section('breadcrumb', Str::upper('Tambah Barang'))
+@section('title', isset($barang) ? 'Ubah Data Barang' : 'Tambah Data Barang')
+@section('icon', isset($barang) ? 'bi bi-pencil-square' : 'bi bi-plus-square-fill')
+@section('breadcrumb', Str::upper(isset($barang) ? 'Ubah Data Barang' : 'Tambah Data Barang'))
 @section('content')
     <div class="row">
         <div class="col-12 col-lg-12">
@@ -15,7 +15,7 @@
                     <x-link url="/barang/list" icon="bi bi-arrow-left-circle" label="Kembali" class="btn btn-danger btn-sm" />
                 </div>
             </div>
-            <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-3"
+            <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-4"
                 headerClass="text-uppercase" titleClass="text-start fs-5">
                 {{-- title --}}
                 <x-slot name="header">

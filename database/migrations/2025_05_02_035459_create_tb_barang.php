@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('tb_barang', function (Blueprint $table) {
             $table->uuid('id_barang')->primary();
-            $table->string('kode_barang', 50);
-            $table->string('nama_barang', 50);
-            $table->string('jenis', 50);
-            $table->string('merek', 50);
-            $table->string('tipe_model', 50)->nullable();
-            $table->string('serial_number', 50)->nullable();
-            $table->string('satuan', 50);
-            $table->text('keterangan')->nullable();
+            $table->string('kode_barang', 50); // Misalnya: R-001, KBL-009
+            $table->string('nama_barang', 50); // Nama barang (Router, Kabel UTP)
+            $table->string('jenis', 50); // kabel, router, wireless_radio
+            $table->string('merek', 50); // Contoh: Mikrotik, TP-Link
+            $table->string('tipe_model', 50)->nullable(); // Contoh: CCR1009
+            $table->string('serial_number', 50)->nullable(); // Dari pabrik di bagian barang
+            $table->string('satuan',  20); // pcs, roll, unit, meter
+            $table->text('keterangan')->nullable(); // 	Info tambahan
             $table->softDeletes();
             $table->timestamps();
         });

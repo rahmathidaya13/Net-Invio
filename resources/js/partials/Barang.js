@@ -13,6 +13,7 @@ export default function barang() {
             ).get("page");
             // buat limit
             let setLimit = parseInt($("#limit").val());
+            let setOrder = $("#sort_order").val() ?? "desc";
             $.ajax({
                 type: "GET",
                 url: "/barang/list",
@@ -20,6 +21,7 @@ export default function barang() {
                     keyword: keyword,
                     _token: token,
                     limit: setLimit,
+                    sort_order: setOrder,
                     page: urlPageParameter,
                 },
                 dataType: "json",
@@ -27,8 +29,10 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${data.info.firstItem ?? 0
-                        }</b> sampai <b>${data.info.lastItem ?? 0
+                        `Menampilkan <b>${
+                            data.info.firstItem ?? 0
+                        }</b> sampai <b>${
+                            data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -39,6 +43,49 @@ export default function barang() {
             });
         });
 
+        // field untuk set order  dalam table
+        $(document).on("change", "#sort_order", function (e) {
+            e.preventDefault();
+            // ambil keyword
+            let keyword = $("#keyword").val();
+            // ambil token CSRF-TOKEN
+            let token = $('meta[name="csrf-token"]').attr("content");
+            // ambil nilai page dari pagination
+            let urlPageParameter = new URLSearchParams(
+                window.location.search
+            ).get("page");
+            // buat limit
+            let setLimit = parseInt($("#limit").val());
+            // buat order
+            let setOrder = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "/barang/list",
+                data: {
+                    keyword: keyword,
+                    _token: token,
+                    limit: setLimit,
+                    sort_order: setOrder,
+                    page: urlPageParameter,
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("tbody#table_user").html(data.table);
+                    $(".pagination-wrapper").html(data.pagination);
+                    $("#informasi").html(
+                        `Menampilkan <b>${
+                            data.info.firstItem ?? 0
+                        }</b> sampai <b>${
+                            data.info.lastItem ?? 0
+                        }</b> dari <b>${data.info.total ?? 0}</b> item`
+                    );
+                    HighlightText(
+                        keyword,
+                        ".kode,.nama_barang,.tipe_model,.serial_number"
+                    );
+                },
+            });
+        });
         // field untuk ganti batas item dalam table
         $(document).on("change", "#limit", function (e) {
             e.preventDefault();
@@ -52,6 +99,7 @@ export default function barang() {
             ).get("page");
             // buat limit
             let setLimit = parseInt($(this).val());
+            let setOrder = $("#sort_order").val() ?? "desc";
             $.ajax({
                 type: "GET",
                 url: "/barang/list",
@@ -59,6 +107,7 @@ export default function barang() {
                     keyword: keyword,
                     _token: token,
                     limit: setLimit,
+                    sort_order: setOrder,
                     page: urlPageParameter,
                 },
                 dataType: "json",
@@ -66,8 +115,10 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${data.info.firstItem ?? 0
-                        }</b> sampai <b>${data.info.lastItem ?? 0
+                        `Menampilkan <b>${
+                            data.info.firstItem ?? 0
+                        }</b> sampai <b>${
+                            data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -84,10 +135,13 @@ export default function barang() {
             let urls = $(this).attr("href");
             let keyword = $("#keyword").val();
             let setLimit = parseInt($("#limit").val());
+            let setOrder = $("#sort_order").val() ?? "desc";
             if (!urls) return; // Jika tidak ada URL, hentikan
             urls = new URL(urls, window.location.origin);
             urls.searchParams.set("limit", setLimit);
             urls.searchParams.set("keyword", keyword);
+            urls.searchParams.set("sort_order", setOrder);
+            console.log(urls);
             $.ajax({
                 type: "GET",
                 url: urls.toString(),
@@ -96,8 +150,10 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${data.info.firstItem ?? 0
-                        }</b> sampai <b>${data.info.lastItem ?? 0
+                        `Menampilkan <b>${
+                            data.info.firstItem ?? 0
+                        }</b> sampai <b>${
+                            data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -107,7 +163,6 @@ export default function barang() {
                 },
             });
         });
-
 
         // hapuss per item
         $(document).on("click", ".hapus", function (e) {
@@ -131,6 +186,5 @@ export default function barang() {
                 }
             });
         });
-
     });
 }

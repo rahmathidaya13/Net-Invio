@@ -28,6 +28,15 @@
                             class="nav-link {{ request()->is('barang/list') ? 'active nav-sub-link' : '' }}" />
                         <x-link label="Tambah Barang" url="/barang/create" icon="far fa-circle me-2"
                             class="nav-link {{ request()->is('barang/create') ? 'active nav-sub-link' : '' }}" />
+
+                        @php
+                            $uuidBarang = Request::segment(3);
+                        @endphp
+                        @if ($uuidBarang)
+                            <x-link label="Ubah Barang" url="/barang/edit" parameters="{{ $uuidBarang }}"
+                                icon="far fa-circle me-2"
+                                class="nav-link {{ request()->is('barang/edit*') ? 'active nav-sub-link' : '' }}" />
+                        @endif
                     </nav>
                 </div>
 
