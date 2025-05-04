@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // relasi dengan tabel barang
             $table->date('tanggal'); // tanggal dibuat stok
             $table->integer('jumlah_barang'); // total stok tersedia
-            $table->string('lokasi', 50)->nullable(); // Misal: Gudang A Atau Rak 1 Dll
+            $table->string('lokasi', 150)->nullable(); // Misal: Gudang A Atau Rak 1 Dll
             $table->softDeletes();
             $table->timestamps();
         });

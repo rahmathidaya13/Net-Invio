@@ -3,7 +3,7 @@
         <td class="align-middle px-3 ">
 
             <div class="dropdown">
-                <button class="btn btn-light btn-sm shadow-sm" role="button" data-bs-toggle="dropdown"
+                <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class="bi bi-three-dots-vertical"> </i>
                 </button>
@@ -23,8 +23,8 @@
         <td class="align-middle text-center">
             {{ $loop->iteration + $stok->perPage() * ($stok->currentPage() - 1) }}
         </td>
-        <td class="nama_Barang align-middle">{{ ucwords($data->id_barang) }}</td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
+        <td class="nama_Barang align-middle">{{ ucwords($data->barang->nama_barang) }}</td>
         <td class="align-middle">{{ $data->jumlah_barang }}</td>
         <td class="align-middle">{{ $data->lokasi }}</td>
     </tr>

@@ -2,6 +2,7 @@
 
 namespace App\Models\Barang;
 
+use App\Models\StokBarang\StokBarangModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,4 +25,9 @@ class BarangModel extends Model
 
     protected $dates     = ["deleted_at"];
     public $incrementing = false;
+
+    public function stok()
+    {
+        return $this->hasOne(StokBarangModel::class, "id_barang");
+    }
 }

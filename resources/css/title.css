@@ -1,0 +1,10 @@
+@font-face {
+    font-family: dameron;
+    src: url('../assets/font/dameron/dameron.ttf');
+}
+
+.app_title {
+    font-family: dameron;
+    font-weight: 600;
+    font-size: 1.5rem;
+}

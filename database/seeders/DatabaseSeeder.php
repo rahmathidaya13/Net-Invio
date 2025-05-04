@@ -28,8 +28,9 @@ class DatabaseSeeder extends Seeder
             \App\Models\User::factory()->create($rows);
         }
         // \App\Models\User::factory(10)->create();
-        \App\Models\Barang\BarangModel::factory(20)->create();
-        \App\Models\Pelanggan\PelangganModel::factory(20)->create();
+        \App\Models\Barang\BarangModel::factory(50)->create();
+        \App\Models\Pelanggan\PelangganModel::factory(50)->create();
+        \App\Models\StokBarang\StokBarangModel::factory(50)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

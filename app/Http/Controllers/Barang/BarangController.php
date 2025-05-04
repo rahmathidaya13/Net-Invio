@@ -69,7 +69,7 @@ class BarangController extends Controller
         $barang->satuan = $request->input('satuan');
         $barang->keterangan = $request->input('keterangan', '-');
         $barang->save();
-        return redirect()->route('barang.list')->with('success', 'Data Barang Baru Berhasil Ditambahkan');
+        return redirect()->route('barang.list')->with('success', 'Data Barang ' . ucwords($barang->nama_barang) . ' Berhasil Ditambahkan');
     }
 
     /**
@@ -104,7 +104,7 @@ class BarangController extends Controller
         $barang->satuan = $request->input('satuan');
         $barang->keterangan = $request->input('keterangan');
         $barang->update();
-        return redirect()->route('barang.list')->with('success', 'Data Barang Berhasil Diubah');
+        return redirect()->route('barang.list')->with('success', 'Data Barang ' . ucwords($barang->nama_barang) . ' Berhasil Diubah');
     }
 
     /**

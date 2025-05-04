@@ -69,7 +69,7 @@
                 <x-link class="nav-link {{ request()->is('supplier*') ? 'active text-bg-success' : 'collapsed' }}"
                     data-bs-toggle="collapse" data-bs-target="#collapseLayoutsSPL" aria-expanded="false"
                     aria-controls="collapseLayoutsCus">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    <div class="sb-nav-link-icon"><i class="bi bi-people-fill"></i></div>
                     Data Supplier
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
@@ -97,7 +97,7 @@
                 <x-link class="nav-link {{ request()->is('stok*') ? 'active text-bg-success' : 'collapsed' }}"
                     data-bs-toggle="collapse" data-bs-target="#collapseLayoutsSTOK" aria-expanded="false"
                     aria-controls="collapseLayoutsCus">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    <div class="sb-nav-link-icon"><i class="bi bi-clipboard"></i></div>
                     Data Stok
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>

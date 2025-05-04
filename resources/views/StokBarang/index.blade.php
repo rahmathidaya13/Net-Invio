@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Daftar Stok Barang')
-@section('icon', 'bi bi-person-badge-fill')
+@section('icon', 'bi bi-clipboard-check-fill')
 @section('breadcrumb', Str::upper('Daftar Stok Barang'))
 @section('content')
     <x-bread-crumbs :items="[['text' => 'Daftar Stok Barang', 'url' => '/stok/list']]" />
@@ -15,7 +15,7 @@
             <div class="row align-items-center mb-4">
                 <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     {{-- this button --}}
-                    <x-link url="/supplier/create" icon="bi bi-plus-circle" label="Tambah"
+                    <x-link url="/stok/create" icon="bi bi-plus-circle" label="Tambah"
                         class="btn btn-primary btn-sm text-light" />
                     <x-link icon="bi bi-upload" label="Import" class="btn btn-outline-success btn-sm" />
                     <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
@@ -43,8 +43,8 @@
             <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-0"
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
-                    <x-table theadColor="success" tbodyId="stok_tabel" class=" text-nowrap table-hover table-clickable"
-                        :header="$thead">
+                    <x-table theadColor="success" tbodyId="stok_tabel"
+                        class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
                         @include('StokBarang.partials.table', ['stok' => $stok])
                     </x-table>
                 </div>

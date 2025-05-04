@@ -45,6 +45,17 @@
                                 selected="{{ old('nama_barang', $pelanggan->id_barang ?? '') }}" />
                         </div>
                     </div>
+                    <x-horizontal-input name="jumlah" label="Jumlah Barang"
+                        value="{{ old('jumlah', $stok->jumlah_barang ?? '') }}" />
+                    <x-horizontal-input name="lokasi" label="Lokasi/Tempat"
+                        value="{{ old('lokasi', $stok->lokasi ?? '') }}" />
+
+                    <div class="mb-3 row align-items-center">
+                        <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />
+                        <div class="col-sm-5">
+                            <x-text-area name="keterangan" value="{{ old('keterangan') }}" />
+                        </div>
+                    </div>
                     <div class="mb-3 row align-items-center">
                         <x-form-label class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5 d-grid d-lg-block gap-2">

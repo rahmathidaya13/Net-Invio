@@ -3,7 +3,7 @@
         <td class="align-middle px-3 ">
 
             <div class="dropdown">
-                <button class="btn btn-light btn-sm shadow-sm" role="button" data-bs-toggle="dropdown"
+                <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class="bi bi-three-dots-vertical"> </i>
                 </button>

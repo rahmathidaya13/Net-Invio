@@ -4,6 +4,7 @@ const routes = {
     "/barang/": () => import("@/partials/Barang.js"),
     "/pelanggan/": () => import("@/partials/Pelanggan.js"),
     "/supplier/": () => import("@/partials/Supplier.js"),
+    "/stok/": () => import("@/partials/Stok.js"),
 };
 for (const route in routes) {
     // Cocokkan dengan semua variasi jika menggunakan method startwith
