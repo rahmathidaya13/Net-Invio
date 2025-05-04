@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('tb_pelanggan', function (Blueprint $table) {
             $table->uuid('id_pelanggan')->primary();
+            $table->string('no_identitas', 25);
+            $table->date('tanggal');
             $table->string('nama', 50); // nama pelanggan
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']); // jenis kelamin pelenggan
             $table->string('nohp', 13); //  nomor handphone

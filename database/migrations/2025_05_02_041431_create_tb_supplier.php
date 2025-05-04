@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id_supplier')->primary();
             $table->string('nama', 50); // nama supplier
             $table->string('kontak', 13); // kontak supplier
-            $table->string('email', 50)->unique(); // email supplier jika ada
+            $table->string('email', 50)->unique()->nullable(); // email supplier jika ada
             $table->string('alamat', 200); // alamat supplier
             $table->softDeletes();
             $table->timestamps();

@@ -1,13 +1,16 @@
 const path = new URL(window.location.href).pathname;
 const routes = {
     "/login": () => import("@/partials/showPassword.js"),
-    "/barang/list": () => import("@/partials/Barang.js"),
+    "/barang/": () => import("@/partials/Barang.js"),
+    "/pelanggan/": () => import("@/partials/Pelanggan.js"),
+    "/supplier/": () => import("@/partials/Supplier.js"),
 };
 for (const route in routes) {
     // Cocokkan dengan semua variasi jika menggunakan method startwith
     if (path.startsWith(route)) {
         routes[route]().then((module) => {
-            module.default();
+            const parameters = path.split("/").pop(); // get parameter url
+            module.default(parameters);
         });
         break;
     }

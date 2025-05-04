@@ -3,9 +3,14 @@
 @section('icon', 'bi bi-list-ul')
 @section('breadcrumb', Str::upper('Daftar Barang'))
 @section('content')
+<x-bread-crumbs :items="[
+        ['text' => 'Daftar Barang', 'url' => '/barang/list'],
+    ]" />
     <div class="row">
         <div class="col-12 col-lg-12">
+
             <x-alert-error-all type="danger" title="Alert!" />
+
             @if ($message = Session::get('success'))
                 <x-alert type="success" message="{{ $message }}" />
             @endif
@@ -36,6 +41,7 @@
 
             @php
                 $thead = [
+                    '',
                     'No',
                     'Kode Barang',
                     'Nama Barang',
@@ -50,8 +56,8 @@
             <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-0"
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
-                    <x-table theadColor="success" tbodyId="table_user" class=" text-nowrap table-hover table-clickable"
-                        :header="$thead">
+                    <x-table id="user_tabel" theadColor="success" tbodyId="table_user"
+                        class=" text-nowrap table-hover table-clickable" :header="$thead">
                         @include('Barang.partials.table', ['barang' => $barang])
                     </x-table>
                 </div>

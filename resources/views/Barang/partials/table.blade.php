@@ -1,12 +1,24 @@
 @foreach ($barang as $data)
     <tr data-id="{{ $data->id_barang }}" class="table-row" data-url="/barang">
         <td class="align-middle px-3 ">
-            <x-link data-data="{{ $data }}" icon="fas fa-trash" class="btn btn-danger btn-sm hapus px-3 bg-gradient" />
-            <x-form class="d-none" id="deleted_{{ $data->id_barang }}" url="/barang/destroy" :parameters="$data->id_barang"
-                method="delete">
-            </x-form>
-            <x-link icon="fas fa-edit" class="btn btn-warning btn-sm px-3 bg-gradient" url="/barang/edit"
-                parameters="{{ $data->id_barang }}" />
+
+            <div class="dropdown">
+                <button class="btn btn-light btn-sm shadow-sm" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="bi bi-three-dots-vertical"> </i>
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <x-link label="Ubah" icon="fas fa-edit" class="dropdown-item" url="/barang/edit"
+                            parameters="{{ $data->id_barang }}" />
+                    </li>
+                    <li>
+                        <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
+                            class="dropdown-item hapus" />
+                    </li>
+                </ul>
+            </div>
         </td>
         <td class="align-middle text-center">{{ $loop->iteration + $barang->perPage() * ($barang->currentPage() - 1) }}
         </td>

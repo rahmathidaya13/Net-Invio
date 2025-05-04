@@ -3,6 +3,8 @@
 @section('icon', 'fas fa-user-plus')
 @section('breadcrumb', Str::upper('Form User'))
 @section('content')
+    <x-bread-crumbs :items="[['text' => 'Daftar Pengguna', 'url' => '/user/list'], ['text' => 'Tambah Pengguna']]" />
+
     <div class="row">
         <div class="col-12 col-lg-12">
             @if ($message = Session::get('success'))

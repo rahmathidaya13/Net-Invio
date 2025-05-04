@@ -141,7 +141,6 @@ export default function barang() {
             urls.searchParams.set("limit", setLimit);
             urls.searchParams.set("keyword", keyword);
             urls.searchParams.set("sort_order", setOrder);
-            console.log(urls);
             $.ajax({
                 type: "GET",
                 url: urls.toString(),
@@ -168,23 +167,12 @@ export default function barang() {
         $(document).on("click", ".hapus", function (e) {
             e.stopPropagation(); // Mencegah event bubbling ke elemen parent
             let data = $(this).data("data");
-            let form = $("#deleted_" + data.id_barang);
-
-            Swal.fire({
-                title: "Apakah kamu yakin?",
-                text: `Data barang ${data.nama_barang} akan dihapus!`,
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, hapus!",
-                cancelButtonText: "Batal",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Submit the form if user confirms
-                    form.submit();
-                }
-            });
+            // let form = $("#deleted_" + data.id_barang);
+            SweatAlert(
+                `/barang/destroy/${data.id_barang}`,
+                data.nama_barang,
+                "delete"
+            );
         });
     });
 }

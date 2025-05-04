@@ -1,7 +1,6 @@
 @props([
     'type' => 'info', // info, success, danger, warning, dll
     'message' => null,
-    'icon' => null,
 ])
 @php
     $icons = [
@@ -11,7 +10,7 @@
         'warning' => 'fas fa-exclamation-circle text-warning',
     ];
 
-    $iconClass = $icon ?? ($icons[$type] ?? '');
+    $iconClass = $icons[$type] ?? '';
 @endphp
 
 <div class="alert alert-{{ $type }} fw-bold" role="alert" style="font-size: 16px;" {{ $attributes }}>

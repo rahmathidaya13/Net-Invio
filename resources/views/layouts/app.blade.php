@@ -5,7 +5,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                @include('layouts.breadcrumb')
+                {{-- @include('layouts.breadcrumb') --}}
                 @yield('content')
             </div>
         </main>

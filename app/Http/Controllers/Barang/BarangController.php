@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Barang;
 
 use App\Http\Controllers\Controller;
 use App\Models\Barang\BarangModel;
+use App\Traits\Validate\ItemValidation;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -11,6 +12,7 @@ class BarangController extends Controller
     /**
      * Display a listing of the resource.
      */
+    use ItemValidation;
     public function index(Request $request)
     {
         $limit = $request->get('limit', 10);
@@ -25,7 +27,7 @@ class BarangController extends Controller
                     ->orWhere('tipe_model', 'like', '%' . $query . '%');
             });
         })->latest()
-            ->orderBy('created_at', $sortOrder)
+            ->orderBy('nama_barang', $sortOrder)
             ->paginate($limit)
             ->appends(['keyword' => $query, 'limit' => $limit, 'sort_order' => $sortOrder]);
 
@@ -56,15 +58,16 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validateItem($request->all());
         $barang = new BarangModel();
         $barang->kode_barang = $request->input('kode_barang');
-        $barang->serial_number = $request->input('sn');
+        $barang->serial_number = $request->input('sn', '-');
         $barang->nama_barang = $request->input('nama_barang');
         $barang->jenis = $request->input('jenis_barang');
         $barang->merek = $request->input('merek');
-        $barang->tipe_model = $request->input('model');
+        $barang->tipe_model = $request->input('model', '-');
         $barang->satuan = $request->input('satuan');
-        $barang->keterangan = $request->input('keterangan');
+        $barang->keterangan = $request->input('keterangan', '-');
         $barang->save();
         return redirect()->route('barang.list')->with('success', 'Data Barang Baru Berhasil Ditambahkan');
     }
@@ -111,6 +114,6 @@ class BarangController extends Controller
     {
         $barang = BarangModel::findOrFail($id);
         $barang->delete();
-        return redirect()->route('barang.list')->with('success', 'Data Barang Berhasil Dihapus');
+        return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

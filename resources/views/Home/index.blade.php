@@ -3,6 +3,8 @@
 @section('icon',"fas fa-home")
 @section('breadcrumb', Str::upper('Dashboard'))
 @section('content')
+<x-bread-crumbs :items="[['text' => 'Dashboard', 'url' => '/home']]" />
+
 <div class="card mb-4">
     <div class="card-body">
         DataTables is a third party plugin that is used to generate the demo table below. For more information about

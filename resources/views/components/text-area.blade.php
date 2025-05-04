@@ -11,6 +11,6 @@
 </textarea>
 @error($name)
     <div class="invalid-feedback d-block" role="alert">
-        <strong>{{ $message }}</strong>
+        {{ $message }}
     </div>
 @enderror

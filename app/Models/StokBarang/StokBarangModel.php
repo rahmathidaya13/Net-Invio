@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models\StokBarang;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class StokBarangModel extends Model
+{
+    use HasFactory, HasUuids;
+    protected $table = 'tb_stok';
+    protected $primaryKey = 'id_stok';
+    protected $fillable = [
+        'id_barang',
+        'tanggal',
+        'jumlah_barang',
+        'lokasi',
+    ];
+    public $incrementing = false;
+    protected $dates     = ["deleted_at"];
+}

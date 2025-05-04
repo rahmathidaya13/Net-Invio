@@ -3,6 +3,7 @@
 @section('icon', 'fas fa-users')
 @section('breadcrumb', Str::upper('Daftar Pengguna'))
 @section('content')
+<x-bread-crumbs :items="[['text' => 'Daftar Pengguna', 'url' => '/user/list']]" />
     <div class="row">
         <div class="col-12 col-lg-12">
             @if ($errors->any())

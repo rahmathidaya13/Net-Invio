@@ -1,8 +1,8 @@
 @props(['header' => [], 'theadColor' => 'success', 'tbodyId' => null])
 <table {{ $attributes->merge(['class' => 'table']) }}>
-    <thead class="table-{{ $theadColor }}">
+    <thead class="table-{{ $theadColor }} table-striped">
         <tr>
-            <th class="text-center" scope="col">Aksi</th>
+            {{-- <th class="text-center" scope="col">Aksi</th> --}}
             @foreach ($header as $row)
                 <th scope="col">{{ $row }}</th>
             @endforeach
