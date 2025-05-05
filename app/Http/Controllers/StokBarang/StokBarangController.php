@@ -23,12 +23,13 @@ class StokBarangController extends Controller
         $limit = $request->get('limit', 10);
         $query = $request->get('keyword', '');
         $sortOrder = $request->get('sort_order', 'desc');
-        $stok = StokBarangModel::join("tb_barang", "tb_stok.id_barang", "tb_barang.id_barang")
+        $stok = StokBarangModel::join('tb_barang', 'tb_stok.id_barang', '=', 'tb_barang.id_barang')
+            ->select("tb_stok.*", "tb_barang.nama_barang")
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%');
                 });
-            })->latest('tb_stok.created_at')
+            })
             ->orderBy('tb_barang.nama_barang', $sortOrder)
             ->paginate($limit)
             ->appends(['keyword' => $query, 'limit' => $limit, 'sort_order' => $sortOrder]);
@@ -91,6 +92,7 @@ class StokBarangController extends Controller
             $stok->tanggal = $request->input('tanggal');
             $stok->jumlah_barang = (int) ($oldStok?->jumlah_barang ?? 0) + (int) $request->input('jumlah');
             $stok->lokasi = $request->input('lokasi');
+            $stok->keterangan = $request->input('keterangan');
             $stok->save();
 
             // khusus untuk catat log baru
@@ -100,7 +102,7 @@ class StokBarangController extends Controller
                 'tipe' => 'penyesuaian',
                 'jumlah' => $request->input('jumlah'),
                 'lokasi' => $stok->lokasi,
-                'keterangan' => $request->input('keterangan'),
+                'keterangan' => $stok->keterangan,
                 'dibuat_oleh' => Auth::user()->name,
             ]);
         }
@@ -143,6 +145,7 @@ class StokBarangController extends Controller
         $stok->tanggal = $request->input('tanggal');
         $stok->jumlah_barang = $jumlahStokBaru;
         $stok->lokasi = $request->input('lokasi');
+        $stok->keterangan = $request->input('keterangan');
         $stok->update();
 
         // khusus untuk catat log baru
@@ -152,7 +155,7 @@ class StokBarangController extends Controller
             'tipe' => 'penyesuaian',
             'jumlah' => $selisih,
             'lokasi' => $stok->lokasi,
-            'keterangan' => $request->input('keterangan'),
+            'keterangan' => $stok->keterangan,
             'dibuat_oleh' => Auth::user()->name,
         ]);
 

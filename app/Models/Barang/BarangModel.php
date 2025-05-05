@@ -2,6 +2,7 @@
 
 namespace App\Models\Barang;
 
+use App\Models\BarangMasuk\BarangMasukModel;
 use App\Models\StokBarang\StokBarangModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,5 +30,11 @@ class BarangModel extends Model
     public function stok()
     {
         return $this->hasOne(StokBarangModel::class, "id_barang");
+    }
+
+    public function barangMasuk()
+    {
+        // Satu data pada tabel barang dapat memiliki banyak entri pada tabel barang_masuk.
+        return $this->hasMany(BarangMasukModel::class, 'id_barang');
     }
 }

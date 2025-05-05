@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Barang\BarangController;
+use App\Http\Controllers\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\StokBarang\StokBarangController;
@@ -80,5 +81,16 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::post('/stok/store', 'store')->name('stok.store');
         Route::put('/stok/update/{id}', 'update')->name('stok.update');
         Route::delete('/stok/destroy/{id}', 'destroy')->name('stok.destroy');
+    });
+
+
+    // this barang masuk controller
+    Route::controller(BarangMasukController::class)->group(function () {
+        Route::get('/receiving/list', 'index')->name('receiving.list');
+        Route::get('/receiving/create', 'create')->name('receiving.create');
+        Route::get('/receiving/edit/{id}', 'edit')->name('receiving.edit');
+        Route::post('/receiving/store', 'store')->name('receiving.store');
+        Route::put('/receiving/update/{id}', 'update')->name('receiving.update');
+        Route::delete('/receiving/destroy/{id}', 'destroy')->name('receiving.destroy');
     });
 });

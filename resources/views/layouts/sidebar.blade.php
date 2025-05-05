@@ -1,7 +1,7 @@
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark sb-s" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
-            <div class="nav ">
+            <div class="nav">
                 <div class="sb-sidenav-menu-heading">Features</div>
                 <x-link class="nav-link {{ request()->is('home*') ? 'active bg-success' : 'collapsed' }}" url="/home">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -120,6 +120,35 @@
                     </nav>
                 </div>
                 {{-- end side supplier --}}
+
+
+                {{-- side barang masuk --}}
+                <x-link class="nav-link {{ request()->is('receiving*') ? 'active text-bg-success' : 'collapsed' }}"
+                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsBRGMSK" aria-expanded="false"
+                    aria-controls="collapseLayoutsCus">
+                    <div class="sb-nav-link-icon"><i class="bi bi-clipboard"></i></div>
+                    Barang Masuk
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </x-link>
+                <div class="{{ request()->segment(1) === 'receiving' ? 'show' : 'collapse' }}"
+                    id="collapseLayoutsBRGMSK" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <x-link label="Daftar Barang Masuk" url="/receiving/list" icon="far fa-circle me-2"
+                            class="nav-link {{ request()->is('receiving/list') ? 'active nav-sub-link' : '' }}" />
+                        <x-link label="Tambah Barang Masuk" url="/receiving/create" icon="far fa-circle me-2"
+                            class="nav-link {{ request()->is('receiving/create') ? 'active nav-sub-link' : '' }}" />
+
+                        @php
+                            $uuidBRGMSK = Request::segment(3);
+                        @endphp
+                        @if (Request::is('receiving/edit*'))
+                            <x-link label="Ubah Barang Masuk" url="/receiving/edit" parameters="{{ $uuidBRGMSK }}"
+                                icon="far fa-circle me-2"
+                                class="nav-link {{ request()->is('receiving/edit*') ? 'active nav-sub-link' : '' }}" />
+                        @endif
+                    </nav>
+                </div>
+                {{-- end side barang masuk --}}
 
 
                 <x-link class="nav-link {{ request()->is('user*') ? 'active text-bg-success' : 'collapsed' }}"

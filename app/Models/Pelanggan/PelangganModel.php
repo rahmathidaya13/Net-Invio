@@ -17,6 +17,7 @@ class PelangganModel extends Model
         'nama',
         'nohp',
         'email',
+        'jenis_kelamin',
         'alamat',
         'no_identitas'
     ];

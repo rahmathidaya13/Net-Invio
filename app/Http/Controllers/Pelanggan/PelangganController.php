@@ -91,9 +91,10 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request->all());
 
         $this->validationText($request->all(), $id);
-        $pelanggan = new PelangganModel();
+        $pelanggan = PelangganModel::findOrFail($id);
         $pelanggan->tanggal = $request->input('tanggal');
         $pelanggan->no_identitas = $request->input('nid');
         $pelanggan->nama = $request->input('nama_pelanggan');

@@ -31,7 +31,7 @@ trait StokValidation
                 'max:50',
                 'regex:/^[\pL\s\-0-9,\.]+$/u' // hanya huruf, angka, spasi, koma, titik
             ],
-            ['keterangan' => 'required|string|max:200'],
+            'keterangan' => 'nullable|string|max:250',
         ], [
             'nama_barang.required' => 'Nama barang wajib dipilih.',
             'nama_barang.uuid' => 'Format barang tidak valid.',
@@ -50,7 +50,7 @@ trait StokValidation
             'tanggal.in' => 'Tanggal hanya boleh diisi dengan hari ini.',
 
             'keterangan.string' => 'karakter yang digunakan tidak sesuai.',
-            'keterangan.max' => 'Keterangan maksimal 200 karakter.',
+            'keterangan.max' => 'Keterangan maksimal 250 karakter.',
 
         ])->validate();
     }

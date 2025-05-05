@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('tanggal'); // tanggal dibuat stok
             $table->integer('jumlah_barang'); // total stok tersedia
             $table->string('lokasi', 150)->nullable(); // Misal: Gudang A Atau Rak 1 Dll
+            $table->string('keterangan', 250)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

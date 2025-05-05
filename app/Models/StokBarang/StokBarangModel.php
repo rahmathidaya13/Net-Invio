@@ -17,6 +17,7 @@ class StokBarangModel extends Model
         'tanggal',
         'jumlah_barang',
         'lokasi',
+        'keterangan',
     ];
     public $incrementing = false;
     protected $dates     = ["deleted_at"];

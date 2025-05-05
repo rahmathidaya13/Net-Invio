@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('pembeli', 50)->nullable(); // jika pembeli petugas atau karyawan (nama orang)
             $table->string('nota', 50); // Bisa disimpan sebagai kode transaksi atau file
             $table->integer('jumlah'); // jumlah barang masuk
+            $table->decimal('harga', 12, 2)->default(0);
             $table->text('keterangan')->nullable();
             $table->softDeletes();
             $table->timestamps();
