@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Traits\Validate;
+namespace App\Traits\validate;
 
 use Illuminate\Support\Facades\Validator;
 
-trait PelangganValidation
+trait pelangganValidation
 {
     public function validationText($request, $id = null)
     {

@@ -1,7 +1,7 @@
 export default function barang() {
     $(function () {
         // field untuk cari semua item dalam table
-        $(document).on("input", "#keyword", function (e) {
+        $(document).off("input", "#keyword").on("input", "#keyword", function (e) {
             e.preventDefault();
             // ambil keyword
             let keyword = $(this).val();
@@ -29,10 +29,8 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${
-                            data.info.firstItem ?? 0
-                        }</b> sampai <b>${
-                            data.info.lastItem ?? 0
+                        `Menampilkan <b>${data.info.firstItem ?? 0
+                        }</b> sampai <b>${data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -44,7 +42,7 @@ export default function barang() {
         });
 
         // field untuk set order  dalam table
-        $(document).on("change", "#sort_order", function (e) {
+        $(document).off("change", "#sort_order").on("change", "#sort_order", function (e) {
             e.preventDefault();
             // ambil keyword
             let keyword = $("#keyword").val();
@@ -73,10 +71,8 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${
-                            data.info.firstItem ?? 0
-                        }</b> sampai <b>${
-                            data.info.lastItem ?? 0
+                        `Menampilkan <b>${data.info.firstItem ?? 0
+                        }</b> sampai <b>${data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -87,7 +83,7 @@ export default function barang() {
             });
         });
         // field untuk ganti batas item dalam table
-        $(document).on("change", "#limit", function (e) {
+        $(document).off("change", "#limit").on("change", "#limit", function (e) {
             e.preventDefault();
             // ambil keyword
             let keyword = $("#keyword").val();
@@ -115,10 +111,8 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${
-                            data.info.firstItem ?? 0
-                        }</b> sampai <b>${
-                            data.info.lastItem ?? 0
+                        `Menampilkan <b>${data.info.firstItem ?? 0
+                        }</b> sampai <b>${data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -130,7 +124,7 @@ export default function barang() {
         });
 
         // set pagination parameters
-        $(document).on("click", ".pagination a", function (e) {
+        $(document).off("click", ".pagination a").on("click", ".pagination a", function (e) {
             e.preventDefault();
             let urls = $(this).attr("href");
             let keyword = $("#keyword").val();
@@ -149,10 +143,8 @@ export default function barang() {
                     $("tbody#table_user").html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${
-                            data.info.firstItem ?? 0
-                        }</b> sampai <b>${
-                            data.info.lastItem ?? 0
+                        `Menampilkan <b>${data.info.firstItem ?? 0
+                        }</b> sampai <b>${data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
                     HighlightText(
@@ -164,7 +156,7 @@ export default function barang() {
         });
 
         // hapuss per item
-        $(document).on("click", ".hapus", function (e) {
+        $(document).off("click", ".hapus").on("click", ".hapus", function (e) {
             e.stopPropagation(); // Mencegah event bubbling ke elemen parent
             let data = $(this).data("data");
             // let form = $("#deleted_" + data.id_barang);

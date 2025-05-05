@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Pelanggan;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pelanggan\PelangganModel;
-use App\Traits\Validate\PelangganValidation;
-use Illuminate\Http\Request;
+use App\Traits\validate\pelangganValidation;
 
 class PelangganController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    use PelangganValidation;
+    use pelangganValidation;
     public function index(Request $request)
     {
         $limit = $request->get('limit', 10);

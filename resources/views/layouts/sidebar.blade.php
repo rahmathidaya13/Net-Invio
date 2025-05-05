@@ -98,7 +98,7 @@
                     data-bs-toggle="collapse" data-bs-target="#collapseLayoutsSTOK" aria-expanded="false"
                     aria-controls="collapseLayoutsCus">
                     <div class="sb-nav-link-icon"><i class="bi bi-clipboard"></i></div>
-                    Data Stok
+                    Stok Barang
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
                 <div class="{{ request()->segment(1) === 'stok' ? 'show' : 'collapse' }}" id="collapseLayoutsSTOK"

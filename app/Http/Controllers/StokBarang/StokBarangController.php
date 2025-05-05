@@ -77,7 +77,7 @@ class StokBarangController extends Controller
                 'tipe' => 'penyesuaian',
                 'jumlah' => $request->input('jumlah'),
                 'lokasi' => $request->input('lokasi'),
-                'keterangan' => 'Update stok pada tanggal yang sama',
+                'keterangan' => $request->input('keterangan'),
                 'dibuat_oleh' => Auth::user()->name,
             ]);
             $stok = $currentStok;
@@ -104,7 +104,7 @@ class StokBarangController extends Controller
                 'dibuat_oleh' => Auth::user()->name,
             ]);
         }
-        return redirect()->route('stok.list')->with('success', 'Penambahan Stok ' . ucwords($stok->barang->nama_barang) . '  Berhasil');
+        return redirect()->route('stok.list')->with('success', 'Penambahan Stok  Berhasil');
     }
 
     /**
@@ -130,6 +130,8 @@ class StokBarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->validationText($request->all(), $id);
+
         // Update data stok
         $stok = StokBarangModel::findOrFail($id);
 

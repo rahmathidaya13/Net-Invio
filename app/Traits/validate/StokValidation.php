@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Validate;
+namespace App\Traits\validate;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -31,6 +31,7 @@ trait StokValidation
                 'max:50',
                 'regex:/^[\pL\s\-0-9,\.]+$/u' // hanya huruf, angka, spasi, koma, titik
             ],
+            ['keterangan' => 'required|string|max:200'],
         ], [
             'nama_barang.required' => 'Nama barang wajib dipilih.',
             'nama_barang.uuid' => 'Format barang tidak valid.',
@@ -47,6 +48,10 @@ trait StokValidation
             'tanggal.required' => 'Tanggal wajib diisi.',
             'tanggal.date' => 'Format tanggal tidak valid.',
             'tanggal.in' => 'Tanggal hanya boleh diisi dengan hari ini.',
+
+            'keterangan.string' => 'karakter yang digunakan tidak sesuai.',
+            'keterangan.max' => 'Keterangan maksimal 200 karakter.',
+
         ])->validate();
     }
 }
