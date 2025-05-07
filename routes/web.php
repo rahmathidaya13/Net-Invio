@@ -8,6 +8,7 @@ use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\StokBarang\StokBarangController;
 use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\UserController;
+use App\Models\BarangKeluar\BarangKeluarModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -78,7 +79,6 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::get('/stok/list', 'index')->name('stok.list');
         Route::get('/stok/create', 'create')->name('stok.create');
         Route::get('/stok/edit/{id}', 'edit')->name('stok.edit');
-        Route::post('/stok/syncron', 'syncron')->name('stok.syncron');
         Route::post('/stok/store', 'store')->name('stok.store');
         Route::put('/stok/update/{id}', 'update')->name('stok.update');
         Route::delete('/stok/destroy/{id}', 'destroy')->name('stok.destroy');
@@ -94,5 +94,15 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::post('/receiving/store', 'store')->name('receiving.store');
         Route::put('/receiving/update/{id}', 'update')->name('receiving.update');
         Route::delete('/receiving/destroy/{id}', 'destroy')->name('receiving.destroy');
+    });
+
+    // this barang masuk controller
+    Route::controller(BarangKeluarModel::class)->group(function () {
+        Route::get('/outbound/list', 'index')->name('outbound.list');
+        Route::get('/outbound/create', 'create')->name('outbound.create');
+        Route::get('/outbound/edit/{id}', 'edit')->name('outbound.edit');
+        Route::post('/outbound/store', 'store')->name('outbound.store');
+        Route::put('/outbound/update/{id}', 'update')->name('outbound.update');
+        Route::delete('/outbound/destroy/{id}', 'destroy')->name('outbound.destroy');
     });
 });
