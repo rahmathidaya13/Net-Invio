@@ -32,7 +32,7 @@
                     method="{{ isset($barang_masuk) ? 'put' : null }}"
                     parameters="{{ $barang_masuk->id_barang_masuk ?? '' }}">
 
-                    <x-horizontal-input autofocus type="date" name="tanggal" label="Tanggal"
+                    <x-horizontal-input autofocus :readonly="isset($barang_masuk) && $barang_masuk->id_barang_masuk" type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $barang_masuk->tanggal ?? '') }}" />
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="nama_barang" value="Nama Barang" class="col-sm-2 col-form-label form-label" />
@@ -43,9 +43,11 @@
                                     $optionBarang[$item->id_barang] = $item->nama_barang;
                                 }
                             @endphp
-                            <x-form-select class="select2" name="nama_barang" text="---Pilih Barang---" :options="$optionBarang"
-                                selected="{{ old('nama_barang', $barang_masuk->id_barang ?? '') }}" />
+                            <x-form-select :disabled="isset($barang_masuk) && $barang_masuk->id_barang_masuk" class="select2" name="nama_barang" text="---Pilih Barang---"
+                                :options="$optionBarang" selected="{{ old('nama_barang', $barang_masuk->id_barang ?? '') }}" />
                         </div>
+                        <input type="text" class="d-none" name="id_barang" id="id_barang"
+                            value="{{ old('nama_barang', $barang_masuk->id_barang ?? '') }}">
                     </div>
 
                     <div class="mb-3 row align-items-center">
@@ -73,8 +75,8 @@
                         </div>
                     </div>
 
-                    <x-horizontal-input name="pembeli" label="Pembeli"
-                        value="{{ old('pembeli', $barang_masuk->pembeli ?? '-') }}" />
+                    <x-horizontal-input name="pembeli" label="Pembeli Barang"
+                        value="{{ old('pembeli', $barang_masuk->pembeli ?? '') }}" />
 
                     <x-horizontal-input name="nota" label="Nota"
                         value="{{ old('nota', $barang_masuk->nota ?? '') }}" />
@@ -88,9 +90,11 @@
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="lokasi" value="Lokasi/Tempat" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
-                            <x-form-select name="lokasi" text="---Pilih Lokasi/Tempat---" :options="['gudang-1' => 'Gudang 1', 'gudang-2' => 'Gudang 2']"
-                                selected="{{ old('lokasi', $barang_masuk->lokasi ?? '') }}" />
+                            <x-form-select :disabled="isset($barang_masuk) && $barang_masuk->id_barang_masuk" name="lokasi" text="---Pilih Lokasi/Tempat---"
+                                :options="['gudang-1' => 'Gudang 1', 'gudang-2' => 'Gudang 2']" selected="{{ old('lokasi', $barang_masuk->lokasi ?? '') }}" />
                         </div>
+                        <input type="text" class="d-none" name="lokasi_barang" id="lokasi_barang"
+                            value="{{ old('lokasi', $barang_masuk->lokasi ?? '') }}">
                     </div>
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />

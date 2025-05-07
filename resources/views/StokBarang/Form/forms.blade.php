@@ -48,13 +48,13 @@
                     <x-horizontal-input name="jumlah" label="Jumlah Barang"
                         value="{{ old('jumlah', $stok->jumlah_barang ?? '') }}" />
 
-                        <div class="mb-3 row align-items-center">
-                            <x-form-label for="lokasi" value="Lokasi/Tempat" class="col-sm-2 col-form-label form-label" />
-                            <div class="col-sm-5">
-                                <x-form-select name="lokasi" text="---Pilih Lokasi/Tempat---" :options="['gudang-1' => 'Gudang 1', 'gudang-2' => 'Gudang 2']"
-                                    selected="{{ old('lokasi', $stok->lokasi ?? '') }}" />
-                            </div>
+                    <div class="mb-3 row align-items-center">
+                        <x-form-label for="lokasi" value="Lokasi/Tempat" class="col-sm-2 col-form-label form-label" />
+                        <div class="col-sm-5">
+                            <x-form-select name="lokasi" text="---Pilih Lokasi/Tempat---" :options="['gudang-1' => 'Gudang 1', 'gudang-2' => 'Gudang 2']"
+                                selected="{{ old('lokasi', $stok->lokasi ?? '') }}" />
                         </div>
+                    </div>
 
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />

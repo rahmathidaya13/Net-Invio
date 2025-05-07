@@ -66,93 +66,30 @@ class StokBarangController extends Controller
     public function store(Request $request)
     {
         $this->validationText($request->all());
-        // cek stok saat ini berdasarkan kondisi saat ini dari form atau request
-        $currentStok = StokBarangModel::where('id_barang', $request->input('nama_barang'))
-            ->whereDate('tanggal', $request->input('tanggal'))
-            ->first();
+        $stok = new StokBarangModel();
+        $stok->id_barang = $request->input('nama_barang');
+        $stok->tanggal = $request->input('tanggal');
+        $stok->jumlah_barang =  (int) $request->input('jumlah');
+        $stok->lokasi = $request->input('lokasi');
+        $stok->keterangan = $request->input('keterangan');
+        $stok->save();
 
-        if ($currentStok) {
-            $currentStok->jumlah_barang += $request->input('jumlah');
-            $currentStok->save();
-
-            // catat log jika ada perubahan pada kondisi yang sama
-            LogStokModel::create([
-                'id_barang' => $request->input('nama_barang'),
-                'tanggal' => $request->input('tanggal'),
-                'tipe' => 'penyesuaian',
-                'jumlah' => $request->input('jumlah'),
-                'lokasi' => $request->input('lokasi'),
-                'keterangan' => $request->input('keterangan'),
-                'dibuat_oleh' => Auth::user()->name,
-            ]);
-            $stok = $currentStok;
-        } else {
-            // Ambil stok terakhir sebelum tanggal ini (jika ada)
-            $oldStok = StokBarangModel::where('id_barang', $request->input('nama_barang'))
-                ->orderByDesc('tanggal')
-                ->first();
-            $stok = new StokBarangModel();
-            $stok->id_barang = $request->input('nama_barang');
-            $stok->tanggal = $request->input('tanggal');
-            $stok->jumlah_barang = (int) ($oldStok?->jumlah_barang ?? 0) + (int) $request->input('jumlah');
-            $stok->lokasi = $request->input('lokasi');
-            $stok->keterangan = $request->input('keterangan');
-            $stok->save();
-
-            // khusus untuk catat log baru
-            LogStokModel::create([
-                'id_barang' => $stok->id_barang,
-                'tanggal' => $stok->tanggal,
-                'tipe' => 'penyesuaian',
-                'jumlah' => $request->input('jumlah'),
-                'lokasi' => $stok->lokasi,
-                'keterangan' => $stok->keterangan,
-                'dibuat_oleh' => Auth::user()->name,
-            ]);
-        }
+        // khusus untuk catat log baru
+        LogStokModel::create([
+            'id_barang' => $stok->id_barang,
+            'tanggal' => $stok->tanggal,
+            'tipe' => 'barang_tersedia',
+            'jumlah' =>  $stok->jumlah_barang,
+            'lokasi' => $stok->lokasi,
+            'keterangan' => $stok->keterangan,
+            'dibuat_oleh' => Auth::user()->name,
+        ]);
         return redirect()->route('stok.list')->with('success', 'Penambahan Stok  Berhasil');
     }
 
     /**
      * Display the specified resource.
      */
-    public function syncron(Request $request)
-    {
-
-        $tanggal = $request->input('sync');
-        DB::beginTransaction();
-        try {
-            $stokBaru = BarangMasukModel::select('id_barang', DB::raw('SUM(jumlah) as total'))
-                ->whereDate('tanggal', $tanggal)
-                ->groupBy('id_barang')
-                ->get();
-            // foreach ($stokBaru as $item) {
-            //     // Cek apakah stok untuk tanggal tersebut sudah ada
-            //     $stok = StokBarangModel::where('id_barang', $item->id_barang)
-            //         ->whereDate('tanggal', $tanggal)
-            //         ->sum('jumlah_barang');
-
-            //     if ($stok) {
-            //         $stok->jumlah_barang = $item->total;
-            //         $stok->save();
-            //     } else {
-            //         StokBarangModel::create([
-            //             'id_barang' => $item->id_barang,
-            //             'tanggal' => $tanggal,
-            //             'jumlah_barang' => $item->total,
-            //             'lokasi' => 'gudang-1', // sesuaikan jika ada
-            //             'keterangan' => 'Sinkronisasi otomatis',
-            //         ]);
-            //     }
-            // }
-            DB::commit();
-            return redirect()->back()->with('success', 'Stok berhasil disinkronkan dari data barang masuk.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Sinkronisasi gagal: ' . $e->getMessage());
-        }
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -172,14 +109,9 @@ class StokBarangController extends Controller
 
         // Update data stok
         $stok = StokBarangModel::findOrFail($id);
-
-        $jumlahStokLama = $stok->jumlah_barang;
-        $jumlahStokBaru = (int) $request->input('jumlah');
-        $selisih = $jumlahStokBaru - $jumlahStokLama;
-
         $stok->id_barang = $request->input('nama_barang');
         $stok->tanggal = $request->input('tanggal');
-        $stok->jumlah_barang = $jumlahStokBaru;
+        $stok->jumlah_barang = $request->input('jumlah');
         $stok->lokasi = $request->input('lokasi');
         $stok->keterangan = $request->input('keterangan');
         $stok->update();
@@ -188,9 +120,9 @@ class StokBarangController extends Controller
         LogStokModel::create([
             'id_barang' => $stok->id_barang,
             'tanggal' => $stok->tanggal,
-            'tipe' => 'penyesuaian',
-            'jumlah' => $selisih,
-            'lokasi' => $stok->lokasi,
+            'tipe' => 'barang_tersedia',
+            'jumlah' =>  $stok->jumlah_barang,
+            'lokasi' =>  $stok->lokasi,
             'keterangan' => $stok->keterangan,
             'dibuat_oleh' => Auth::user()->name,
         ]);

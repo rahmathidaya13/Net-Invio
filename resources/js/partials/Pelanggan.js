@@ -161,10 +161,9 @@ export default function Pelanggan() {
         });
 
         // hapuss per item
-        $(document).off("change", "#limit").on("click", ".hapus", function (e) {
-            e.stopPropagation(); // Mencegah event bubbling ke elemen parent
+        $(document).off("change", ".hapus").on("click", ".hapus", function (e) {
+            e.preventDefault(); // Mencegah event bubbling ke elemen parent
             let data = $(this).data("data");
-            // let form = $("#deleted_" + data.id_barang);
             SweatAlert(
                 `/pelanggan/destroy/${data.id_pelanggan}`,
                 data.nama,

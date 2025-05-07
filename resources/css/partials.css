@@ -177,13 +177,12 @@ textarea:read-only {
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
     padding: 0.5rem 1rem;
-
     &.active {
         border-bottom: 1px solid #1a1a1a;
-        background-color: #b8b8b8;
+        background-color: #999999;
         color: #ffffff;
         width: auto;
-        max-height: 40px;
+        max-height: 55px;
     }
 }
 
@@ -240,3 +239,8 @@ small, .small {
     font-size: 0.9em !important;
 }
 
+input:read-only, textarea:read-only {
+    background-color: #969696 !important;
+    border: 1px solid #adb5bd !important;
+    color: #495057 !important;
+}

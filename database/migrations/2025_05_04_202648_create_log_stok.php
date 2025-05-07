@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id_log_stok')->primary();
             $table->uuid('id_barang');
             $table->date('tanggal');
-            $table->enum('tipe', ['masuk', 'keluar', 'penyesuaian']);
+            $table->enum('tipe', ['barang_masuk', 'barang_keluar', 'barang_tersedia']);
             $table->integer('jumlah');
             $table->string('lokasi', 150);
             $table->string('keterangan', 250)->nullable();

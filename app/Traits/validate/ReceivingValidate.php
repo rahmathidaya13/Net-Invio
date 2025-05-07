@@ -6,10 +6,9 @@ use Illuminate\Support\Facades\Validator;
 
 trait ReceivingValidate
 {
-    public function validateReceiving($request)
+    public function validateReceiving($request, $isUpdated = false)
     {
-        return Validator::make($request, [
-            'nama_barang' => 'required|exists:tb_barang,id_barang',
+        $rules = [
             'supplier' => 'nullable|exists:tb_supplier,id_supplier',
             'tanggal' => 'required|date|in:' . now()->toDateString(),
             'sumber' => 'required|string|in:internal,supplier',
@@ -17,9 +16,13 @@ trait ReceivingValidate
             'nota' => 'required|string|max:50',
             'jumlah' => 'required|integer|min:1',
             'harga_brg' => 'required|numeric|min:0',
-            'lokasi' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\-0-9,\.]+$/u'],
             'keterangan' => 'nullable|string|max:250',
-        ], [
+        ];
+        if (!$isUpdated) {
+            $rules['nama_barang'] = 'required|exists:tb_barang,id_barang';
+            $rules['lokasi'] = ['required', 'string', 'max:50', 'regex:/^[\pL\s\-0-9,\.]+$/u'];
+        }
+        return Validator::make($request, $rules, [
             'nama_barang.required' => 'Nama Barang wajib dipilih.',
             'nama_barang.exists' => 'Nama Barang tidak ditemukan.',
 

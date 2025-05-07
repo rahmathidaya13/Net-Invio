@@ -150,26 +150,6 @@ export default function Stok() {
                 },
             });
         });
-
-        // action syncron
-        $(document).on("click", "#act_sync", function (e) {
-            e.preventDefault();
-            let sync = $("#sync").val();
-            let token = $('meta[name="csrf-token"]').attr("content");
-            $.ajax({
-                type: "GET",
-                url: `/stok/syncron`,
-                data: {
-                    _token: token,
-                    value: sync,
-                },
-                dataType: "json",
-                success: function (response) {
-                    console.log(response.result);
-                }
-            });
-        });
-
         // hapuss per item
         $(document).off("click", ".hapus").on("click", ".hapus", function (e) {
             e.stopPropagation(); // Mencegah event bubbling ke elemen parent

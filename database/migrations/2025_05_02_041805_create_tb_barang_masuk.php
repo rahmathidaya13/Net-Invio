@@ -23,7 +23,6 @@ return new class extends Migration
             $table->decimal('harga', 12, 2)->default(0);
             $table->string('lokasi', 150); // lokasi barang masuk
             $table->text('keterangan')->nullable();
-            $table->boolean('sinkronisasi')->default(false); // status sinkronisasi
             $table->softDeletes();
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Daftar Barang Masuk')
-@section('icon', 'bi bi-clipboard-check-fill')
+@section('icon', 'bi bi-cart-plus-fill')
 @section('breadcrumb', Str::upper('Daftar Barang Masuk'))
 @section('content')
     <x-bread-crumbs :items="[['text' => 'Daftar Barang Masuk', 'url' => '/receiving/list']]" />
