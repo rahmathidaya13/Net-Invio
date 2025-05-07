@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->enum('tipe', ['masuk', 'keluar', 'penyesuaian']);
             $table->integer('jumlah');
-            $table->string('lokasi', 50)->nullable();
+            $table->string('lokasi', 150);
             $table->string('keterangan', 250)->nullable();
             $table->string('dibuat_oleh', 150)->nullable();
             $table->timestamps();

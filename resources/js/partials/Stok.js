@@ -21,7 +21,7 @@ export default function Stok() {
             ).get("page");
             // buat limit
             let setLimit = parseInt($("#limit").val());
-            let setOrder = $("#sort_order").val() ?? "desc";
+            let setOrder = $("#sort_order").val() || "desc";
             $.ajax({
                 type: "GET",
                 url: "/stok/list",
@@ -97,7 +97,7 @@ export default function Stok() {
             ).get("page");
             // buat limit
             let setLimit = parseInt($(this).val());
-            let setOrder = $("#sort_order").val() ?? "desc";
+            let setOrder = $("#sort_order").val() || "desc";
             $.ajax({
                 type: "GET",
                 url: "/stok/list",
@@ -128,7 +128,7 @@ export default function Stok() {
             let urls = $(this).attr("href");
             let keyword = $("#keyword").val();
             let setLimit = parseInt($("#limit").val());
-            let setOrder = $("#sort_order").val() ?? "desc";
+            let setOrder = $("#sort_order").val() || "desc";
             if (!urls) return; // Jika tidak ada URL, hentikan
             urls = new URL(urls, window.location.origin);
             urls.searchParams.set("limit", setLimit);
@@ -148,6 +148,25 @@ export default function Stok() {
                     );
                     HighlightText(keyword, ".nama_barang");
                 },
+            });
+        });
+
+        // action syncron
+        $(document).on("click", "#act_sync", function (e) {
+            e.preventDefault();
+            let sync = $("#sync").val();
+            let token = $('meta[name="csrf-token"]').attr("content");
+            $.ajax({
+                type: "GET",
+                url: `/stok/syncron`,
+                data: {
+                    _token: token,
+                    value: sync,
+                },
+                dataType: "json",
+                success: function (response) {
+                    console.log(response.result);
+                }
             });
         });
 

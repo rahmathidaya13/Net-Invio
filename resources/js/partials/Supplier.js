@@ -22,7 +22,7 @@ export default function Supplier() {
             ).get("page");
             // buat limit
             let setLimit = parseInt($("#limit").val());
-            let setOrder = $("#sort_order").val() ?? "desc";
+            let setOrder = $("#sort_order").val() || "desc";
             $.ajax({
                 type: "GET",
                 url: "/supplier/list",
@@ -102,7 +102,7 @@ export default function Supplier() {
             ).get("page");
             // buat limit
             let setLimit = parseInt($(this).val());
-            let setOrder = $("#sort_order").val() ?? "desc";
+            let setOrder = $("#sort_order").val() || "desc";
             $.ajax({
                 type: "GET",
                 url: "/supplier/list",
@@ -135,7 +135,7 @@ export default function Supplier() {
             let urls = $(this).attr("href");
             let keyword = $("#keyword").val();
             let setLimit = parseInt($("#limit").val());
-            let setOrder = $("#sort_order").val() ?? "desc";
+            let setOrder = $("#sort_order").val() || "desc";
             if (!urls) return; // Jika tidak ada URL, hentikan
             urls = new URL(urls, window.location.origin);
             urls.searchParams.set("limit", setLimit);

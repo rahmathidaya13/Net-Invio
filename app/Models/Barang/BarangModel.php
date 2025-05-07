@@ -21,6 +21,7 @@ class BarangModel extends Model
         'tipe_model',
         'serial_number',
         'satuan',
+        'lokasi',
         'keterangan',
     ];
 

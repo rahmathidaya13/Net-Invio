@@ -10,7 +10,8 @@
 
                 <ul class="dropdown-menu">
                     <li>
-                        <x-link label="Ubah" icon="fas fa-edit" class="dropdown-item" url="/receiving/edit"
+                        <x-link data-id="{{ $data->id_barang_masuk }}" label="Ubah" icon="fas fa-edit "
+                            class="dropdown-item ubah" url="/receiving/edit"
                             parameters="{{ $data->id_barang_masuk }}" />
                     </li>
                     <li>
@@ -25,12 +26,13 @@
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
         <td class="nama_Barang align-middle text-start">{{ ucwords($data->barang->nama_barang) }}</td>
-        <td class="align-middle">{{ $data->supplier->nama ?? '-' }}</td>
-        <td class="align-middle text-start">{{ $data->sumber }}</td>
-        <td class="align-middle text-start">{{ $data->pembeli }}</td>
-        <td class="align-middle text-start">{{ $data->nota }}</td>
-        <td class="align-middle text-start">{{ $data->jumlah }}</td>
-        <td class="align-middle text-start">{{ $data->keterangan }}</td>
+        <td class="align-middle">{{ ucwords($data->supplier->nama ?? '-') }}</td>
+        <td class="align-middle ">{{ ucwords($data->sumber) }}</td>
+        <td class="align-middle">{{ ucwords($data->pembeli) }}</td>
+        <td class="align-middle ">{{ $data->nota }}</td>
+        <td class="align-middle ">{{ $data->jumlah }}</td>
+        <td class="align-middle ">{{ ucwords($data->lokasi) }}</td>
+        <td class="align-middle ">{{ $data->keterangan }}</td>
     </tr>
 @endforeach
 @empty($data)

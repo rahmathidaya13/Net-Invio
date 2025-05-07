@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('nota', 50); // Bisa disimpan sebagai kode transaksi atau file
             $table->integer('jumlah'); // jumlah barang masuk
             $table->decimal('harga', 12, 2)->default(0);
+            $table->string('lokasi', 150); // lokasi barang masuk
             $table->text('keterangan')->nullable();
+            $table->boolean('sinkronisasi')->default(false); // status sinkronisasi
             $table->softDeletes();
             $table->timestamps();
         });

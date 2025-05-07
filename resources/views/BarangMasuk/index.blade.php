@@ -48,6 +48,7 @@
                     'Pembeli',
                     'Nota',
                     'Jumlah',
+                    'Lokasi Penyimpanan',
                     'Keterangan',
                 ];
             @endphp

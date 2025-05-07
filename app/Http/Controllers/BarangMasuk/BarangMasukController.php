@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\BarangMasuk;
 
-use App\Http\Controllers\Controller;
-use App\Models\Barang\BarangModel;
-use App\Models\BarangMasuk\BarangMasukModel;
-use App\Models\Supplier\SupplierModel;
 use Illuminate\Http\Request;
+use App\Models\Log\LogStokModel;
+use App\Models\Barang\BarangModel;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Supplier\SupplierModel;
+use App\Models\StokBarang\StokBarangModel;
+use App\Traits\validate\ReceivingValidate;
+use App\Models\BarangMasuk\BarangMasukModel;
 
 class BarangMasukController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    use ReceivingValidate;
     public function index(Request $request)
     {
         $limit = $request->get('limit', 10);
@@ -60,9 +65,10 @@ class BarangMasukController extends Controller
      */
     public function store(Request $request)
     {
-        $convert = $request->merge([
+        $request->merge([
             'harga_brg' => str_replace([".", ","], "", $request->input('harga'))
         ]);
+        $this->validateReceiving($request->all());
         $barangMasuk = new BarangMasukModel();
         $barangMasuk->id_barang = $request->input('nama_barang');
         $barangMasuk->id_supplier = $request->input('supplier');
@@ -71,34 +77,63 @@ class BarangMasukController extends Controller
         $barangMasuk->pembeli = $request->input('pembeli');
         $barangMasuk->nota = $request->input('nota');
         $barangMasuk->jumlah = $request->input('jumlah');
-        $barangMasuk->harga = $convert['harga_brg'];
+        $barangMasuk->lokasi = $request->input('lokasi');
+        $barangMasuk->harga = floatval($request['harga_brg']);
         $barangMasuk->keterangan = $request->input('keterangan');
         $barangMasuk->save();
-        return redirect()->route('receiving.list')->with('success', 'Barang Masuk Berhasil ditambahkan');
+
+
+        return redirect()->route('receiving.list')->with('success', 'Penambahan ' . ucwords($barangMasuk->barang->nama_barang) . ' barang Masuk Berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(BarangMasukModel $barangMasukModel)
+    public function show(string $id)
     {
-        //
+        $barang_masuk = BarangMasukModel::findOrFail($id);
+        return response()->json([
+            'result' => $barang_masuk,
+        ], 200);
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BarangMasukModel $barangMasukModel)
+    public function edit(string $id)
     {
-        //
+        $barang = BarangModel::select('id_barang', 'nama_barang')->get();
+        $supplier = SupplierModel::select('id_supplier', 'nama')->get();
+        $barang_masuk = BarangMasukModel::findOrFail($id);
+        return view('BarangMasuk.Form.forms', compact('barang_masuk', 'barang', 'supplier'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BarangMasukModel $barangMasukModel)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->merge([
+            'harga_brg' => str_replace([".", ","], "", $request->input('harga'))
+        ]);
+        $oldBrg_masuk = BarangMasukModel::where("id_barang", $request->input('nama_barang'))
+            ->whereDate('tanggal', $request->input('tanggal'))
+            ->sum("jumlah");
+        // $this->validateReceiving($request->all());
+        $barang_masuk = BarangMasukModel::findOrFail($id);
+        $barang_masuk->id_barang = $request->input('nama_barang');
+        $barang_masuk->id_supplier = $request->input('supplier');
+        $barang_masuk->tanggal = $request->input('tanggal');
+        $barang_masuk->sumber = $request->input('sumber');
+        $barang_masuk->pembeli = $request->input('pembeli');
+        $barang_masuk->nota = $request->input('nota');
+        $barang_masuk->jumlah = $request->input('jumlah');
+        $barang_masuk->lokasi = $request->input('lokasi');
+        $barang_masuk->harga = floatval($request['harga_brg']);
+        $barang_masuk->keterangan = $request->input('keterangan');
+        $barang_masuk->update();
+        return redirect()->route('receiving.list')->with('success', 'Data Barang Masuk berhasil diperbarui');
     }
 
     /**

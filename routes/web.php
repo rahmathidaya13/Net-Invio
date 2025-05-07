@@ -78,6 +78,7 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::get('/stok/list', 'index')->name('stok.list');
         Route::get('/stok/create', 'create')->name('stok.create');
         Route::get('/stok/edit/{id}', 'edit')->name('stok.edit');
+        Route::post('/stok/syncron', 'syncron')->name('stok.syncron');
         Route::post('/stok/store', 'store')->name('stok.store');
         Route::put('/stok/update/{id}', 'update')->name('stok.update');
         Route::delete('/stok/destroy/{id}', 'destroy')->name('stok.destroy');
@@ -89,6 +90,7 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::get('/receiving/list', 'index')->name('receiving.list');
         Route::get('/receiving/create', 'create')->name('receiving.create');
         Route::get('/receiving/edit/{id}', 'edit')->name('receiving.edit');
+        Route::get('/receiving/show/{id}', 'show')->name('receiving.show');
         Route::post('/receiving/store', 'store')->name('receiving.store');
         Route::put('/receiving/update/{id}', 'update')->name('receiving.update');
         Route::delete('/receiving/destroy/{id}', 'destroy')->name('receiving.destroy');

@@ -26,17 +26,36 @@
                 </div>
             </div>
             <div class="row mb-3 align-items-center">
-                <div class="d-flex flex-wrap align-items-center gap-2 justify-content-between">
+                <div class="d-flex flex-wrap align-items-center gap-2 justify-content-between mb-3">
                     <div class="input-group align-items-center" style="width: 12rem">
                         <span class="me-2">Tampilkan hasil: </span>
                         <x-form-select class="form-select-sm" name="limit" :options="['10' => '10', '20' => '20', '50' => '50', '100' => '100']" />
                     </div>
-                    <div class="input-group align-items-center w-15">
+                    <div class="input-group align-items-center w-15 gap-3">
                         <x-form-select class="form-select-sm" name="sort_order" text="Sort By" :options="['asc' => 'Ascending', 'desc' => 'Descending']" />
-                    </div>
-                </div>
-            </div>
 
+                    </div>
+
+                </div>
+
+            </div>
+            {{-- <div class="d-flex text-bg-danger p-3 flex-wrap mb-3 justify-content-center align-items-center gap-2">
+
+                <div class="d-flex flex-wrap align-items-center gap-2 justify-content-between">
+
+                </div>
+            </div> --}}
+
+            <div class="d-flex mb-3">
+                <button type="button" class="btn btn-primary position-relative btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    <i class="fas fa-sync-alt"></i> Async
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        9
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </button>
+            </div>
             @php
                 $thead = ['', 'No', 'Tanggal', 'Nama Barang', 'Jumlah Barang', 'Lokasi/Tempat'];
             @endphp
@@ -55,5 +74,47 @@
             </x-card>
         </div>
 
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sinkronisasi Data</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <x-form url="/stok/syncron">
+                        <div class="mb-3">
+                            <x-form-label for="sync" value="Tanggal" class="form-label" />
+                            <div class="input-group align-items-center">
+                                <x-form-input name="sync" type="date" class="form-control-sm" />
+                            </div>
+                        </div>
+                        @php
+                            $option = [];
+                            $id_barang_masuk = [];
+                            foreach ($barang_masuk as $item) {
+                                $option[$item->id_barang] = $item->barang->nama_barang;
+                                $id_barang_masuk = $item->id_barang_masuk;
+                            }
+                        @endphp
+                        <div class="mb-3">
+                            <x-form-label for="sync" value="Barang" class="form-label" />
+                            <div class="input-group align-items-center">
+                                <input type="text" name="" id="" class="d-none"
+                                    value="{{ $id_barang_masuk}}">
+                                <x-form-select name="barang" :options="$option" />
+                                {{-- <x-form-input name="barang" class="form-control-sm" /> --}}
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <x-base-button label="Submit" variant="success" />
+                        </div>
+                    </x-form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

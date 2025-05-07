@@ -5,11 +5,13 @@ namespace App\Http\Controllers\StokBarang;
 use Illuminate\Http\Request;
 use App\Models\Log\LogStokModel;
 use App\Models\Barang\BarangModel;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\StokBarang\StokBarangModel;
-use App\Traits\Validate\StokValidation;
 use PhpParser\Node\Expr\Cast\String_;
+use App\Traits\Validate\StokValidation;
+use App\Models\StokBarang\StokBarangModel;
+use App\Models\BarangMasuk\BarangMasukModel;
 
 class StokBarangController extends Controller
 {
@@ -20,11 +22,13 @@ class StokBarangController extends Controller
     use StokValidation;
     public function index(Request $request)
     {
+        $barang_masuk = BarangMasukModel::select('id_barang_masuk', 'id_barang', 'tanggal', 'jumlah')->get();
+
         $limit = $request->get('limit', 10);
         $query = $request->get('keyword', '');
         $sortOrder = $request->get('sort_order', 'desc');
         $stok = StokBarangModel::join('tb_barang', 'tb_stok.id_barang', '=', 'tb_barang.id_barang')
-            ->select("tb_stok.*", "tb_barang.nama_barang")
+            ->select('tb_stok.*', 'tb_barang.nama_barang')
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%');
@@ -44,7 +48,7 @@ class StokBarangController extends Controller
                 ],
             ]);
         }
-        return view('StokBarang.index', compact('stok'));
+        return view('StokBarang.index', compact('stok', 'barang_masuk'));
     }
 
     /**
@@ -112,9 +116,41 @@ class StokBarangController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StokBarangModel $stokBarangModel)
+    public function syncron(Request $request)
     {
-        //
+
+        $tanggal = $request->input('sync');
+        DB::beginTransaction();
+        try {
+            $stokBaru = BarangMasukModel::select('id_barang', DB::raw('SUM(jumlah) as total'))
+                ->whereDate('tanggal', $tanggal)
+                ->groupBy('id_barang')
+                ->get();
+            // foreach ($stokBaru as $item) {
+            //     // Cek apakah stok untuk tanggal tersebut sudah ada
+            //     $stok = StokBarangModel::where('id_barang', $item->id_barang)
+            //         ->whereDate('tanggal', $tanggal)
+            //         ->sum('jumlah_barang');
+
+            //     if ($stok) {
+            //         $stok->jumlah_barang = $item->total;
+            //         $stok->save();
+            //     } else {
+            //         StokBarangModel::create([
+            //             'id_barang' => $item->id_barang,
+            //             'tanggal' => $tanggal,
+            //             'jumlah_barang' => $item->total,
+            //             'lokasi' => 'gudang-1', // sesuaikan jika ada
+            //             'keterangan' => 'Sinkronisasi otomatis',
+            //         ]);
+            //     }
+            // }
+            DB::commit();
+            return redirect()->back()->with('success', 'Stok berhasil disinkronkan dari data barang masuk.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Sinkronisasi gagal: ' . $e->getMessage());
+        }
     }
 
     /**

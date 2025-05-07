@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title', isset($stok) ? 'Ubah Barang Masuk ' : 'Tambah Barang Masuk')
-@section('icon', isset($stok) ? 'bi bi-pencil-square' : 'bi bi-plus-square-fill')
-@section('breadcrumb', Str::upper(isset($stok) ? 'Ubah Barang Masuk' : 'Tambah Barang Masuk'))
+@section('title', isset($barang_masuk) ? 'Ubah Barang Masuk ' : 'Tambah Barang Masuk')
+@section('icon', isset($barang_masuk) ? 'bi bi-pencil-square' : 'bi bi-plus-square-fill')
+@section('breadcrumb', Str::upper(isset($barang_masuk) ? 'Ubah Barang Masuk' : 'Tambah Barang Masuk'))
 @section('content')
     <x-bread-crumbs :items="[
         ['text' => 'Daftar Barang Masuk', 'url' => '/receiving/list'],
-        ['text' => ucwords(isset($stok) ? 'Ubah Barang Masuk' : 'Tambah Barang Masuk')],
+        ['text' => ucwords(isset($barang_masuk) ? 'Ubah Barang Masuk' : 'Tambah Barang Masuk')],
     ]" />
 
     <div class="row">
@@ -43,7 +43,7 @@
                                     $optionBarang[$item->id_barang] = $item->nama_barang;
                                 }
                             @endphp
-                            <x-form-select class="select2" name="nama_barang" text="Pilih Barang" :options="$optionBarang"
+                            <x-form-select class="select2" name="nama_barang" text="---Pilih Barang---" :options="$optionBarang"
                                 selected="{{ old('nama_barang', $barang_masuk->id_barang ?? '') }}" />
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             @php
                                 $sumber = ['internal' => 'Internal', 'supplier' => 'Supplier'];
                             @endphp
-                            <x-form-select name="sumber" text="Pilih Sumber Pembelian" :options="$sumber"
+                            <x-form-select name="sumber" text="---Pilih Sumber Pembelian---" :options="$sumber"
                                 selected="{{ old('sumber', $barang_masuk->sumber ?? '') }}" />
                         </div>
                     </div>
@@ -68,16 +68,13 @@
                                     $optionSupplier[$item->id_supplier] = $item->nama;
                                 }
                             @endphp
-                            <x-form-select disabled class="select2" name="suppliers" text="Pilih Supplier" :options="$optionSupplier"
+                            <x-form-select class="select2" name="supplier" text="---Pilih Supplier---" :options="$optionSupplier"
                                 selected="{{ old('supplier', $barang_masuk->id_supplier ?? '') }}" />
-
-                            <x-form-input name="supplier" class="d-none" id="hide_supplier"
-                                value="{{ old('supplier', $barang_masuk->id_supplier ?? '') }}" />
                         </div>
                     </div>
 
                     <x-horizontal-input name="pembeli" label="Pembeli"
-                        value="{{ old('pembeli', $barang_masuk->pembeli ?? '') }}" />
+                        value="{{ old('pembeli', $barang_masuk->pembeli ?? '-') }}" />
 
                     <x-horizontal-input name="nota" label="Nota"
                         value="{{ old('nota', $barang_masuk->nota ?? '') }}" />
@@ -86,13 +83,20 @@
                         value="{{ old('jumlah', $barang_masuk->jumlah ?? '') }}" />
 
                     <x-horizontal-input name="harga" label="Harga Barang"
-                        value="{{ old('harga', $barang_masuk->harga ?? '') }}" />
+                        value="{{ number_format((int) old('harga', $barang_masuk->harga ?? ''), 0, ',', '.') }}" />
 
+                    <div class="mb-3 row align-items-center">
+                        <x-form-label for="lokasi" value="Lokasi/Tempat" class="col-sm-2 col-form-label form-label" />
+                        <div class="col-sm-5">
+                            <x-form-select name="lokasi" text="---Pilih Lokasi/Tempat---" :options="['gudang-1' => 'Gudang 1', 'gudang-2' => 'Gudang 2']"
+                                selected="{{ old('lokasi', $barang_masuk->lokasi ?? '') }}" />
+                        </div>
+                    </div>
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
                             <x-text-area name="keterangan"
-                                value="{{ old('keterangan', $barang_masuk->keterangan ?? '') }}" />
+                                value="{{ old('keterangan', $barang_masuk->keterangan ?? '-') }}" />
                         </div>
                     </div>
 
