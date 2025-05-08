@@ -90,6 +90,13 @@ class StokBarangController extends Controller
     /**
      * Display the specified resource.
      */
+    public function show(string $id)
+    {
+        $stok = StokBarangModel::where('id_barang', $id)->first();
+        return response()->json([
+            'stok' => $stok,
+        ], 200);
+    }
     /**
      * Show the form for editing the specified resource.
      */

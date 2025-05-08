@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignUuid('id_pelanggan')->constrained('tb_pelanggan', 'id_pelanggan')->cascadeOnDelete(); //  ambil pelanggan dari tb_pelanggan
             $table->date('tanggal'); // tanggal barang keluar
             $table->integer('jumlah'); // jumlah barang keluar
-            $table->string('tujuan', 50); // pemasangan atau perggantian Dll.
+            $table->enum('tujuan', ['pemasangan', 'pergantian']); // pemasangan atau perggantian Dll.
+            $table->string('satuan',  20); // pcs, roll, unit, meter
             $table->text('keterangan'); // catatan tambahan
             $table->softDeletes();
             $table->timestamps();

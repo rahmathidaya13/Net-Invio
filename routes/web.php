@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Barang\BarangController;
+use App\Http\Controllers\BarangKeluar\BarangKeluarController;
 use App\Http\Controllers\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pelanggan\PelangganController;
@@ -79,6 +80,7 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::get('/stok/list', 'index')->name('stok.list');
         Route::get('/stok/create', 'create')->name('stok.create');
         Route::get('/stok/edit/{id}', 'edit')->name('stok.edit');
+        Route::get('/stok/show/{id}', 'show')->name('stok.show');
         Route::post('/stok/store', 'store')->name('stok.store');
         Route::put('/stok/update/{id}', 'update')->name('stok.update');
         Route::delete('/stok/destroy/{id}', 'destroy')->name('stok.destroy');
@@ -97,7 +99,7 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
     });
 
     // this barang masuk controller
-    Route::controller(BarangKeluarModel::class)->group(function () {
+    Route::controller(BarangKeluarController::class)->group(function () {
         Route::get('/outbound/list', 'index')->name('outbound.list');
         Route::get('/outbound/create', 'create')->name('outbound.create');
         Route::get('/outbound/edit/{id}', 'edit')->name('outbound.edit');

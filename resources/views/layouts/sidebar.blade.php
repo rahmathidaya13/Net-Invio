@@ -151,6 +151,35 @@
                 {{-- end side barang masuk --}}
 
 
+                {{-- side barang keluar --}}
+                <x-link class="nav-link {{ request()->is('outbound*') ? 'active text-bg-success' : 'collapsed' }}"
+                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsBRGKLR" aria-expanded="false"
+                    aria-controls="collapseLayoutsCus">
+                    <div class="sb-nav-link-icon"><i class="bi bi-cart-x-fill"></i></div>
+                    Barang Keluar
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </x-link>
+                <div class="{{ request()->segment(1) === 'outbound' ? 'show' : 'collapse' }}"
+                    id="collapseLayoutsBRGKLR" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <x-link label="Daftar Barang Keluar" url="/outbound/list" icon="far fa-circle me-2"
+                            class="nav-link {{ request()->is('outbound/list') ? 'active nav-sub-link' : '' }}" />
+                        <x-link label="Tambah Barang Keluar" url="/outbound/create" icon="far fa-circle me-2"
+                            class="nav-link {{ request()->is('outbound/create') ? 'active nav-sub-link' : '' }}" />
+
+                        @php
+                            $uuidBRGKLR = Request::segment(3);
+                        @endphp
+                        @if (Request::is('outbound/edit*'))
+                            <x-link label="Ubah Barang Keluar" url="/outbound/edit" parameters="{{ $uuidBRGKLR }}"
+                                icon="far fa-circle me-2"
+                                class="nav-link {{ request()->is('outbound/edit*') ? 'active nav-sub-link' : '' }}" />
+                        @endif
+                    </nav>
+                </div>
+                {{-- end side barang keluar --}}
+
+
                 <x-link class="nav-link {{ request()->is('user*') ? 'active text-bg-success' : 'collapsed' }}"
                     data-bs-toggle="collapse" data-bs-target="#collapseLayoutsCus" aria-expanded="false"
                     aria-controls="collapseLayoutsCus">
