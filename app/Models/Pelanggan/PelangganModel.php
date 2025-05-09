@@ -2,6 +2,7 @@
 
 namespace App\Models\Pelanggan;
 
+use App\Models\BarangKeluar\BarangKeluarModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,4 +24,9 @@ class PelangganModel extends Model
     ];
     public $incrementing = false;
     protected $dates     = ["deleted_at"];
+
+    public function barangKeluar()
+    {
+        return $this->hasMany(BarangKeluarModel::class, "id_pelanggan");
+    }
 }

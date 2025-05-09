@@ -39,21 +39,25 @@
                         <div class="col-sm-5">
                             @php
                                 $optionBarang = [];
-                                foreach ($stok as $item) {
-                                    $optionBarang[$item->id_barang] =
-                                        $item->barang->nama_barang . ' , ' . 'Tempat: ' . $item->lokasi;
+                                foreach ($barang as $item) {
+                                    $optionBarang[$item->id_barang] = $item->nama_barang;
                                 }
                             @endphp
-                            <x-form-select data-data="{{ $item }}" :disabled="isset($barang_keluar) && $barang_keluar->id_barang_keluar" class="select2"
-                                name="nama_barang" text="---Pilih Barang---" :options="$optionBarang"
-                                selected="{{ old('nama_barang', $barang_keluar->id_barang ?? '') }}" />
+                            <x-form-select :disabled="isset($barang_keluar) && $barang_keluar->id_barang_keluar" class="select2" name="nama_barang" text="---Pilih Barang---"
+                                :options="$optionBarang" selected="{{ old('nama_barang', $barang_keluar->id_barang ?? '') }}" />
                         </div>
                         <input type="text" class="d-none" name="id_barang" id="id_barang"
                             value="{{ old('nama_barang', $barang_keluar->id_barang ?? '') }}">
                     </div>
 
-                    <x-horizontal-input name="lokasi" label="Lokasi/Penyimpanan" disabled />
-                    <x-horizontal-input name="sisa_stok" label="Stok Tersedia" disabled />
+                    <div class="mb-3 row align-items-center">
+                        <x-form-label for="lokasi" value="Dikeluarkan" class="col-sm-2 col-form-label form-label" />
+                        <div class="col-sm-5">
+                            <x-form-select name="lokasi" text="---Pilih Lokasi/Tempat---" :options="['gudang-1' => 'Gudang-1', 'gudang-2' => 'Gudang-2']"
+                                selected="{{ old('lokasi', $barang_keluar->lokasi ?? '') }}" />
+                        </div>
+                    </div>
+                    <x-horizontal-input readonly name="sisa_stok" label="Stok Tersedia" value="0" />
 
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="pelanggan" value="Pelanggan" class="col-sm-2 col-form-label form-label" />
@@ -67,8 +71,6 @@
                             <x-form-select class="select2" name="pelanggan" text="---Pilih Pelanggan---" :options="$optionPelanggan"
                                 selected="{{ old('pelanggan', $barang_keluar->id_pelanggan ?? '') }}" />
                         </div>
-                        <input type="text" class="d-none" name="id_pelanggan" id="id_pelanggan"
-                            value="{{ old('pelanggan', $barang_keluar->id_pelanggan ?? '') }}">
                     </div>
 
                     <div class="mb-3 row align-items-center">
@@ -82,21 +84,24 @@
                         </div>
                     </div>
                     <x-horizontal-input name="jumlah" label="Jumlah Keluar"
-                        value="{{ old('jumlah', $barang_kaluar->jumlah ?? '') }}" />
+                        value="{{ old('jumlah', $barang_keluar->jumlah ?? '0') }} " />
 
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="satuan" value="Satuan" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
                             <x-form-select name="satuan" :options="[
+                                'pack' => 'Pack',
                                 'pcs' => 'Pcs',
                                 'unit' => 'Unit',
                                 'roll' => 'Roll',
-                                'meter' => 'Meter',
-                                'centimeter' => 'Centimeter',
+                                'm' => 'Meter',
+                                'cm' => 'Centimeter',
                             ]" text="---Pilih Satuan---"
                                 selected="{{ old('satuan', $barang_keluar->satuan ?? '') }}" />
                         </div>
                     </div>
+                    <x-horizontal-input name="petugas" label="Petugas"
+                        value="{{ ucwords(old('petugas', $barang_keluar->petugas ?? '-')) }} " />
 
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />

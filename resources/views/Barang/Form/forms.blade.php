@@ -51,11 +51,12 @@
                         <x-form-label for="satuan" value="Satuan" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
                             <x-form-select name="satuan" :options="[
+                                'pack' => 'Pack',
                                 'pcs' => 'Pcs',
                                 'unit' => 'Unit',
                                 'roll' => 'Roll',
-                                'meter' => 'Meter',
-                                'centimeter' => 'Centimeter',
+                                'm' => 'Meter',
+                                'cm' => 'Centimeter',
                             ]" text="---Pilih Satuan---"
                                 selected="{{ old('satuan', $barang->satuan ?? '') }}" />
                         </div>

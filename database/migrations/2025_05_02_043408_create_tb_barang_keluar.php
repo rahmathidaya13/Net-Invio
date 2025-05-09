@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('jumlah'); // jumlah barang keluar
             $table->enum('tujuan', ['pemasangan', 'pergantian']); // pemasangan atau perggantian Dll.
             $table->string('satuan',  20); // pcs, roll, unit, meter
+            $table->string('petugas', 50);
+            $table->string('lokasi', 150); // lokasi barang
             $table->text('keterangan'); // catatan tambahan
             $table->softDeletes();
             $table->timestamps();

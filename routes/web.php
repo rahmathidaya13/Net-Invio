@@ -80,7 +80,7 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::get('/stok/list', 'index')->name('stok.list');
         Route::get('/stok/create', 'create')->name('stok.create');
         Route::get('/stok/edit/{id}', 'edit')->name('stok.edit');
-        Route::get('/stok/show/{id}', 'show')->name('stok.show');
+        Route::get('/stok/show/{id}/{val}', 'show')->name('stok.show');
         Route::post('/stok/store', 'store')->name('stok.store');
         Route::put('/stok/update/{id}', 'update')->name('stok.update');
         Route::delete('/stok/destroy/{id}', 'destroy')->name('stok.destroy');

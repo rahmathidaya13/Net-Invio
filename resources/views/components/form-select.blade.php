@@ -12,7 +12,8 @@
     @endif
 
     @foreach ($options as $key => $label)
-        <option value="{{ $key }}" {{ $selected === $key ? 'selected' : '' }}>{{ ucwords($label) }}</option>
+        <option value="{{ $key }}" {{ $selected === $key ? 'selected' : '' }}>
+            {{ ucwords($label) }}</option>
     @endforeach
 </select>
 @error($name)

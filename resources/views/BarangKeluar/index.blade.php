@@ -44,8 +44,9 @@
                     'Tanggal',
                     'Nama Barang',
                     'Nama Pelanggan',
-                    'Jumlah',
                     'Tujuan',
+                    'Barang Keluar',
+                    'Satuan',
                     'Keterangan',
                 ];
             @endphp
@@ -54,7 +55,7 @@
                 <div class="table-responsive">
                     <x-table theadColor="success" tbodyId="barang_keluar_tabel"
                         class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
-                        {{-- @include('BarangKeluar.partials.table', ['barang_keluar' => $barang_keluar]) --}}
+                        @include('BarangKeluar.partials.table', ['barang_keluar' => $barang_keluar])
                     </x-table>
                 </div>
                 <div class="d-flex flex-wrap justify-content-lg-between align-items-center flex-column flex-lg-row p-3">

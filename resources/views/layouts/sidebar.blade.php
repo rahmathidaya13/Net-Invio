@@ -126,7 +126,7 @@
                 <x-link class="nav-link {{ request()->is('receiving*') ? 'active text-bg-success' : 'collapsed' }}"
                     data-bs-toggle="collapse" data-bs-target="#collapseLayoutsBRGMSK" aria-expanded="false"
                     aria-controls="collapseLayoutsCus">
-                    <div class="sb-nav-link-icon"><i class="bi bi-clipboard"></i></div>
+                    <div class="sb-nav-link-icon"><i class="bi bi-cart-plus"></i></div>
                     Barang Masuk
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
