@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\BarangKeluar;
 
+use App\Traits\validate\outboundValidation;
 use Illuminate\Http\Request;
 use App\Models\Log\LogStokModel;
 use App\Models\Barang\BarangModel;
@@ -16,6 +17,7 @@ class BarangKeluarController extends Controller
     /**
      * Display a listing of the resource.
      */
+    use outboundValidation;
     public function index(Request $request)
     {
         $limit = $request->get('limit', 10);
@@ -64,39 +66,40 @@ class BarangKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $this->validationText($request->all());
+        $barang_keluar = new BarangKeluarModel();
+        $barang_keluar->id_barang = $request->input('id_barang');
+        $barang_keluar->id_stok = $request->input('id_stok');
+        $barang_keluar->id_pelanggan = $request->input('pelanggan');
+        $barang_keluar->tanggal = $request->input('tanggal');
+        $barang_keluar->jumlah = (int) $request->input('jumlah');
+        $barang_keluar->tujuan = $request->input('tujuan');
+        $barang_keluar->satuan = $request->input('satuan');
+        $barang_keluar->petugas = $request->input('petugas');
+        $barang_keluar->lokasi = $request->input('lokasi');
+        $barang_keluar->keterangan = $request->input('keterangan');
+        $barang_keluar->save();
 
-        // $barang_keluar = new BarangKeluarModel();
-        // $barang_keluar->id_barang = $request->input('id_barang');
-        // $barang_keluar->id_pelanggan = $request->input('pelanggan');
-        // $barang_keluar->tanggal = $request->input('tanggal');
-        // $barang_keluar->jumlah = (int) $request->input('jumlah');
-        // $barang_keluar->tujuan = $request->input('tujuan');
-        // $barang_keluar->satuan = $request->input('satuan');
-        // $barang_keluar->petugas = $request->input('petugas');
-        // $barang_keluar->keterangan = $request->input('keterangan');
-        // $barang_keluar->save();
+        $currentStok = StokBarangModel::where('id_barang', $request->input('id_barang'))
+            ->where('lokasi', $request->input('lokasi'))
+            ->orderByDesc('created_at')
+            ->first();
 
-        // $currentStok = StokBarangModel::where('id_barang', $request->input('id_barang'))
-        //     ->where('lokasi', $request->input('lokasi'))
-        //     ->orderByDesc('created_at')
-        //     ->first();
+        if ($currentStok) {
+            $currentStok->jumlah_barang -= $request->input('jumlah');
+            $currentStok->save();
 
-        // if ($currentStok) {
-        //     $currentStok->jumlah_barang -= $request->input('jumlah');
-        //     $currentStok->save();
-
-        //     LogStokModel::create([
-        //         'id_barang' => $barang_keluar->id_barang,
-        //         'tanggal' => $barang_keluar->tanggal,
-        //         'tipe' => 'barang_keluar',
-        //         'jumlah' => $barang_keluar->jumlah,
-        //         'lokasi' => $request->input('lokasi'),
-        //         'keterangan' => $barang_keluar->keterangan,
-        //         'dibuat_oleh' => Auth::user()->name,
-        //     ]);
-        // }
-        // return redirect()->route('outbound.list')->with('success', 'Barang ' . ucwords($barang_keluar->barang->nama_barang) . ' telah diKeluarkan dari stok');
+            LogStokModel::create([
+                'id_barang' => $barang_keluar->id_barang,
+                'tanggal' => $barang_keluar->tanggal,
+                'tipe' => 'barang_keluar',
+                'jumlah' => $barang_keluar->jumlah,
+                'lokasi' => $barang_keluar->lokasi,
+                'keterangan' => $barang_keluar->keterangan,
+                'dibuat_oleh' => Auth::user()->name,
+            ]);
+        }
+        return redirect()->route('outbound.list')->with('success', 'Barang ' . ucwords($barang_keluar->barang->nama_barang) . ' telah diKeluarkan dari stok');
     }
 
     /**
@@ -113,7 +116,7 @@ class BarangKeluarController extends Controller
     public function edit(string $id)
     {
         $barang = BarangModel::select('id_barang', 'nama_barang')->get();
-        $stok = StokBarangModel::select('id_barang', 'jumlah_barang', 'lokasi')->get();
+        $stok = StokBarangModel::select('id_stok', 'id_barang', 'jumlah_barang', 'lokasi')->get();
         $pelanggan = PelangganModel::select('id_pelanggan', 'nama')->get();
         $barang_keluar = BarangKeluarModel::findOrFail($id);
         return view('BarangKeluar.Form.forms', compact('barang', 'pelanggan', 'stok', 'barang_keluar'));
@@ -122,16 +125,76 @@ class BarangKeluarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BarangKeluarModel $barangKeluarModel)
+    public function update(Request $request, string $id)
     {
-        //
+        $this->validationText($request->all(), true);
+        $barang_keluar = BarangKeluarModel::findOrFail($id);
+        $barang_keluar->id_barang = $request->input('id_barang');
+        $barang_keluar->id_stok = $request->input('id_stok');
+        $barang_keluar->id_pelanggan = $request->input('pelanggan');
+        $barang_keluar->tanggal = $request->input('tanggal');
+        $barang_keluar->jumlah = (int) $request->input('jumlah');
+        $barang_keluar->tujuan = $request->input('tujuan');
+        $barang_keluar->satuan = $request->input('satuan');
+        $barang_keluar->petugas = $request->input('petugas');
+        $barang_keluar->lokasi = $request->input('lokasi');
+        $barang_keluar->keterangan = $request->input('keterangan');
+        $barang_keluar->update();
+
+        // ambil nilai terkakhir dari log stok model
+        $logStok = LogStokModel::where('id_barang', $request->input('id_barang'))
+            ->where('lokasi', $request->input('lokasi'))
+            ->where('tipe', 'barang_keluar')
+            ->orderByDesc('created_at')
+            ->first();
+
+        $currentStok = StokBarangModel::where('id_barang', $request->input('id_barang'))
+            ->where('lokasi', $request->input('lokasi'))
+            ->orderByDesc('created_at')
+            ->first();
+
+        $selisih =  ($currentStok->jumlah_barang + $logStok->jumlah) - $request->input('jumlah');
+        if ($currentStok) {
+            $currentStok->jumlah_barang = $selisih;
+            $currentStok->save();
+
+            LogStokModel::create([
+                'id_barang' => $barang_keluar->id_barang,
+                'tanggal' => $barang_keluar->tanggal,
+                'tipe' => 'barang_keluar',
+                'jumlah' => $request->input('jumlah'),
+                'lokasi' => $barang_keluar->lokasi,
+                'keterangan' => $request->input('keterangan'),
+                'dibuat_oleh' => Auth::user()->name,
+            ]);
+        }
+        return redirect()->route('outbound.list')->with('success', 'Perubahan data barang ' . ucwords($barang_keluar->barang->nama_barang) . ' keluar berhasil');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BarangKeluarModel $barangKeluarModel)
+    public function destroy(string $id)
     {
-        //
+        $barang_keluar = BarangKeluarModel::findOrFail($id);
+        $barang_keluar->delete();
+        // hapus log
+        LogStokModel::where('id_barang', $barang_keluar->id_barang)
+            ->where('lokasi', $barang_keluar->lokasi)
+            ->where('tipe', 'barang_keluar')
+            ->orderByDesc('created_at')
+            ->delete();
+
+        $currentStok = StokBarangModel::where('id_barang',  $barang_keluar->id_barang)
+            ->where('lokasi',  $barang_keluar->lokasi)
+            ->orderByDesc('created_at')
+            ->first();
+        $selisih =  $currentStok->jumlah_barang +  $barang_keluar->jumlah;
+        if ($currentStok) {
+            $currentStok->jumlah_barang = $selisih;
+            $currentStok->save();
+        }
+
+        return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

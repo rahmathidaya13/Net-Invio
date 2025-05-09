@@ -3,6 +3,7 @@
 namespace App\Models\StokBarang;
 
 use App\Models\Barang\BarangModel;
+use App\Models\BarangKeluar\BarangKeluarModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,5 +27,9 @@ class StokBarangModel extends Model
     public function barang()
     {
         return $this->belongsTo(BarangModel::class, 'id_barang');
+    }
+    public function barangKeluar()
+    {
+        return $this->hasMany(BarangKeluarModel::class, 'id_stok');
     }
 }

@@ -3,199 +3,68 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Features</div>
-                <x-link class="nav-link {{ request()->is('home*') ? 'active bg-success' : 'collapsed' }}" url="/home">
+                <x-link class="nav-link {{ request()->is('home*') ? 'active text-bg-primary' : '' }}" url="/home">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </x-link>
 
                 {{-- side barang --}}
-                <x-link class="nav-link {{ request()->is('barang*') ? 'active text-bg-success' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsItm" aria-expanded="false"
-                    aria-controls="collapseLayoutsCus">
+                <x-link url="/barang/list"
+                    class="nav-link {{ request()->is('barang*') ? 'active text-bg-primary' : '' }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                     Data Barang
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
-                <div class="{{ request()->segment(1) === 'barang' ? 'show' : 'collapse' }}" id="collapseLayoutsItm"
-                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <x-link label="Daftar Barang" url="/barang/list" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('barang/list') ? 'active nav-sub-link' : '' }}" />
-                        <x-link label="Tambah Barang" url="/barang/create" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('barang/create') ? 'active nav-sub-link' : '' }}" />
 
-                        @php
-                            $uuidBarang = Request::segment(3);
-                        @endphp
-                        @if (Request::is('barang/edit*'))
-                            <x-link label="Ubah Barang" url="/barang/edit" parameters="{{ $uuidBarang }}"
-                                icon="far fa-circle me-2"
-                                class="nav-link {{ request()->is('barang/edit*') ? 'active nav-sub-link' : '' }}" />
-                        @endif
-                    </nav>
-                </div>
                 {{-- end side barang --}}
 
 
                 {{-- side pelanggan --}}
-                <x-link class="nav-link {{ request()->is('pelanggan*') ? 'active text-bg-success' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsPLG" aria-expanded="false"
-                    aria-controls="collapseLayoutsCus">
+                <x-link url="/pelanggan/list"
+                    class="nav-link {{ request()->is('pelanggan*') ? 'active text-bg-primary' : '' }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Data Pelanggan
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
-                <div class="{{ request()->segment(1) === 'pelanggan' ? 'show' : 'collapse' }}" id="collapseLayoutsPLG"
-                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <x-link label="Daftar Pelanggan" url="/pelanggan/list" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('pelanggan/list') ? 'active nav-sub-link' : '' }}" />
-                        <x-link label="Tambah Pelanggan" url="/pelanggan/create" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('pelanggan/create') ? 'active nav-sub-link' : '' }}" />
-
-                        @php
-                            $uuidPelanggan = Request::segment(3);
-                        @endphp
-                        @if (Request::is('pelanggan/edit*'))
-                            <x-link label="Ubah Pelanggan" url="/pelanggan/edit" parameters="{{ $uuidPelanggan }}"
-                                icon="far fa-circle me-2"
-                                class="nav-link {{ request()->is('pelanggan/edit*') ? 'active nav-sub-link' : '' }}" />
-                        @endif
-                    </nav>
-                </div>
                 {{-- end side pelanggan --}}
 
                 {{-- side supplier --}}
-                <x-link class="nav-link {{ request()->is('supplier*') ? 'active text-bg-success' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsSPL" aria-expanded="false"
-                    aria-controls="collapseLayoutsCus">
+                <x-link url="/supplier/list"
+                    class="nav-link {{ request()->is('supplier*') ? 'active text-bg-primary' : '' }}">
                     <div class="sb-nav-link-icon"><i class="bi bi-people-fill"></i></div>
                     Data Supplier
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
-                <div class="{{ request()->segment(1) === 'supplier' ? 'show' : 'collapse' }}" id="collapseLayoutsSPL"
-                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <x-link label="Daftar Supplier" url="/supplier/list" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('supplier/list') ? 'active nav-sub-link' : '' }}" />
-                        <x-link label="Tambah Supplier" url="/supplier/create" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('supplier/create') ? 'active nav-sub-link' : '' }}" />
-
-                        @php
-                            $uuidSupplier = Request::segment(3);
-                        @endphp
-                        @if (Request::is('supplier/edit*'))
-                            <x-link label="Ubah Pelanggan" url="/supplier/edit" parameters="{{ $uuidSupplier }}"
-                                icon="far fa-circle me-2"
-                                class="nav-link {{ request()->is('supplier/edit*') ? 'active nav-sub-link' : '' }}" />
-                        @endif
-                    </nav>
-                </div>
                 {{-- end side supplier --}}
 
                 {{-- side supplier --}}
-                <x-link class="nav-link {{ request()->is('stok*') ? 'active text-bg-success' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsSTOK" aria-expanded="false"
-                    aria-controls="collapseLayoutsCus">
+                <x-link url="/stok/list" class="nav-link {{ request()->is('stok*') ? 'active text-bg-primary' : '' }}">
                     <div class="sb-nav-link-icon"><i class="bi bi-clipboard"></i></div>
                     Stok Barang
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
-                <div class="{{ request()->segment(1) === 'stok' ? 'show' : 'collapse' }}" id="collapseLayoutsSTOK"
-                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <x-link label="Daftar Stok" url="/stok/list" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('stok/list') ? 'active nav-sub-link' : '' }}" />
-                        <x-link label="Tambah Stok" url="/stok/create" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('stok/create') ? 'active nav-sub-link' : '' }}" />
-
-                        @php
-                            $uuidStok = Request::segment(3);
-                        @endphp
-                        @if (Request::is('stok/edit*'))
-                            <x-link label="Ubah Stok Barang" url="/stok/edit" parameters="{{ $uuidStok }}"
-                                icon="far fa-circle me-2"
-                                class="nav-link {{ request()->is('stok/edit*') ? 'active nav-sub-link' : '' }}" />
-                        @endif
-                    </nav>
-                </div>
                 {{-- end side supplier --}}
 
 
                 {{-- side barang masuk --}}
-                <x-link class="nav-link {{ request()->is('receiving*') ? 'active text-bg-success' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsBRGMSK" aria-expanded="false"
-                    aria-controls="collapseLayoutsCus">
+                <x-link url="/receiving/list"
+                    class="nav-link {{ request()->is('receiving*') ? 'active text-bg-primary' : '' }}">
                     <div class="sb-nav-link-icon"><i class="bi bi-cart-plus"></i></div>
                     Barang Masuk
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
-                <div class="{{ request()->segment(1) === 'receiving' ? 'show' : 'collapse' }}"
-                    id="collapseLayoutsBRGMSK" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <x-link label="Daftar Barang Masuk" url="/receiving/list" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('receiving/list') ? 'active nav-sub-link' : '' }}" />
-                        <x-link label="Tambah Barang Masuk" url="/receiving/create" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('receiving/create') ? 'active nav-sub-link' : '' }}" />
-
-                        @php
-                            $uuidBRGMSK = Request::segment(3);
-                        @endphp
-                        @if (Request::is('receiving/edit*'))
-                            <x-link label="Ubah Barang Masuk" url="/receiving/edit" parameters="{{ $uuidBRGMSK }}"
-                                icon="far fa-circle me-2"
-                                class="nav-link {{ request()->is('receiving/edit*') ? 'active nav-sub-link' : '' }}" />
-                        @endif
-                    </nav>
-                </div>
                 {{-- end side barang masuk --}}
 
 
                 {{-- side barang keluar --}}
-                <x-link class="nav-link {{ request()->is('outbound*') ? 'active text-bg-success' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsBRGKLR" aria-expanded="false"
-                    aria-controls="collapseLayoutsCus">
+                <x-link url="/outbound/list"
+                    class="nav-link {{ request()->is('outbound*') ? 'active text-bg-primary' : '' }}">
                     <div class="sb-nav-link-icon"><i class="bi bi-cart-x-fill"></i></div>
                     Barang Keluar
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
-                <div class="{{ request()->segment(1) === 'outbound' ? 'show' : 'collapse' }}"
-                    id="collapseLayoutsBRGKLR" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <x-link label="Daftar Barang Keluar" url="/outbound/list" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('outbound/list') ? 'active nav-sub-link' : '' }}" />
-                        <x-link label="Tambah Barang Keluar" url="/outbound/create" icon="far fa-circle me-2"
-                            class="nav-link {{ request()->is('outbound/create') ? 'active nav-sub-link' : '' }}" />
-
-                        @php
-                            $uuidBRGKLR = Request::segment(3);
-                        @endphp
-                        @if (Request::is('outbound/edit*'))
-                            <x-link label="Ubah Barang Keluar" url="/outbound/edit" parameters="{{ $uuidBRGKLR }}"
-                                icon="far fa-circle me-2"
-                                class="nav-link {{ request()->is('outbound/edit*') ? 'active nav-sub-link' : '' }}" />
-                        @endif
-                    </nav>
-                </div>
                 {{-- end side barang keluar --}}
 
 
-                <x-link class="nav-link {{ request()->is('user*') ? 'active text-bg-success' : 'collapsed' }}"
-                    data-bs-toggle="collapse" data-bs-target="#collapseLayoutsCus" aria-expanded="false"
-                    aria-controls="collapseLayoutsCus">
+                <x-link url="/user/list"
+                    class="nav-link {{ request()->is('user*') ? 'active text-bg-primary' : 'collapsed' }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
                     User
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </x-link>
-                <div class="{{ request()->segment(1) === 'user' ? 'show' : 'collapse' }}" id="collapseLayoutsCus"
-                    aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <x-link label="Daftar Pengguna" url="/user/list" icon="fas fa-id-badge me-2"
-                            class="nav-link {{ request()->is('user/list') ? 'active nav-sub-link' : '' }}" />
-                        <x-link label="Tambah Pengguna" url="/user/create" icon="fas fa-plus-square me-2"
-                            class="nav-link {{ request()->is('user/create') ? 'active nav-sub-link' : '' }}" />
-                    </nav>
-                </div>
 
                 <div class="sb-sidenav-menu-heading">Settings</div>
                 <x-link class="nav-link" id="logout">

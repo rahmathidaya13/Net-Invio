@@ -222,6 +222,7 @@ textarea:read-only {
 
     .highlight {
         color: #242424;
+        background-color:rgb(255, 242, 66);
     }
 
 

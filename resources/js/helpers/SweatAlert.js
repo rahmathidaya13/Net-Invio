@@ -1,7 +1,7 @@
 export default function SweatAlert(uri, data, method) {
     Swal.fire({
         title: "Apakah kamu yakin?",
-        text: `Data dipilih ${data} akan dihapus!`,
+        text: `Data dipilih ${data} akan dihapus! tindakan ini tidak dapat mengembalikan data`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#B82132",

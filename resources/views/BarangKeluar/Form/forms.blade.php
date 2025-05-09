@@ -35,29 +35,28 @@
                         value="{{ old('tanggal', $barang_keluar->tanggal ?? '') }}" />
 
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="nama_barang" value="Barang" class="col-sm-2 col-form-label form-label" />
+                        <x-form-label for="barang" value="Barang" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
                             @php
-                                $optionBarang = [];
-                                foreach ($barang as $item) {
-                                    $optionBarang[$item->id_barang] = $item->nama_barang;
+                                $optionStok = [];
+                                foreach ($stok as $item) {
+                                    $optionStok[$item->id_stok] = $item->barang->nama_barang;
                                 }
                             @endphp
-                            <x-form-select :disabled="isset($barang_keluar) && $barang_keluar->id_barang_keluar" class="select2" name="nama_barang" text="---Pilih Barang---"
-                                :options="$optionBarang" selected="{{ old('nama_barang', $barang_keluar->id_barang ?? '') }}" />
+                            <x-form-select :disabled="isset($barang_keluar) && $barang_keluar->id_barang_keluar" class="select2" name="barang" text="---Pilih Barang---"
+                                :options="$optionStok" selected="{{ old('barang', $barang_keluar->id_stok ?? '') }}" />
                         </div>
                         <input type="text" class="d-none" name="id_barang" id="id_barang"
-                            value="{{ old('nama_barang', $barang_keluar->id_barang ?? '') }}">
+                            value="{{ $barang_keluar->id_barang ?? '' }}">
+                        <input type="text" class="d-none" name="id_stok" id="id_stok"
+                            value="{{ $barang_keluar->id_stok ?? '' }}">
                     </div>
 
-                    <div class="mb-3 row align-items-center">
-                        <x-form-label for="lokasi" value="Dikeluarkan" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
-                            <x-form-select name="lokasi" text="---Pilih Lokasi/Tempat---" :options="['gudang-1' => 'Gudang-1', 'gudang-2' => 'Gudang-2']"
-                                selected="{{ old('lokasi', $barang_keluar->lokasi ?? '') }}" />
-                        </div>
-                    </div>
-                    <x-horizontal-input readonly name="sisa_stok" label="Stok Tersedia" value="0" />
+                    <x-horizontal-input readonly name="lokasi" label="Dikeluarkan"
+                        value="{{ old('lokasi', $barang_keluar->lokasi ?? '') }}" />
+
+                    <x-horizontal-input readonly name="sisa_stok"
+                        label="{{ isset($barang_keluar) ? 'Sisa Stok' : 'Stok Tersedia' }}" value="0" />
 
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="pelanggan" value="Pelanggan" class="col-sm-2 col-form-label form-label" />
@@ -101,7 +100,7 @@
                         </div>
                     </div>
                     <x-horizontal-input name="petugas" label="Petugas"
-                        value="{{ ucwords(old('petugas', $barang_keluar->petugas ?? '-')) }} " />
+                        value="{{ ucwords(old('petugas', $barang_keluar->petugas ?? '')) }} " />
 
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />

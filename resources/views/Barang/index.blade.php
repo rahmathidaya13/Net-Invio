@@ -57,7 +57,7 @@
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
                     <x-table id="user_tabel" theadColor="success" tbodyId="table_user"
-                        class=" text-nowrap table-hover table-clickable" :header="$thead">
+                        class=" text-nowrap table-hover" :header="$thead">
                         @include('Barang.partials.table', ['barang' => $barang])
                     </x-table>
                 </div>

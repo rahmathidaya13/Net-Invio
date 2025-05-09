@@ -15,13 +15,14 @@ return new class extends Migration
             $table->uuid('id_barang_keluar')->primary();
             $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // ambil barang dari tb barang
             $table->foreignUuid('id_pelanggan')->constrained('tb_pelanggan', 'id_pelanggan')->cascadeOnDelete(); //  ambil pelanggan dari tb_pelanggan
+            $table->foreignUuid('id_stok')->constrained('tb_stok', 'id_stok')->cascadeOnDelete(); //  ambil stok dari tb_stok
             $table->date('tanggal'); // tanggal barang keluar
             $table->integer('jumlah'); // jumlah barang keluar
             $table->enum('tujuan', ['pemasangan', 'pergantian']); // pemasangan atau perggantian Dll.
             $table->string('satuan',  20); // pcs, roll, unit, meter
             $table->string('petugas', 50);
             $table->string('lokasi', 150); // lokasi barang
-            $table->text('keterangan'); // catatan tambahan
+            $table->string('keterangan', 250)->nullable(); // catatan tambahan
             $table->softDeletes();
             $table->timestamps();
         });

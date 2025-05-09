@@ -23,7 +23,7 @@ class StokBarangModelFactory extends Factory
             'id_barang'    => BarangModel::factory(),
             'tanggal'    => fake()->date('Y-m-d', 'now'),
             'jumlah_barang'    => fake()->randomDigit(),
-            'lokasi'    => fake()->address(),
+            'lokasi'    => fake()->randomElement(['gudang-1', 'gudang-2']),
         ];
     }
 }

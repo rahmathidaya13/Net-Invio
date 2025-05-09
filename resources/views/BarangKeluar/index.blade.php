@@ -53,7 +53,7 @@
             <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-0"
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
-                    <x-table theadColor="success" tbodyId="barang_keluar_tabel"
+                    <x-table theadColor="info" tbodyId="barang_keluar_tabel"
                         class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
                         @include('BarangKeluar.partials.table', ['barang_keluar' => $barang_keluar])
                     </x-table>
