@@ -2,6 +2,9 @@
 
 namespace App\Models\ReturBarang;
 
+use App\Models\Barang\BarangModel;
+use App\Models\Pelanggan\PelangganModel;
+use App\Models\Supplier\SupplierModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,8 +23,22 @@ class ReturBarangModel extends Model
         'tipe_retur',
         'status_pergantian',
         'image',
+        'path',
         'alasan',
     ];
     public $incrementing = false;
     protected $dates     = ["deleted_at"];
+    protected $with = ['barang', 'pelanggan', 'supplier'];
+    public function barang()
+    {
+        return $this->belongsTo(BarangModel::class, 'id_barang');
+    }
+    public function pelanggan()
+    {
+        return $this->belongsTo(PelangganModel::class, 'id_pelanggan');
+    }
+    public function supplier()
+    {
+        return $this->belongsTo(SupplierModel::class, 'id_supplier');
+    }
 }

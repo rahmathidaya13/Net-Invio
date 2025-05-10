@@ -34,6 +34,9 @@
                     <x-horizontal-input autofocus :readonly="isset($barang_kembali) && $barang_kembali->id_barang_kembali" type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $barang_kembali->tanggal ?? '') }}" />
 
+                    <x-horizontal-input name="kode_retur" label="Kode Retur"
+                        value="{{ old('kode_retur', $barang_kembali->kode_retur ?? '') }}" />
+
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="barang" value="Barang" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
@@ -104,8 +107,25 @@
                         </div>
                     </div>
 
-                    <x-horizontal-input type="file" name="gambar" label="Gambar" accept="image/*" />
+                    {{-- <x-horizontal-input type="file" name="gambar" label="Gambar" accept="image/*" /> --}}
 
+                    <div class="mb-3 row align-items-center">
+                        <x-form-label value="Gambar" class="col-sm-2 col-form-label form-label" />
+                        <div class="col-sm-5 d-flex gap-2 justify-content-between position-relative" id="gambar-container">
+                            @for ($i = 0; $i < 3; $i++)
+                                @php
+                                    $getId = 'gambar-' . $i;
+                                @endphp
+                                <x-form-label for="{{ $getId }}" style="cursor: pointer">
+                                    <img id="preview-{{ $i }}" src="{{ asset('assets/image/plussimage.svg') }}"
+                                        alt="Gambar-{{ $i + 1 }}"
+                                        class="rounded-2 border border-secondary shadow-sm img-fluid">
+                                </x-form-label>
+                                <input type="file" class="d-none gambar-input" name="gambar[]"
+                                    id="{{ $getId }}" accept="image/*">
+                            @endfor
+                        </div>
+                    </div>
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="alasan" value="Alasan" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">

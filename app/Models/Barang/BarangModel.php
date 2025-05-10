@@ -4,6 +4,7 @@ namespace App\Models\Barang;
 
 use App\Models\BarangKeluar\BarangKeluarModel;
 use App\Models\BarangMasuk\BarangMasukModel;
+use App\Models\ReturBarang\ReturBarangModel;
 use App\Models\StokBarang\StokBarangModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -44,5 +45,9 @@ class BarangModel extends Model
         // Satu data pada tabel barang dapat memiliki banyak entri pada tabel barang keluar.
         return $this->hasMany(BarangKeluarModel::class, 'id_barang');
     }
-
+    public function barangKembali()
+    {
+        // Satu data pada tabel barang dapat memiliki banyak entri pada tabel barang keluar.
+        return $this->hasMany(ReturBarangModel::class, 'id_barang');
+    }
 }

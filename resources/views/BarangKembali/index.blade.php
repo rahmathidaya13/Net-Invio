@@ -58,7 +58,7 @@
                 <div class="table-responsive">
                     <x-table theadColor="success" tbodyId="barang_kembali_tabel"
                         class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
-                        {{-- @include('BarangKembali.partials.table', ['barang_kembali' => $barang_kembali]) --}}
+                        @include('BarangKembali.partials.table', ['barang_kembali' => $barang_kembali])
                     </x-table>
                 </div>
                 <div class="d-flex flex-wrap justify-content-lg-between align-items-center flex-column flex-lg-row p-3">

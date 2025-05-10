@@ -1,5 +1,5 @@
-@foreach ($barang_masuk as $data)
-    <tr data-id="{{ $data->id_barang_masuk }}" class="table-row" data-url="/receiving">
+@foreach ($barang_kembali as $data)
+    <tr data-id="{{ $data->id_retur }}" class="table-row" data-url="/retur">
         <td class="align-middle px-3 ">
 
             <div class="dropdown">
@@ -10,9 +10,9 @@
 
                 <ul class="dropdown-menu">
                     <li>
-                        <x-link data-id="{{ $data->id_barang_masuk }}" label="Ubah" icon="fas fa-edit "
-                            class="dropdown-item ubah" url="/receiving/edit"
-                            parameters="{{ $data->id_barang_masuk }}" />
+                        <x-link data-id="{{ $data->id_retur }}" label="Ubah" icon="fas fa-edit "
+                            class="dropdown-item ubah" url="/retur/edit"
+                            parameters="{{ $data->id_retur }}" />
                     </li>
                     <li>
                         <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
@@ -22,7 +22,7 @@
             </div>
         </td>
         <td class="align-middle text-center">
-            {{ $loop->iteration + $barang_masuk->perPage() * ($barang_masuk->currentPage() - 1) }}
+            {{ $loop->iteration + $barang_kembali->perPage() * ($barang_kembali->currentPage() - 1) }}
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
         <td class="align-middle ">{{ $data->nota }}</td>

@@ -62,7 +62,29 @@ class ReturBarangController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        if ($request->hasFile('gambar')) {
+            foreach ($request->file('gambar') as $file) {
+                if ($file && $file->isValid()) {
+                    $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('assets/uploads'), $fileName);
+                    $path = 'assets/uploads/' . $fileName;
+                }
+            }
+        }
+        $barang_kembali = new ReturBarangModel();
+        $barang_kembali->id_barang = $request->input('id_barang');
+        $barang_kembali->id_pelanggan = $request->input('id_pelanggan');
+        $barang_kembali->id_supplier = $request->input('id_supplier');
+        $barang_kembali->kode_retur = $request->input('kode_retur');
+        $barang_kembali->tanggal = $request->input('tanggal');
+        $barang_kembali->jumlah = $request->input('jumlah');
+        $barang_kembali->tipe_retur = $request->input('tipe_retur');
+        $barang_kembali->status_pergantian = $request->input('status');
+        $barang_kembali->alasan = $request->input('alasan');
+        $barang_kembali->image = $fileName;
+        $barang_kembali->path = $path;
+        $barang_kembali->save();
+        return redirect()->route('retur.list')->with('success', 'Barang Kembali berhasil dibuat');
     }
 
     /**
