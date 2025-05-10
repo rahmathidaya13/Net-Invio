@@ -21,6 +21,7 @@ class StokBarangModelFactory extends Factory
         return [
             'id_stok'    => (string) Str::uuid(),
             'id_barang'    => BarangModel::factory(),
+            'no_warehouse'    => (string) Str::random(10),
             'tanggal'    => fake()->date('Y-m-d', 'now'),
             'jumlah_barang'    => fake()->randomDigit(),
             'lokasi'    => fake()->randomElement(['gudang-1', 'gudang-2']),

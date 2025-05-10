@@ -22,6 +22,13 @@ export default function Pelanggan() {
             e.preventDefault();
             // ambil keyword
             let keyword = $(this).val();
+            if (keyword.length > 0) {
+                $("#text-result").removeClass("d-none").addClass("d-block");
+                $("#results").text(` "${keyword}" `);
+            } else {
+                $("#text-result").removeClass("d-block").addClass("d-none");
+                $("#results").text("");
+            }
             // ambil token CSRF-TOKEN
             let token = $('meta[name="csrf-token"]').attr("content");
             // ambil nilai page dari pagination
@@ -132,7 +139,7 @@ export default function Pelanggan() {
         });
 
         // set pagination parameters
-        $(document).off("change", "#limit").on("click", ".pagination a", function (e) {
+        $(document).off("click", ".pagination a").on("click", ".pagination a", function (e) {
             e.preventDefault();
             let urls = $(this).attr("href");
             let keyword = $("#keyword").val();

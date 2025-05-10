@@ -25,7 +25,7 @@ class BarangModelFactory extends Factory
             'merek'  =>  fake()->name(),
             'tipe_model' => fake()->word(),
             'serial_number'    => (string) Str::random(15),
-            'satuan'    => fake()->randomDigit(),
+            'satuan'    => fake()->randomElement(['pack', 'pcs', 'unit', 'roll', 'm', 'cm']),
             'keterangan'    => fake()->sentence(),
 
         ];

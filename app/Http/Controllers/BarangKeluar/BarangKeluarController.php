@@ -72,6 +72,7 @@ class BarangKeluarController extends Controller
         $barang_keluar->id_stok = $request->input('id_stok');
         $barang_keluar->id_pelanggan = $request->input('pelanggan');
         $barang_keluar->tanggal = $request->input('tanggal');
+        $barang_keluar->kode_barang_keluar = $request->input('kode_keluar');
         $barang_keluar->jumlah = (int) $request->input('jumlah');
         $barang_keluar->tujuan = $request->input('tujuan');
         $barang_keluar->satuan = $request->input('satuan');
@@ -133,6 +134,7 @@ class BarangKeluarController extends Controller
         $barang_keluar->id_stok = $request->input('id_stok');
         $barang_keluar->id_pelanggan = $request->input('pelanggan');
         $barang_keluar->tanggal = $request->input('tanggal');
+        $barang_keluar->kode_barang_keluar = $request->input('kode_keluar');
         $barang_keluar->jumlah = (int) $request->input('jumlah');
         $barang_keluar->tujuan = $request->input('tujuan');
         $barang_keluar->satuan = $request->input('satuan');

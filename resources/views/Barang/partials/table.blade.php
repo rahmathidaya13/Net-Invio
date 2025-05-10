@@ -28,7 +28,7 @@
         <td class="align-middle">{{ $data->merek }}</td>
         <td class="tipe_model align-middle">{{ $data->tipe_model }}</td>
         <td class="serial_number align-middle">{{ $data->serial_number }}</td>
-        <td class="align-middle text-center">{{ $data->satuan }}</td>
+        <td class="align-middle text-center">{{ ucwords($data->satuan) }}</td>
         <td class="align-middle">{{ $data->keterangan }}</td>
     </tr>
 @endforeach

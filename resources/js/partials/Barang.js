@@ -5,6 +5,13 @@ export default function barang() {
             e.preventDefault();
             // ambil keyword
             let keyword = $(this).val();
+            if (keyword.length > 0) {
+                $("#text-result").removeClass("d-none").addClass("d-block");
+                $("#results").text(` "${keyword}" `);
+            } else {
+                $("#text-result").removeClass("d-block").addClass("d-none");
+                $("#results").text("");
+            }
             // ambil token CSRF-TOKEN
             let token = $('meta[name="csrf-token"]').attr("content");
             // ambil nilai page dari pagination

@@ -5,10 +5,12 @@ export default function BarangKeluar() {
         if (idStok) {
             $.getJSON(`/stok/show/${idStok}`, function (response) {
                 const values = response.stok?.jumlah_barang ?? 0;
+                const no_warehouse = response.stok?.no_warehouse ?? "";
                 $("#sisa_stok").val(values);
+                $("#no_warehouse").val(no_warehouse);
             });
         }
-        $(document).on("change", "#barang", function (e) {
+        $(document).off("change", "#barang").on("change", "#barang", function (e) {
             e.preventDefault();
             let id = $(this).val();
             if (!id) return;
@@ -21,6 +23,7 @@ export default function BarangKeluar() {
                     $("#id_barang").val(response.stok?.id_barang);
                     $("#sisa_stok").val(response.stok?.jumlah_barang ?? 0);
                     $("#lokasi").val(response.stok?.lokasi);
+                    $("#no_warehouse").val(response.stok?.no_warehouse);
                 },
             });
         });
@@ -39,6 +42,13 @@ export default function BarangKeluar() {
                 e.preventDefault();
                 // ambil keyword
                 let keyword = $(this).val();
+                if (keyword.length > 0) {
+                    $("#text-result").removeClass("d-none").addClass("d-block");
+                    $("#results").text(` "${keyword}" `);
+                } else {
+                    $("#text-result").removeClass("d-block").addClass("d-none");
+                    $("#results").text("");
+                }
                 // ambil token CSRF-TOKEN
                 let token = $('meta[name="csrf-token"]').attr("content");
                 // ambil nilai page dari pagination
@@ -63,10 +73,8 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_pelanggan");
@@ -106,10 +114,8 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_pelanggan");
@@ -147,10 +153,8 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_pelanggan");
@@ -180,10 +184,8 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_pelanggan");

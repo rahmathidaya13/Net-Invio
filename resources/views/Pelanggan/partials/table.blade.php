@@ -24,6 +24,7 @@
             {{ $loop->iteration + $pelanggan->perPage() * ($pelanggan->currentPage() - 1) }}
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
+        <td class="align-middle">{{ $data->no_identitas }}</td>
         <td class="nama_pelanggan align-middle">{{ ucwords($data->nama) }}</td>
         <td class="align-middle">{{ ucwords($data->jenis_kelamin) }}</td>
         <td class="nohp align-middle">{{ $data->nohp }}</td>
@@ -33,6 +34,6 @@
 @endforeach
 @empty($data)
     <tr>
-        <td colspan="8" class="text-center">Tidak ada data ditemukan</td>
+        <td colspan="9" class="text-center">Tidak ada data ditemukan</td>
     </tr>
 @endempty

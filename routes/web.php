@@ -6,6 +6,7 @@ use App\Http\Controllers\BarangKeluar\BarangKeluarController;
 use App\Http\Controllers\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pelanggan\PelangganController;
+use App\Http\Controllers\ReturBarang\ReturBarangController;
 use App\Http\Controllers\StokBarang\StokBarangController;
 use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\UserController;
@@ -106,5 +107,15 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::post('/outbound/store', 'store')->name('outbound.store');
         Route::put('/outbound/update/{id}', 'update')->name('outbound.update');
         Route::delete('/outbound/destroy/{id}', 'destroy')->name('outbound.destroy');
+    });
+
+    // this barang kembali controller
+    Route::controller(ReturBarangController::class)->group(function () {
+        Route::get('/retur/list', 'index')->name('retur.list');
+        Route::get('/retur/create', 'create')->name('retur.create');
+        Route::get('/retur/edit/{id}', 'edit')->name('retur.edit');
+        Route::post('/retur/store', 'store')->name('retur.store');
+        Route::put('/retur/update/{id}', 'update')->name('retur.update');
+        Route::delete('/retur/destroy/{id}', 'destroy')->name('retur.destroy');
     });
 });

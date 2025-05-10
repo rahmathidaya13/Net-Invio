@@ -23,6 +23,8 @@
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
                     <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"
                         class="form-control-sm" />
+                    <div class="d-none" id="text-result">search result: <span id="results" class="fw-bold"></span>
+                    </div>
                 </div>
             </div>
             <div class="row mb-3 align-items-center">
@@ -38,7 +40,7 @@
             </div>
 
             @php
-                $thead = ['', 'No', 'Tanggal', 'Nama Pelanggan', 'Jenis Kelamin', 'No.Handphone', 'email', 'Alamat'];
+                $thead = ['', 'No', 'Tanggal', 'No.Identitas','Nama Pelanggan', 'Jenis Kelamin', 'No.Handphone', 'email', 'Alamat'];
             @endphp
             <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-0"
                 titleClass="text-start fs-6">

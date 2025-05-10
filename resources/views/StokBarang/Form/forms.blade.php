@@ -32,6 +32,9 @@
                     <x-horizontal-input autofocus type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $stok->tanggal ?? '') }}" />
 
+                    <x-horizontal-input name="no_warehouse" label="No.Warehouse" placeholder="example:WH-0001"
+                        value="{{ old('no_warehouse', $stok->no_warehouse ?? '') }}" />
+
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="nama_barang" value="Nama Barang" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
@@ -45,7 +48,7 @@
                                 selected="{{ old('nama_barang', $stok->id_barang ?? '') }}" />
                         </div>
                     </div>
-                    <x-horizontal-input name="jumlah" label="Jumlah Barang"
+                    <x-horizontal-input name="jumlah" label="Jumlah Barang" placeholder="0"
                         value="{{ old('jumlah', $stok->jumlah_barang ?? '') }}" />
 
                     <div class="mb-3 row align-items-center">

@@ -17,7 +17,7 @@ export default function BarangMasuk() {
                 $(this).val(Currency(formated));
             });
 
-        $(document).on("change", "#nama_barang", function (e) {
+        $(document).off("change", "#nama_barang").on("change", "#nama_barang", function (e) {
             e.preventDefault();
             let selected = $(this).val();
             $("#id_barang").val(selected);
@@ -35,6 +35,13 @@ export default function BarangMasuk() {
                 e.preventDefault();
                 // ambil keyword
                 let keyword = $(this).val();
+                if (keyword.length > 0) {
+                    $("#text-result").removeClass("d-none").addClass("d-block");
+                    $("#results").text(` "${keyword}" `);
+                } else {
+                    $("#text-result").removeClass("d-block").addClass("d-none");
+                    $("#results").text("");
+                }
                 // ambil token CSRF-TOKEN
                 let token = $('meta[name="csrf-token"]').attr("content");
                 // ambil nilai page dari pagination
@@ -59,10 +66,8 @@ export default function BarangMasuk() {
                         $("tbody#barang_masuk_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_supplier");
@@ -102,10 +107,8 @@ export default function BarangMasuk() {
                         $("tbody#barang_masuk_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_supplier");
@@ -143,10 +146,8 @@ export default function BarangMasuk() {
                         $("tbody#barang_masuk_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_supplier");
@@ -176,10 +177,8 @@ export default function BarangMasuk() {
                         $("tbody#barang_masuk_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${
-                                data.info.firstItem ?? 0
-                            }</b> sampai <b>${
-                                data.info.lastItem ?? 0
+                            `Menampilkan <b>${data.info.firstItem ?? 0
+                            }</b> sampai <b>${data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
                         HighlightText(keyword, ".nama_barang,.nama_supplier");

@@ -94,6 +94,7 @@ class BarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->validateItem($request->all());
         $barang =  BarangModel::findOrFail($id);
         $barang->kode_barang = $request->input('kode_barang');
         $barang->serial_number = $request->input('sn');

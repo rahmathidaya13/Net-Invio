@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\ReturBarang;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barang\BarangModel;
+use App\Models\Pelanggan\PelangganModel;
 use App\Models\ReturBarang\ReturBarangModel;
+use App\Models\Supplier\SupplierModel;
 use Illuminate\Http\Request;
 
 class ReturBarangController extends Controller
@@ -11,9 +14,36 @@ class ReturBarangController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $limit = $request->get('limit', 10);
+        $query = $request->get('keyword', '');
+        $sortOrder = $request->get('sort_order', 'desc');
+
+        $barang_kembali = ReturBarangModel::join("tb_barang", "tb_retur_barang.id_barang", "=", "tb_barang.id_barang")
+            ->leftJoin("tb_pelanggan",  "tb_retur_barang.id_pelanggan", "=", "tb_pelanggan.id_pelanggan")
+            ->select("tb_retur_barang.*", "tb_barang.nama_barang", "tb_pelanggan.nama")
+            ->when($query, function ($q) use ($query) {
+                $q->where(function ($subQuery) use ($query) {
+                    $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%')
+                        ->orWhere('tb_pelanggan.nama', 'like', '%' . $query . '%');
+                });
+            })
+            ->orderBy('tb_barang.nama_barang', $sortOrder)
+            ->paginate($limit)
+            ->appends(['keyword' => $query, 'limit' => $limit, 'sort_order' => $sortOrder]);
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('BarangKembali.partials.table', compact('barang_kembali'))->render(),
+                'pagination' => view('BarangKembali.partials.pagination', compact('barang_kembali'))->render(),
+                'info' => [
+                    'firstItem' => $barang_kembali->firstItem(),
+                    'lastItem' => $barang_kembali->lastItem(),
+                    'total' => $barang_kembali->total(),
+                ],
+            ]);
+        }
+        return view('BarangKembali.index', compact('barang_kembali'));
     }
 
     /**
@@ -21,7 +51,10 @@ class ReturBarangController extends Controller
      */
     public function create()
     {
-        //
+        $barang = BarangModel::select('id_barang', 'nama_barang')->get();
+        $pelanggan = PelangganModel::select('id_pelanggan', 'nama')->get();
+        $supplier = SupplierModel::select('id_supplier', 'nama')->get();
+        return view('BarangKembali.Form.forms', compact('barang', 'pelanggan', 'supplier'));
     }
 
     /**
@@ -29,7 +62,7 @@ class ReturBarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

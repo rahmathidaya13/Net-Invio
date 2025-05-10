@@ -31,6 +31,9 @@
                     method="{{ isset($pelanggan) ? 'put' : null }}" parameters="{{ $pelanggan->id_pelanggan ?? '' }}">
                     <x-horizontal-input autofocus type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $pelanggan->tanggal ?? '') }}" />
+
+
+
                     <x-horizontal-input placeholder="NIK/SIM" name="nid" label="No.Identitas"
                         value="{{ old('nid', $pelanggan->no_identitas ?? '') }}" />
 

@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Daftar supplier')
-@section('icon', 'bi bi-people-fill')
-@section('breadcrumb', Str::upper('Daftar supplier'))
+@section('title', 'Daftar Barang Kembali')
+@section('icon', 'fas fa-list-ul')
+@section('breadcrumb', Str::upper('Daftar Barang Kembali'))
 @section('content')
-    <x-bread-crumbs :items="[['text' => 'Daftar Supplier', 'url' => '/supplier/list']]" />
+    <x-bread-crumbs :items="[['text' => 'Daftar Barang Kembali', 'url' => '/retur/list']]" />
     <div class="row">
         <div class="col-12 col-lg-12">
 
@@ -15,7 +15,7 @@
             <div class="row align-items-center mb-4">
                 <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     {{-- this button --}}
-                    <x-link url="/supplier/create" icon="bi bi-plus-circle" label="Tambah"
+                    <x-link url="/retur/create" icon="bi bi-plus-circle" label="Tambah"
                         class="btn btn-primary btn-sm text-light" />
                     <x-link icon="bi bi-upload" label="Import" class="btn btn-outline-success btn-sm" />
                     <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
@@ -40,19 +40,30 @@
             </div>
 
             @php
-                $thead = ['', 'No', 'Nama supplier', 'Kontak', 'Email', 'Alamat'];
+                $thead = [
+                    '',
+                    'No',
+                    'Tanggal',
+                    'Barang',
+                    'Pelanggan',
+                    'Supplier',
+                    'Jumlah Retur',
+                    'Tipe Retur',
+                    'Status',
+                    'Alasan',
+                ];
             @endphp
             <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-0"
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
-                    <x-table theadColor="success" tbodyId="supplier_tabel" class=" text-nowrap table-hover table-clickable"
-                        :header="$thead">
-                        @include('Supplier.partials.table', ['supplier' => $supplier])
+                    <x-table theadColor="success" tbodyId="barang_kembali_tabel"
+                        class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
+                        {{-- @include('BarangKembali.partials.table', ['barang_kembali' => $barang_kembali]) --}}
                     </x-table>
                 </div>
                 <div class="d-flex flex-wrap justify-content-lg-between align-items-center flex-column flex-lg-row p-3">
-                    @include('Supplier.partials.informasi', ['supplier' => $supplier])
-                    @include('Supplier.partials.pagination', ['supplier' => $supplier])
+                    {{-- @include('BarangKembali.partials.informasi', ['barang_kembali' => $barang_kembali])
+                    @include('BarangKembali.partials.pagination', ['barang_kembali' => $barang_kembali]) --}}
                 </div>
             </x-card>
         </div>

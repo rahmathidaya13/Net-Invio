@@ -18,6 +18,7 @@ class BarangKeluarModel extends Model
         'id_barang',
         'id_pelanggan',
         'id_stok',
+        'kode_barang_keluar',
         'tanggal',
         'jumlah',
         'tujuan',

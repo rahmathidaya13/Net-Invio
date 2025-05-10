@@ -31,6 +31,7 @@ trait outboundValidation
             'satuan' => 'required|string',
             'petugas' => 'required|string|max:50',
             'keterangan' => 'nullable|string|max:250',
+            'kode_keluar' => 'required|string|max:25',
         ];
         if (!$isUpdated) {
             $rules['barang'] = ['required', 'exists:tb_stok,id_stok'];
@@ -67,6 +68,10 @@ trait outboundValidation
 
             'keterangan.string' => 'karakter yang digunakan tidak sesuai.',
             'keterangan.max' => 'Keterangan maksimal 250 karakter.',
+
+            'kode_keluar.required' => 'Kode barang keluar wajib diisi.',
+            'kode_keluar.string' => 'Kode barang keluar tidak sesuai.',
+            'kode_keluar.max' => 'Kode barang keluar maksimal 25 karakter.',
         ])->validate();
     }
 }

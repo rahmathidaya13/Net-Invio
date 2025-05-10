@@ -34,6 +34,10 @@
 
                     <x-horizontal-input autofocus :readonly="isset($barang_masuk) && $barang_masuk->id_barang_masuk" type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $barang_masuk->tanggal ?? '') }}" />
+
+                    <x-horizontal-input name="nota" label="Nota/Invoice"
+                        value="{{ old('nota', $barang_masuk->nota ?? '') }}" />
+
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="nama_barang" value="Nama Barang" class="col-sm-2 col-form-label form-label" />
                         <div class="col-sm-5">
@@ -77,9 +81,6 @@
 
                     <x-horizontal-input name="pembeli" label="Pembeli Barang"
                         value="{{ old('pembeli', $barang_masuk->pembeli ?? '') }}" />
-
-                    <x-horizontal-input name="nota" label="Nota"
-                        value="{{ old('nota', $barang_masuk->nota ?? '') }}" />
 
                     <x-horizontal-input name="jumlah" label="Jumlah Barang"
                         value="{{ old('jumlah', $barang_masuk->jumlah ?? '') }}" />

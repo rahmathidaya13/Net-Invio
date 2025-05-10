@@ -12,6 +12,7 @@ class ReturBarangModel extends Model
     protected $table = 'tb_retur_barang';
     protected $primaryKey = 'id_retur';
     protected $fillable = [
+        'id_barang',
         'id_pelanggan',
         'id_supplier',
         'tanggal',

@@ -25,7 +25,9 @@
             {{ $loop->iteration + $barang_keluar->perPage() * ($barang_keluar->currentPage() - 1) }}
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
-        <td class="nama_barang align-middle text-start">{{ ucwords($data->barang->nama_barang) }}</td>
+        <td class="nama_barang align-middle text-start">
+            {{ ucwords($data->barang->nama_barang) }}
+        </td>
         <td class="nama_pelanggan align-middle">{{ ucwords($data->pelanggan->nama ?? '-') }}</td>
         <td class="align-middle">{{ ucwords($data->tujuan) }}</td>
         <td class="align-middle ">{{ $data->jumlah }}</td>

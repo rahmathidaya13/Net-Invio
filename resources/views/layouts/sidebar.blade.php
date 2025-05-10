@@ -59,6 +59,14 @@
                 </x-link>
                 {{-- end side barang keluar --}}
 
+                {{-- side barang keluar --}}
+                <x-link url="/retur/list"
+                    class="nav-link {{ request()->is('retur*') ? 'active text-bg-primary' : '' }}">
+                    <div class="sb-nav-link-icon"><i class="bi bi-arrow-repeat"></i></div>
+                    Barang Kembali
+                </x-link>
+                {{-- end side barang keluar --}}
+
 
                 <x-link url="/user/list"
                     class="nav-link {{ request()->is('user*') ? 'active text-bg-primary' : 'collapsed' }}">

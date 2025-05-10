@@ -69,6 +69,7 @@ class StokBarangController extends Controller
         $stok = new StokBarangModel();
         $stok->id_barang = $request->input('nama_barang');
         $stok->tanggal = $request->input('tanggal');
+        $stok->no_warehouse = $request->input('no_warehouse');
         $stok->jumlah_barang =  (int) $request->input('jumlah');
         $stok->lokasi = $request->input('lokasi');
         $stok->keterangan = $request->input('keterangan');
@@ -119,6 +120,7 @@ class StokBarangController extends Controller
         $stok = StokBarangModel::findOrFail($id);
         $stok->id_barang = $request->input('nama_barang');
         $stok->tanggal = $request->input('tanggal');
+        $stok->no_warehouse = $request->input('no_warehouse');
         $stok->jumlah_barang = $request->input('jumlah');
         $stok->lokasi = $request->input('lokasi');
         $stok->keterangan = $request->input('keterangan');
