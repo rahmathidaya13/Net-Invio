@@ -1,0 +1,27 @@
+.profile {
+    width: 3rem !important;
+    height: 3rem !important;
+
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.elevation-2 {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23) !important
+}
+
+.user-panel .image img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 1rem 1rem;
+}
+
+.online {
+    font-size: 10px;
+    color: rgb(0, 172, 0);
+}

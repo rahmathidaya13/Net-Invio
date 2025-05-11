@@ -31,9 +31,9 @@
             <x-link data-data="{{ $data->image }}" icon="fas fa-eye" class="text-decoration-none image-view" />
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
-        <td class="align-middle ">{{ ucwords($data->barang->nama_barang) }}</td>
-        <td class="nama_barang align-middle text-start">{{ ucwords($data->pelanggan->nama) }}</td>
-        <td class="nama_supplier align-middle">{{ ucwords($data->supplier->nama ?? '-') }}</td>
+        <td class="nama_barang align-middle ">{{ ucwords($data->barang->nama_barang) }}</td>
+        <td class="nama_pelanggan align-middle text-start">{{ ucwords($data->pelanggan->nama) }}</td>
+        <td class="align-middle">{{ ucwords($data->supplier->nama ?? '-') }}</td>
         <td class="align-middle ">{{ $data->jumlah }}</td>
         <td class="align-middle">{{ ucwords($data->tipe_retur) }}
         </td>
@@ -47,7 +47,7 @@
             @endif
         </td>
 
-        <td class="align-middle ">{{ $data->alasan }}</td>
+        <td class="align-middle text-start">{{ $data->alasan }}</td>
     </tr>
 @endforeach
 @empty($data)

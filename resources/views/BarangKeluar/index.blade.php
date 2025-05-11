@@ -21,7 +21,7 @@
                     <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
-                    <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"
+                    <x-form-input autofocus autocomplete="off" placeholder="Masukan pencarian..." type="search" name="keyword"
                         class="form-control-sm" />
                     <div class="d-none" id="text-result">Search result: <span id="results" class="fw-bold"></span>
                     </div>
@@ -56,7 +56,7 @@
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
                     <x-table theadColor="info" tbodyId="barang_keluar_tabel"
-                        class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
+                        class="text-center text-nowrap table-hover table-clickable" :header="$thead">
                         @include('BarangKeluar.partials.table', ['barang_keluar' => $barang_keluar])
                     </x-table>
                 </div>

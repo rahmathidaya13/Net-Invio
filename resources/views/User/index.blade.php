@@ -25,7 +25,7 @@
             <div class="d-lg-flex flex-wrap flex-column flex-lg-row justify-content-lg-between mt-3 mb-3">
                 <div class="d-flex flex-row flex-lg-column align-items-center order-2 order-lg-2 mb-lg-0 mb-3 col-lg-3">
                     <div class="input-group input-group-sm ">
-                        <input autofocus type="search" name="keyword" id="keyword" class="form-control"
+                        <input autofocus autocomplete="off" type="search" name="keyword" id="keyword" class="form-control"
                             placeholder="Masukan pencarian...">
                     </div>
                 </div>
@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <x-table theadColor="success" tbodyId="table_user" class="table-sm "
+                        <x-table theadColor="success" tbodyId="table_user" class=" "
                             :header="['No', 'Nama', 'Email', 'Role', 'Otorisasi', 'Aksi']">
                             @include('User.partials.table', ['user' => $user])
                         </x-table>

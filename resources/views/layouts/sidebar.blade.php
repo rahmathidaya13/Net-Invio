@@ -2,6 +2,20 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark sb-s" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
+                <div class="user-panel d-flex align-items-center">
+                    <div class="image">
+                        <img src="{{ asset('assets/image/no-image.svg') }}" class="elevation-2 profile img-circle"
+                            alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a id="profile-action" href="#"
+                            class="d-block text-white profile-action text-decoration-none">
+                            {{ ucwords(Auth::user()->name) }}
+                        </a>
+                        <small class="d-block text-body-emphasis"> <i class="fas fa-circle online"></i> {{ Auth::user()->role }}</small>
+                    </div>
+                </div>
+
                 <div class="sb-sidenav-menu-heading">Features</div>
                 <x-link class="nav-link {{ request()->is('home*') ? 'active text-bg-primary' : '' }}" url="/home">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>

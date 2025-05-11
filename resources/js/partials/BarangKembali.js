@@ -52,31 +52,193 @@ export default function BarangKembali() {
         // load gambar pada sweet alert
         $(document).on("click", ".image-view", function (e) {
             e.preventDefault();
-            let noImage = '/assets/image/no-image.svg';
+            let noImage = "/assets/image/no-image.svg";
             let dataImage = $(this).data("data");
             let getImage = dataImage.split(","); // value sudah diasumsikan merupakan path seperti assets/uploads/namafile.jpg.
             let htmlContent = ""; // html: digunakan agar kamu bisa me-render banyak gambar di satu SweetAlert.
             $.each(getImage, function (index, value) {
                 // load element img with swall in container
                 htmlContent += `
-                    <img src="${dataImage !== '' ? '/assets/uploads/' + value : noImage}" class="img-thumbnail img-responsive"  alt="gambar-${index}">
+                    <img src="${
+                        dataImage !== "" ? "/assets/uploads/" + value : noImage
+                    }" class="img-thumbnail img-responsive"  alt="gambar-${index}">
                 `;
             });
             Swal.fire({
-                title: 'Preview Image',
+                title: "Preview Image",
                 html: htmlContent, // Gambar ditampilkan dalam bentuk kecil (thumbnail) agar bisa muat banyak.
-                width: '600px',
+                width: "600px",
                 showCloseButton: false,
                 showCancelButton: false,
                 showConfirmButton: false,
             });
-
         });
 
+        // live search
+        $(document)
+            .off("input", "#keyword")
+            .on("input", "#keyword", function (e) {
+                e.preventDefault();
+                // ambil keyword
+                let keyword = $(this).val();
+                if (keyword.length > 0) {
+                    $("#text-result").removeClass("d-none").addClass("d-block");
+                    $("#results").text(` "${keyword}" `);
+                } else {
+                    $("#text-result").removeClass("d-block").addClass("d-none");
+                    $("#results").text("");
+                }
+                // ambil token CSRF-TOKEN
+                let token = $('meta[name="csrf-token"]').attr("content");
+                // ambil nilai page dari pagination
+                let urlPageParameter = new URLSearchParams(
+                    window.location.search
+                ).get("page");
+                // buat limit
+                let setLimit = parseInt($("#limit").val());
+                let setOrder = $("#sort_order").val() || "desc";
+                $.ajax({
+                    type: "GET",
+                    url: "/retur/list",
+                    data: {
+                        keyword: keyword,
+                        _token: token,
+                        limit: setLimit,
+                        sort_order: setOrder,
+                        page: urlPageParameter,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("tbody#barang_kembali_tabel").html(data.table);
+                        $(".pagination-wrapper").html(data.pagination);
+                        $("#informasi").html(
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
+                            }</b> dari <b>${data.info.total ?? 0}</b> item`
+                        );
+                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                    },
+                });
+            });
 
+        // field untuk set order  dalam table
+        $(document)
+            .off("change", "#sort_order")
+            .on("change", "#sort_order", function (e) {
+                e.preventDefault();
+                // ambil keyword
+                let keyword = $("#keyword").val();
+                // ambil token CSRF-TOKEN
+                let token = $('meta[name="csrf-token"]').attr("content");
+                // ambil nilai page dari pagination
+                let urlPageParameter = new URLSearchParams(
+                    window.location.search
+                ).get("page");
+                // buat limit
+                let setLimit = parseInt($("#limit").val());
+                // buat order
+                let setOrder = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "/retur/list",
+                    data: {
+                        keyword: keyword,
+                        _token: token,
+                        limit: setLimit,
+                        sort_order: setOrder,
+                        page: urlPageParameter,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("tbody#barang_kembali_tabel").html(data.table);
+                        $(".pagination-wrapper").html(data.pagination);
+                        $("#informasi").html(
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
+                            }</b> dari <b>${data.info.total ?? 0}</b> item`
+                        );
+                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                    },
+                });
+            });
+        // field untuk ganti batas item dalam table
+        $(document)
+            .off("change", "#limit")
+            .on("change", "#limit", function (e) {
+                e.preventDefault();
+                // ambil keyword
+                let keyword = $("#keyword").val();
+                // ambil token CSRF-TOKEN
+                let token = $('meta[name="csrf-token"]').attr("content");
+                // ambil nilai page dari pagination
+                let urlPageParameter = new URLSearchParams(
+                    window.location.search
+                ).get("page");
+                // buat limit
+                let setLimit = parseInt($(this).val());
+                let setOrder = $("#sort_order").val() || "desc";
+                $.ajax({
+                    type: "GET",
+                    url: "/retur/list",
+                    data: {
+                        keyword: keyword,
+                        _token: token,
+                        limit: setLimit,
+                        sort_order: setOrder,
+                        page: urlPageParameter,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("tbody#barang_kembali_tabel").html(data.table);
+                        $(".pagination-wrapper").html(data.pagination);
+                        $("#informasi").html(
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
+                            }</b> dari <b>${data.info.total ?? 0}</b> item`
+                        );
+                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                    },
+                });
+            });
 
-
-
+        // set pagination parameters
+        $(document)
+            .off("click", ".pagination a")
+            .on("click", ".pagination a", function (e) {
+                e.preventDefault();
+                let urls = $(this).attr("href");
+                let keyword = $("#keyword").val();
+                let setLimit = parseInt($("#limit").val());
+                let setOrder = $("#sort_order").val() || "desc";
+                if (!urls) return; // Jika tidak ada URL, hentikan
+                urls = new URL(urls, window.location.origin);
+                urls.searchParams.set("limit", setLimit);
+                urls.searchParams.set("keyword", keyword);
+                urls.searchParams.set("sort_order", setOrder);
+                $.ajax({
+                    type: "GET",
+                    url: urls.toString(),
+                    dataType: "json", // Pastikan menerima JSON
+                    success: function (data) {
+                        $("tbody#barang_kembali_tabel").html(data.table);
+                        $(".pagination-wrapper").html(data.pagination);
+                        $("#informasi").html(
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
+                            }</b> dari <b>${data.info.total ?? 0}</b> item`
+                        );
+                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                    },
+                });
+            });
 
         $(document)
             .off("change", ".hapus")

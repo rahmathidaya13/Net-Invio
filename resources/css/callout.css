@@ -1,0 +1,25 @@
+/* Base class */
+.callout {
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid #d6d8db;
+    border-left-width: 0.25rem;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+}
+
+/* Modifier classes */
+.callout-info {
+    border-left-color: #17a2b8;
+    background-color: #e9f7fa;
+}
+
+.callout-warning {
+    border-left-color: #ffc107;
+    background-color: #fff3cd;
+}
+
+.callout-danger {
+    border-left-color: #dc3545;
+    background-color: #f8d7da;
+}

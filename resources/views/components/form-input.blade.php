@@ -10,6 +10,6 @@
     name="{{ $name }}" value="{{ $type !== 'password' ? old($name, $value) : '' }}">
 @error($name)
     <div class="invalid-feedback d-block" role="alert">
-        <strong>{{ $message }}</strong>
+        {{ $message }}
     </div>
 @enderror

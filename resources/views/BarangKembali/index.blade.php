@@ -21,7 +21,7 @@
                     <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
-                    <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"
+                    <x-form-input autofocus autocomplete="off" placeholder="Masukan pencarian..." type="search" name="keyword"
                         class="form-control-sm" />
                     <div class="d-none" id="text-result">Search result: <span id="results" class="fw-bold"></span>
                     </div>
@@ -58,13 +58,13 @@
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
                     <x-table theadColor="success" tbodyId="barang_kembali_tabel"
-                        class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
+                        class="text-center text-nowrap table-hover table-clickable" :header="$thead">
                         @include('BarangKembali.partials.table', ['barang_kembali' => $barang_kembali])
                     </x-table>
                 </div>
                 <div class="d-flex flex-wrap justify-content-lg-between align-items-center flex-column flex-lg-row p-3">
-                    {{-- @include('BarangKembali.partials.informasi', ['barang_kembali' => $barang_kembali])
-                    @include('BarangKembali.partials.pagination', ['barang_kembali' => $barang_kembali]) --}}
+                     @include('BarangKembali.partials.informasi', ['barang_kembali' => $barang_kembali])
+                    @include('BarangKembali.partials.pagination', ['barang_kembali' => $barang_kembali])
                 </div>
             </x-card>
         </div>

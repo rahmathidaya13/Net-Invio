@@ -48,7 +48,7 @@
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
                     <x-table theadColor="success" tbodyId="stok_tabel"
-                        class="text-center text-nowrap table-hover table-clickable table-sm" :header="$thead">
+                        class="text-center text-nowrap table-hover table-clickable" :header="$thead">
                         @include('StokBarang.partials.table', ['stok' => $stok])
                     </x-table>
                 </div>

@@ -7,6 +7,7 @@ use App\Models\Barang\BarangModel;
 use App\Models\Pelanggan\PelangganModel;
 use App\Models\ReturBarang\ReturBarangModel;
 use App\Models\Supplier\SupplierModel;
+use App\Traits\validate\ReturValidation;
 use Illuminate\Http\Request;
 
 class ReturBarangController extends Controller
@@ -14,6 +15,7 @@ class ReturBarangController extends Controller
     /**
      * Display a listing of the resource.
      */
+    use ReturValidation;
     public function index(Request $request)
     {
         $limit = $request->get('limit', 10);
@@ -62,6 +64,7 @@ class ReturBarangController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validationText($request->all());
         $filesName = [];
         $path = [];
         if ($request->hasFile('gambar')) {
@@ -88,7 +91,7 @@ class ReturBarangController extends Controller
         $barang_kembali->image = implode(',', $filesName);
         $barang_kembali->path = implode(',', $path);
         $barang_kembali->save();
-        return redirect()->route('retur.list')->with('success', 'Barang Kembali berhasil dibuat');
+        return redirect()->route('retur.list')->with('success', 'Barang Kembali ' . ucwords($barang_kembali->barang->nama_barang) . ' berhasil dibuat');
     }
 
     /**
@@ -120,6 +123,7 @@ class ReturBarangController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->validationText($request->all());
         // File lama dihapus sebelum file baru disimpan.
         // File baru tidak tercampur dengan variabel path lama.
         $barang_kembali = ReturBarangModel::findOrFail($id);
@@ -166,7 +170,7 @@ class ReturBarangController extends Controller
             $barang_kembali->path = implode(',', $pathNew);
         }
         $barang_kembali->update();
-        return redirect()->route('retur.list')->with('success', 'Barang Kembali berhasil dibuat');
+        return redirect()->route('retur.list')->with('success', 'Perubahan data barang Kembali ' . ucwords($barang_kembali->barang->nama_barang) . ' berhasil');
     }
 
     /**

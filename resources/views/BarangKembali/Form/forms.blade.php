@@ -139,10 +139,12 @@
                                 </div>
                             </div>
 
-                            {{-- <x-horizontal-input type="file" name="gambar" label="Gambar" accept="image/*" /> --}}
 
                             <div class="mb-3 row align-items-center">
-                                <x-form-label value="Gambar" class="col-sm-3 col-form-label form-label" />
+                                <div class="col-sm-3 col-form-label">
+                                    <x-form-label value="Gambar" class=" form-label d-block mb-0" />
+                                    <em class="text-muted small-sm">Max image upload 2mb</em>
+                                </div>
                                 <div class="col-sm-7 d-flex gap-2 justify-content-between position-relative"
                                     id="gambar-container">
                                     @for ($i = 0; $i < 3; $i++)
@@ -158,6 +160,13 @@
                                         <input type="file" class="d-none gambar-input" name="gambar[]"
                                             id="{{ $getId }}" accept="image/*" multiple>
                                     @endfor
+                                </div>
+                                <div class="offset-sm-3 col-sm-7">
+                                    @foreach ($errors->get('gambar.*') as $errorGroupImage)
+                                        @foreach ($errorGroupImage as $errorItem)
+                                            <small class="text-danger" style="font-size: 0.875em">{{ $errorItem }}</small>
+                                        @endforeach
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="mb-3 row align-items-center">

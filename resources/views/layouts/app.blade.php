@@ -12,11 +12,10 @@
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                    <div class="text-muted">Copyright &copy; 2025 <a class="text-decoration-none"
+                            href="{{ route('home') }}">Net-Invio</a> </div>
                     <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
+                        <b class="text-muted" >Version  1.0.0</b>
                     </div>
                 </div>
             </div>

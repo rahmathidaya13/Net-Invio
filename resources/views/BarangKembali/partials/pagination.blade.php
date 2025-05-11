@@ -1,3 +1,3 @@
 <div class="d-flex align-items-center order-2 order-lg-2 pagination-wrapper">
-    {{ $barang_masuk->links() }}
+    {{ $barang_kembali->links() }}
 </div>

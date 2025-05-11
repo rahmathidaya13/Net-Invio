@@ -7,3 +7,5 @@
 @import url("./partials.css");
 @import url("bootstrap-icons/font/bootstrap-icons.min.css");
 @import url('./title.css');
+@import url('./callout.css');
+@import url('./sidebarUser.css');

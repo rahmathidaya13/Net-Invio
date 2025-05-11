@@ -10,10 +10,7 @@
     <label for="{{ $name }}" class="col-sm-2 col-form-label form-label">{{ $label }}</label>
     <div class="col-sm-5">
         <input {{ $readonly ? 'readonly' : '' }} type="{{ $type }}"
-            {{ $attributes->merge(['class' => $inputClass]) }}
-            class="form-control  @error($name)
-            is-invalid
-        @enderror " id="{{ $name }}"
+            {{ $attributes->merge(['class' => $inputClass]) }} class="form-control" id="{{ $name }}"
             name="{{ $name }}" value="{{ $type !== 'password' ? old($name, $value) : '' }}">
         @error($name)
             <div class="invalid-feedback">{{ $message }}</div>
