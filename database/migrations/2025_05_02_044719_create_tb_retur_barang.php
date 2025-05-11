@@ -21,8 +21,8 @@ return new class extends Migration
             $table->integer('jumlah'); // jumlah barang retur
             $table->enum('tipe_retur', ['masuk', 'keluar']); // jenis retur masuk dari pelanggan, keluar dari supplier
             $table->enum('status_pergantian', ['diganti', 'tidak_diganti', 'diperbaiki']); // retur ganti barang, tidak diganti atau perbaikan
-            $table->string('image', 250)->nullable();
-            $table->string('path', 250)->nullable();
+            $table->text('image')->nullable();
+            $table->text('path')->nullable();
             $table->text('alasan'); // alasan retur
             $table->timestamps();
         });

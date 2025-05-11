@@ -1,3 +1,5 @@
+import { data, each } from "jquery";
+
 export default function BarangKembali() {
     $(function () {
         $(document)
@@ -46,5 +48,46 @@ export default function BarangKembali() {
                 reader.readAsDataURL(file);
             }
         });
+
+        // load gambar pada sweet alert
+        $(document).on("click", ".image-view", function (e) {
+            e.preventDefault();
+            let noImage = '/assets/image/no-image.svg';
+            let dataImage = $(this).data("data");
+            let getImage = dataImage.split(","); // value sudah diasumsikan merupakan path seperti assets/uploads/namafile.jpg.
+            let htmlContent = ""; // html: digunakan agar kamu bisa me-render banyak gambar di satu SweetAlert.
+            $.each(getImage, function (index, value) {
+                // load element img with swall in container
+                htmlContent += `
+                    <img src="${dataImage !== '' ? '/assets/uploads/' + value : noImage}" class="img-thumbnail img-responsive"  alt="gambar-${index}">
+                `;
+            });
+            Swal.fire({
+                title: 'Preview Image',
+                html: htmlContent, // Gambar ditampilkan dalam bentuk kecil (thumbnail) agar bisa muat banyak.
+                width: '600px',
+                showCloseButton: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+            });
+
+        });
+
+
+
+
+
+
+        $(document)
+            .off("change", ".hapus")
+            .on("click", ".hapus", function (e) {
+                e.preventDefault(); // Mencegah event bubbling ke elemen parent
+                let data = $(this).data("data");
+                SweatAlert(
+                    `/retur/destroy/${data.id_retur}`,
+                    data.nama_barang,
+                    "delete"
+                );
+            });
     });
 }

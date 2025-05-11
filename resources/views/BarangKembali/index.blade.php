@@ -43,6 +43,7 @@
                 $thead = [
                     '',
                     'No',
+                    'Gambar',
                     'Tanggal',
                     'Barang',
                     'Pelanggan',
