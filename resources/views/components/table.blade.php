@@ -2,7 +2,11 @@
 <table {{ $attributes->merge(['class' => 'table']) }}>
     <thead class="table-{{ $theadColor }} table-striped">
         <tr>
-            {{-- <th class="text-center" scope="col">Aksi</th> --}}
+            @if (Gate::any(['edit', 'delete', 'onlyAdmin']))
+                <th class="text-center" scope="col">
+                    <i class="bi bi-list text-dark"> </i>
+                </th>
+            @endif
             @foreach ($header as $row)
                 <th scope="col">{{ $row }}</th>
             @endforeach

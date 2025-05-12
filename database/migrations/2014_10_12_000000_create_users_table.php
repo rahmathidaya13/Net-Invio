@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('can_add')->default(false);
             $table->boolean('can_edit')->default(false);
             $table->boolean('can_delete')->default(false);
+            $table->boolean('isActive')->default(false);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

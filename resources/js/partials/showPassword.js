@@ -1,6 +1,7 @@
 export default function showPassword() {
     $(function () {
-        $(document).off("click", "#showPass").on("click", "#showPass", function () {
+        $(document).off("click", "#showPass").on("click", "#showPass", function (e) {
+            e.preventDefault();
             let password = $("#password").prop("type");
             if (password === "password") {
                 $("#password").prop("type", "text");

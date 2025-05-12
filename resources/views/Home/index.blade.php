@@ -14,13 +14,16 @@
         </div>
     </div> --}}
 
+    @if ($message = Session::get('error'))
+        <x-alert type="danger" message="{{ $message }}" />
+    @endif
+
     <div class="callout callout-info d-grid">
         <strong class="fs-3">Selamat datang kembali, {{ ucwords(auth()->user()->name) }}!</strong>
         <span class="text-capitalize">
             Anda login sebagai <b>{{ auth()->user()->role }}</b>, Semoga harimu selalu produktif dan selalu
             menyenangkan.</span>
     </div>
-
     <div class="row gap-3 gap-lg-0">
 
         {{-- count data barang --}}
@@ -30,7 +33,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-uppercase  mb-1">Stok Barang</h6>
-                            <small >Periode: {{ \Carbon\Carbon::now()->format('m-Y')}}</small>
+                            <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $stokAll }}</h4>
                         </div>
                         <div class="icon-circle text-white d-flex align-items-center justify-content-center">
@@ -54,7 +57,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-uppercase mb-1">Barang Masuk</h6>
-                            <small >Periode: {{ \Carbon\Carbon::now()->format('m-Y')}}</small>
+                            <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $brgMasukAll }}</h4>
                         </div>
                         <div class="icon-circle text-white d-flex align-items-center justify-content-center">
@@ -78,7 +81,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-uppercase mb-1">Barang Keluar</h6>
-                            <small >Periode: {{ \Carbon\Carbon::now()->format('m-Y')}}</small>
+                            <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $brgKeluarAll }}</h4>
                         </div>
                         <div class="icon-circle text-white d-flex align-items-center justify-content-center">
@@ -102,7 +105,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-uppercase mb-1">Pelanggan</h6>
-                            <small >Periode: {{ \Carbon\Carbon::now()->format('m-Y')}}</small>
+                            <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $pelangganAll }}</h4>
                         </div>
                         <div class="icon-circle text-white d-flex align-items-center justify-content-center">

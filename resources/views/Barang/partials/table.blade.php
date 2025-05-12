@@ -1,25 +1,30 @@
 @foreach ($barang as $data)
     <tr data-id="{{ $data->id_barang }}" class="table-row" data-url="/barang">
-        <td class="align-middle px-3 ">
+        @if (Gate::any(['delete', 'edit']))
+            <td class="align-middle px-3 ">
+                <div class="dropdown">
+                    <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-three-dots-vertical"> </i>
+                    </button>
 
-            <div class="dropdown">
-                <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical"> </i>
-                </button>
-
-                <ul class="dropdown-menu">
-                    <li>
-                        <x-link label="Ubah" icon="fas fa-edit" class="dropdown-item" url="/barang/edit"
-                            parameters="{{ $data->id_barang }}" />
-                    </li>
-                    <li>
-                        <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
-                            class="dropdown-item hapus" />
-                    </li>
-                </ul>
-            </div>
-        </td>
+                    <ul class="dropdown-menu">
+                        @can('edit')
+                            <li>
+                                <x-link label="Ubah" icon="fas fa-edit" class="dropdown-item" url="/barang/edit"
+                                    parameters="{{ $data->id_barang }}" />
+                            </li>
+                        @endcan
+                        @can('delete')
+                            <li>
+                                <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
+                                    class="dropdown-item hapus" />
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            </td>
+        @endif
         <td class="align-middle text-center">{{ $loop->iteration + $barang->perPage() * ($barang->currentPage() - 1) }}
         </td>
         <td class="kode align-middle">{{ $data->kode_barang }}</td>

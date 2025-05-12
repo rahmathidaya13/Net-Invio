@@ -3,7 +3,7 @@
 @section('icon', 'fas fa-users')
 @section('breadcrumb', Str::upper('Daftar Pengguna'))
 @section('content')
-<x-bread-crumbs :items="[['text' => 'Daftar Pengguna', 'url' => '/user/list']]" />
+    <x-bread-crumbs :items="[['text' => 'Daftar Pengguna', 'url' => '/user/list']]" />
     <div class="row">
         <div class="col-12 col-lg-12">
             @if ($errors->any())
@@ -16,20 +16,24 @@
                     </ul>
                 </div>
             @endif
+
             @if ($message = Session::get('success'))
-                <div class="alert alert-info fw-bold " role="alert" style="font-size: 16px;">
-                    <i class="far fa-check-circle text-success mr-2"></i>
-                    <span> {{ $message }}</span>
-                </div>
+                <x-alert type="success" message="{{ $message }}" />
             @endif
-            <div class="d-lg-flex flex-wrap flex-column flex-lg-row justify-content-lg-between mt-3 mb-3">
-                <div class="d-flex flex-row flex-lg-column align-items-center order-2 order-lg-2 mb-lg-0 mb-3 col-lg-3">
-                    <div class="input-group input-group-sm ">
-                        <input autofocus autocomplete="off" type="search" name="keyword" id="keyword" class="form-control"
-                            placeholder="Masukan pencarian...">
+            <div class="row align-items-center mb-4">
+                <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
+                    {{-- this button --}}
+                    <x-link url="/user/create" icon="bi bi-person-add" label="New account"
+                        class="btn btn-outline-success btn-sm" />
+                </div>
+                <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
+                    <x-form-input autofocus placeholder="Masukan pencarian..." type="search"
+                        name="keyword" class="form-control-sm" />
+                    <div class="d-none" id="text-result">Search result: <span id="results" class="fw-bold"></span>
                     </div>
                 </div>
-
+            </div>
+            <div class="d-lg-flex flex-wrap flex-column flex-lg-row justify-content-lg-between mt-3 mb-3">
                 <div class="d-flex flex-wrap align-items-center order-1 order-lg-1">
                     <span class="me-3">Tampilkan hasil: </span>
                     <div class="input-group input-group-sm" style="width: 85px">
@@ -45,8 +49,7 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <x-table theadColor="success" tbodyId="table_user" class=" "
-                            :header="['No', 'Nama', 'Email', 'Role', 'Otorisasi', 'Aksi']">
+                        <x-table theadColor="success" tbodyId="table_user" class=" text-center" :header="['No', 'Nama', 'Email', 'Role', 'Otorisasi']">
                             @include('User.partials.table', ['user' => $user])
                         </x-table>
                     </div>

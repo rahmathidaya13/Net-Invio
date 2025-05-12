@@ -58,6 +58,10 @@ class LoginController extends Controller
             return back()->withErrors(['error' => 'Email atau password salah.']);
         }
         Auth::login($user);
+        if (!$user->isActive) {
+            $user->isActive = true;
+            $user->save();
+        }
         return redirect()->route('home');
     }
     protected function validateLogin(Request $request)
@@ -93,5 +97,18 @@ class LoginController extends Controller
         }
 
         RateLimiter::hit($key, 60); // Reset percobaan dalam 1 menit
+    }
+
+    public function logout(Request $request)
+    {
+        $user = Auth::user();
+        if ($user->isActive) {
+            $user->isActive = false;
+            $user->save();
+        }
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }

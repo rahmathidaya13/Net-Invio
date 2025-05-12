@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Traits\Validate\UserValidation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\Validate\UserValidation;
 
 class UserController extends Controller
 {
     use UserValidation;
     public function index(Request $request)
     {
+        // if (Gate::denies('AdminOnly')) {
+        //     return back()->with('success', 'test');
+        // }
         $limit = $request->get('limit', 10);
         $query = $request->get('keyword', '');
         $user = User::where('role', 'user')
@@ -89,6 +93,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return back()->with('success', 'Pengguna ' . ucwords($user->name) . ' berhasil dihapus.');
+        return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

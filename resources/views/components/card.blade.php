@@ -6,6 +6,7 @@
     'footerClass' => '',
     'titleClass' => '',
     'header' => null,
+    'midContent' => null,
 ])
 <div {{ $attributes->merge(['class' => 'card mb-3']) }}>
     @if ($title || $headerClass || $header ?? false)
@@ -17,7 +18,7 @@
             @endif
         </div>
     @endif
-
+    {{ $midContent }}
     <div class="card-body {{ $bodyClass }}">
         {{ $slot }}
     </div>

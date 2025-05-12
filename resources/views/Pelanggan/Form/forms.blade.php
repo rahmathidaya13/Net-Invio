@@ -59,8 +59,7 @@
                         </div>
                     </div>
                     <div class="mb-3 row align-items-center">
-                        <x-form-label class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5 d-grid d-lg-block gap-2">
+                        <div class="offset-sm-2 d-grid d-lg-block gap-2">
                             <x-base-button type="submit" class="text-light rounded-2 shadow-sm"
                                 variant="{{ isset($pelanggan) ? 'success' : 'primary' }}"
                                 label="{{ isset($pelanggan) ? 'Ubah' : 'Simpan' }}"

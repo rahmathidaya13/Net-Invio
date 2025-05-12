@@ -30,6 +30,7 @@ class User extends Authenticatable
         'can_add',
         'can_edit',
         'can_delete',
+        'isActive',
     ];
 
     /**

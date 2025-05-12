@@ -1,25 +1,30 @@
 @foreach ($supplier as $data)
     <tr data-id="{{ $data->id_supplier }}" class="table-row" data-url="/supplier">
-        <td class="align-middle px-3 ">
+        @if (Gate::any(['edit', 'delete']))
+            <td class="align-middle px-3 ">
+                <div class="dropdown">
+                    <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-three-dots-vertical"> </i>
+                    </button>
 
-            <div class="dropdown">
-                <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical"> </i>
-                </button>
-
-                <ul class="dropdown-menu">
-                    <li>
-                        <x-link label="Ubah" icon="fas fa-edit" class="dropdown-item" url="/supplier/edit"
-                            parameters="{{ $data->id_supplier }}" />
-                    </li>
-                    <li>
-                        <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
-                            class="dropdown-item hapus" />
-                    </li>
-                </ul>
-            </div>
-        </td>
+                    <ul class="dropdown-menu">
+                        @can('edit')
+                            <li>
+                                <x-link label="Ubah" icon="fas fa-edit" class="dropdown-item" url="/supplier/edit"
+                                    parameters="{{ $data->id_supplier }}" />
+                            </li>
+                        @endcan
+                        @can('delete')
+                            <li>
+                                <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
+                                    class="dropdown-item hapus" />
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            </td>
+        @endif
         <td class="align-middle text-center">
             {{ $loop->iteration + $supplier->perPage() * ($supplier->currentPage() - 1) }}
         </td>

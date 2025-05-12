@@ -37,85 +37,87 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
 
     // this user controller
     Route::controller(UserController::class)->group(function () {
-        Route::get('/user/list', 'index')->name('user.list');
-        Route::get('/user/create', 'create')->name('create.user');
-        Route::post('/user/store', 'store')->name('user.store');
-        Route::get('/user/edit/{id}', 'edit')->name('user.edit');
-        Route::put('/user/update/{id}', 'update')->name('user.update');
-        Route::delete('/user/destroy/{id}', 'destroy')->name('user.destroy');
+        Route::middleware('can:onlyAdmin')->group(function () {
+            Route::get('/user/list', 'index')->name('user.list');
+            Route::get('/user/create', 'create')->name('user.create');
+            Route::post('/user/store', 'store')->name('user.store');
+            Route::get('/user/edit/{id}', 'edit')->name('user.edit');
+            Route::put('/user/update/{id}', 'update')->name('user.update');
+            Route::delete('/user/destroy/{id}', 'destroy')->name('user.destroy');
+        });
     });
 
     // this barang controller
     Route::controller(BarangController::class)->group(function () {
-        Route::get('/barang/list', 'index')->name('barang.list');
-        Route::get('/barang/create', 'create')->name('barang.create');
-        Route::get('/barang/edit/{id}', 'edit')->name('barang.edit');
-        Route::post('/barang/store', 'store')->name('barang.store');
-        Route::put('/barang/update/{id}', 'update')->name('barang.update');
-        Route::delete('/barang/destroy/{id}', 'destroy')->name('barang.destroy');
+        Route::get('/barang/list', 'index')->name('barang.list')->middleware('can:view');
+        Route::get('/barang/create', 'create')->name('barang.create')->middleware('can:add');
+        Route::get('/barang/edit/{id}', 'edit')->name('barang.edit')->middleware('can:edit');
+        Route::post('/barang/store', 'store')->name('barang.store')->middleware('can:add');
+        Route::put('/barang/update/{id}', 'update')->name('barang.update')->middleware('can:edit');
+        Route::delete('/barang/destroy/{id}', 'destroy')->name('barang.destroy')->middleware('can:delete');
     });
 
     // this pelanggan controller
     Route::controller(PelangganController::class)->group(function () {
-        Route::get('/pelanggan/list', 'index')->name('pelanggan.list');
-        Route::get('/pelanggan/create', 'create')->name('pelanggan.create');
-        Route::get('/pelanggan/edit/{id}', 'edit')->name('pelanggan.edit');
-        Route::post('/pelanggan/store', 'store')->name('pelanggan.store');
-        Route::put('/pelanggan/update/{id}', 'update')->name('pelanggan.update');
-        Route::delete('/pelanggan/destroy/{id}', 'destroy')->name('pelanggan.destroy');
+        Route::get('/pelanggan/list', 'index')->name('pelanggan.list')->middleware('can:view');
+        Route::get('/pelanggan/create', 'create')->name('pelanggan.create')->middleware('can:add');
+        Route::get('/pelanggan/edit/{id}', 'edit')->name('pelanggan.edit')->middleware('can:edit');
+        Route::post('/pelanggan/store', 'store')->name('pelanggan.store')->middleware('can:add');
+        Route::put('/pelanggan/update/{id}', 'update')->name('pelanggan.update')->middleware('can:edit');
+        Route::delete('/pelanggan/destroy/{id}', 'destroy')->name('pelanggan.destroy')->middleware('can:delete');
     });
 
     // this supplier controller
     Route::controller(SupplierController::class)->group(function () {
-        Route::get('/supplier/list', 'index')->name('supplier.list');
-        Route::get('/supplier/create', 'create')->name('supplier.create');
-        Route::get('/supplier/edit/{id}', 'edit')->name('supplier.edit');
-        Route::post('/supplier/store', 'store')->name('supplier.store');
-        Route::put('/supplier/update/{id}', 'update')->name('supplier.update');
-        Route::delete('/supplier/destroy/{id}', 'destroy')->name('supplier.destroy');
+        Route::get('/supplier/list', 'index')->name('supplier.list')->middleware('can:view');
+        Route::get('/supplier/create', 'create')->name('supplier.create')->middleware('can:add');
+        Route::get('/supplier/edit/{id}', 'edit')->name('supplier.edit')->middleware('can:edit');
+        Route::post('/supplier/store', 'store')->name('supplier.store')->middleware('can:add');
+        Route::put('/supplier/update/{id}', 'update')->name('supplier.update')->middleware('can:edit');
+        Route::delete('/supplier/destroy/{id}', 'destroy')->name('supplier.destroy')->middleware('can:delete');
     });
 
 
     // this supplier controller
     Route::controller(StokBarangController::class)->group(function () {
-        Route::get('/stok/list', 'index')->name('stok.list');
-        Route::get('/stok/create', 'create')->name('stok.create');
-        Route::get('/stok/edit/{id}', 'edit')->name('stok.edit');
+        Route::get('/stok/list', 'index')->name('stok.list')->middleware('can:view');
+        Route::get('/stok/create', 'create')->name('stok.create')->middleware('can:add');
+        Route::get('/stok/edit/{id}', 'edit')->name('stok.edit')->middleware('can:edit');
         Route::get('/stok/show/{id}', 'show')->name('stok.show');
-        Route::post('/stok/store', 'store')->name('stok.store');
-        Route::put('/stok/update/{id}', 'update')->name('stok.update');
-        Route::delete('/stok/destroy/{id}', 'destroy')->name('stok.destroy');
+        Route::post('/stok/store', 'store')->name('stok.store')->middleware('can:add');
+        Route::put('/stok/update/{id}', 'update')->name('stok.update')->middleware('can:edit');
+        Route::delete('/stok/destroy/{id}', 'destroy')->name('stok.destroy')->middleware('can:delete');
     });
 
 
     // this barang masuk controller
     Route::controller(BarangMasukController::class)->group(function () {
-        Route::get('/receiving/list', 'index')->name('receiving.list');
-        Route::get('/receiving/create', 'create')->name('receiving.create');
-        Route::get('/receiving/edit/{id}', 'edit')->name('receiving.edit');
+        Route::get('/receiving/list', 'index')->name('receiving.list')->middleware('can:view');
+        Route::get('/receiving/create', 'create')->name('receiving.create')->middleware('can:add');
+        Route::get('/receiving/edit/{id}', 'edit')->name('receiving.edit')->middleware('can:edit');
         Route::get('/receiving/show/{id}', 'show')->name('receiving.show');
-        Route::post('/receiving/store', 'store')->name('receiving.store');
-        Route::put('/receiving/update/{id}', 'update')->name('receiving.update');
-        Route::delete('/receiving/destroy/{id}', 'destroy')->name('receiving.destroy');
+        Route::post('/receiving/store', 'store')->name('receiving.store')->middleware('can:add');
+        Route::put('/receiving/update/{id}', 'update')->name('receiving.update')->middleware('can:edit');
+        Route::delete('/receiving/destroy/{id}', 'destroy')->name('receiving.destroy')->middleware('can:delete');
     });
 
     // this barang masuk controller
     Route::controller(BarangKeluarController::class)->group(function () {
-        Route::get('/outbound/list', 'index')->name('outbound.list');
-        Route::get('/outbound/create', 'create')->name('outbound.create');
-        Route::get('/outbound/edit/{id}', 'edit')->name('outbound.edit');
-        Route::post('/outbound/store', 'store')->name('outbound.store');
-        Route::put('/outbound/update/{id}', 'update')->name('outbound.update');
-        Route::delete('/outbound/destroy/{id}', 'destroy')->name('outbound.destroy');
+        Route::get('/outbound/list', 'index')->name('outbound.list')->middleware('can:view');
+        Route::get('/outbound/create', 'create')->name('outbound.create')->middleware('can:add');
+        Route::get('/outbound/edit/{id}', 'edit')->name('outbound.edit')->middleware('can:edit');
+        Route::post('/outbound/store', 'store')->name('outbound.store')->middleware('can:add');
+        Route::put('/outbound/update/{id}', 'update')->name('outbound.update')->middleware('can:edit');
+        Route::delete('/outbound/destroy/{id}', 'destroy')->name('outbound.destroy')->middleware('can:delete');
     });
 
     // this barang kembali controller
     Route::controller(ReturBarangController::class)->group(function () {
-        Route::get('/retur/list', 'index')->name('retur.list');
-        Route::get('/retur/create', 'create')->name('retur.create');
-        Route::get('/retur/edit/{id}', 'edit')->name('retur.edit');
-        Route::post('/retur/store', 'store')->name('retur.store');
-        Route::put('/retur/update/{id}', 'update')->name('retur.update');
-        Route::delete('/retur/destroy/{id}', 'destroy')->name('retur.destroy');
+        Route::get('/retur/list', 'index')->name('retur.list')->middleware('can:view');
+        Route::get('/retur/create', 'create')->name('retur.create')->middleware('can:add');
+        Route::get('/retur/edit/{id}', 'edit')->name('retur.edit')->middleware('can:edit');
+        Route::post('/retur/store', 'store')->name('retur.store')->middleware('can:add');
+        Route::put('/retur/update/{id}', 'update')->name('retur.update')->middleware('can:edit');
+        Route::delete('/retur/destroy/{id}', 'destroy')->name('retur.destroy')->middleware('can:delete');
     });
 });

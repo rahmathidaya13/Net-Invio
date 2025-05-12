@@ -29,7 +29,7 @@
                     <div class="text-muted">Copyright &copy; 2025 <a class="text-decoration-none"
                             href="{{ route('home') }}">Net-Invio</a> </div>
                     <div>
-                        <b class="text-muted">Version 1.0.0</b>
+                        <b class="text-muted">Version 0.0.1</b>
                     </div>
                 </div>
             </div>

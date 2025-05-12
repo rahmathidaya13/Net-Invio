@@ -6,7 +6,7 @@
         $inputClass .= ' is-invalid';
     }
 @endphp
-<input type="{{ $type }}" {{ $attributes->merge(['class' => $inputClass]) }} id="{{ $name }}"
+<input autocomplete="off" type="{{ $type }}" {{ $attributes->merge(['class' => $inputClass]) }} id="{{ $name }}"
     name="{{ $name }}" value="{{ $type !== 'password' ? old($name, $value) : '' }}">
 @error($name)
     <div class="invalid-feedback d-block" role="alert">

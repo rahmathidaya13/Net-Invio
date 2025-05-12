@@ -50,6 +50,7 @@ class BarangController extends Controller
      */
     public function create()
     {
+        // $this->authorize('can_add', BarangModel::class); // untuk gunakan policy pada controller
         return view('Barang.Form.forms');
     }
 

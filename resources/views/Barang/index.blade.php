@@ -15,14 +15,17 @@
             <div class="row align-items-center mb-4">
                 <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     {{-- this button --}}
-                    <x-link url="/barang/create" icon="bi bi-plus-circle" label="Tambah"
-                        class="btn btn-primary btn-sm text-light" />
+                    @can('add')
+                        <x-link url="/barang/create" icon="bi bi-plus-circle" label="Tambah"
+                            class="btn btn-primary btn-sm text-light" />
+                    @endcan
+
                     <x-link icon="bi bi-upload" label="Import" class="btn btn-outline-success btn-sm" />
                     <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
-                    <x-form-input autofocus autocomplete="off" placeholder="Masukan pencarian..." type="search" name="keyword"
-                        class="form-control-sm" />
+                    <x-form-input autofocus placeholder="Masukan pencarian..." type="search"
+                        name="keyword" class="form-control-sm" />
                     <div class="d-none" id="text-result">Search result: <span id="results" class="fw-bold"></span>
                     </div>
                 </div>
@@ -41,7 +44,6 @@
 
             @php
                 $thead = [
-                    '',
                     'No',
                     'Kode Barang',
                     'Nama Barang',

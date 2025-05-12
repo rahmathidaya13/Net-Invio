@@ -8,6 +8,7 @@ const routes = {
     "/receiving/": () => import("@/partials/BarangMasuk.js"),
     "/outbound/": () => import("@/partials/BarangKeluar.js"),
     "/retur/": () => import("@/partials/BarangKembali.js"),
+    "/user/": () => import("@/partials/Users.js"),
 };
 for (const route in routes) {
     // Cocokkan dengan semua variasi jika menggunakan method startwith

@@ -1,25 +1,30 @@
 @foreach ($barang_kembali as $data)
     <tr data-id="{{ $data->id_retur }}" class="table-row" data-url="/retur">
-        <td class="align-middle px-3 ">
+        @if (Gate::any(['edit', 'delete']))
+            <td class="align-middle px-3 ">
+                <div class="dropdown">
+                    <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-three-dots-vertical"> </i>
+                    </button>
 
-            <div class="dropdown">
-                <button class="btn btn-light btn-sm shadow-sm border-dark" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical"> </i>
-                </button>
-
-                <ul class="dropdown-menu">
-                    <li>
-                        <x-link data-id="{{ $data->id_retur }}" label="Ubah" icon="fas fa-edit "
-                            class="dropdown-item ubah" url="/retur/edit" parameters="{{ $data->id_retur }}" />
-                    </li>
-                    <li>
-                        <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
-                            class="dropdown-item hapus" />
-                    </li>
-                </ul>
-            </div>
-        </td>
+                    <ul class="dropdown-menu">
+                        @can('edit')
+                            <li>
+                                <x-link data-id="{{ $data->id_retur }}" label="Ubah" icon="fas fa-edit "
+                                    class="dropdown-item ubah" url="/retur/edit" parameters="{{ $data->id_retur }}" />
+                            </li>
+                        @endcan
+                        @can('delete')
+                            <li>
+                                <x-link data-data="{{ $data }}" icon="fas fa-trash" label="Hapus"
+                                    class="dropdown-item hapus" />
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            </td>
+        @endif
         <td class="align-middle text-center">
             {{ $loop->iteration + $barang_kembali->perPage() * ($barang_kembali->currentPage() - 1) }}
         </td>

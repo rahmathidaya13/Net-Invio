@@ -54,14 +54,15 @@ trait UserValidation
                 'email.required' => 'Email wajib diisi.',
                 'email.unique' => 'Email sudah terdaftar.',
 
-                'password.required' => 'Password wajib diisi.',
-                'password.confirmed' => 'Password confirm tidak sesuai.',
-                'password.string' => 'Password harus menggunakan karakter yang sesuai.',
-                'password.min' => 'Password minimal 6 karakter',
+                'password.required' => 'Kata sandi wajib diisi.',
+                'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
+                'password.string' => 'Kata sandi harus menggunakan karakter yang sesuai.',
+                'password.min' => 'Kata sandi minimal 6 karakter',
 
-                'password_confirmation.required' => 'Password confirm wajib diisi.',
-                'password_confirmation.string' => 'Password harus menggunakan karakter yang sesuai.',
-                'password_confirmation.min' => 'Password minimal 6 karakter.',
+                'password_confirmation.required' => 'Konfirmasi kata sandi wajib diisi.',
+                'password_confirmation.string' => 'Konfirmasi kata sandi harus menggunakan karakter yang sesuai.',
+                'password_confirmation.min' => 'konfirmasi kata sandi minimal 6 karakter.',
+                'password_confirmation.same'=> 'Konfirmasi kata sandi harus sesuai dangan kata sandi.',
             ]
         )->validate();
     }

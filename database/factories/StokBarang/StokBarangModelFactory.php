@@ -2,8 +2,9 @@
 
 namespace Database\Factories\StokBarang;
 
-use App\Models\Barang\BarangModel;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
+use App\Models\Barang\BarangModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,7 @@ class StokBarangModelFactory extends Factory
             'id_stok'    => (string) Str::uuid(),
             'id_barang'    => BarangModel::factory(),
             'no_warehouse'    => (string) Str::random(10),
-            'tanggal'    => fake()->date('Y-m-d', 'now'),
+            'tanggal'    => fake()->date('Y-m-d', Carbon::now()),
             'jumlah_barang'    => fake()->randomDigit(),
             'lokasi'    => fake()->randomElement(['gudang-1', 'gudang-2']),
         ];

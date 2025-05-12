@@ -178,8 +178,7 @@
                             </div>
 
                             <div class="mb-3 row align-items-center">
-                                <x-form-label class="col-sm-3 col-form-label form-label" />
-                                <div class="col-sm-7 d-grid d-lg-block gap-2">
+                                <div class="offset-sm-3 d-grid d-lg-block gap-2">
                                     <x-base-button type="submit" class="text-light rounded-2 shadow-sm"
                                         variant="{{ isset($barang_kembali) ? 'success' : 'primary' }}"
                                         label="{{ isset($barang_kembali) ? 'Ubah' : 'Simpan' }}"
