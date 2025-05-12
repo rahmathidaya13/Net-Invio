@@ -1,0 +1,150 @@
+{
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-BOrJxbIo.woff",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-BtvjY1KL.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "resources/assets/font/dameron/dameron.ttf": {
+    "file": "assets/dameron-qAqjIhB1.ttf",
+    "src": "resources/assets/font/dameron/dameron.ttf"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.eot": {
+    "file": "assets/fa-brands-400-DnkPfk3o.eot",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.eot"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.svg": {
+    "file": "assets/fa-brands-400-cH1MgKbP.svg",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.svg"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-CSYNqBb_.ttf",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.woff": {
+    "file": "assets/fa-brands-400-CEJbCg16.woff",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.woff"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-UxlILjvJ.woff2",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.eot": {
+    "file": "assets/fa-regular-400-BhTwtT8w.eot",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.eot"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.svg": {
+    "file": "assets/fa-regular-400-gwj8Pxq-.svg",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.svg"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-D1vz6WBx.ttf",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.ttf"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.woff": {
+    "file": "assets/fa-regular-400-DFnMcJPd.woff",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.woff"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-DGzu1beS.woff2",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.eot": {
+    "file": "assets/fa-solid-900-B6Axprfb.eot",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.eot"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.svg": {
+    "file": "assets/fa-solid-900-B4ZZ7kfP.svg",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.svg"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-mxuxnBEa.ttf",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.ttf"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.woff": {
+    "file": "assets/fa-solid-900-DOXgCApm.woff",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.woff"
+  },
+  "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-BUswJgRo.woff2",
+    "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-B-ZaM2PC.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-ChVQ6jwG.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/partials/showPassword.js",
+      "resources/js/partials/Barang.js",
+      "resources/js/partials/Pelanggan.js",
+      "resources/js/partials/Supplier.js",
+      "resources/js/partials/Stok.js",
+      "resources/js/partials/BarangMasuk.js",
+      "resources/js/partials/BarangKeluar.js",
+      "resources/js/partials/BarangKembali.js",
+      "resources/js/partials/Users.js"
+    ]
+  },
+  "resources/js/partials/Barang.js": {
+    "file": "assets/Barang-DMGjHlWW.js",
+    "name": "Barang",
+    "src": "resources/js/partials/Barang.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/BarangKeluar.js": {
+    "file": "assets/BarangKeluar-BE4B5ItO.js",
+    "name": "BarangKeluar",
+    "src": "resources/js/partials/BarangKeluar.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/BarangKembali.js": {
+    "file": "assets/BarangKembali-Cw6gkGfT.js",
+    "name": "BarangKembali",
+    "src": "resources/js/partials/BarangKembali.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/BarangMasuk.js": {
+    "file": "assets/BarangMasuk-BapUbOa1.js",
+    "name": "BarangMasuk",
+    "src": "resources/js/partials/BarangMasuk.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/Pelanggan.js": {
+    "file": "assets/Pelanggan-D50hjSxp.js",
+    "name": "Pelanggan",
+    "src": "resources/js/partials/Pelanggan.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/Stok.js": {
+    "file": "assets/Stok-DJ7XPnsX.js",
+    "name": "Stok",
+    "src": "resources/js/partials/Stok.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/Supplier.js": {
+    "file": "assets/Supplier-DndreND7.js",
+    "name": "Supplier",
+    "src": "resources/js/partials/Supplier.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/Users.js": {
+    "file": "assets/Users-DL3CN8k2.js",
+    "name": "Users",
+    "src": "resources/js/partials/Users.js",
+    "isDynamicEntry": true
+  },
+  "resources/js/partials/showPassword.js": {
+    "file": "assets/showPassword-Db6TYKQ-.js",
+    "name": "showPassword",
+    "src": "resources/js/partials/showPassword.js",
+    "isDynamicEntry": true
+  }
+}
