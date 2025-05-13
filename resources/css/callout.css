@@ -23,3 +23,41 @@
     border-left-color: #dc3545;
     background-color: #f8d7da;
 }
+.callout-success {
+    border-left-color: #28a745;
+    background-color: #d4edda;
+}
+.callout-primary {
+    border-left-color: #007bff;
+    background-color: #cce5ff;
+}
+.callout-secondary {
+    border-left-color: #6c757d;
+    background-color: #e2e3e5;
+}
+.callout-light {
+    border-left-color: #f8f9fa;
+    background-color: #f8f9fa;
+}
+.callout-dark {
+    border-left-color: #343a40;
+    background-color: #d6d8db;
+}
+.callout-body {
+    margin-left: 1rem;
+    padding: 0.5rem 0;
+}
+.callout-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.callout-content {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.callout-footer {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-top: 1rem;
+}

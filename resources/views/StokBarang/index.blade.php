@@ -12,6 +12,12 @@
             @if ($message = Session::get('success'))
                 <x-alert type="success" message="{{ $message }}" />
             @endif
+
+            <div class="callout callout-info d-grid">
+                <strong class="fs-4 mb-2"> <i class="bi bi-megaphone-fill"></i> Informasi</strong>
+                <span class="flex-column col-8">Halaman ini menampilkan data stok barang terkini. Pastikan stok diperbarui
+                    secara berkala untuk menghindari selisih pencatatan.</span>
+            </div>
             <div class="row align-items-center mb-4">
                 <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     {{-- this button --}}
@@ -23,8 +29,8 @@
                     <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
-                    <x-form-input autofocus placeholder="Masukan pencarian..." type="search"
-                        name="keyword" class="form-control-sm" />
+                    <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"
+                        class="form-control-sm" />
                     <div class="d-none" id="text-result">Search result: <span id="results" class="fw-bold"></span>
                     </div>
                 </div>

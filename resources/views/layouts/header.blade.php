@@ -4,12 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="description"
+        content="Net-Invio adalah solusi sistem manajemen persediaan barang yang membantu mengelola stok barang dengan mudah dan efisien.">
+    <meta name="keywords"
+        content="Inventory, Manajemen Persediaan, Stok Barang, Sistem Inventory, Net-Invio, Manajemen Barang, Gudang, Barang, Aplikasi Inventory">
+    <meta name="author" content="Net-Invio">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta property="og:site_name" content="Net-Invio" />
+    <meta property="og:title" content="Net-Invio" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-
+    <link rel="shortcut icon" href="{{ asset('assets/icon/logo.png') }}" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link

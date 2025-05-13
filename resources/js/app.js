@@ -1,12 +1,13 @@
 // import $ from "jquery";
 // window.$ = $;
 // window.jQuery = $;
-
 import "./bootstrap";
 import "../assets/js/scripts.js";
 import "./routes";
 import "./GlobalHelper.js";
 import Logout from "./partials/Logout.js";
+import clock from "./partials/ClockMoment.js";
+clock();
 Logout();
 document.addEventListener("DOMContentLoaded", function () {
     $(".select2").select2({

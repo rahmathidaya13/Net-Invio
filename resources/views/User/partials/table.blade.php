@@ -37,6 +37,7 @@
             @if ($data->can_delete)
                 <span class="badge bg-danger me-1">Hapus</span>
             @endif
+            <span class="badge bg-secondari me-1">Tidak Ada Otorisasi</span>
         </td>
 
     </tr>
