@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
 use App\Models\Supplier\SupplierModel;
-use App\Traits\Validate\supplierValidation;
+use App\Traits\validate\supplierValidation;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller

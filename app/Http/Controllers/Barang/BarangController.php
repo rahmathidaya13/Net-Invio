@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Barang;
 
 use App\Http\Controllers\Controller;
 use App\Models\Barang\BarangModel;
-use App\Traits\Validate\ItemValidation;
+use App\Traits\validate\ItemValidation;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller

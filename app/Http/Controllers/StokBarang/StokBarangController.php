@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\Cast\String_;
-use App\Traits\Validate\StokValidation;
+use App\Traits\validate\StokValidation;
 use App\Models\StokBarang\StokBarangModel;
 use App\Models\BarangMasuk\BarangMasukModel;
 
