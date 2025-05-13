@@ -15,7 +15,7 @@
 
             <div class="callout callout-info d-grid">
                 <strong class="fs-4 mb-2"> <i class="bi bi-megaphone-fill"></i> Informasi</strong>
-                <span class="flex-column col-8">Halaman ini menampilkan data stok barang terkini. Pastikan stok diperbarui
+                <span class="flex-column col-12 col-xl-8 align-content-center">Halaman ini menampilkan data stok barang terkini. Pastikan stok diperbarui
                     secara berkala untuk menghindari selisih pencatatan.</span>
             </div>
             <div class="row align-items-center mb-4">

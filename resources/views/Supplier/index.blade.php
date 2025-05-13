@@ -14,7 +14,7 @@
             @endif
             <div class="callout callout-info d-grid">
                 <strong class="fs-4 mb-2"> <i class="bi bi-megaphone-fill"></i> Informasi</strong>
-                <span class="flex-column col-8"> Halaman ini berisi daftar supplier yang menyuplai barang jika barang dari
+                <span class="flex-column col-12 col-xl-8 align-content-center"> Halaman ini berisi daftar supplier yang menyuplai barang jika barang dari
                     supplier.
                 </span>
                 </span>

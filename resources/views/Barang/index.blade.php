@@ -14,7 +14,7 @@
             @endif
             <div class="callout callout-info d-grid">
                 <strong class="fs-4 mb-2"> <i class="bi bi-megaphone-fill"></i> Informasi</strong>
-                <span class="flex-column col-8">Halaman ini menampilkan daftar seluruh barang yang terdaftar dalam sistem.
+                <span class="flex-column col-12 col-xl-8 align-content-center">Halaman ini menampilkan daftar seluruh barang yang terdaftar dalam sistem.
                     Pastikan data barang selalu akurat dan lengkap untuk memudahkan pengelolaan stok.</span>
             </div>
             <div class="row align-items-center mb-4">
