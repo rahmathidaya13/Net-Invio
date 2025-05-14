@@ -1,13 +1,16 @@
 <?php
 
+use App\Exports\StokBarangExport;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Barang\BarangController;
+use App\Http\Controllers\Barang\BarangExportController;
 use App\Http\Controllers\BarangKeluar\BarangKeluarController;
 use App\Http\Controllers\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\ReturBarang\ReturBarangController;
 use App\Http\Controllers\StokBarang\StokBarangController;
+use App\Http\Controllers\StokBarang\StokBarangExportController;
 use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Models\BarangKeluar\BarangKeluarModel;
@@ -119,5 +122,15 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::post('/retur/store', 'store')->name('retur.store')->middleware('can:add');
         Route::put('/retur/update/{id}', 'update')->name('retur.update')->middleware('can:edit');
         Route::delete('/retur/destroy/{id}', 'destroy')->name('retur.destroy')->middleware('can:delete');
+    });
+
+    // route khusus cetak file
+    Route::controller(BarangExportController::class)->group(function () {
+        Route::get('/barang/export', 'export')->name('barang.export');
+        Route::get('/barang/pdf', 'printPdf')->name('barang.pdf');
+    });
+    Route::controller(StokBarangExportController::class)->group(function () {
+        Route::get('/stok/export', 'export')->name('stok.export');
+        Route::get('/stok/pdf', 'printPdf')->name('stok.pdf');
     });
 });

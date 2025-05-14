@@ -27,17 +27,15 @@
         <td class="align-middle">
             @if ($data->can_view)
                 <span class="badge bg-info me-1">Lihat</span>
-            @endif
-            @if ($data->can_add)
+            @elseif($data->can_add)
                 <span class="badge bg-success me-1">Tambah</span>
-            @endif
-            @if ($data->can_edit)
+            @elseif($data->can_edit)
                 <span class="badge bg-warning text-dark me-1">Ubah</span>
-            @endif
-            @if ($data->can_delete)
+            @elseif($data->can_delete)
                 <span class="badge bg-danger me-1">Hapus</span>
+            @else
+                <span class="badge bg-secondary me-1">Tidak Ada Otorisasi</span>
             @endif
-            <span class="badge bg-secondary me-1">Tidak Ada Otorisasi</span>
         </td>
 
     </tr>

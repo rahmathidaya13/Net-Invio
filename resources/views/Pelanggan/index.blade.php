@@ -59,7 +59,7 @@
                     'Alamat',
                 ];
             @endphp
-            <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-0"
+            <x-card class="shadow-sm overflow-hidden" bodyClass="p-0"
                 titleClass="text-start fs-6">
                 <div class="table-responsive">
                     <x-table theadColor="success" tbodyId="pelanggan_tabel" class=" text-nowrap table-hover table-clickable"

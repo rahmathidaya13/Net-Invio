@@ -14,7 +14,8 @@
             @endif
             <div class="callout callout-info d-grid">
                 <strong class="fs-4 mb-2"> <i class="bi bi-megaphone-fill"></i> Informasi</strong>
-                <span class="flex-column col-12 col-xl-8 align-content-center">Halaman ini menampilkan daftar seluruh barang yang terdaftar dalam sistem.
+                <span class="flex-column col-12 col-xl-8 align-content-center">Halaman ini menampilkan daftar seluruh barang
+                    yang terdaftar dalam sistem.
                     Pastikan data barang selalu akurat dan lengkap untuk memudahkan pengelolaan stok.</span>
             </div>
             <div class="row align-items-center mb-4">
@@ -24,9 +25,23 @@
                         <x-link url="/barang/create" icon="bi bi-plus-circle" label="Tambah"
                             class="btn btn-primary btn-sm text-light" />
                     @endcan
-
-                    <x-link icon="bi bi-upload" label="Import" class="btn btn-outline-success btn-sm" />
-                    <x-link icon="bi bi-printer-fill" label="Cetak" class="btn btn-outline-secondary btn-sm" />
+                    {{-- print pdf & excell --}}
+                    <div class="dropdown">
+                        <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-printer-fill" ></i> Print
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <x-link url="/barang/export" icon="bi bi-file-earmark-excel-fill" label="Excel"
+                                    class="dropdown-item" />
+                            </li>
+                            <li>
+                                <x-link url="/barang/pdf" icon="bi bi-file-earmark-pdf-fill" label="Pdf"
+                                    class="dropdown-item" />
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
                     <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"
@@ -60,8 +75,7 @@
                     'Keterangan',
                 ];
             @endphp
-            <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-0"
-                titleClass="text-start fs-6">
+            <x-card class="shadow-sm overflow-hidden" bodyClass="p-0 " titleClass="text-start fs-6">
                 <div class="table-responsive">
                     <x-table id="user_tabel" theadColor="success" tbodyId="table_user" class=" text-nowrap table-hover"
                         :header="$thead">
