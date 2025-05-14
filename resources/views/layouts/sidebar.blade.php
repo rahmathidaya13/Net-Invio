@@ -24,6 +24,7 @@
                 </x-link>
 
                 @canany(['add', 'update', 'view', 'delete'])
+                    <div class="sb-sidenav-menu-heading">Items</div>
                     {{-- side barang --}}
                     <x-link url="/barang/list"
                         class="nav-link {{ request()->is('barang*') ? 'active text-bg-primary' : '' }}">
@@ -33,30 +34,12 @@
 
                     {{-- end side barang --}}
 
-
-                    {{-- side pelanggan --}}
-                    <x-link url="/pelanggan/list"
-                        class="nav-link {{ request()->is('pelanggan*') ? 'active text-bg-primary' : '' }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                        Data Pelanggan
-                    </x-link>
-                    {{-- end side pelanggan --}}
-
-                    {{-- side supplier --}}
-                    <x-link url="/supplier/list"
-                        class="nav-link {{ request()->is('supplier*') ? 'active text-bg-primary' : '' }}">
-                        <div class="sb-nav-link-icon"><i class="bi bi-people-fill"></i></div>
-                        Data Supplier
-                    </x-link>
-                    {{-- end side supplier --}}
-
                     {{-- side supplier --}}
                     <x-link url="/stok/list" class="nav-link {{ request()->is('stok*') ? 'active text-bg-primary' : '' }}">
                         <div class="sb-nav-link-icon"><i class="bi bi-clipboard"></i></div>
                         Stok Barang
                     </x-link>
                     {{-- end side supplier --}}
-
 
                     {{-- side barang masuk --}}
                     <x-link url="/receiving/list"
@@ -82,6 +65,25 @@
                         Barang Kembali
                     </x-link>
                     {{-- end side barang keluar --}}
+                    <div class="sb-sidenav-menu-heading">Customers</div>
+
+
+
+                    {{-- side pelanggan --}}
+                    <x-link url="/pelanggan/list"
+                        class="nav-link {{ request()->is('pelanggan*') ? 'active text-bg-primary' : '' }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Data Pelanggan
+                    </x-link>
+                    {{-- end side pelanggan --}}
+
+                    {{-- side supplier --}}
+                    <x-link url="/supplier/list"
+                        class="nav-link {{ request()->is('supplier*') ? 'active text-bg-primary' : '' }}">
+                        <div class="sb-nav-link-icon"><i class="bi bi-people-fill"></i></div>
+                        Data Supplier
+                    </x-link>
+                    {{-- end side supplier --}}
                 @endcanany
 
 

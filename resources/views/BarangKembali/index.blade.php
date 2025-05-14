@@ -14,7 +14,7 @@
             @endif
             <div class="callout callout-info d-grid">
                 <strong class="fs-4 mb-2"> <i class="bi bi-megaphone-fill"></i> Informasi</strong>
-                <span class="flex-column col-8">Halaman ini digunakan untuk mencatat barang yang dikembalikan atau diretur.
+                <span class="flex-column col-12 col-xl-8 align-content-center">Halaman ini digunakan untuk mencatat barang yang dikembalikan atau diretur.
                     Pastikan alasan retur dan jumlah barang dicatat dengan jelas untuk penyesuaian stok.</span>
             </div>
             <div class="row align-items-center mb-4">
