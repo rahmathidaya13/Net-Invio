@@ -23,5 +23,10 @@
                 <td>{{ $data->keterangan }}</td>
             </tr>
         @endforeach
+        @empty($data)
+            <tr>
+                <td colspan="6" style="text-align: center">Data tidak ditemukan</td>
+            </tr>
+        @endempty
     </tbody>
 </table>

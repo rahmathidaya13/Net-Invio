@@ -30,6 +30,9 @@
             {{ $loop->iteration + $barang_keluar->perPage() * ($barang_keluar->currentPage() - 1) }}
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
+        <td class="align-middle text-start">
+            {{ $data->kode_barang_keluar }}
+        </td>
         <td class="nama_barang align-middle text-start">
             {{ ucwords($data->barang->nama_barang) }}
         </td>
@@ -37,11 +40,13 @@
         <td class="align-middle">{{ ucwords($data->tujuan) }}</td>
         <td class="align-middle ">{{ $data->jumlah }}</td>
         <td class="align-middle ">{{ ucwords($data->satuan) }}</td>
+        <td class="align-middle ">{{ ucwords($data->petugas) }}</td>
+        <td class="align-middle ">{{ ucwords($data->lokasi) }}</td>
         <td class="align-middle ">{{ $data->keterangan }}</td>
     </tr>
 @endforeach
 @empty($data)
     <tr>
-        <td colspan="9" class="text-center">Tidak ada data ditemukan</td>
+        <td colspan="13" class="text-center">Tidak ada data ditemukan</td>
     </tr>
 @endempty

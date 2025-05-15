@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\StokBarang;
+namespace App\Http\Controllers\BarangMasuk;
 
 use Illuminate\Http\Request;
-use App\Exports\StokBarangExport;
+use App\Exports\BarangMasukExport;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Models\StokBarang\StokBarangModel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\BarangMasuk\BarangMasukModel;
+use Carbon\Carbon;
 
-class StokBarangExportController extends Controller
+class BarangMasukExportController extends Controller
 {
     public function export(Request $request)
     {
         $startDate = $request->input('tanggal_awal');
         $endDate = $request->input('tanggal_akhir');
-        return Excel::download(new StokBarangExport($startDate, $endDate), 'Laporan Stok Barang.xlsx');
+        return Excel::download(new BarangMasukExport($startDate, $endDate), 'Laporan Barang Masuk ' . Carbon::now()->format('d-m-Y') . '.xlsx');
     }
 
     public function printPdf(Request $request)
@@ -24,18 +25,18 @@ class StokBarangExportController extends Controller
         $endDate = $request->input('tanggal_akhir_pdf');
 
         if ($startDate && $endDate) {
-            $stok = StokBarangModel::whereBetween('tanggal', [$startDate, $endDate])
+            $barang_masuk = BarangMasukModel::whereBetween('tanggal', [$startDate, $endDate])
                 ->get();
         } else {
-            $stok = StokBarangModel::all();
+            $barang_masuk = BarangMasukModel::all();
         }
         // Atur opsi rendering
-        $pdf = PDF::loadView('StokBarang.cetak.cetak_pdf', compact('stok'));
+        $pdf = PDF::loadView('BarangMasuk.cetak.cetak_pdf', compact('barang_masuk'));
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOptions([
             'dpi' => 150,
             'defaultFont' => 'DejaVu Sans',
         ]);
-        return $pdf->stream('laporan data stok barang.pdf');
+        return $pdf->stream('laporan data barang masuk ' . Carbon::now()->format('d-m-Y') . ' .pdf');
     }
 }

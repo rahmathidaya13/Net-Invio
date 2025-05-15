@@ -36,6 +36,7 @@
             <x-link data-data="{{ $data->image }}" icon="fas fa-eye" class="text-decoration-none image-view" />
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
+        <td class="align-middle">{{ $data->kode_retur }}</td>
         <td class="nama_barang align-middle ">{{ ucwords($data->barang->nama_barang) }}</td>
         <td class="nama_pelanggan align-middle text-start">{{ ucwords($data->pelanggan->nama) }}</td>
         <td class="align-middle">{{ ucwords($data->supplier->nama ?? '-') }}</td>

@@ -89,7 +89,7 @@
 
 
                 <div class="sb-sidenav-menu-heading">Settings</div>
-                @can('onlyAdmin')
+                @can('onlyDevelop')
                     <x-link url="/user/list"
                         class="nav-link {{ request()->is('user*') ? 'active text-bg-primary' : 'collapsed' }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>

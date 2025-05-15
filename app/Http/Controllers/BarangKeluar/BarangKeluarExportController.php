@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\StokBarang;
+namespace App\Http\Controllers\BarangKeluar;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Exports\StokBarangExport;
-use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Models\StokBarang\StokBarangModel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\BarangKeluarExport;
+use App\Http\Controllers\Controller;
+use App\Models\BarangKeluar\BarangKeluarModel;
+use Maatwebsite\Excel\Facades\Excel;
 
-class StokBarangExportController extends Controller
+class BarangKeluarExportController extends Controller
 {
     public function export(Request $request)
     {
         $startDate = $request->input('tanggal_awal');
         $endDate = $request->input('tanggal_akhir');
-        return Excel::download(new StokBarangExport($startDate, $endDate), 'Laporan Stok Barang.xlsx');
+        return Excel::download(new BarangKeluarExport($startDate, $endDate), 'Laporan Barang Keluar ' . Carbon::now()->format('d-m-Y') . '.xlsx');
     }
 
     public function printPdf(Request $request)
@@ -24,18 +25,18 @@ class StokBarangExportController extends Controller
         $endDate = $request->input('tanggal_akhir_pdf');
 
         if ($startDate && $endDate) {
-            $stok = StokBarangModel::whereBetween('tanggal', [$startDate, $endDate])
+            $barang_keluar = BarangKeluarModel::whereBetween('tanggal', [$startDate, $endDate])
                 ->get();
         } else {
-            $stok = StokBarangModel::all();
+            $barang_keluar = BarangKeluarModel::all();
         }
         // Atur opsi rendering
-        $pdf = PDF::loadView('StokBarang.cetak.cetak_pdf', compact('stok'));
+        $pdf = PDF::loadView('BarangKeluar.cetak.cetak_pdf', compact('barang_keluar'));
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOptions([
             'dpi' => 150,
             'defaultFont' => 'DejaVu Sans',
         ]);
-        return $pdf->stream('laporan data stok barang.pdf');
+        return $pdf->stream('laporan data barang keluar ' . Carbon::now()->format('d-m-Y') . ' .pdf');
     }
 }

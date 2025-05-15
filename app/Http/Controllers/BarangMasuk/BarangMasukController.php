@@ -75,6 +75,7 @@ class BarangMasukController extends Controller
         $barangMasuk->id_barang = $request->input('id_barang');
         $barangMasuk->id_supplier = $request->input('supplier');
         $barangMasuk->tanggal = $request->input('tanggal');
+        $barangMasuk->no_warehouse = $request->input('no_warehouse');
         $barangMasuk->sumber = $request->input('sumber');
         $barangMasuk->pembeli = $request->input('pembeli');
         $barangMasuk->nota = $request->input('nota');
@@ -112,8 +113,10 @@ class BarangMasukController extends Controller
             $newStok = new StokBarangModel();
             $newStok->id_barang = $request->input('id_barang');
             $newStok->tanggal = $request->input('tanggal');
+            $newStok->no_warehouse = $request->input('no_warehouse');
             $newStok->jumlah_barang = (int) ($oldStok?->jumlah_barang ?? 0) + (int) $request->input('jumlah');
             $newStok->lokasi = $request->input('lokasi_barang');
+            $newStok->asal_barang = 'barang_masuk';
             $newStok->keterangan = $request->input('keterangan');
             $newStok->save();
 
@@ -168,6 +171,7 @@ class BarangMasukController extends Controller
         $barang_masuk->id_barang = $request->input('id_barang');
         $barang_masuk->id_supplier = $request->input('supplier');
         $barang_masuk->tanggal = $request->input('tanggal');
+        $barang_masuk->no_warehouse = $request->input('no_warehouse');
         $barang_masuk->sumber = $request->input('sumber');
         $barang_masuk->pembeli = $request->input('pembeli');
         $barang_masuk->nota = $request->input('nota');
@@ -214,8 +218,10 @@ class BarangMasukController extends Controller
             $newStok = new StokBarangModel();
             $newStok->id_barang = $request->input('id_barang');
             $newStok->tanggal = $request->input('tanggal');
+            $newStok->no_warehouse = $request->input('no_warehouse');
             $newStok->jumlah_barang = (int) ($oldStok?->jumlah_barang ?? 0) + (int) $request->input('jumlah');
             $newStok->lokasi = $request->input('lokasi_barang');
+            $newStok->asal_barang = 'barang_masuk';
             $newStok->keterangan = $request->input('keterangan');
             $newStok->save();
 

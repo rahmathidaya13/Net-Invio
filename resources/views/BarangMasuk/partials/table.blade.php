@@ -31,17 +31,19 @@
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
         <td class="align-middle ">{{ $data->nota }}</td>
+        <td class="align-middle ">{{ $data->no_warehouse }}</td>
         <td class="nama_barang align-middle text-start">{{ ucwords($data->barang->nama_barang) }}</td>
         <td class="nama_supplier align-middle">{{ ucwords($data->supplier->nama ?? '-') }}</td>
         <td class="align-middle ">{{ ucwords($data->sumber) }}</td>
         <td class="align-middle">{{ ucwords($data->pembeli) }}</td>
         <td class="align-middle ">{{ $data->jumlah }}</td>
+        <td class="align-middle ">{{ 'Rp ' . number_format((int) $data->harga, 0, ',', '.') }}</td>
         <td class="align-middle text-center">{{ ucwords($data->lokasi) }}</td>
         <td class="align-middle ">{{ $data->keterangan }}</td>
     </tr>
 @endforeach
 @empty($data)
     <tr>
-        <td colspan="11" class="text-center">Tidak ada data ditemukan</td>
+        <td colspan="13" class="text-center">Tidak ada data ditemukan</td>
     </tr>
 @endempty

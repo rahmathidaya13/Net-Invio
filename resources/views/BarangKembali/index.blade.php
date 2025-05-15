@@ -51,6 +51,7 @@
                     'No',
                     'Gambar',
                     'Tanggal',
+                    'Kode Retur',
                     'Barang',
                     'Pelanggan',
                     'Supplier',

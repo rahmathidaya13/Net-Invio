@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Barang</title>
+    <title> Laporan Barang Masuk</title>
     <style>
         /* set batas margin layout */
         @page {
@@ -160,7 +160,7 @@
 <body>
     <div class="header">
         <div class="title">
-            <h1>DATA STOK BARANG</h1>
+            <h1>LAPORAN DATA BARANG MASUK</h1>
             <h1>PT NEDLINK TELEKOMUNIKASI</h1>
         </div>
     </div>
@@ -168,27 +168,37 @@
         <thead>
             <tr>
                 <th>Tanggal</th>
+                <th>Nota</th>
                 <th>No.Warehouse</th>
                 <th>Nama Barang</th>
-                <th>Jumlah Barang</th>
-                <th>Lokasi/Tempat</th>
+                <th>Supplier</th>
+                <th>Sumber</th>
+                <th>Pembeli</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Lokasi Penyimpanan</th>
                 <th>Keterangan</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($stok as $data)
+            @foreach ($barang_masuk as $data)
                 <tr>
                     <td>{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('d-m-Y') }}</td>
+                    <td>{{ $data->nota }}</td>
                     <td>{{ $data->no_warehouse }}</td>
                     <td>{{ $data->barang->nama_barang }}</td>
-                    <td>{{ $data->jumlah_barang }}</td>
-                    <td>{{ $data->lokasi }}</td>
-                    <td>{{ $data->keterangan }}</td>
+                    <td>{{ ucwords($data->supplier->nama ?? '-') }}</td>
+                    <td>{{ $data->sumber }}</td>
+                    <td>{{ ucwords($data->pembeli) }}</td>
+                    <td>{{ $data->jumlah }}</td>
+                    <td>{{ number_format((int) $data->harga, 0, ',', '.') }}</td>
+                    <td>{{ ucwords($data->lokasi) }}</td>
+                    <td>{{ ucwords($data->keterangan) }}</td>
                 </tr>
             @endforeach
             @empty($data)
                 <tr>
-                    <td colspan="6" style="text-align: center">Data tidak ditemukan</td>
+                    <td colspan="11" style="text-align: center">Data tidak ditemukan</td>
                 </tr>
             @endempty
         </tbody>

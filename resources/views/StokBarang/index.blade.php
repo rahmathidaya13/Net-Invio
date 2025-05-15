@@ -35,11 +35,12 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <x-link url="/stok/export" icon="bi bi-file-earmark-excel-fill" label="Excel"
-                                    class="dropdown-item" />
+                                <x-link data-bs-toggle="modal" data-bs-target="#modalExcell" icon="bi bi-file-earmark-excel-fill" label="Excel"
+                                    class="dropdown-item print_excell" />
                             </li>
                             <li>
-                                <x-link icon="bi bi-file-earmark-pdf-fill" label="Pdf" class="dropdown-item" />
+                                <x-link data-bs-toggle="modal" data-bs-target="#modalPDF"
+                                    icon="bi bi-file-earmark-pdf-fill" label="Pdf" class="dropdown-item print_pdf" />
                             </li>
                         </ul>
                     </div>
@@ -84,5 +85,6 @@
 
     </div>
 
-
+@include('StokBarang.modal.modalExcell')
+@include('StokBarang.modal.modalPDF')
 @endsection

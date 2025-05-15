@@ -17,6 +17,7 @@ class BarangMasukModel extends Model
         'id_barang',
         'id_supplier',
         'tanggal',
+        'no_warehouse',
         'sumber',
         'pembeli',
         'nota',

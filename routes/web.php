@@ -1,21 +1,23 @@
 <?php
 
 use App\Exports\StokBarangExport;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Barang\BarangController;
-use App\Http\Controllers\Barang\BarangExportController;
-use App\Http\Controllers\BarangKeluar\BarangKeluarController;
-use App\Http\Controllers\BarangMasuk\BarangMasukController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Pelanggan\PelangganController;
-use App\Http\Controllers\ReturBarang\ReturBarangController;
-use App\Http\Controllers\StokBarang\StokBarangController;
-use App\Http\Controllers\StokBarang\StokBarangExportController;
-use App\Http\Controllers\Supplier\SupplierController;
-use App\Http\Controllers\UserController;
-use App\Models\BarangKeluar\BarangKeluarModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Models\BarangKeluar\BarangKeluarModel;
+use App\Http\Controllers\Barang\BarangController;
+use App\Http\Controllers\Supplier\SupplierController;
+use App\Http\Controllers\Barang\BarangExportController;
+use App\Http\Controllers\Pelanggan\PelangganController;
+use App\Http\Controllers\StokBarang\StokBarangController;
+use App\Http\Controllers\BarangMasuk\BarangMasukController;
+use App\Http\Controllers\ReturBarang\ReturBarangController;
+use App\Http\Controllers\BarangKeluar\BarangKeluarController;
+use App\Http\Controllers\BarangKeluar\BarangKeluarExportController;
+use App\Http\Controllers\StokBarang\StokBarangExportController;
+use App\Http\Controllers\BarangMasuk\BarangMasukExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,14 +35,14 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::middleware(['auth', 'role:admin,user'])->group(function () {
+Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/home', 'index')->name('home');
     });
 
     // this user controller
     Route::controller(UserController::class)->group(function () {
-        Route::middleware('can:onlyAdmin')->group(function () {
+        Route::middleware('can:onlyDevelop')->group(function () {
             Route::get('/user/list', 'index')->name('user.list');
             Route::get('/user/create', 'create')->name('user.create');
             Route::post('/user/store', 'store')->name('user.store');
@@ -130,7 +132,15 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
         Route::get('/barang/pdf', 'printPdf')->name('barang.pdf');
     });
     Route::controller(StokBarangExportController::class)->group(function () {
-        Route::get('/stok/export', 'export')->name('stok.export');
-        Route::get('/stok/pdf', 'printPdf')->name('stok.pdf');
+        Route::any('/stok/export', 'export')->name('stok.export');
+        Route::any('/stok/pdf', 'printPdf')->name('stok.pdf');
+    });
+    Route::controller(BarangMasukExportController::class)->group(function () {
+        Route::any('/receiving/export', 'export')->name('receiving.export');
+        Route::any('/receiving/pdf', 'printPdf')->name('receiving.pdf');
+    });
+    Route::controller(BarangKeluarExportController::class)->group(function () {
+        Route::any('/outbound/export', 'export')->name('outbound.export');
+        Route::any('/outbound/pdf', 'printPdf')->name('outbound.pdf');
     });
 });

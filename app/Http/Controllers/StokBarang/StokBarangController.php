@@ -73,6 +73,7 @@ class StokBarangController extends Controller
         $stok->jumlah_barang =  (int) $request->input('jumlah');
         $stok->lokasi = $request->input('lokasi');
         $stok->keterangan = $request->input('keterangan');
+        $stok->asal_barang = 'barang_tersedia';
         $stok->save();
 
         // khusus untuk catat log baru
@@ -124,6 +125,7 @@ class StokBarangController extends Controller
         $stok->jumlah_barang = $request->input('jumlah');
         $stok->lokasi = $request->input('lokasi');
         $stok->keterangan = $request->input('keterangan');
+        $stok->asal_barang = 'barang_tersedia';
         $stok->update();
 
         // khusus untuk catat log baru

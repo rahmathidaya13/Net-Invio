@@ -4,16 +4,17 @@ namespace App\Exports;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+
 use PhpOffice\PhpSpreadsheet\Style\Fill;
-use App\Models\StokBarang\StokBarangModel;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Style\Border;
+use App\Models\BarangMasuk\BarangMasukModel;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAutoSize
+class BarangMasukExport implements FromView, WithHeadings, WithStyles, ShouldAutoSize
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -26,13 +27,12 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         $this->startDate = $startDate;
         $this->endDate = $endDate;
     }
-
     public function view(): View
     {
         if ($this->startDate && $this->endDate) {
-            return view("StokBarang.cetak.cetak_excel", ["stok" => StokBarangModel::whereBetween('tanggal', [$this->startDate, $this->endDate])->get()]);
+            return view("BarangMasuk.cetak.cetak_excel", ["barang_masuk" => BarangMasukModel::whereBetween('tanggal', [$this->startDate, $this->endDate])->get()]);
         } else {
-            return view("StokBarang.cetak.cetak_excel", ["stok" => StokBarangModel::all()]);
+            return view("BarangMasuk.cetak.cetak_excel", ["barang_masuk" => BarangMasukModel::all()]);
         }
     }
 
@@ -40,18 +40,24 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
     {
         return [
             'Tanggal',
+            'Nota',
             'No.Warehouse',
             'Nama Barang',
-            'Jumlah Barang',
-            'Lokasi/Tempat',
+            'Supplier',
+            'Sumber',
+            'Pembeli',
+            'Jumlah',
+            'Harga',
+            'Lokasi Penyimpanan',
+            'Keterangan',
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
         // Merge cell A1 sampai H1 dan A2 sampai H2 untuk area judul
-        $sheet->mergeCells('A1:F1');
-        $sheet->mergeCells('A2:F2');
+        $sheet->mergeCells('A1:K1');
+        $sheet->mergeCells('A2:K2');
 
         // Styling untuk judul di baris 1 (misalnya: "Laporan Data Barang")
         $sheet->getStyle('A1')->applyFromArray([
@@ -83,7 +89,7 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         $sheet->getRowDimension(2)->setRowHeight(30);
 
         // Styling untuk header tabel (baris ke-4)
-        $sheet->getStyle('A4:F4')->applyFromArray([
+        $sheet->getStyle('A4:K4')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => '000000'], // Warna teks hitam
@@ -115,14 +121,14 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         }
 
         // Bungkus teks header jika terlalu panjang
-        $sheet->getStyle('A4:F4')->getAlignment()->setWrapText(true);
+        $sheet->getStyle('A4:K4')->getAlignment()->setWrapText(true);
 
 
         // Ambil jumlah baris terakhir yang berisi data
         $lastRow = $sheet->getHighestRow();
 
         // Styling isi tabel (baris 5 hingga baris terakhir)
-        $sheet->getStyle("A5:F$lastRow")->applyFromArray([
+        $sheet->getStyle("A5:K$lastRow")->applyFromArray([
             'font' => [
                 'size' => 12,
                 'name' => 'Calibri',
@@ -143,7 +149,7 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         // Tambahkan Zebra striping untuk baris isi (baris ganjil mulai dari baris 5)
         for ($row = 5; $row <= $lastRow; $row++) {
             if ($row % 2 != 0) {
-                $sheet->getStyle("A$row:F$row")->applyFromArray([
+                $sheet->getStyle("A$row:K$row")->applyFromArray([
                     'fill' => [
                         'fillType' => Fill::FILL_SOLID,
                         'startColor' => ['argb' => 'E6E6E6'], // Abu terang
@@ -153,9 +159,8 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         }
 
         // Auto resize semua kolom dari A sampai E agar konten tidak terpotong
-        foreach (range('A', 'F') as $columnID) {
+        foreach (range('A', 'K') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
     }
-
 }

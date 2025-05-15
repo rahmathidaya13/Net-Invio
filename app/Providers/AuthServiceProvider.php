@@ -54,5 +54,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('edit', fn(User $user) => $user->can_edit);
         Gate::define('delete', fn(User $user) => $user->can_delete);
         Gate::define('onlyAdmin', fn(User $user) => $user->role === 'admin');
+        Gate::define('onlyDevelop',  fn(User $user) => $user->role === 'develop');
     }
 }

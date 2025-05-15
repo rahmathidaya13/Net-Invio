@@ -198,5 +198,28 @@ export default function BarangMasuk() {
                     "delete"
                 );
             });
+
+
+
+        // Cek saat dokumen dibuka
+        $('#tanggal_awal,#tanggal_akhir').on('input change', function () {
+            const awalExcell = $('#tanggal_awal').val();
+            const akhirExcell = $('#tanggal_akhir').val();
+            if (awalExcell && akhirExcell) {
+                $('#print_excell').prop('disabled', false);
+            } else {
+                $('#print_excell').prop('disabled', true);
+            }
+        });
+
+        $('#tanggal_awal_pdf,#tanggal_akhir_pdf').on('input change', function () {
+            const awalPDF = $('#tanggal_awal_pdf').val();
+            const akhirPDF = $('#tanggal_akhir_pdf').val();
+            if (awalPDF && akhirPDF) {
+                $('#print_pdf').prop('disabled', false);
+            } else {
+                $('#print_pdf').prop('disabled', true);
+            }
+        });
     });
 }
