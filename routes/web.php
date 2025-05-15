@@ -18,6 +18,9 @@ use App\Http\Controllers\BarangKeluar\BarangKeluarController;
 use App\Http\Controllers\BarangKeluar\BarangKeluarExportController;
 use App\Http\Controllers\StokBarang\StokBarangExportController;
 use App\Http\Controllers\BarangMasuk\BarangMasukExportController;
+use App\Http\Controllers\Pelanggan\PelangganExportController;
+use App\Http\Controllers\ReturBarang\BarangKembaliExportController;
+use App\Http\Controllers\Supplier\SupplierExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,8 +131,8 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
 
     // route khusus cetak file
     Route::controller(BarangExportController::class)->group(function () {
-        Route::get('/barang/export', 'export')->name('barang.export');
-        Route::get('/barang/pdf', 'printPdf')->name('barang.pdf');
+        Route::any('/barang/export', 'export')->name('barang.export');
+        Route::any('/barang/pdf', 'printPdf')->name('barang.pdf');
     });
     Route::controller(StokBarangExportController::class)->group(function () {
         Route::any('/stok/export', 'export')->name('stok.export');
@@ -142,5 +145,17 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     Route::controller(BarangKeluarExportController::class)->group(function () {
         Route::any('/outbound/export', 'export')->name('outbound.export');
         Route::any('/outbound/pdf', 'printPdf')->name('outbound.pdf');
+    });
+    Route::controller(BarangKembaliExportController::class)->group(function () {
+        Route::any('/retur/export', 'export')->name('retur.export');
+        Route::any('/retur/pdf', 'printPdf')->name('retur.pdf');
+    });
+    Route::controller(PelangganExportController::class)->group(function () {
+        Route::any('/pelanggan/export', 'export')->name('pelanggan.export');
+        Route::any('/pelanggan/pdf', 'printPdf')->name('pelanggan.pdf');
+    });
+    Route::controller(SupplierExportController::class)->group(function () {
+        Route::any('/supplier/export', 'export')->name('supplier.export');
+        Route::any('/supplier/pdf', 'printPdf')->name('supplier.pdf');
     });
 });
