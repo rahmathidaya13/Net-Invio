@@ -8,7 +8,7 @@
         ['text' => ucwords(isset($barang) ? 'Ubah Data Barang' : 'Tambah Data Barang')],
     ]" />
     <div class="row">
-        <div class="col-12 col-lg-12">
+        <div class="col-12 col-xl-12">
             @if ($message = Session::get('success'))
                 <x-alert type="info" message="{{ $message }}" />
             @endif
@@ -18,25 +18,18 @@
                     <x-link url="/barang/list" icon="bi bi-arrow-left-circle" label="Kembali" class="btn btn-danger btn-sm" />
                 </div>
             </div>
-            <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-4"
-                headerClass="text-uppercase text-bg-dark rounded-0 p-3" titleClass="text-start fs-5">
+
+            <x-card class="shadow-sm overflow-hidden" bodyClass="text-bg-light shadow-sm p-4"
+                headerClass="text-uppercase text-bg-dark p-3" titleClass="text-start fs-5">
                 {{-- title --}}
                 <x-slot name="header">
                     <h5 class="card-title text-start mb-0">Form Barang</h5>
                 </x-slot>
                 {{-- content --}}
-                @php
-                    $options = [
-                        'pcs' => 'Pcs',
-                        'roll' => 'Roll',
-                        'unit' => 'Unit',
-                        'meter' => 'Meter',
-                    ];
-                @endphp
                 <x-form url="{{ isset($barang) ? '/barang/update' : '/barang/store' }}"
                     method="{{ isset($barang) ? 'put' : null }}" parameters="{{ $barang->id_barang ?? '' }}">
-                    <x-horizontal-input placeholder="R-001, KBL-009" autofocus name="kode_barang" label="Kode Barang"
-                        value="{{ old('kode_barang', $barang->kode_barang ?? '') }}" />
+                    <x-horizontal-input readonly placeholder="R-001, KBL-009" autofocus name="kode_barang"
+                        label="Kode Barang" :value="$barang->kode_barang ?? \App\Models\Barang\BarangModel::genarateKodeBarang()" />
                     <x-horizontal-input placeholder="102579851SN" name="sn" label="Serial Number"
                         value="{{ old('sn', $barang->serial_number ?? '') }}" />
                     <x-horizontal-input placeholder="Indihome Router " name="nama_barang" label="Nama Barang"

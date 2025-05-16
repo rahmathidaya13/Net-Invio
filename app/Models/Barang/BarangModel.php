@@ -2,13 +2,15 @@
 
 namespace App\Models\Barang;
 
-use App\Models\BarangKeluar\BarangKeluarModel;
+use Carbon\Carbon;
+use Faker\UniqueGenerator;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\StokBarang\StokBarangModel;
 use App\Models\BarangMasuk\BarangMasukModel;
 use App\Models\ReturBarang\ReturBarangModel;
-use App\Models\StokBarang\StokBarangModel;
+use App\Models\BarangKeluar\BarangKeluarModel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class BarangModel extends Model
 {
@@ -30,6 +32,41 @@ class BarangModel extends Model
     protected $dates     = ["deleted_at"];
     public $incrementing = false;
 
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($barang) {
+            $barang->kode_barang = self::genarateKodeBarang();
+        });
+    }
+
+    public static function genarateKodeBarang()
+    {
+        $prefix = 'BRG';
+        $datePart = now()->format('dmy');
+
+        // Ambil data barang terakhir berdasarkan kode_barang (urut menurun)
+        $lastBarang = self::where('kode_barang', 'like', "$prefix%")
+            ->orderBy('kode_barang', 'desc')
+            ->first();
+
+        $lastNumber = 0;
+
+        // Cek apakah barang terakhir ada, dan ambil angka urutnya
+        // Ini adalah regular expression (regex) yang dipakai untuk menangkap tiga digit angka terakhir dari string kode_barang. Mari kita uraikan bagian per bagian:
+        if ($lastBarang && preg_match('/(\d{3})$/', $lastBarang->kode_barang, $matches)) {
+            $lastNumber = (int) $matches[1]; // $matches[1] → hasil dari group tangkap pertama, yaitu (\d{3}).
+        }
+
+        $nextNumber = $lastNumber + 1;
+
+        // Format angka 3 digit, contoh: 001, 002, dst.
+        $numberFormatted = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
+        // Gabungkan semua jadi kode lengkap
+        return "{$prefix}{$datePart}{$numberFormatted}";
+    }
+    // relasi dengan table stok
     public function stok()
     {
         return $this->hasOne(StokBarangModel::class, "id_barang");

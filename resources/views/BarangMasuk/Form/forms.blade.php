@@ -20,7 +20,7 @@
                         class="btn btn-danger btn-sm" />
                 </div>
             </div>
-            <x-card class="shadow-sm rounded-0" bodyClass="text-bg-light shadow-sm border border-light p-4"
+            <x-card class="shadow-sm overflow-hidden" bodyClass="text-bg-light shadow-sm p-4"
                 headerClass="text-uppercase text-bg-dark rounded-0 p-3" titleClass="text-start fs-5">
                 {{-- title --}}
                 <x-slot name="header">

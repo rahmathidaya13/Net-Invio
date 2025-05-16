@@ -61,7 +61,7 @@ class BarangController extends Controller
     {
         $this->validateItem($request->all());
         $barang = new BarangModel();
-        $barang->kode_barang = $request->input('kode_barang');
+        // $barang->kode_barang = $request->input('kode_barang'); //sudah digenerate otomatis
         $barang->serial_number = $request->input('sn', '-');
         $barang->nama_barang = $request->input('nama_barang');
         $barang->jenis = $request->input('jenis_barang');
@@ -97,7 +97,7 @@ class BarangController extends Controller
     {
         $this->validateItem($request->all());
         $barang =  BarangModel::findOrFail($id);
-        $barang->kode_barang = $request->input('kode_barang');
+        // $barang->kode_barang = $request->input('kode_barang'); // sudah digenerate otomatis
         $barang->serial_number = $request->input('sn');
         $barang->nama_barang = $request->input('nama_barang');
         $barang->jenis = $request->input('jenis_barang');

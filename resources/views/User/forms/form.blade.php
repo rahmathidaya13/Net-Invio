@@ -16,8 +16,8 @@
                         class="btn btn-outline-danger btn-sm" />
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header text-bg-dark p-3">
+            <div class="card overflow-hidden">
+                <div class="card-header text-bg-dark p-3 ">
                     <h5 class="card-title text-start mb-0 text-uppercase">Form Users</h5>
                 </div>
                 <div class="card-body p-4">

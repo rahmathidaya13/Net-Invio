@@ -10,7 +10,7 @@ trait ItemValidation
     public function validateItem($request)
     {
         return Validator::make($request, [
-            'kode_barang' => 'required|string|max:50',
+            // 'kode_barang' => 'required|string|max:50',
             'sn' => 'nullable|string|max:50',
             'nama_barang' => 'required|string|max:50',
             'jenis_barang' => 'required|string|max:50',
