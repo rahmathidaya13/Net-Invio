@@ -29,7 +29,7 @@
                     <div class="dropdown">
                         <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <i class="bi bi-printer-fill" ></i> Print
+                            <i class="bi bi-printer-fill"></i> Print
                         </button>
                         <ul class="dropdown-menu">
                             <li>
@@ -40,6 +40,17 @@
                                 <x-link url="/barang/pdf" icon="bi bi-file-earmark-pdf-fill" label="Pdf"
                                     class="dropdown-item" />
                             </li>
+
+                            @can('onlyDevelop')
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <x-link data-bs-toggle="modal" data-bs-target="#modalImports"
+                                        icon="bi bi-cloud-arrow-up-fill" label="Import" class="dropdown-item" />
+                                </li>
+                            @endcan
+
                         </ul>
                     </div>
                 </div>
@@ -90,4 +101,5 @@
         </div>
 
     </div>
+    @include('Barang.modal.modal_import')
 @endsection

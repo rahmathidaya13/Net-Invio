@@ -10,6 +10,7 @@ use App\Models\BarangKeluar\BarangKeluarModel;
 use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\Barang\BarangExportController;
+use App\Http\Controllers\Barang\BarangImportController;
 use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\StokBarang\StokBarangController;
 use App\Http\Controllers\BarangMasuk\BarangMasukController;
@@ -157,5 +158,9 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     Route::controller(SupplierExportController::class)->group(function () {
         Route::any('/supplier/export', 'export')->name('supplier.export');
         Route::any('/supplier/pdf', 'printPdf')->name('supplier.pdf');
+    });
+    // Testing import only
+    Route::controller(BarangImportController::class)->group(function () {
+        Route::post('/barang/import', 'imports')->name('barang.import')->middleware('can:onlyDevelop');
     });
 });
