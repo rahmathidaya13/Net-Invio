@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_barang', function (Blueprint $table) {
-            $table->uuid('id_barang')->primary();
+            $table->ulid('id_barang')->primary();
             $table->string('kode_barang', 50); // Misalnya: R-001, KBL-009
             $table->string('nama_barang', 50); // Nama barang (Router, Kabel UTP)
             $table->string('jenis', 50); // kabel, router, wireless_radio

@@ -10,10 +10,18 @@
                 <x-form url="/barang/import">
                     <div class="row g-0 mb-3">
                         <div class="col">
-                            <x-form-label value="Import" for="file_import" />
-                            <div class="input-group">
-                                <input type="file" class="form-control" name="file_import" id="file_import"
-                                    value="{{ old('file_import') }}">
+                            <div id="drop-zone" class="border border-primary p-5 text-center">
+                                <x-form-label for="file_import" class="d-flex justify-content-center mb-3"
+                                    style="cursor: pointer">
+                                    <img src="{{ asset('assets/icon/no-image.svg') }}"
+                                        class="img-fluid border shadow-sm" id="preview" alt="">
+                                </x-form-label>
+                                <div class="input-group">
+                                    <input accept=".xls,.xlsx,.csv" type="file" class="form-control d-none"
+                                        name="file_import" id="file_import" value="{{ old('file_import') }}">
+                                </div>
+                                <small class="text-muted" id="name-file">Import file Excel di sini atau klik untuk
+                                    memilih</small>
                             </div>
                         </div>
                     </div>

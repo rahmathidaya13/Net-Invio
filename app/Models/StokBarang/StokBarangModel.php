@@ -4,13 +4,14 @@ namespace App\Models\StokBarang;
 
 use App\Models\Barang\BarangModel;
 use App\Models\BarangKeluar\BarangKeluarModel;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class StokBarangModel extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUlids;
     protected $table = 'tb_stok';
     protected $primaryKey = 'id_stok';
     protected $fillable = [

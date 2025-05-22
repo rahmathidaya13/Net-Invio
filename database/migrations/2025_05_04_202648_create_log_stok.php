@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('log_stok', function (Blueprint $table) {
-            $table->uuid('id_log_stok')->primary();
+            $table->ulid('id_log_stok')->primary();
             $table->uuid('id_barang');
             $table->date('tanggal');
             $table->enum('tipe', ['barang_masuk', 'barang_keluar', 'barang_tersedia']);

@@ -6,12 +6,12 @@
     <x-bread-crumbs :items="[['text' => 'Daftar Pengguna', 'url' => '/user/list'], ['text' => 'Tambah Pengguna']]" />
 
     <div class="row">
-        <div class="col-12 col-lg-12">
+        <div class="col-12 col-xl-12">
             @if ($message = Session::get('success'))
                 <x-alert type="info" :message="$message" />
             @endif
             <div class="row align-items-center mb-3">
-                <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
+                <div class="col-xl-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     <x-link url="/user/list" icon="bi bi-arrow-left-circle" label="Kembali"
                         class="btn btn-outline-danger btn-sm" />
                 </div>
@@ -26,23 +26,23 @@
 
                         {{-- input field --}}
                         <div class="row mb-3">
-                            <x-form-label value="Nama" for="name" class="col-sm-2 col-form-label form-label" />
-                            <div class="col-sm-5">
+                            <x-form-label value="Nama" for="name" class="col-xl-2 col-form-label form-label" />
+                            <div class="col-xl-5">
                                 <x-form-input name="name" label="Nama" :value="$user->name ?? ''" />
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <x-form-label value="Email" for="email" class="col-sm-2 col-form-label form-label" />
-                            <div class="col-sm-5">
+                            <x-form-label value="Email" for="email" class="col-xl-2 col-form-label form-label" />
+                            <div class="col-xl-5">
                                 <x-form-input :readonly="$user->email ?? false" name="email" label="Email" :value="$user->email ?? ''" />
                             </div>
                         </div>
 
                         @if (empty($user->password))
                             <div class="row mb-3">
-                                <x-form-label value="Password" for="password" class="col-sm-2 col-form-label form-label" />
-                                <div class="col-sm-5">
+                                <x-form-label value="Password" for="password" class="col-xl-2 col-form-label form-label" />
+                                <div class="col-xl-5">
                                     <div class="input-group">
                                         <input type="password"
                                             class="form-control @error('password')
@@ -64,8 +64,8 @@
 
                             <div class="row mb-3">
                                 <x-form-label value="Password Confirmation" for="password_confirmation"
-                                    class="col-sm-2 col-form-label form-label" />
-                                <div class="col-sm-5">
+                                    class="col-xl-2 col-form-label form-label" />
+                                <div class="col-xl-5">
                                     <div class="input-group">
                                         <input type="password"
                                             class="form-control @error('password_confirmation')
@@ -88,8 +88,8 @@
 
                         {{-- check box field --}}
                         <div class="mb-3 row align-items-center">
-                            <x-form-label value="Hak Akses" class="col-sm-2 col-form-label form-label" />
-                            <div class="col-sm-4 d-flex align-items-center gap-2 flex-wrap">
+                            <x-form-label value="Hak Akses" class="col-xl-2 col-form-label form-label" />
+                            <div class="col-xl-4 d-flex align-items-center gap-2 flex-wrap">
                                 <x-form-check-box name="can_view" label="Can View" :checked="old('can_view', $user->can_view ?? true)" />
                                 <x-form-check-box name="can_add" label="Can Add" :checked="old('can_add', $user->can_add ?? false)" />
                                 <x-form-check-box name="can_edit" label="Can Edit" :checked="old('can_edit', $user->can_edit ?? false)" />
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div class="mb-3 row align-items-center">
-                            <div class="offset-sm-2 d-grid d-lg-block gap-2">
+                            <div class="offset-xl-2 d-grid d-lg-block gap-2">
                                 <x-base-button type="submit" class="text-light rounded-2 shadow-sm"
                                     variant="{{ isset($user) ? 'success' : 'primary' }}"
                                     label="{{ isset($user) ? 'Ubah' : 'Simpan' }}"

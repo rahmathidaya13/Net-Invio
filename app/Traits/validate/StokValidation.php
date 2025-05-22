@@ -12,7 +12,6 @@ trait StokValidation
         return Validator::make($request, [
             'nama_barang' => [
                 'required',
-                'uuid',
                 Rule::exists('tb_barang', 'id_barang') // memastikan ID barang valid
             ],
             'tanggal' => [
@@ -35,7 +34,6 @@ trait StokValidation
             'no_warehouse' => 'required|string|max:50',
         ], [
             'nama_barang.required' => 'Nama barang wajib dipilih.',
-            'nama_barang.uuid' => 'Format barang tidak valid.',
 
             'jumlah.required' => 'Jumlah wajib diisi.',
             'jumlah.integer' => 'Jumlah harus berupa angka.',

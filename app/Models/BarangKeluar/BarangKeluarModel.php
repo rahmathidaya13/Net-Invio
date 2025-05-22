@@ -5,13 +5,14 @@ namespace App\Models\BarangKeluar;
 use App\Models\Barang\BarangModel;
 use App\Models\Pelanggan\PelangganModel;
 use App\Models\StokBarang\StokBarangModel;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class BarangKeluarModel extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUlids;
     protected $table = 'tb_barang_keluar';
     protected $primaryKey = 'id_barang_keluar';
     protected $fillable = [

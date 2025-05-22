@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_retur_barang', function (Blueprint $table) {
-            $table->uuid('id_retur')->primary();
+            $table->ulid('id_retur')->primary();
             $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // ambil barang dari tb_barang
             $table->foreignUuid('id_pelanggan')->nullable()->constrained('tb_pelanggan', 'id_pelanggan')->cascadeOnDelete(); // ambil pelanggan jika barang dari pelanggan
             $table->foreignUuid('id_supplier')->nullable()->constrained('tb_supplier', 'id_supplier')->cascadeOnDelete(); // ambil supplier jika barang dari supplier

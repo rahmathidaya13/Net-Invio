@@ -20,7 +20,7 @@ class StokBarangModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_stok'    => (string) Str::uuid(),
+            'id_stok'    => (string) Str::ulid(),
             'id_barang'    => BarangModel::factory(),
             'no_warehouse'    => (string) Str::random(10),
             'tanggal'    => fake()->date('Y-m-d', Carbon::now()),

@@ -9,12 +9,13 @@ use App\Models\StokBarang\StokBarangModel;
 use App\Models\BarangMasuk\BarangMasukModel;
 use App\Models\ReturBarang\ReturBarangModel;
 use App\Models\BarangKeluar\BarangKeluarModel;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BarangModel extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUlids;
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
     protected $fillable = [

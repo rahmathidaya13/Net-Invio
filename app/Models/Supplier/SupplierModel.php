@@ -4,13 +4,14 @@ namespace App\Models\Supplier;
 
 use App\Models\BarangMasuk\BarangMasukModel;
 use App\Models\ReturBarang\ReturBarangModel;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SupplierModel extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUlids;
     protected $table = 'tb_supplier';
     protected $primaryKey = 'id_supplier';
     protected $fillable = [

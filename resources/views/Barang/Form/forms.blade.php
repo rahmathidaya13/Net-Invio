@@ -14,7 +14,7 @@
             @endif
 
             <div class="row align-items-center mb-3">
-                <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
+                <div class="col-xl-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     <x-link url="/barang/list" icon="bi bi-arrow-left-circle" label="Kembali" class="btn btn-danger btn-sm" />
                 </div>
             </div>
@@ -41,8 +41,8 @@
                     <x-horizontal-input placeholder="CCR1009 Dll" name="model" label="Tipe Model"
                         value="{{ old('model', $barang->tipe_model ?? '') }}" />
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="satuan" value="Satuan" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
+                        <x-form-label for="satuan" value="Satuan" class="col-xl-2 col-form-label form-label" />
+                        <div class="col-xl-5">
                             <x-form-select name="satuan" :options="[
                                 'pack' => 'Pack',
                                 'pcs' => 'Pcs',
@@ -55,13 +55,13 @@
                         </div>
                     </div>
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
+                        <x-form-label for="keterangan" value="Keterangan" class="col-xl-2 col-form-label form-label" />
+                        <div class="col-xl-5">
                             <x-text-area name="keterangan" value="{{ old('keterangan', $barang->keterangan ?? '') }}" />
                         </div>
                     </div>
                     <div class="mb-3 row align-items-center">
-                        <div class="offset-sm-2 d-grid d-lg-block gap-2">
+                        <div class="offset-xl-2 d-grid d-lg-block gap-2">
                             <x-base-button type="submit" class="text-light rounded-2 shadow-sm"
                                 variant="{{ isset($barang) ? 'success' : 'primary' }}"
                                 label="{{ isset($barang) ? 'Ubah' : 'Simpan' }}"

@@ -9,13 +9,13 @@
     ]" />
 
     <div class="row">
-        <div class="col-12 col-lg-12">
+        <div class="col-12 col-xl-12">
             @if ($message = Session::get('success'))
                 <x-alert type="info" message="{{ $message }}" />
             @endif
 
             <div class="row align-items-center mb-3">
-                <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
+                <div class="col-xl-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     <x-link url="/retur/list" icon="bi bi-arrow-left-circle" label="Kembali" class="btn btn-danger btn-sm" />
                 </div>
             </div>
@@ -33,8 +33,8 @@
                             parameters="{{ $barang_kembali->id_retur ?? '' }}">
 
                             <div class="mb-3 row align-items-center">
-                                <x-form-label for="tanggal" value="Tanggal" class="form-label col-sm-3 col-form-label" />
-                                <div class="col-sm-7">
+                                <x-form-label for="tanggal" value="Tanggal" class="form-label col-xl-3 col-form-label" />
+                                <div class="col-xl-7">
                                     <x-form-input autofocus :readonly="isset($barang_kembali) && $barang_kembali->id_retur" type="date" name="tanggal" label="Tanggal"
                                         value="{{ old('tanggal', $barang_kembali->tanggal ?? '') }}" />
                                 </div>
@@ -42,16 +42,16 @@
 
                             <div class="mb-3 row align-items-center">
                                 <x-form-label for="kode_retur" value="Kode Retur"
-                                    class="form-label col-sm-3 col-form-label" />
-                                <div class="col-sm-7">
+                                    class="form-label col-xl-3 col-form-label" />
+                                <div class="col-xl-7">
                                     <x-form-input name="kode_retur" label="Kode Retur"
                                         value="{{ old('kode_retur', $barang_kembali->kode_retur ?? '') }}" />
                                 </div>
                             </div>
 
                             <div class="mb-3 row align-items-center">
-                                <x-form-label for="barang" value="Barang" class="col-sm-3 col-form-label form-label" />
-                                <div class="col-sm-7">
+                                <x-form-label for="barang" value="Barang" class="col-xl-3 col-form-label form-label" />
+                                <div class="col-xl-7">
                                     @php
                                         $optionBarang = [];
                                         foreach ($barang as $item) {
@@ -68,11 +68,11 @@
 
                             <div class="mb-3 row align-items-center">
 
-                                <div class="col-sm-3 col-form-label ">
+                                <div class="col-xl-3 col-form-label ">
                                     <x-form-label for="pelanggan" value="Pelanggan" class="form-label d-block mb-0" />
                                     <em class="text-muted small-sm text-truncate">Select if from customer</em>
                                 </div>
-                                <div class="col-sm-7">
+                                <div class="col-xl-7">
                                     @php
                                         $optionPelanggan = [];
                                         foreach ($pelanggan as $item) {
@@ -88,11 +88,11 @@
                             </div>
 
                             <div class="mb-3 row align-items-center">
-                                <div class="col-sm-3 col-form-label">
+                                <div class="col-xl-3 col-form-label">
                                     <x-form-label for="supplier" value="Supplier" class="form-label d-block mb-0" />
                                     <em class="text-muted small-sm text-truncate">Select if from supplier</em>
                                 </div>
-                                <div class="col-sm-7">
+                                <div class="col-xl-7">
                                     @php
                                         $optionSupplier = [];
                                         foreach ($supplier as $item) {
@@ -109,8 +109,8 @@
 
                             <div class="mb-3 row align-items-center">
                                 <x-form-label for="jumlah" value="Jumlah Retur"
-                                    class="col-sm-3 col-form-label form-label" />
-                                <div class="col-sm-7">
+                                    class="col-xl-3 col-form-label form-label" />
+                                <div class="col-xl-7">
                                     <x-form-input name="jumlah" label="Jumlah Retur"
                                         value="{{ old('jumlah', $barang_kembali->jumlah ?? '') }}" />
                                 </div>
@@ -118,8 +118,8 @@
 
                             <div class="mb-3 row align-items-center">
                                 <x-form-label for="tipe_retur" value="Tipe Retur"
-                                    class="col-sm-3 col-form-label form-label" />
-                                <div class="col-sm-7">
+                                    class="col-xl-3 col-form-label form-label" />
+                                <div class="col-xl-7">
                                     <x-form-select class="select2" name="tipe_retur" text="---Pilih Tipe Retur---"
                                         :options="['masuk' => 'Masuk', 'keluar' => 'Keluar']"
                                         selected="{{ old('tipe_retur', $barang_kembali->tipe_retur ?? '') }}" />
@@ -127,8 +127,8 @@
                             </div>
                             <div class="mb-3 row align-items-center">
                                 <x-form-label for="status" value="Status Retur"
-                                    class="col-sm-3 col-form-label form-label" />
-                                <div class="col-sm-7">
+                                    class="col-xl-3 col-form-label form-label" />
+                                <div class="col-xl-7">
                                     <x-form-select class="select2" name="status" text="---Pilih Status Retur---"
                                         :options="[
                                             'diganti' => 'Diganti',
@@ -141,11 +141,11 @@
 
 
                             <div class="mb-3 row align-items-center">
-                                <div class="col-sm-3 col-form-label">
+                                <div class="col-xl-3 col-form-label">
                                     <x-form-label value="Gambar" class=" form-label d-block mb-0" />
                                     <em class="text-muted small-sm">Max image upload 2mb</em>
                                 </div>
-                                <div class="col-sm-7 d-flex gap-2 justify-content-between position-relative"
+                                <div class="col-xl-7 d-flex gap-2 justify-content-between position-relative"
                                     id="gambar-container">
                                     @for ($i = 0; $i < 3; $i++)
                                         @php
@@ -161,7 +161,7 @@
                                             id="{{ $getId }}" accept="image/*" multiple>
                                     @endfor
                                 </div>
-                                <div class="offset-sm-3 col-sm-7">
+                                <div class="offset-sm-3 col-xl-7">
                                     @foreach ($errors->get('gambar.*') as $errorGroupImage)
                                         @foreach ($errorGroupImage as $errorItem)
                                             <small class="text-danger" style="font-size: 0.875em">{{ $errorItem }}</small>
@@ -170,15 +170,15 @@
                                 </div>
                             </div>
                             <div class="mb-3 row align-items-center">
-                                <x-form-label for="alasan" value="Alasan" class="col-sm-3 col-form-label form-label" />
-                                <div class="col-sm-7">
+                                <x-form-label for="alasan" value="Alasan" class="col-xl-3 col-form-label form-label" />
+                                <div class="col-xl-7">
                                     <x-text-area name="alasan"
                                         value="{{ old('alasan', $barang_kembali->alasan ?? '') }}" />
                                 </div>
                             </div>
 
                             <div class="mb-3 row align-items-center">
-                                <div class="offset-sm-3 d-grid d-lg-block gap-2">
+                                <div class="offset-xl-3 d-grid d-xl-block gap-2">
                                     <x-base-button type="submit" class="text-light rounded-2 shadow-sm"
                                         variant="{{ isset($barang_kembali) ? 'success' : 'primary' }}"
                                         label="{{ isset($barang_kembali) ? 'Ubah' : 'Simpan' }}"

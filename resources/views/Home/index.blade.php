@@ -24,7 +24,7 @@
             Anda login sebagai <b>{{ auth()->user()->role }}</b>, Semoga harimu selalu produktif dan selalu
             menyenangkan.</span>
     </div>
-    <div class="row gap-3 gap-lg-0">
+    <div class="row gap-2 gap-xl-0 ">
 
         {{-- count data barang --}}
         <div class="col-xl-3 col-md-6">

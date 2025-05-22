@@ -11,9 +11,9 @@ trait ReturValidation
         return Validator::make($request, [
             "tanggal" => "required|date|in:" . now()->toDateString(),
             "kode_retur" => "required|string|max:50",
-            "barang" => "required|uuid|exists:tb_barang,id_barang",
-            "pelanggan" => "nullable|uuid|exists:tb_pelanggan,id_pelanggan",
-            "supplier" => "nullable|uuid|exists:tb_supplier,id_supplier",
+            "barang" => "required|exists:tb_barang,id_barang",
+            "pelanggan" => "nullable|exists:tb_pelanggan,id_pelanggan",
+            "supplier" => "nullable|exists:tb_supplier,id_supplier",
             "jumlah" => "required|integer|min:1",
             "tipe_retur" => "required|string|in:masuk,keluar",
             "status" => "required|string|in:diganti,tidak_diganti,diperbaiki",
@@ -29,13 +29,10 @@ trait ReturValidation
             "kode_retur.max" => "Kode retur maksimal 50 karakter",
 
             "barang.required" => "Barang wajib dipilih.",
-            "barang.uuid" => "Barang yang dipilih tidak sesuai.",
             "barang.exists" => "Barang yang dipilih tidak terdaftar",
 
-            "pelanggan.uuid" => "Pelanggan yang dipilih tidak sesuai.",
             "pelanggan.exists" => "Pelanggan yang dipilih tidak terdaftar",
 
-            "supplier.uuid" => "Supplier yang dipilih tidak sesuai.",
             "supplier.exists" => "Supplier yang dipilih tidak terdaftar",
 
             "jumlah.required" => "Jumlah retur wajib diisi.",

@@ -9,13 +9,13 @@
     ]" />
 
     <div class="row">
-        <div class="col-12 col-lg-12">
+        <div class="col-12 col-xl-12">
             @if ($message = Session::get('success'))
                 <x-alert type="info" message="{{ $message }}" />
             @endif
 
             <div class="row align-items-center mb-3">
-                <div class="col-lg-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
+                <div class="col-xl-6 mb-2 mb-lg-0 d-flex flex-wrap align-items-center gap-1 justify-content-start">
                     <x-link url="/outbound/list" icon="bi bi-arrow-left-circle" label="Kembali" class="btn btn-danger btn-sm" />
                 </div>
             </div>
@@ -38,8 +38,8 @@
                         value="{{ old('kode_keluar', $barang_keluar->kode_barang_keluar ?? '') }}" />
 
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="barang" value="Barang" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
+                        <x-form-label for="barang" value="Barang" class="col-xl-2 col-form-label form-label" />
+                        <div class="col-xl-5">
                             @php
                                 $optionStok = [];
                                 foreach ($stok as $item) {
@@ -64,8 +64,8 @@
                     <x-horizontal-input readonly name="no_warehouse" label="No.Warehouse" />
 
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="pelanggan" value="Pelanggan" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
+                        <x-form-label for="pelanggan" value="Pelanggan" class="col-xl-2 col-form-label form-label" />
+                        <div class="col-xl-5">
                             @php
                                 $optionPelanggan = [];
                                 foreach ($pelanggan as $item) {
@@ -78,8 +78,8 @@
                     </div>
 
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="tujuan" value="Tujuan" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
+                        <x-form-label for="tujuan" value="Tujuan" class="col-xl-2 col-form-label form-label" />
+                        <div class="col-xl-5">
                             @php
                                 $tujuan = ['pemasangan' => 'Pemasangan Baru', 'pergantian' => 'Pergantian Alat'];
                             @endphp
@@ -91,8 +91,8 @@
                         value="{{ old('jumlah', $barang_keluar->jumlah ?? '0') }} " />
 
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="satuan" value="Satuan" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
+                        <x-form-label for="satuan" value="Satuan" class="col-xl-2 col-form-label form-label" />
+                        <div class="col-xl-5">
                             <x-form-select name="satuan" :options="[
                                 'pack' => 'Pack',
                                 'pcs' => 'Pcs',
@@ -108,8 +108,8 @@
                         value="{{ ucwords(old('petugas', $barang_keluar->petugas ?? '')) }} " />
 
                     <div class="mb-3 row align-items-center">
-                        <x-form-label for="keterangan" value="Keterangan" class="col-sm-2 col-form-label form-label" />
-                        <div class="col-sm-5">
+                        <x-form-label for="keterangan" value="Keterangan" class="col-xl-2 col-form-label form-label" />
+                        <div class="col-xl-5">
                             <x-text-area name="keterangan"
                                 value="{{ old('keterangan', $barang_keluar->keterangan ?? '') }}" />
                         </div>
@@ -117,7 +117,7 @@
 
 
                     <div class="mb-3 row align-items-center">
-                        <div class="offset-sm-2 d-grid d-lg-block gap-2">
+                        <div class="offset-xl-2 d-grid d-lg-block gap-2">
                             <x-base-button type="submit" class="text-light rounded-2 shadow-sm"
                                 variant="{{ isset($barang_keluar) ? 'success' : 'primary' }}"
                                 label="{{ isset($barang_keluar) ? 'Ubah' : 'Simpan' }}"

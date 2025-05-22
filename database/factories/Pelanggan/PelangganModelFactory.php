@@ -18,7 +18,7 @@ class PelangganModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_pelanggan'    => (string) Str::uuid(),
+            'id_pelanggan'    => (string) Str::ulid(),
             'no_identitas'  => (string) Str::random(15),
             'tanggal'  => fake()->date('Y-m-d', 'now'),
             'nama'  =>  fake()->name(),

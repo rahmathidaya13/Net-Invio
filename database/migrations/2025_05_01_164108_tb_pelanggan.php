@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_pelanggan', function (Blueprint $table) {
-            $table->uuid('id_pelanggan')->primary();
+            $table->ulid('id_pelanggan')->primary();
             $table->string('no_identitas', 25);
             $table->date('tanggal');
             $table->string('nama', 50); // nama pelanggan

@@ -13,12 +13,10 @@ trait outboundValidation
             "tanggal" => 'required|date|in:' . now()->toDateString(),
             "id_barang" => [
                 'required',
-                'uuid',
                 Rule::exists('tb_barang', 'id_barang')
             ],
             "id_stok" => [
                 'required',
-                'uuid',
                 Rule::exists('tb_stok', 'id_stok')
             ],
             "pelanggan" => [

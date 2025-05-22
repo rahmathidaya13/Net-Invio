@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $data = [
             [
                 'name' => 'admin',
-                'email' => 'admin@gmail.com',
+                'email' => 'admin@example.com',
                 'password' => bcrypt('admin1234'),
                 'role' => 'admin',
                 'can_view' => true,
@@ -38,9 +38,9 @@ class DatabaseSeeder extends Seeder
             \App\Models\User::factory()->create($rows);
         }
         // \App\Models\User::factory(10)->create();
-        // \App\Models\Barang\BarangModel::factory(50)->create();
-        // \App\Models\Pelanggan\PelangganModel::factory(50)->create();
-        // \App\Models\StokBarang\StokBarangModel::factory(50)->create();
+        \App\Models\Barang\BarangModel::factory(50)->create();
+        \App\Models\Pelanggan\PelangganModel::factory(50)->create();
+        \App\Models\StokBarang\StokBarangModel::factory(50)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
