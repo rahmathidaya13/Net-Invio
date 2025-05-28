@@ -3,9 +3,10 @@
 namespace App\Imports;
 
 use App\Models\Barang\BarangModel;
-use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class BarangImport implements ToCollection, WithHeadingRow
@@ -15,6 +16,29 @@ class BarangImport implements ToCollection, WithHeadingRow
 
     public function collection(Collection $data)
     {
+        // ambil baris dari isi file excel yaitu headernya
+        $firstRow = $data->first();
+        // insialisasi header column
+        $columnHeader = [
+            'kode_barang',
+            'nama_barang',
+            'jenis',
+            'merek',
+            'tipe_model',
+            'serial_number',
+            'satuan',
+            'keterangan',
+        ];
+        // validasi isi header column atau isi file excel or csv
+        foreach ($columnHeader as $col) {
+            if (!isset($firstRow[$col])) {
+                throw ValidationException::withMessages([
+                    'error' => "Format file tidak sesuai dengan template"
+                ]);
+            }
+        }
+
+        // Simpan data
         foreach ($data as $rows) {
             // cek data barang sebelumnya, jika ada maka akan diabaikan
             $exists = BarangModel::where("kode_barang", $rows['kode_barang'])

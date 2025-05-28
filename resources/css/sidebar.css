@@ -1,0 +1,29 @@
+.sb-sidenav-menu::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 8px; /* Lebar scrollbar */
+}
+
+.sb-sidenav-menu::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+    background: transparent; /* Warna latar belakang track */
+}
+
+.sb-sidenav-menu::-webkit-scrollbar-thumb,
+html-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.3
+    ); /* Warna thumb (bagian yang bisa digeser) */
+    border-radius: 3px; /* Sudut bulat */
+}
+
+html,
+body {
+    scrollbar-width: thin; /* Atur ukuran tipis */
+    scrollbar-color: rgba(255, 255, 255, 0.3); /* Warna thumb dan track */
+}

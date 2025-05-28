@@ -12,7 +12,7 @@
 }
 
 .elevation-2 {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23) !important
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
 }
 
 .user-panel .image img {
@@ -25,3 +25,5 @@
     font-size: 8px;
     color: rgb(0, 172, 0);
 }
+
+

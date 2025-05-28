@@ -1,6 +1,6 @@
 <div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark sb-s" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu ">
             <div class="nav">
                 <div class="user-panel d-flex align-items-center">
                     <div class="image">

@@ -101,7 +101,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $user = Auth::user();
+        $user = User::where('email', Auth::user()->email)->first();
         if ($user->isActive) {
             $user->isActive = false;
             $user->save();
