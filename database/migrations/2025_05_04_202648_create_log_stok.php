@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('log_stok', function (Blueprint $table) {
             $table->ulid('id_log_stok')->primary();
-            $table->uuid('id_barang');
+            $table->ulid('id_barang');
             $table->date('tanggal');
             $table->enum('tipe', ['barang_masuk', 'barang_keluar', 'barang_tersedia']);
             $table->integer('jumlah');

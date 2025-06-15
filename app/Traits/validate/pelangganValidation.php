@@ -10,7 +10,7 @@ trait pelangganValidation
     {
         return Validator::make($request, [
             'nid' => 'required|string|max:25',
-            'tanggal' => 'required|date|before:tomorrow',
+            'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:50',
             'jk' => 'required|in:laki-laki,perempuan',
             'nohp' => 'required|digits_between:10,13|regex:/^08[0-9]{8,11}$/',
@@ -23,7 +23,6 @@ trait pelangganValidation
 
             'tanggal.required' => 'Tanggal wajib diisi.',
             'tanggal.date' => 'Format tanggal tidak valid.',
-            'tanggal.before' => 'Tanggal tidak boleh melebihi hari ini.',
 
             'nama_pelanggan.required' => 'Nama pelanggan wajib diisi.',
             'nama_pelanggan.max' => 'Nama maksimal 50 karakter.',

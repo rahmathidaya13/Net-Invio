@@ -53,7 +53,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text rounded-0"> <i class="bi bi-file-lock2-fill "></i>
                                     </span>
-                                    <input placeholder="*******" type="password"
+                                    <input autocomplete="off" placeholder="*******" type="password"
                                         class="form-control @error('password')
                                         is-invalid
                                     @enderror"

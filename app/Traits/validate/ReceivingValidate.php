@@ -10,13 +10,13 @@ trait ReceivingValidate
     {
         $rules = [
             'supplier' => 'nullable|exists:tb_supplier,id_supplier',
-            'tanggal' => 'required|date|in:' . now()->toDateString(),
+            'tanggal' => 'required|date',
             'no_warehouse' => 'required|string|max:50',
             'sumber' => 'required|string|in:internal,supplier',
             'pembeli' => 'nullable|string|max:50',
             'nota' => 'required|string|max:50',
             'jumlah' => 'required|integer|min:1',
-            'harga_brg' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:0',
             'keterangan' => 'nullable|string|max:250',
         ];
         if (!$isUpdated) {
@@ -31,7 +31,6 @@ trait ReceivingValidate
 
             'tanggal.required' => 'Tanggal wajib diisi.',
             'tanggal.date' => 'Tanggal tidak valid.',
-            'tanggal.in' => 'Tanggal hanya boleh diisi dengan hari ini.',
 
             'sumber.required' => 'Sumber pembelian wajib dipilih.',
             'sumber.string' => 'Sumber pembelian tidak valid.',
@@ -48,9 +47,9 @@ trait ReceivingValidate
             'jumlah.integer' => 'Jumlah barang tidak valid.',
             'jumlah.min' => 'Jumlah barang minimal 1.',
 
-            'harga_brg.required' => 'Harga barang wajib diisi.',
-            'harga_brg.numeric' => 'Harga barang tidak valid.',
-            'harga_brg.min' => 'Harga barang tidak valid.',
+            'harga.required' => 'Harga barang wajib diisi.',
+            'harga.numeric' => 'Harga barang tidak valid.',
+            'harga.min' => 'Harga barang tidak valid.',
 
             'lokasi.required' => 'Lokasi/tempat wajib dipilih.',
             'lokasi.string' => 'Lokasi/tempat tidak valid.',

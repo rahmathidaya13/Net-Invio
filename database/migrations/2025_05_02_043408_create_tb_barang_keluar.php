@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tb_barang_keluar', function (Blueprint $table) {
             $table->ulid('id_barang_keluar')->primary();
-            $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // ambil barang dari tb barang
-            $table->foreignUuid('id_pelanggan')->constrained('tb_pelanggan', 'id_pelanggan')->cascadeOnDelete(); //  ambil pelanggan dari tb_pelanggan
-            $table->foreignUuid('id_stok')->constrained('tb_stok', 'id_stok')->cascadeOnDelete(); //  ambil stok dari tb_stok
+            $table->foreignUlid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // ambil barang dari tb barang
+            $table->foreignUlid('id_pelanggan')->constrained('tb_pelanggan', 'id_pelanggan')->cascadeOnDelete(); //  ambil pelanggan dari tb_pelanggan
+            $table->foreignUlid('id_stok')->constrained('tb_stok', 'id_stok')->cascadeOnDelete(); //  ambil stok dari tb_stok
             $table->string('kode_barang_keluar', 25); // kode barang keluar
             $table->date('tanggal'); // tanggal barang keluar
             $table->integer('jumlah'); // jumlah barang keluar

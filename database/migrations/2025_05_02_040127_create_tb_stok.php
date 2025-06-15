@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_stok', function (Blueprint $table) {
             $table->ulid('id_stok')->primary();
-            $table->foreignUuid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // relasi dengan tabel barang
+            $table->foreignUlid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // relasi dengan tabel barang
             $table->date('tanggal'); // tanggal dibuat stok
             $table->string('no_warehouse', 50); // No Warehouse
             $table->integer('jumlah_barang'); // total stok tersedia

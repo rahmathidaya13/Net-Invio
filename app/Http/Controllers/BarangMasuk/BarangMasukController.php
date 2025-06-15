@@ -67,10 +67,9 @@ class BarangMasukController extends Controller
     {
 
         $request->merge([
-            'harga_brg' => str_replace([".", ","], "", $request->input('harga'))
+            'harga' => str_replace(['.', ','], ['', ''], $request->input('harga'))
         ]);
         $this->validateReceiving($request->all());
-
         $barangMasuk = new BarangMasukModel();
         $barangMasuk->id_barang = $request->input('id_barang');
         $barangMasuk->id_supplier = $request->input('supplier');
@@ -81,7 +80,7 @@ class BarangMasukController extends Controller
         $barangMasuk->nota = $request->input('nota');
         $barangMasuk->jumlah = $request->input('jumlah');
         $barangMasuk->lokasi = $request->input('lokasi_barang');
-        $barangMasuk->harga = floatval($request['harga_brg']);
+        $barangMasuk->harga = floatval($request['harga']);
         $barangMasuk->keterangan = $request->input('keterangan');
         $barangMasuk->save();
 
@@ -164,7 +163,7 @@ class BarangMasukController extends Controller
     {
 
         $request->merge([
-            'harga_brg' => str_replace([".", ","], "", $request->input('harga'))
+            'harga' => str_replace(['.', ','], ['', ''], $request->input('harga'))
         ]);
         $this->validateReceiving($request->all(), true);
         $barang_masuk = BarangMasukModel::findOrFail($id);
@@ -177,7 +176,7 @@ class BarangMasukController extends Controller
         $barang_masuk->nota = $request->input('nota');
         $barang_masuk->jumlah = $request->input('jumlah');
         $barang_masuk->lokasi = $request->input('lokasi_barang');
-        $barang_masuk->harga = floatval($request['harga_brg']);
+        $barang_masuk->harga = floatval($request['harga']);
         $barang_masuk->keterangan = $request->input('keterangan');
         $barang_masuk->update();
 

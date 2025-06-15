@@ -10,7 +10,7 @@ trait outboundValidation
     public function validationText($request, $isUpdated = false)
     {
         $rules = [
-            "tanggal" => 'required|date|in:' . now()->toDateString(),
+            "tanggal" => 'required|date',
             "id_barang" => [
                 'required',
                 Rule::exists('tb_barang', 'id_barang')
@@ -37,7 +37,6 @@ trait outboundValidation
         return Validator::make($request, $rules, [
             'tanggal.required' => 'Tanggal wajib diisi.',
             'tanggal.date' => 'Tanggal tidak valid.',
-            'tanggal.in' => 'Tanggal hanya boleh diisi dengan hari ini.',
 
             'barang.required' => 'Nama Barang wajib dipilih.',
             'barang.exists' => 'Nama Barang tidak ditemukan.',

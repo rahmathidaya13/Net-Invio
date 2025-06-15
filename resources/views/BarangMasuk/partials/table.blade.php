@@ -11,7 +11,7 @@
                     <ul class="dropdown-menu">
                         @can('edit')
                             <li>
-                                <x-link data-id="{{ $data->id_barang_masuk }}" label="Ubah" icon="fas fa-edit "
+                                <x-link data-id="{{ $data->id_barang_masuk }}" label="Ubah" icon="fas fa-edit"
                                     class="dropdown-item ubah" url="/receiving/edit"
                                     parameters="{{ $data->id_barang_masuk }}" />
                             </li>

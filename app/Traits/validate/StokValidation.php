@@ -16,8 +16,7 @@ trait StokValidation
             ],
             'tanggal' => [
                 'required',
-                'date',
-                'in:' . now()->toDateString(), // tidak boleh lebih dari hari ini
+                'date'
             ],
             'jumlah' => [
                 'required',
@@ -46,7 +45,6 @@ trait StokValidation
 
             'tanggal.required' => 'Tanggal wajib diisi.',
             'tanggal.date' => 'Format tanggal tidak valid.',
-            'tanggal.in' => 'Tanggal hanya boleh diisi dengan hari ini.',
 
             'keterangan.string' => 'karakter yang digunakan tidak sesuai.',
             'keterangan.max' => 'Keterangan maksimal 250 karakter.',
