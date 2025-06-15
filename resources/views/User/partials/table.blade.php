@@ -24,18 +24,29 @@
         <td class="nama align-middle">{{ ucwords($data->name) }}</td>
         <td class="email align-middle">{{ $data->email }}</td>
         <td class="align-middle">{{ ucwords($data->role) }}</td>
-        <td class="align-middle">
-            @if ($data->can_view)
-                <span class="badge bg-info me-1">Lihat</span>
-            @elseif($data->can_add)
-                <span class="badge bg-success me-1">Tambah</span>
-            @elseif($data->can_edit)
-                <span class="badge bg-warning text-dark me-1">Ubah</span>
-            @elseif($data->can_delete)
-                <span class="badge bg-danger me-1">Hapus</span>
-            @else
+        <td class="align-middle flex-wrap justify-content-center">
+            {{-- Display user permissions --}}
+            @php
+                $permissions = [
+                    'can_view' => ['label' => 'Lihat', 'class' => 'bg-info'],
+                    'can_add' => ['label' => 'Tambah', 'class' => 'bg-success'],
+                    'can_edit' => ['label' => 'Ubah', 'class' => 'bg-warning text-dark'],
+                    'can_delete' => ['label' => 'Hapus', 'class' => 'bg-danger'],
+                    'can_import' => ['label' => 'Import', 'class' => 'bg-info'],
+                    'can_download' => ['label' => 'Unduh', 'class' => 'bg-success'],
+                ];
+                $hasAny = false;
+            @endphp
+            @foreach ($permissions as $key => $info)
+                @if (!empty($data->$key))
+                    @php $hasAny = true; @endphp
+                    <span class="badge {{ $info['class'] }} me-1">{{ $info['label'] }}</span>
+                @endif
+            @endforeach
+            {{-- Display 'Tidak Ada Otorisasi' if no permissions are set --}}
+            @unless ($hasAny)
                 <span class="badge bg-secondary me-1">Tidak Ada Otorisasi</span>
-            @endif
+            @endunless
         </td>
 
     </tr>

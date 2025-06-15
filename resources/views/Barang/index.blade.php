@@ -26,33 +26,34 @@
                             class="btn btn-primary btn-sm text-light" />
                     @endcan
                     {{-- print pdf & excell --}}
-                    <div class="dropdown">
-                        <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="bi bi-printer-fill"></i> Print
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <x-link url="/barang/export" icon="bi bi-file-earmark-excel-fill" label="Excel"
-                                    class="dropdown-item" />
-                            </li>
-                            <li>
-                                <x-link url="/barang/pdf" icon="bi bi-file-earmark-pdf-fill" label="Pdf"
-                                    class="dropdown-item" />
-                            </li>
-
-                            @can('onlyDevelop')
+                    @can('download')
+                        <div class="dropdown">
+                            <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-printer-fill"></i> Print
+                            </button>
+                            <ul class="dropdown-menu">
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <x-link url="/barang/export" icon="bi bi-file-earmark-excel-fill" label="Excel"
+                                        class="dropdown-item" />
                                 </li>
                                 <li>
-                                    <x-link data-bs-toggle="modal" data-bs-target="#modalImports"
-                                        icon="bi bi-cloud-arrow-up-fill" label="Import" class="dropdown-item" />
+                                    <x-link url="/barang/pdf" icon="bi bi-file-earmark-pdf-fill" label="Pdf"
+                                        class="dropdown-item" />
                                 </li>
-                            @endcan
+                                @can('import')
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <x-link data-bs-toggle="modal" data-bs-target="#modalImports"
+                                            icon="bi bi-cloud-arrow-up-fill" label="Import" class="dropdown-item" />
+                                    </li>
+                                @endcan
 
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
+                    @endcan
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
                     <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"

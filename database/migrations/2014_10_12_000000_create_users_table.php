@@ -17,11 +17,13 @@ return new class extends Migration
             $table->string('email', 50)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['develop','admin', 'user'])->default('user');
+            $table->enum('role', ['develop', 'admin', 'user'])->default('user');
             $table->boolean('can_view')->default(true);
             $table->boolean('can_add')->default(false);
             $table->boolean('can_edit')->default(false);
             $table->boolean('can_delete')->default(false);
+            $table->boolean('can_import')->default(false);
+            $table->boolean('can_download')->default(false);
             $table->boolean('isActive')->default(false);
             $table->softDeletes();
             $table->rememberToken();

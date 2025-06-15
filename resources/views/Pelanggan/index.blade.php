@@ -27,6 +27,7 @@
                             class="btn btn-primary btn-sm text-light" />
                     @endcan
                     {{-- print pdf & excell --}}
+                    @can('download')
                     <div class="dropdown">
                         <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -44,6 +45,7 @@
                             </li>
                         </ul>
                     </div>
+                    @endcan
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
                     <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"

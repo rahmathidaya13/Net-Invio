@@ -31,6 +31,8 @@ class User extends Authenticatable
         'can_add',
         'can_edit',
         'can_delete',
+        'can_import',
+        'can_download',
         'isActive',
     ];
 

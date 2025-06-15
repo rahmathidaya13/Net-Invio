@@ -36,7 +36,7 @@ class Handler extends ExceptionHandler
             // Redirect ke halaman lain, misalnya dashboard, dengan flash message
             return redirect()
                 ->route('home') // Ganti dengan rute sesuai kebutuhanmu
-                ->with('error', 'Anda tidak memiliki akses ke halaman tersebut.');
+                ->with('error', 'Anda tidak memiliki akses ke halaman tersebut');
         }
 
         return parent::render($request, $exception);

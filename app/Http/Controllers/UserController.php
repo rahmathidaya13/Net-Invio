@@ -51,7 +51,9 @@ class UserController extends Controller
             !$request->has('can_add') &&
             !$request->has('can_edit') &&
             !$request->has('can_delete') &&
-            !$request->has('can_view')
+            !$request->has('can_view') &&
+            !$request->has('can_import') &&
+            !$request->has('can_download')
         ) {
             return back()->withErrors(['akses' => 'Minimal pilih salah satu hak akses harus dicentang'])->withInput();
         }
@@ -63,6 +65,8 @@ class UserController extends Controller
         $user->can_add = $request->boolean('can_add');
         $user->can_edit = $request->boolean('can_edit');
         $user->can_delete = $request->boolean('can_delete');
+        $user->can_import = $request->boolean('can_import');
+        $user->can_download = $request->boolean('can_download');
         $user->save();
         return redirect()->route('user.list')->with('success', 'Pengguna Baru ' . ucwords($request->name) . ' Berhasil Ditambahkan');
     }
@@ -83,6 +87,8 @@ class UserController extends Controller
         $user->can_add = $request->boolean('can_add');
         $user->can_edit = $request->boolean('can_edit');
         $user->can_delete = $request->boolean('can_delete');
+        $user->can_import = $request->boolean('can_import');
+        $user->can_download = $request->boolean('can_download');
         if ($request->filled('password')) {
             $user['password'] = Hash::make($request->input('password'));
         }

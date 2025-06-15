@@ -28,22 +28,25 @@
                     @endcan
 
                     {{-- print pdf & excell --}}
-                    <div class="dropdown">
-                        <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="bi bi-printer-fill"></i> Print
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <x-link data-bs-toggle="modal" data-bs-target="#modalExcell" icon="bi bi-file-earmark-excel-fill" label="Excel"
-                                    class="dropdown-item print_excell" />
-                            </li>
-                            <li>
-                                <x-link data-bs-toggle="modal" data-bs-target="#modalPDF"
-                                    icon="bi bi-file-earmark-pdf-fill" label="Pdf" class="dropdown-item print_pdf" />
-                            </li>
-                        </ul>
-                    </div>
+                    @can('download')
+                        <div class="dropdown">
+                            <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-printer-fill"></i> Print
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <x-link data-bs-toggle="modal" data-bs-target="#modalExcell"
+                                        icon="bi bi-file-earmark-excel-fill" label="Excel"
+                                        class="dropdown-item print_excell" />
+                                </li>
+                                <li>
+                                    <x-link data-bs-toggle="modal" data-bs-target="#modalPDF" icon="bi bi-file-earmark-pdf-fill"
+                                        label="Pdf" class="dropdown-item print_pdf" />
+                                </li>
+                            </ul>
+                        </div>
+                    @endcan
                 </div>
                 <div class="col-lg-3 mb-0 mb-lg-0 d-flex flex-wrap align-items-center gap-1 ms-lg-auto">
                     <x-form-input autofocus placeholder="Masukan pencarian..." type="search" name="keyword"
@@ -67,7 +70,15 @@
 
             </div>
             @php
-                $thead = ['No','Kode Stok', 'Tanggal', 'No.Warehouse', 'Nama Barang', 'Jumlah Barang', 'Lokasi/Tempat'];
+                $thead = [
+                    'No',
+                    'Kode Stok',
+                    'Tanggal',
+                    'No.Warehouse',
+                    'Nama Barang',
+                    'Jumlah Barang',
+                    'Lokasi/Tempat',
+                ];
             @endphp
             <x-card class="shadow-sm overflow-hidden" bodyClass="p-0" titleClass="text-start fs-6">
                 <div class="table-responsive table-responsive-fixed">
@@ -85,6 +96,6 @@
 
     </div>
 
-@include('StokBarang.modal.modalExcell')
-@include('StokBarang.modal.modalPDF')
+    @include('StokBarang.modal.modalExcell')
+    @include('StokBarang.modal.modalPDF')
 @endsection

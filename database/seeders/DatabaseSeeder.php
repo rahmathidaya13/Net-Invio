@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
                 'can_add' => true,
                 'can_edit' => true,
                 'can_delete' => true,
+                'can_import' => false,
+                'can_download' => true,
             ],
             [
                 'name' => 'develop',
@@ -32,6 +34,8 @@ class DatabaseSeeder extends Seeder
                 'can_add' => true,
                 'can_edit' => true,
                 'can_delete' => true,
+                'can_import' => true,
+                'can_download' => true,
             ],
         ];
         foreach ($data as $rows) {

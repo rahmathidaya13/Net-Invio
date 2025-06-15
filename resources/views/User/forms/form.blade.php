@@ -89,8 +89,10 @@
                         {{-- check box field --}}
                         <div class="mb-3 row align-items-center">
                             <x-form-label value="Hak Akses" class="col-xl-2 col-form-label form-label" />
-                            <div class="col-xl-4 d-flex align-items-center gap-2 flex-wrap">
+                            <div class="col-xl-5 d-flex align-items-center gap-2 flex-wrap">
                                 <x-form-check-box name="can_view" label="Can View" :checked="old('can_view', $user->can_view ?? true)" />
+                                <x-form-check-box name="can_download" label="Can Download" :checked="old('can_download', $user->can_download ?? true)" />
+                                <x-form-check-box name="can_import" label="Can Import" :checked="old('can_import', $user->can_import ?? false)" />
                                 <x-form-check-box name="can_add" label="Can Add" :checked="old('can_add', $user->can_add ?? false)" />
                                 <x-form-check-box name="can_edit" label="Can Edit" :checked="old('can_edit', $user->can_edit ?? false)" />
                                 <x-form-check-box name="can_delete" label="Can Delete" :checked="old('can_delete', $user->can_delete ?? false)" />
