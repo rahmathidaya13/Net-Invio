@@ -29,6 +29,7 @@
         <td class="align-middle text-center">
             {{ $loop->iteration + $barang_masuk->perPage() * ($barang_masuk->currentPage() - 1) }}
         </td>
+        <td class="kode_brg_masuk align-middle ">{{ $data->kode_brg_masuk }}</td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
         <td class="align-middle ">{{ $data->nota }}</td>
         <td class="align-middle ">{{ $data->no_warehouse }}</td>

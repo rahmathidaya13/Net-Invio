@@ -5,6 +5,7 @@
     <thead>
         <tr>
             <th>Tanggal</th>
+            <th>Kode Barang Masuk</th>
             <th>Nota</th>
             <th>No.Warehouse</th>
             <th>Nama Barang</th>
@@ -21,6 +22,7 @@
         @foreach ($barang_masuk as $data)
             <tr>
                 <td>{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('d-m-Y') }}</td>
+                <td>{{ $data->kode_brg_masuk }}</td>
                 <td>{{ $data->nota }}</td>
                 <td>{{ $data->no_warehouse }}</td>
                 <td>{{ $data->barang->nama_barang }}</td>

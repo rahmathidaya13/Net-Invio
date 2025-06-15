@@ -28,6 +28,7 @@
         <td class="align-middle text-center">
             {{ $loop->iteration + $stok->perPage() * ($stok->currentPage() - 1) }}
         </td>
+        <td class="kode_stok align-middle">{{ $data->kode_stok }}</td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
         <td class="align-middle">{{ $data->no_warehouse }}</td>
         <td class="nama_Barang align-middle text-start">{{ ucwords($data->barang->nama_barang) }}</td>

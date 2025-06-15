@@ -31,11 +31,11 @@
                     method="{{ isset($barang_keluar) ? 'put' : null }}"
                     parameters="{{ $barang_keluar->id_barang_keluar ?? '' }}">
 
+                    <x-horizontal-input disabled name="kode_keluar" label="Kode Barang Keluar"
+                        value="{{ old('kode_keluar', $barang_keluar->kode_barang_keluar ?? \App\Models\BarangKeluar\BarangKeluarModel::generateOutBound()) }}" />
+
                     <x-horizontal-input autofocus :readonly="isset($barang_keluar) && $barang_keluar->id_barang_keluar" type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $barang_keluar->tanggal ?? '') }}" />
-
-                    <x-horizontal-input name="kode_keluar" label="Kode Barang Keluar"
-                        value="{{ old('kode_keluar', $barang_keluar->kode_barang_keluar ?? '') }}" />
 
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="barang" value="Barang" class="col-xl-2 col-form-label form-label" />

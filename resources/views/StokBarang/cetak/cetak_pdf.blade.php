@@ -168,6 +168,7 @@
         <thead>
             <tr>
                 <th>Tanggal</th>
+                <th>Kode Stok</th>
                 <th>No.Warehouse</th>
                 <th>Nama Barang</th>
                 <th>Jumlah Barang</th>
@@ -179,6 +180,7 @@
             @foreach ($stok as $data)
                 <tr>
                     <td>{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('d-m-Y') }}</td>
+                    <td>{{ $data->kode_stok }}</td>
                     <td>{{ $data->no_warehouse }}</td>
                     <td>{{ $data->barang->nama_barang }}</td>
                     <td>{{ $data->jumlah_barang }}</td>

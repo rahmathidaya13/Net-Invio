@@ -48,7 +48,7 @@
             </div>
             <div class="card">
                 <div class="card-body p-0">
-                    <div class="table-responsive">
+                    <div class="table-responsive table-responsive-fixed">
                         <x-table theadColor="success" tbodyId="table_user" class=" text-center" :header="['No', 'Nama', 'Email', 'Role', 'Otorisasi']">
                             @include('User.partials.table', ['user' => $user])
                         </x-table>

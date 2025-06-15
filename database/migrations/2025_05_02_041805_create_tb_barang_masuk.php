@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignUlid('id_barang')->constrained('tb_barang', 'id_barang')->cascadeOnDelete(); // ambil barang dengan relasi tb barang
             $table->foreignUlid('id_supplier')->nullable()->constrained('tb_supplier', 'id_supplier')->cascadeOnDelete(); // ambil supplier dengan relasi tb supplier jika ada
             $table->date('tanggal'); // tanggal barang masuk atau barang dibeli
+            $table->string('kode_brg_masuk',50);
             $table->string('no_warehouse', 50); // No Warehouse
             $table->enum('sumber', ['internal', 'supplier'])->default('internal'); // sumber barang masuk dibeli atau dari supplier
             $table->string('pembeli', 50)->nullable(); // jika pembeli petugas atau karyawan (nama orang)

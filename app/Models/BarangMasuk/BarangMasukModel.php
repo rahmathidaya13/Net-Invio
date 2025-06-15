@@ -2,11 +2,12 @@
 
 namespace App\Models\BarangMasuk;
 
+use Illuminate\Support\Str;
 use App\Models\Barang\BarangModel;
 use App\Models\Supplier\SupplierModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class BarangMasukModel extends Model
 {
@@ -17,6 +18,7 @@ class BarangMasukModel extends Model
         'id_barang',
         'id_supplier',
         'tanggal',
+        'kode_brg_masuk',
         'no_warehouse',
         'sumber',
         'pembeli',
@@ -29,6 +31,23 @@ class BarangMasukModel extends Model
     protected $dates     = ["deleted_at"];
     public $incrementing = false;
     protected $with = ['barang', 'supplier'];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($barang_masuk) {
+            $barang_masuk->kode_brg_masuk = self::generateInBound();
+        });
+    }
+
+    public static function generateInBound()
+    {
+        $prefix = 'INB-';
+        $date = now()->format('dmy');
+        $time = now()->format('His');
+        $random = strtoupper(Str::random(3));
+        return $prefix . $date . $time . $random;
+    }
     public function barang()
     {
         // Setiap data pada tabel barang_masuk berelasi dengan satu data pada tabel barang

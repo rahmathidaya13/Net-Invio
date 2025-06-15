@@ -30,7 +30,8 @@ class BarangMasukController extends Controller
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%')
-                        ->orWhere('tb_supplier.nama', 'like', '%' . $query . '%');
+                        ->orWhere('tb_supplier.nama', 'like', '%' . $query . '%')
+                        ->orWhere('kode_brg_masuk', 'like', '%' . $query . '%');
                 });
             })
             ->orderBy('tb_barang.nama_barang', $sortOrder)

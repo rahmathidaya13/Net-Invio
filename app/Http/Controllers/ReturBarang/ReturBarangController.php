@@ -28,7 +28,8 @@ class ReturBarangController extends Controller
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%')
-                        ->orWhere('tb_pelanggan.nama', 'like', '%' . $query . '%');
+                        ->orWhere('tb_pelanggan.nama', 'like', '%' . $query . '%')
+                        ->orWhere('kode_retur', 'like', '%' . $query . '%');
                 });
             })
             ->orderBy('tb_barang.nama_barang', $sortOrder)
@@ -82,7 +83,6 @@ class ReturBarangController extends Controller
         $barang_kembali->id_barang = $request->input('id_barang');
         $barang_kembali->id_pelanggan = $request->input('id_pelanggan');
         $barang_kembali->id_supplier = $request->input('id_supplier');
-        $barang_kembali->kode_retur = $request->input('kode_retur');
         $barang_kembali->tanggal = $request->input('tanggal');
         $barang_kembali->jumlah = $request->input('jumlah');
         $barang_kembali->tipe_retur = $request->input('tipe_retur');
@@ -157,7 +157,6 @@ class ReturBarangController extends Controller
         $barang_kembali->id_barang = $request->input('id_barang');
         $barang_kembali->id_pelanggan = $request->input('id_pelanggan');
         $barang_kembali->id_supplier = $request->input('id_supplier');
-        $barang_kembali->kode_retur = $request->input('kode_retur');
         $barang_kembali->tanggal = $request->input('tanggal');
         $barang_kembali->jumlah = $request->input('jumlah');
         $barang_kembali->tipe_retur = $request->input('tipe_retur');

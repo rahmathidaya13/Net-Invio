@@ -68,6 +68,7 @@
             @php
                 $thead = [
                     'No',
+                    'Kode Barang Masuk',
                     'Tanggal',
                     'Nota',
                     'No.Warehouse',
@@ -82,7 +83,7 @@
                 ];
             @endphp
             <x-card class="shadow-sm overflow-hidden" bodyClass="p-0" titleClass="text-start fs-6">
-                <div class="table-responsive">
+                <div class="table-responsive table-responsive-fixed">
                     <x-table theadColor="success" tbodyId="barang_masuk_tabel"
                         class="text-center text-nowrap table-hover table-clickable" :header="$thead">
                         @include('BarangMasuk.partials.table', ['barang_masuk' => $barang_masuk])

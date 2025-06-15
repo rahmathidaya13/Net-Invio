@@ -87,8 +87,8 @@
                 ];
             @endphp
             <x-card class="shadow-sm overflow-hidden" bodyClass="p-0 " titleClass="text-start fs-6">
-                <div class="table-responsive">
-                    <x-table id="user_tabel" theadColor="success" tbodyId="table_user" class=" text-nowrap table-hover"
+                <div class="table-responsive table-responsive-fixed">
+                    <x-table id="user_tabel" theadColor="success" tbodyId="table_user" class="text-nowrap table-hover"
                         :header="$thead">
                         @include('Barang.partials.table', ['barang' => $barang])
                     </x-table>

@@ -10,23 +10,25 @@ export default function BarangKeluar() {
                 $("#no_warehouse").val(no_warehouse);
             });
         }
-        $(document).off("change", "#barang").on("change", "#barang", function (e) {
-            e.preventDefault();
-            let id = $(this).val();
-            if (!id) return;
-            $.ajax({
-                type: "GET",
-                url: `/stok/show/${id}`,
-                dataType: "json",
-                success: function (response) {
-                    $("#id_stok").val(response.stok?.id_stok);
-                    $("#id_barang").val(response.stok?.id_barang);
-                    $("#sisa_stok").val(response.stok?.jumlah_barang ?? 0);
-                    $("#lokasi").val(response.stok?.lokasi);
-                    $("#no_warehouse").val(response.stok?.no_warehouse);
-                },
+        $(document)
+            .off("change", "#barang")
+            .on("change", "#barang", function (e) {
+                e.preventDefault();
+                let id = $(this).val();
+                if (!id) return;
+                $.ajax({
+                    type: "GET",
+                    url: `/stok/show/${id}`,
+                    dataType: "json",
+                    success: function (response) {
+                        $("#id_stok").val(response.stok?.id_stok);
+                        $("#id_barang").val(response.stok?.id_barang);
+                        $("#sisa_stok").val(response.stok?.jumlah_barang ?? 0);
+                        $("#lokasi").val(response.stok?.lokasi);
+                        $("#no_warehouse").val(response.stok?.no_warehouse);
+                    },
+                });
             });
-        });
 
         $(document)
             .off("input", "#jumlah")
@@ -73,11 +75,16 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${data.info.firstItem ?? 0
-                            }</b> sampai <b>${data.info.lastItem ?? 0
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_brg_keluar"
+                        );
                     },
                 });
             });
@@ -98,7 +105,7 @@ export default function BarangKeluar() {
                 // buat limit
                 let setLimit = parseInt($("#limit").val());
                 // buat order
-                let setOrder = $(this).val();
+                let setOrder = $(this).val() || "desc";
                 $.ajax({
                     type: "GET",
                     url: "/outbound/list",
@@ -114,11 +121,16 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${data.info.firstItem ?? 0
-                            }</b> sampai <b>${data.info.lastItem ?? 0
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_brg_keluar"
+                        );
                     },
                 });
             });
@@ -153,11 +165,16 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${data.info.firstItem ?? 0
-                            }</b> sampai <b>${data.info.lastItem ?? 0
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_brg_keluar"
+                        );
                     },
                 });
             });
@@ -184,11 +201,16 @@ export default function BarangKeluar() {
                         $("tbody#barang_keluar_tabel").html(data.table);
                         $(".pagination-wrapper").html(data.pagination);
                         $("#informasi").html(
-                            `Menampilkan <b>${data.info.firstItem ?? 0
-                            }</b> sampai <b>${data.info.lastItem ?? 0
+                            `Menampilkan <b>${
+                                data.info.firstItem ?? 0
+                            }</b> sampai <b>${
+                                data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_brg_keluar"
+                        );
                     },
                 });
             });
@@ -206,26 +228,28 @@ export default function BarangKeluar() {
                 );
             });
 
-
         // Cek saat dokumen dibuka
-        $('#tanggal_awal,#tanggal_akhir').on('input change', function () {
-            const awalExcell = $('#tanggal_awal').val();
-            const akhirExcell = $('#tanggal_akhir').val();
+        $("#tanggal_awal,#tanggal_akhir").on("input change", function () {
+            const awalExcell = $("#tanggal_awal").val();
+            const akhirExcell = $("#tanggal_akhir").val();
             if (awalExcell && akhirExcell) {
-                $('#print_excell').prop('disabled', false);
+                $("#print_excell").prop("disabled", false);
             } else {
-                $('#print_excell').prop('disabled', true);
+                $("#print_excell").prop("disabled", true);
             }
         });
 
-        $('#tanggal_awal_pdf,#tanggal_akhir_pdf').on('input change', function () {
-            const awalPDF = $('#tanggal_awal_pdf').val();
-            const akhirPDF = $('#tanggal_akhir_pdf').val();
-            if (awalPDF && akhirPDF) {
-                $('#print_pdf').prop('disabled', false);
-            } else {
-                $('#print_pdf').prop('disabled', true);
+        $("#tanggal_awal_pdf,#tanggal_akhir_pdf").on(
+            "input change",
+            function () {
+                const awalPDF = $("#tanggal_awal_pdf").val();
+                const akhirPDF = $("#tanggal_akhir_pdf").val();
+                if (awalPDF && akhirPDF) {
+                    $("#print_pdf").prop("disabled", false);
+                } else {
+                    $("#print_pdf").prop("disabled", true);
+                }
             }
-        });
+        );
     });
 }

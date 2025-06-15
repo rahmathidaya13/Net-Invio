@@ -68,7 +68,7 @@ export default function barang() {
                 // buat limit
                 let setLimit = parseInt($("#limit").val());
                 // buat order
-                let setOrder = $(this).val();
+                let setOrder = $(this).val() || "desc";
                 $.ajax({
                     type: "GET",
                     url: "/barang/list",

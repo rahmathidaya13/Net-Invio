@@ -77,7 +77,7 @@
                 ];
             @endphp
             <x-card class="shadow-sm overflow-hidden" bodyClass="p-0" titleClass="text-start fs-6">
-                <div class="table-responsive">
+                <div class="table-responsive table-responsive-fixed">
                     <x-table theadColor="success" tbodyId="pelanggan_tabel" class=" text-nowrap table-hover table-clickable"
                         :header="$thead">
                         @include('Pelanggan.partials.table', ['pelanggan' => $pelanggan])

@@ -80,15 +80,15 @@
                 ];
             @endphp
             <x-card class="shadow-sm overflow-hidden" bodyClass="p-0" titleClass="text-start fs-6">
-                <div class="table-responsive">
+                <div class="table-responsive table-responsive-fixed">
                     <x-table theadColor="info" tbodyId="barang_keluar_tabel"
                         class="text-center text-nowrap table-hover table-clickable" :header="$thead">
                         @include('BarangKeluar.partials.table', ['barang_keluar' => $barang_keluar])
                     </x-table>
                 </div>
                 <div class="d-flex flex-wrap justify-content-lg-between align-items-center flex-column flex-lg-row p-3">
-                    {{-- @include('BarangKeluar.partials.informasi', ['barang_keluar' => $barang_keluar]) --}}
-                    {{-- @include('BarangKeluar.partials.pagination', ['barang_keluar' => $barang_keluar]) --}}
+                    @include('BarangKeluar.partials.informasi', ['barang_keluar' => $barang_keluar])
+                    @include('BarangKeluar.partials.pagination', ['barang_keluar' => $barang_keluar])
                 </div>
             </x-card>
         </div>

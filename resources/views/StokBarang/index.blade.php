@@ -67,10 +67,10 @@
 
             </div>
             @php
-                $thead = ['No', 'Tanggal', 'No.Warehouse', 'Nama Barang', 'Jumlah Barang', 'Lokasi/Tempat'];
+                $thead = ['No','Kode Stok', 'Tanggal', 'No.Warehouse', 'Nama Barang', 'Jumlah Barang', 'Lokasi/Tempat'];
             @endphp
             <x-card class="shadow-sm overflow-hidden" bodyClass="p-0" titleClass="text-start fs-6">
-                <div class="table-responsive">
+                <div class="table-responsive table-responsive-fixed">
                     <x-table theadColor="success" tbodyId="stok_tabel"
                         class="text-center text-nowrap table-hover table-clickable" :header="$thead">
                         @include('StokBarang.partials.table', ['stok' => $stok])

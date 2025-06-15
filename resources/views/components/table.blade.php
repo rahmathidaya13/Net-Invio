@@ -1,5 +1,5 @@
 @props(['header' => [], 'theadColor' => 'success', 'tbodyId' => null])
-<table {{ $attributes->merge(['class' => 'table']) }}>
+<table {{ $attributes->merge(['class' => 'table table-sticky']) }}>
     <thead class="table-{{ $theadColor }} table-striped">
         <tr>
             @if (Gate::any(['edit', 'delete', 'onlyAdmin']))

@@ -2,13 +2,14 @@
 
 namespace App\Models\BarangKeluar;
 
+use Illuminate\Support\Str;
 use App\Models\Barang\BarangModel;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Pelanggan\PelangganModel;
 use App\Models\StokBarang\StokBarangModel;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class BarangKeluarModel extends Model
 {
@@ -33,6 +34,23 @@ class BarangKeluarModel extends Model
     protected $dates     = ["deleted_at"];
     public $incrementing = false;
     protected $with = ['barang', 'pelanggan', 'stok'];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($barang_keluar) {
+            $barang_keluar->kode_barang_keluar = self::generateOutBound();
+        });
+    }
+
+    public static function generateOutBound()
+    {
+        $prefix = 'OTB-';
+        $date = now()->format('dmy');
+        $time = now()->format('His');
+        $random = strtoupper(Str::random(3));
+        return $prefix . $date . $time . $random;
+    }
     public function barang()
     {
         return $this->belongsTo(BarangModel::class, "id_barang");

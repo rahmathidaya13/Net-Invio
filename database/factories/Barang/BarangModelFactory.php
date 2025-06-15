@@ -18,8 +18,8 @@ class BarangModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_barang'    => (string) Str::ulid(),
-            'kode_barang'  => (string) Str::random(10),
+            'id_barang'    =>  Str::ulid(),
+            'kode_barang'  =>  Str::random(10),
             'nama_barang'  => fake()->name(),
             'jenis'  =>  fake()->name(),
             'merek'  =>  fake()->name(),

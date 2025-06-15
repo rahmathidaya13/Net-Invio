@@ -40,6 +40,7 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
     {
         return [
             'Tanggal',
+            'Kode Stok',
             'No.Warehouse',
             'Nama Barang',
             'Jumlah Barang',
@@ -50,8 +51,8 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
     public function styles(Worksheet $sheet)
     {
         // Merge cell A1 sampai H1 dan A2 sampai H2 untuk area judul
-        $sheet->mergeCells('A1:F1');
-        $sheet->mergeCells('A2:F2');
+        $sheet->mergeCells('A1:G1');
+        $sheet->mergeCells('A2:G2');
 
         // Styling untuk judul di baris 1 (misalnya: "Laporan Data Barang")
         $sheet->getStyle('A1')->applyFromArray([
@@ -83,7 +84,7 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         $sheet->getRowDimension(2)->setRowHeight(30);
 
         // Styling untuk header tabel (baris ke-4)
-        $sheet->getStyle('A4:F4')->applyFromArray([
+        $sheet->getStyle('A4:G4')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => '000000'], // Warna teks hitam
@@ -115,14 +116,14 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         }
 
         // Bungkus teks header jika terlalu panjang
-        $sheet->getStyle('A4:F4')->getAlignment()->setWrapText(true);
+        $sheet->getStyle('A4:G4')->getAlignment()->setWrapText(true);
 
 
         // Ambil jumlah baris terakhir yang berisi data
         $lastRow = $sheet->getHighestRow();
 
         // Styling isi tabel (baris 5 hingga baris terakhir)
-        $sheet->getStyle("A5:F$lastRow")->applyFromArray([
+        $sheet->getStyle("A5:G$lastRow")->applyFromArray([
             'font' => [
                 'size' => 12,
                 'name' => 'Calibri',
@@ -143,7 +144,7 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         // Tambahkan Zebra striping untuk baris isi (baris ganjil mulai dari baris 5)
         for ($row = 5; $row <= $lastRow; $row++) {
             if ($row % 2 != 0) {
-                $sheet->getStyle("A$row:F$row")->applyFromArray([
+                $sheet->getStyle("A$row:G$row")->applyFromArray([
                     'fill' => [
                         'fillType' => Fill::FILL_SOLID,
                         'startColor' => ['argb' => 'E6E6E6'], // Abu terang
@@ -153,7 +154,7 @@ class StokBarangExport implements FromView, WithHeadings, WithStyles, ShouldAuto
         }
 
         // Auto resize semua kolom dari A sampai E agar konten tidak terpotong
-        foreach (range('A', 'F') as $columnID) {
+        foreach (range('A', 'G') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
     }

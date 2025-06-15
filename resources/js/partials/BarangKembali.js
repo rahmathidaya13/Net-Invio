@@ -118,7 +118,10 @@ export default function BarangKembali() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_retur"
+                        );
                     },
                 });
             });
@@ -139,7 +142,7 @@ export default function BarangKembali() {
                 // buat limit
                 let setLimit = parseInt($("#limit").val());
                 // buat order
-                let setOrder = $(this).val();
+                let setOrder = $(this).val() || "desc";
                 $.ajax({
                     type: "GET",
                     url: "/retur/list",
@@ -161,7 +164,10 @@ export default function BarangKembali() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_retur"
+                        );
                     },
                 });
             });
@@ -202,7 +208,10 @@ export default function BarangKembali() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_retur"
+                        );
                     },
                 });
             });
@@ -235,7 +244,10 @@ export default function BarangKembali() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_barang,.nama_pelanggan");
+                        HighlightText(
+                            keyword,
+                            ".nama_barang,.nama_pelanggan,.kode_retur"
+                        );
                     },
                 });
             });

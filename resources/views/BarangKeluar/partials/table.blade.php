@@ -30,7 +30,7 @@
             {{ $loop->iteration + $barang_keluar->perPage() * ($barang_keluar->currentPage() - 1) }}
         </td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
-        <td class="align-middle text-start">
+        <td class="align-middle text-start kode_brg_keluar">
             {{ $data->kode_barang_keluar }}
         </td>
         <td class="nama_barang align-middle text-start">

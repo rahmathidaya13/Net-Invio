@@ -10,7 +10,6 @@ trait ReturValidation
     {
         return Validator::make($request, [
             "tanggal" => "required|date",
-            "kode_retur" => "required|string|max:50",
             "barang" => "required|exists:tb_barang,id_barang",
             "pelanggan" => "nullable|exists:tb_pelanggan,id_pelanggan",
             "supplier" => "nullable|exists:tb_supplier,id_supplier",
@@ -22,10 +21,6 @@ trait ReturValidation
         ], [
             "tanggal.required" => "Tanggal wajib diisi.",
             "tanggal.date" => "Tanggal tidak valid.",
-
-            "kode_retur.required" => "Kode retur wajib diisi.",
-            "kode_retur.string" => "Kode retur tidak valid",
-            "kode_retur.max" => "Kode retur maksimal 50 karakter",
 
             "barang.required" => "Barang wajib dipilih.",
             "barang.exists" => "Barang yang dipilih tidak terdaftar",

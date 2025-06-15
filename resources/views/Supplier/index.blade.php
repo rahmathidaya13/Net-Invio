@@ -68,7 +68,7 @@
                 $thead = ['No', 'Nama supplier', 'Kontak', 'Email', 'Alamat'];
             @endphp
             <x-card class="shadow-sm overflow-hidden" bodyClass="p-0" titleClass="text-start fs-6">
-                <div class="table-responsive">
+                <div class="table-responsive table-responsive-fixed">
                     <x-table theadColor="success" tbodyId="supplier_tabel" class=" text-nowrap table-hover table-clickable"
                         :header="$thead">
                         @include('Supplier.partials.table', ['supplier' => $supplier])

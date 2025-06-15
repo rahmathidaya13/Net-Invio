@@ -29,6 +29,11 @@
 
                 <x-form url="{{ isset($stok) ? '/stok/update' : '/stok/store' }}" method="{{ isset($stok) ? 'put' : null }}"
                     parameters="{{ $stok->id_stok ?? '' }}">
+                    <x-horizontal-input disabled label="Kode Stok" name="kode_stok" :value="old(
+                        'kode_stok',
+                        $stok->kode_stok ?? \App\Models\StokBarang\StokBarangModel::generateCodeStock(),
+                    )" />
+
                     <x-horizontal-input autofocus type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $stok->tanggal ?? '') }}" />
 

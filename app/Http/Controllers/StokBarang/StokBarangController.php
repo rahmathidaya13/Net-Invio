@@ -31,7 +31,8 @@ class StokBarangController extends Controller
             ->select('tb_stok.*', 'tb_barang.nama_barang')
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
-                    $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%');
+                    $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%')
+                        ->orWhere('kode_stok', 'like', '%' . $query . '%');
                 });
             })
             ->orderBy('tb_barang.nama_barang', $sortOrder)

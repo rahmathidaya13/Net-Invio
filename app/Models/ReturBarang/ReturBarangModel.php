@@ -2,13 +2,14 @@
 
 namespace App\Models\ReturBarang;
 
+use Illuminate\Support\Str;
 use App\Models\Barang\BarangModel;
-use App\Models\Pelanggan\PelangganModel;
 use App\Models\Supplier\SupplierModel;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Pelanggan\PelangganModel;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class ReturBarangModel extends Model
 {
@@ -19,6 +20,7 @@ class ReturBarangModel extends Model
         'id_barang',
         'id_pelanggan',
         'id_supplier',
+        'kode_retur',
         'tanggal',
         'jumlah',
         'tipe_retur',
@@ -30,6 +32,23 @@ class ReturBarangModel extends Model
     public $incrementing = false;
     protected $dates     = ["deleted_at"];
     protected $with = ['barang', 'pelanggan', 'supplier'];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($retur) {
+            $retur->kode_retur = self::generateReturCode();
+        });
+    }
+
+    public static function generateReturCode()
+    {
+        $prefix = 'RTR-';
+        $date = now()->format('dmy');
+        $time = now()->format('His');
+        $random = strtoupper(Str::random(3));
+        return $prefix . $date . $time . $random;
+    }
     public function barang()
     {
         return $this->belongsTo(BarangModel::class, 'id_barang');

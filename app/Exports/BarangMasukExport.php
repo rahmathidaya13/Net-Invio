@@ -40,6 +40,7 @@ class BarangMasukExport implements FromView, WithHeadings, WithStyles, ShouldAut
     {
         return [
             'Tanggal',
+            'Kode Barang Masuk',
             'Nota',
             'No.Warehouse',
             'Nama Barang',
@@ -56,8 +57,8 @@ class BarangMasukExport implements FromView, WithHeadings, WithStyles, ShouldAut
     public function styles(Worksheet $sheet)
     {
         // Merge cell A1 sampai H1 dan A2 sampai H2 untuk area judul
-        $sheet->mergeCells('A1:K1');
-        $sheet->mergeCells('A2:K2');
+        $sheet->mergeCells('A1:L1');
+        $sheet->mergeCells('A2:L2');
 
         // Styling untuk judul di baris 1 (misalnya: "Laporan Data Barang")
         $sheet->getStyle('A1')->applyFromArray([
@@ -89,7 +90,7 @@ class BarangMasukExport implements FromView, WithHeadings, WithStyles, ShouldAut
         $sheet->getRowDimension(2)->setRowHeight(30);
 
         // Styling untuk header tabel (baris ke-4)
-        $sheet->getStyle('A4:K4')->applyFromArray([
+        $sheet->getStyle('A4:L4')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => '000000'], // Warna teks hitam
@@ -121,14 +122,14 @@ class BarangMasukExport implements FromView, WithHeadings, WithStyles, ShouldAut
         }
 
         // Bungkus teks header jika terlalu panjang
-        $sheet->getStyle('A4:K4')->getAlignment()->setWrapText(true);
+        $sheet->getStyle('A4:L4')->getAlignment()->setWrapText(true);
 
 
         // Ambil jumlah baris terakhir yang berisi data
         $lastRow = $sheet->getHighestRow();
 
         // Styling isi tabel (baris 5 hingga baris terakhir)
-        $sheet->getStyle("A5:K$lastRow")->applyFromArray([
+        $sheet->getStyle("A5:L$lastRow")->applyFromArray([
             'font' => [
                 'size' => 12,
                 'name' => 'Calibri',
@@ -149,7 +150,7 @@ class BarangMasukExport implements FromView, WithHeadings, WithStyles, ShouldAut
         // Tambahkan Zebra striping untuk baris isi (baris ganjil mulai dari baris 5)
         for ($row = 5; $row <= $lastRow; $row++) {
             if ($row % 2 != 0) {
-                $sheet->getStyle("A$row:K$row")->applyFromArray([
+                $sheet->getStyle("A$row:L$row")->applyFromArray([
                     'fill' => [
                         'fillType' => Fill::FILL_SOLID,
                         'startColor' => ['argb' => 'E6E6E6'], // Abu terang
@@ -159,7 +160,7 @@ class BarangMasukExport implements FromView, WithHeadings, WithStyles, ShouldAut
         }
 
         // Auto resize semua kolom dari A sampai E agar konten tidak terpotong
-        foreach (range('A', 'K') as $columnID) {
+        foreach (range('A', 'L') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
     }

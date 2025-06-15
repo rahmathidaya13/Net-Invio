@@ -33,19 +33,19 @@
                             parameters="{{ $barang_kembali->id_retur ?? '' }}">
 
                             <div class="mb-3 row align-items-center">
-                                <x-form-label for="tanggal" value="Tanggal" class="form-label col-xl-3 col-form-label" />
+                                <x-form-label for="kode_retur" value="Kode Retur"
+                                    class="form-label col-xl-3 col-form-label" />
                                 <div class="col-xl-7">
-                                    <x-form-input autofocus :readonly="isset($barang_kembali) && $barang_kembali->id_retur" type="date" name="tanggal" label="Tanggal"
-                                        value="{{ old('tanggal', $barang_kembali->tanggal ?? '') }}" />
+                                    <x-form-input disabled name="kode_retur" label="Kode Retur"
+                                        value="{{ old('kode_retur', $barang_kembali->kode_retur ?? \App\Models\ReturBarang\ReturBarangModel::generateReturCode()) }}" />
                                 </div>
                             </div>
 
                             <div class="mb-3 row align-items-center">
-                                <x-form-label for="kode_retur" value="Kode Retur"
-                                    class="form-label col-xl-3 col-form-label" />
+                                <x-form-label for="tanggal" value="Tanggal" class="form-label col-xl-3 col-form-label" />
                                 <div class="col-xl-7">
-                                    <x-form-input name="kode_retur" label="Kode Retur"
-                                        value="{{ old('kode_retur', $barang_kembali->kode_retur ?? '') }}" />
+                                    <x-form-input autofocus :readonly="isset($barang_kembali) && $barang_kembali->id_retur" type="date" name="tanggal" label="Tanggal"
+                                        value="{{ old('tanggal', $barang_kembali->tanggal ?? '') }}" />
                                 </div>
                             </div>
 
@@ -164,7 +164,8 @@
                                 <div class="offset-sm-3 col-xl-7">
                                     @foreach ($errors->get('gambar.*') as $errorGroupImage)
                                         @foreach ($errorGroupImage as $errorItem)
-                                            <small class="text-danger" style="font-size: 0.875em">{{ $errorItem }}</small>
+                                            <small class="text-danger"
+                                                style="font-size: 0.875em">{{ $errorItem }}</small>
                                         @endforeach
                                     @endforeach
                                 </div>
