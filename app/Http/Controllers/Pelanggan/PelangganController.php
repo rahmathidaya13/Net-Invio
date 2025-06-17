@@ -22,7 +22,8 @@ class PelangganController extends Controller
         $pelanggan = PelangganModel::when($query, function ($q) use ($query) {
             $q->where(function ($subQuery) use ($query) {
                 $subQuery->where('nama', 'like', '%' . $query . '%')
-                    ->orWhere('nohp', 'like', '%' . $query . '%');
+                    ->orWhere('nohp', 'like', '%' . $query . '%')
+                    ->orWhere('no_identitas', 'like', '%' . $query . '%');
             });
         })->latest()
             ->orderBy('nama', $sortOrder)

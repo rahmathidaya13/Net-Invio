@@ -61,7 +61,10 @@ export default function Pelanggan() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_pelanggan,.nohp");
+                        HighlightText(
+                            keyword,
+                            ".nama_pelanggan,.nohp,.no_identitas"
+                        );
                     },
                 });
             });
@@ -104,7 +107,10 @@ export default function Pelanggan() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_pelanggan,.nohp");
+                        HighlightText(
+                            keyword,
+                            ".nama_pelanggan,.nohp,.no_identitas"
+                        );
                     },
                 });
             });
@@ -145,7 +151,10 @@ export default function Pelanggan() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_pelanggan,.nohp");
+                        HighlightText(
+                            keyword,
+                            ".nama_pelanggan,.nohp,.no_identitas"
+                        );
                     },
                 });
             });
@@ -178,7 +187,10 @@ export default function Pelanggan() {
                                 data.info.lastItem ?? 0
                             }</b> dari <b>${data.info.total ?? 0}</b> item`
                         );
-                        HighlightText(keyword, ".nama_pelanggan,.nohp");
+                        HighlightText(
+                            keyword,
+                            ".nama_pelanggan,.nohp,.no_identitas"
+                        );
                     },
                 });
             });
