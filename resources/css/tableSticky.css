@@ -1,0 +1,20 @@
+/* Pastikan Anda menargetkan elemen yang memiliki scroll bar,
+   misalnya div yang membungkus tabel sticky Anda */
+.table-responsive::-webkit-scrollbar {
+  width: 10px; /* Lebar scroll bar vertikal */
+  height: 10px; /* Tinggi scroll bar horizontal */
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Warna track scroll bar */
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #b4b4b4; /* Warna thumb (pegangan) scroll bar */
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Warna thumb saat dihover */
+}
