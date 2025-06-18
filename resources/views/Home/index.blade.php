@@ -24,15 +24,15 @@
             Anda login sebagai <b>{{ auth()->user()->role }}</b>, Semoga harimu selalu produktif dan selalu
             menyenangkan.</span>
     </div>
-    <div class="row gap-2 gap-xl-0 ">
+    <div class="row gap-2 gap-xl-0 g-xl-2 row-cols-1 row-cols-xl-4">
 
         {{-- count data barang --}}
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-6">
             <div class="card shadow-sm text-bg-primary card-gradient border-0 rounded-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h6 class="text-uppercase  mb-1">Stok Barang</h6>
+                            <h4 class="text-uppercase mb-1">Stok Barang</h4>
                             <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $stokAll }}</h4>
                         </div>
@@ -51,12 +51,12 @@
         </div>
 
         {{-- count data barang masuk --}}
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-6">
             <div class="card shadow-sm text-bg-primary card-gradient border-0 rounded-4">
                 <div class="card-body ">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h6 class="text-uppercase mb-1">Barang Masuk</h6>
+                            <h4 class="text-uppercase mb-1">Barang Masuk</h4>
                             <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $brgMasukAll }}</h4>
                         </div>
@@ -75,12 +75,12 @@
         </div>
 
 
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-6">
             <div class="card shadow-sm text-bg-primary card-gradient border-0 rounded-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h6 class="text-uppercase mb-1">Barang Keluar</h6>
+                            <h4 class="text-uppercase mb-1">Barang Keluar</h4>
                             <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $brgKeluarAll }}</h4>
                         </div>
@@ -99,12 +99,12 @@
         </div>
 
 
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-6">
             <div class="card shadow-sm text-bg-primary card-gradient border-0 rounded-4">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h6 class="text-uppercase mb-1">Pelanggan</h6>
+                            <h4 class="text-uppercase mb-1">Pelanggan</h4>
                             <small>period: {{ \Carbon\Carbon::now()->format('m-Y') }}</small>
                             <h4 class="mb-0 fw-semibold">{{ $pelangganAll }}</h4>
                         </div>

@@ -72,12 +72,12 @@
     "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BQchfO9r.css",
+    "file": "assets/app-BZCJvZmx.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BzUcf9DL.js",
+    "file": "assets/app-CBxsaOx9.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -94,49 +94,49 @@
     ]
   },
   "resources/js/partials/Barang.js": {
-    "file": "assets/Barang-C2HA2JbN.js",
+    "file": "assets/Barang-MZmwxrFo.js",
     "name": "Barang",
     "src": "resources/js/partials/Barang.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/BarangKeluar.js": {
-    "file": "assets/BarangKeluar-RXtSRtve.js",
+    "file": "assets/BarangKeluar-72BwAlWt.js",
     "name": "BarangKeluar",
     "src": "resources/js/partials/BarangKeluar.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/BarangKembali.js": {
-    "file": "assets/BarangKembali-Vu_tn0_u.js",
+    "file": "assets/BarangKembali-6YWJnpZG.js",
     "name": "BarangKembali",
     "src": "resources/js/partials/BarangKembali.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/BarangMasuk.js": {
-    "file": "assets/BarangMasuk-DcS_e98c.js",
+    "file": "assets/BarangMasuk-DaNayyDI.js",
     "name": "BarangMasuk",
     "src": "resources/js/partials/BarangMasuk.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/Pelanggan.js": {
-    "file": "assets/Pelanggan-pvz89HyP.js",
+    "file": "assets/Pelanggan-Dos494cr.js",
     "name": "Pelanggan",
     "src": "resources/js/partials/Pelanggan.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/Stok.js": {
-    "file": "assets/Stok-BFR5G8Up.js",
+    "file": "assets/Stok-3FWXHiNJ.js",
     "name": "Stok",
     "src": "resources/js/partials/Stok.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/Supplier.js": {
-    "file": "assets/Supplier-DndreND7.js",
+    "file": "assets/Supplier-6PfRIA68.js",
     "name": "Supplier",
     "src": "resources/js/partials/Supplier.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/Users.js": {
-    "file": "assets/Users-DL3CN8k2.js",
+    "file": "assets/Users-BPqWTWnc.js",
     "name": "Users",
     "src": "resources/js/partials/Users.js",
     "isDynamicEntry": true
