@@ -5,6 +5,7 @@ namespace Database\Factories\BarangMasuk;
 use Illuminate\Support\Str;
 use App\Models\Barang\BarangModel;
 use App\Models\BarangMasuk\BarangMasukModel;
+use App\Models\Supplier\SupplierModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +21,9 @@ class BarangMasukModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_barang_masuk' => Str::ulid(),
+            'id_barang_masuk' => (string) Str::ulid(),
             'id_barang' => BarangModel::factory(),
+            'id_supplier' => SupplierModel::factory(),
             'tanggal' => fake()->dateTimeBetween('-3 days', 'now')->format('Y-m-d'),
             'kode_brg_masuk' => BarangMasukModel::generateInBound(),
             'no_warehouse' => fake()->randomNumber(5, true),
@@ -30,8 +32,8 @@ class BarangMasukModelFactory extends Factory
             'nota' => fake()->sentence(3),
             'jumlah' => fake()->numberBetween(1, 100),
             'harga' => fake()->randomFloat(2, 1000, 100000),
+            'lokasi' => fake()->randomElement(['gudang-1', 'gudang-2']),
             'keterangan' => fake()->sentence(6),
-            'lokasi' => fake()->randomElement(['Gudang A', 'Gudang B', 'Gudang C']),
         ];
     }
 }

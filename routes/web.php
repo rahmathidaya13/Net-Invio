@@ -107,7 +107,7 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
         Route::get('/receiving/show/{id}', 'show')->name('receiving.show');
         Route::post('/receiving/store', 'store')->name('receiving.store')->middleware('can:add');
         Route::put('/receiving/update/{id}', 'update')->name('receiving.update')->middleware('can:edit');
-        Route::delete('/receiving/destroy/{id}', 'destroy')->name('receiving.destroy')->middleware('can:delete');
+        Route::delete('/receiving/destroy/{id}', 'destroy')->name('receiving.destroy');
     });
 
     // this barang masuk controller
@@ -155,10 +155,12 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
         Route::any('/pelanggan/export', 'export')->name('pelanggan.export');
         Route::any('/pelanggan/pdf', 'printPdf')->name('pelanggan.pdf');
     });
+
     Route::controller(SupplierExportController::class)->group(function () {
         Route::any('/supplier/export', 'export')->name('supplier.export');
         Route::any('/supplier/pdf', 'printPdf')->name('supplier.pdf');
     });
+
     // Testing import only
     Route::controller(BarangImportController::class)->group(function () {
         Route::post('/barang/import', 'imports')->name('barang.import')->middleware('can:onlyDevelop');

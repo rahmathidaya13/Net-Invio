@@ -4,6 +4,7 @@ import liveSearch from "../helpers/LiveSearch";
 import paginations from "../helpers/Pagination";
 import sortOrder from "../helpers/SortOrder";
 import Currency from "../helpers/Currency";
+import SweatAlert from "../helpers/SweatAlert";
 export default function BarangMasuk() {
     $(function () {
         $(document)

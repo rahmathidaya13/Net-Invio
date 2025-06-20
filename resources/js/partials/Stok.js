@@ -3,6 +3,7 @@ import liveSearch from "../helpers/LiveSearch";
 import paginations from "../helpers/Pagination";
 import sortOrder from "../helpers/SortOrder";
 import TextToNumber from "../helpers/TextToNumber";
+import SweatAlert from "../helpers/SweatAlert";
 export default function Stok() {
     $(function () {
         $(document)
