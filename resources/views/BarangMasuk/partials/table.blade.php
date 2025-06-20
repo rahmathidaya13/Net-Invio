@@ -45,6 +45,6 @@
 @endforeach
 @empty($data)
     <tr>
-        <td colspan="13" class="text-center">Tidak ada data ditemukan</td>
+        <td colspan="14" class="text-center">Tidak ada data ditemukan</td>
     </tr>
 @endempty
