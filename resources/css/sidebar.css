@@ -24,6 +24,6 @@ body::-webkit-scrollbar-thumb {
 
 html,
 body {
-    scrollbar-width: thinx; /* Atur ukuran tipis */
+    scrollbar-width: thin; /* Atur ukuran tipis */
     scrollbar-color: rgba(255, 255, 255, 0.3); /* Warna thumb dan track */
 }

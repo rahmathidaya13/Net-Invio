@@ -1,3 +1,4 @@
+import TextToNumber from "../helpers/TextToNumber";
 export default function BarangMasuk() {
     $(function () {
         $(document)
