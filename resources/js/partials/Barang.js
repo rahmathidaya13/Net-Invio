@@ -1,3 +1,4 @@
+import destroy from "../helpers/Destroys";
 import Limit from "../helpers/Limit";
 import liveSearch from "../helpers/LiveSearch";
 import paginations from "../helpers/Pagination";
@@ -45,18 +46,13 @@ export default function barang() {
         });
 
         // hapus data record
-        $(document)
-            .off("click", ".hapus")
-            .on("click", ".hapus", function (e) {
-                e.stopPropagation(); // Mencegah event bubbling ke elemen parent
-                let data = $(this).data("data");
-                // let form = $("#deleted_" + data.id_barang);
-                SweatAlert(
-                    `/barang/destroy/${data.id_barang}`,
-                    data.nama_barang,
-                    "delete"
-                );
-            });
+        destroy({
+            selector: ".hapus",
+            data: () => $(".hapus").data("data"),
+            id: 'id_barang',
+            column: "nama_barang",
+            url: "/barang/destroy",
+        });
 
         // import
         $(document).on("change", "#file_import", function (e) {

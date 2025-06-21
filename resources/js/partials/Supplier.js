@@ -3,6 +3,7 @@ import Limit from "../helpers/Limit";
 import liveSearch from "../helpers/LiveSearch";
 import paginations from "../helpers/Pagination";
 import sortOrder from "../helpers/SortOrder";
+import destroy from "../helpers/Destroys";
 export default function Supplier() {
     $(function () {
         $(document)
@@ -52,17 +53,14 @@ export default function Supplier() {
         });
 
         // hapuss per item
-        $(document)
-            .off("click", ".hapus")
-            .on("click", ".hapus", function (e) {
-                e.stopPropagation(); // Mencegah event bubbling ke elemen parent
-                let data = $(this).data("data");
-                // let form = $("#deleted_" + data.id_barang);
-                SweatAlert(
-                    `/supplier/destroy/${data.id_supplier}`,
-                    data.nama,
-                    "delete"
-                );
-            });
+        destroy({
+            selector: ".hapus",
+            data: () => $(".hapus").data("data"),
+            id: 'id_supplier',
+            column: "nama",
+            url: "/supplier/destroy",
+        });
+
+
     });
 }

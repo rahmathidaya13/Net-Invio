@@ -3,6 +3,7 @@ import Limit from "../helpers/Limit";
 import liveSearch from "../helpers/LiveSearch";
 import paginations from "../helpers/Pagination";
 import sortOrder from "../helpers/SortOrder";
+import destroy from "../helpers/Destroys";
 export default function Pelanggan() {
     $(function () {
         // convert type text input can number
@@ -63,17 +64,14 @@ export default function Pelanggan() {
         });
 
         // hapuss per item
-        $(document)
-            .off("change", ".hapus")
-            .on("click", ".hapus", function (e) {
-                e.preventDefault(); // Mencegah event bubbling ke elemen parent
-                let data = $(this).data("data");
-                SweatAlert(
-                    `/pelanggan/destroy/${data.id_pelanggan}`,
-                    data.nama,
-                    "delete"
-                );
-            });
+        destroy({
+            selector: ".hapus",
+            data: () => $(".hapus").data("data"),
+            id: 'id_pelanggan',
+            column: "nama",
+            url: "/pelanggan/destroy",
+        });
+
 
         // Cek saat dokumen dibuka
         $("#tanggal_awal,#tanggal_akhir").on("input change", function () {

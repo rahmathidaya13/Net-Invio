@@ -5,6 +5,7 @@ import paginations from "../helpers/Pagination";
 import sortOrder from "../helpers/SortOrder";
 import Currency from "../helpers/Currency";
 import SweatAlert from "../helpers/SweatAlert";
+import destroy from "../helpers/Destroys";
 export default function BarangMasuk() {
     $(function () {
         $(document)
@@ -78,17 +79,13 @@ export default function BarangMasuk() {
         });
 
         // hapuss per item
-        $(document)
-            .off("change", ".hapus")
-            .on("click", ".hapus", function (e) {
-                e.preventDefault(); // Mencegah event bubbling ke elemen parent
-                let data = $(this).data("data");
-                SweatAlert(
-                    `/receiving/destroy/${data.id_barang_masuk}`,
-                    data.nama_barang,
-                    "delete"
-                );
-            });
+        destroy({
+            selector: ".hapus",
+            data: () => $(".hapus").data("data"),
+            id: 'id_barang_masuk',
+            column: "nama_barang",
+            url: "/receiving/destroy",
+        });
 
         // Cek saat dokumen dibuka
         $("#tanggal_awal,#tanggal_akhir").on("input change", function () {

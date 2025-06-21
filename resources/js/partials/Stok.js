@@ -4,6 +4,7 @@ import paginations from "../helpers/Pagination";
 import sortOrder from "../helpers/SortOrder";
 import TextToNumber from "../helpers/TextToNumber";
 import SweatAlert from "../helpers/SweatAlert";
+import destroy from "../helpers/Destroys";
 export default function Stok() {
     $(function () {
         $(document)
@@ -55,18 +56,14 @@ export default function Stok() {
         })
 
         // hapuss per item
-        $(document)
-            .off("click", ".hapus")
-            .on("click", ".hapus", function (e) {
-                e.preventDefault(); // Mencegah event bubbling ke elemen parent
-                let data = $(this).data("data");
-                // let form = $("#deleted_" + data.id_barang);
-                SweatAlert(
-                    `/stok/destroy/${data.id_stok}`,
-                    data.nama_barang,
-                    "delete"
-                );
-            });
+        destroy({
+            selector: ".hapus",
+            data: () => $(".hapus").data("data"),
+            id: "id_stok",
+            column: "nama_barang",
+            url: "/stok/destroy",
+        })
+
 
         // Cek saat dokumen dibuka
         $("#tanggal_awal,#tanggal_akhir").on("input change", function () {
