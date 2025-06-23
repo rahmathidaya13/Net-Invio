@@ -5,17 +5,19 @@
 @section('content')
     <x-bread-crumbs :items="[['text' => 'Dashboard', 'url' => '/home']]" />
 
-    {{-- <div class="card mb-4">
-        <div class="card-body">
-            DataTables is a third party plugin that is used to generate the demo table below. For more information about
-            DataTables, please visit the
-            <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-            .
+    @canany(['onlyAdmin', 'onlyDevelop'])
+        <div class="d-flex justify-content-end flex-wrap gap-1 mb-3 ">
+            <x-link icon="fas fa-undo-alt" url="/restore/create" label="Restore" class="btn-sm btn btn-dark rounded-0" />
+            <x-link icon="fas fa-database" url="/backup" label="Backup" class="btn-sm btn btn-primary rounded-0" />
         </div>
-    </div> --}}
+    @endcanany
 
     @if ($message = Session::get('error'))
         <x-alert type="danger" message="{{ $message }}" />
+    @endif
+    @if ($message = Session::get('success'))
+        <x-alert type="success" message="{{ $message }}" />
+        <iframe class="d-none" src="{{ route('backup.download', ['file' => session('fileBackup')]) }}"></iframe>
     @endif
 
     <div class="callout callout-info d-grid">
@@ -24,6 +26,7 @@
             Anda login sebagai <b>{{ auth()->user()->role }}</b>, Semoga harimu selalu produktif dan selalu
             menyenangkan.</span>
     </div>
+
     <div class="row gap-2 gap-xl-0 g-xl-2 row-cols-1 row-cols-xl-4">
 
         {{-- count data barang --}}

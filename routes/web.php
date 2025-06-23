@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Backup\BackupController;
 use App\Models\BarangKeluar\BarangKeluarModel;
 use App\Http\Controllers\Barang\BarangController;
 use App\Http\Controllers\Supplier\SupplierController;
@@ -164,5 +165,13 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     // Testing import only
     Route::controller(BarangImportController::class)->group(function () {
         Route::post('/barang/import', 'imports')->name('barang.import')->middleware('can:onlyDevelop');
+    });
+
+    // this backup controller
+    Route::controller(BackupController::class)->middleware('can:manage-backup')->group(function () {
+        Route::get('/backup', 'backup')->name('backup');
+        Route::get('/backup/download/${file}', 'download')->name('backup.download');
+        Route::get('/restore/create', 'create')->name('restore.create');
+        Route::post('/restore/store', 'store')->name('restore.store');
     });
 });

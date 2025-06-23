@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers\Backup;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+
+class BackupController extends Controller
+{
+    public function backup()
+    {
+        $database = config('database.connections.mysql.database');
+        $username = config('database.connections.mysql.username');
+        $password = config('database.connections.mysql.password');
+        $host = config('database.connections.mysql.host');
+        $fileName = 'backup_' . now()->format('Y-m-d_H-i-s') . '.sql';
+        $storagePath = storage_path('app/backups/' . $fileName);
+
+        $command = "mysqldump --user=$username --password=$password --host=$host $database > $storagePath";
+        $result = null;
+        $output = null;
+        exec($command, $output, $result);
+        if ($result !== 0) {
+            return back()->with('error', 'Backup gagal. Periksa mysqldump atau koneksi.');
+        }
+
+        return back()->with([
+            'success' => 'Backup berhasil dibuat file ' . $fileName,
+            'fileBackup' => $fileName,
+        ]);
+    }
+
+    public function download($file)
+    {
+        $path = storage_path('app/backups/' . $file);
+        if (!file_exists($path)) {
+            abort(404);
+        }
+        return response()->download($path)->deleteFileAfterSend(true);
+    }
+
+    public function create()
+    {
+        return view('Home.BackupForm.form');
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'restore' => 'required|file|mimetypes:text/plain,application/sql,text/x-sql,text/x-plain|max:5120',
+
+        ], [
+            'restore.required' => 'Pilih file backup yang ingin dipilih.',
+            'restore.file' => 'File backup harus berupa file.',
+            'restore.mimes' => 'File backup harus berupa file SQL.',
+            'restore.max' => 'Ukuran file backup tidak boleh lebih dari 5MB.',
+        ]);
+
+        $files = $request->file('restore');
+        $sql = File::get($files->getRealPath());
+        try {
+            DB::unprepared($sql);
+            return back()->with('success', 'Backup berhasil dikembalikan dari file ' . $files->getClientOriginalName());
+        } catch (\Exception $err) {
+            return back()->with('error', 'Backup gagal dikembalikan. Pastikan file backup valid ' . $err->getMessage());
+        }
+    }
+}

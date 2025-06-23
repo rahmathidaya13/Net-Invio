@@ -57,5 +57,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('download', fn(User $user) => $user->can_download);
         Gate::define('onlyAdmin', fn(User $user) => $user->role === 'admin');
         Gate::define('onlyDevelop',  fn(User $user) => $user->role === 'develop');
+        Gate::define('manage-backup',  fn(User $user) => in_array($user->role, ['admin', 'develop']));
     }
 }

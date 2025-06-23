@@ -9,6 +9,8 @@ const routes = {
     "/outbound/": () => import("@/partials/BarangKeluar.js"),
     "/retur/": () => import("@/partials/BarangKembali.js"),
     "/user/": () => import("@/partials/Users.js"),
+    "/home": () => import("@/partials/Home.js"),
+    "/restore/": () => import("@/partials/Restore.js"),
 };
 for (const route in routes) {
     // Cocokkan dengan semua variasi jika menggunakan method startwith
