@@ -22,8 +22,6 @@ class StokBarangController extends Controller
     use StokValidation;
     public function index(Request $request)
     {
-        $barang_masuk = BarangMasukModel::select('id_barang_masuk', 'id_barang', 'tanggal', 'jumlah')->get();
-
         $limit = $request->get('limit', 10);
         $query = $request->get('keyword', '');
         $sortOrder = $request->get('sort_order', 'desc');
@@ -49,7 +47,7 @@ class StokBarangController extends Controller
                 ],
             ]);
         }
-        return view('StokBarang.index', compact('stok', 'barang_masuk'));
+        return view('StokBarang.index', compact('stok'));
     }
 
     /**

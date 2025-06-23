@@ -15,7 +15,7 @@ export default function liveSearch(options) {
         .on("input", inputSelector, function (e) {
             e.preventDefault();
             // ambil keyword
-            let keyword = $(this).val();
+            let keyword = $(this).val().toUpperCase();
             if (keyword.length > 0) {
                 $("#text-result").removeClass("d-none").addClass("d-block");
                 $("#results").text(` "${keyword}" `);
