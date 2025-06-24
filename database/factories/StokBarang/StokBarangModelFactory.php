@@ -24,8 +24,8 @@ class StokBarangModelFactory extends Factory
             'id_stok'    => (string) Str::ulid(),
             'id_barang'    => BarangModel::factory(),
             'kode_stok'    => StokBarangModel::generateCodeStock(),
-            'no_warehouse'    => (string) Str::random(10),
-            'tanggal'    => fake()->date('Y-m-d', Carbon::now()),
+            'no_warehouse'    => StokBarangModel::noWarehouse(),
+            'tanggal'    => fake()->dateTimeBetween('-3 days', 'now')->format('Y-m-d'),
             'jumlah_barang'    => fake()->randomDigit(),
             'lokasi'    => fake()->randomElement(['gudang-1', 'gudang-2']),
         ];

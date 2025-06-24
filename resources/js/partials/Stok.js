@@ -22,7 +22,7 @@ export default function Stok() {
             getSortOrder: () => $("#sort_order").val() || "desc",
             tableId: "tbody#stok_tabel",
             url: "/stok/list",
-            highlightText: ".nama_barang,.kode_stok"
+            highlightText: ".nama_barang,.kode_stok,.warehouse"
         })
 
         // field untuk set order  dalam table
@@ -32,7 +32,7 @@ export default function Stok() {
             getLimit: () => parseInt($("#limit").val()),
             tableId: "tbody#stok_tabel",
             url: "/stok/list",
-            highlightText: ".nama_barang,.kode_stok"
+            highlightText: ".nama_barang,.kode_stok,.warehouse"
         })
 
         // field untuk ganti batas item dalam table
@@ -42,7 +42,7 @@ export default function Stok() {
             getSortOrder: () => $("#sort_order").val() || "desc",
             tableId: "tbody#stok_tabel",
             url: "/stok/list",
-            highlightText: ".nama_barang,.kode_stok"
+            highlightText: ".nama_barang,.kode_stok,.warehouse"
         })
 
         // set pagination parameters
@@ -52,7 +52,7 @@ export default function Stok() {
             getLimit: () => parseInt($("#limit").val()),
             getSortOrder: () => $("#sort_order").val() || "desc",
             tableId: "tbody#stok_tabel",
-            highlightText: ".nama_barang,.kode_stok"
+            highlightText: ".nama_barang,.kode_stok,.warehouse"
         })
 
         // hapuss per item

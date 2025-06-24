@@ -7,7 +7,6 @@
             <th>Tanggal</th>
             <th>Kode Barang Masuk</th>
             <th>Nota</th>
-            <th>No.Warehouse</th>
             <th>Nama Barang</th>
             <th>Supplier</th>
             <th>Sumber</th>
@@ -24,7 +23,6 @@
                 <td>{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('d-m-Y') }}</td>
                 <td>{{ $data->kode_brg_masuk }}</td>
                 <td>{{ $data->nota }}</td>
-                <td>{{ $data->no_warehouse }}</td>
                 <td>{{ $data->barang->nama_barang }}</td>
                 <td>{{ ucwords($data->supplier->nama ?? '-') }}</td>
                 <td>{{ $data->sumber }}</td>

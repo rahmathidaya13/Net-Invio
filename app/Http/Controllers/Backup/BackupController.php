@@ -16,13 +16,19 @@ class BackupController extends Controller
         $password = config('database.connections.mysql.password');
         $host = config('database.connections.mysql.host');
         $fileName = 'backup_' . now()->format('Y-m-d_H-i-s') . '.sql';
-        $storagePath = storage_path('app/backups/' . $fileName);
+        $folder = storage_path('app/backups/');
+        $storagePath = $folder . '/' . $fileName;
+
+        // Pastikan folder ada
+        if (!file_exists($folder)) {
+            mkdir($folder, 0755, true);
+        }
 
         $command = "mysqldump --user=$username --password=$password --host=$host $database > $storagePath";
         $result = null;
         $output = null;
         exec($command, $output, $result);
-        if ($result !== 0) {
+        if ($result !== 0 || !file_exists($storagePath)) {
             return back()->with('error', 'Backup gagal. Periksa mysqldump atau koneksi.');
         }
 

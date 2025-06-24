@@ -20,26 +20,25 @@
                 </div>
             </div>
 
-            <x-card class="shadow-sm overflow-hidden" bodyClass="text-bg-light shadow-sm p-4"
-                headerClass="text-uppercase text-bg-dark p-3" titleClass="text-start fs-5">
-                {{-- title --}}
-                <x-slot name="header">
-                    <h5 class="card-title text-start mb-0">Form Restore</h5>
-                </x-slot>
-                {{-- content --}}
-                <x-form url="/restore/store">
-                    <div class="col-xl-5 mb-2 d-flex justify-content-center">
-                        <img id="preview" src="{{ asset('assets/icon/no-image.svg') }}" width="250" height="250"
-                            alt="">
-                    </div>
-                    <div class="mb-3 row align-items-center">
-                        <div class="col-xl-5">
-                            <x-form-input name="restore" type="file" accept=".sql" :value="old('restore')" />
-                            <x-base-button class="btn-primary mt-3" :block="true" label="Restore" variant="primary" />
+            <div class="row d-flex justify-content-center text-bg-light border rounded-3 border-secondary-subtle shadow-sm p-3">
+                <div class="col-xl-12">
+                    <x-form url="/restore/store">
+                        <div class="mb-2 d-flex justify-content-center">
+                            <img id="preview" src="{{ asset('assets/icon/no-image.svg') }}" width="250" height="250"
+                                alt="preview">
                         </div>
-                    </div>
-                </x-form>
-            </x-card>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-xl-5">
+                                <x-form-input name="restore" type="file" accept=".sql" :value="old('restore')" />
+                                <x-base-button icon="fas fa-undo-alt" class="mt-3 text-white rounded-0" :block="true" label="Restore"
+                                    variant="info" />
+                            </div>
+                        </div>
+                    </x-form>
+                </div>
+            </div>
+
+
         </div>
     </div>
 @endsection

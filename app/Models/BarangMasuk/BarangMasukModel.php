@@ -19,7 +19,6 @@ class BarangMasukModel extends Model
         'id_supplier',
         'tanggal',
         'kode_brg_masuk',
-        'no_warehouse',
         'sumber',
         'pembeli',
         'nota',

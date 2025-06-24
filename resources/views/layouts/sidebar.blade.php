@@ -16,9 +16,11 @@
                             {{ Auth::user()->role }}</small>
                     </div>
                 </div>
-
+                @php
+                    $isActive = request()->is('home*') || request()->is('restore*') ? 'active text-bg-primary' : '';
+                @endphp
                 <div class="sb-sidenav-menu-heading">Features</div>
-                <x-link class="nav-link {{ request()->is('home*') ? 'active text-bg-primary' : '' }}" url="/home">
+                <x-link class="nav-link {{ $isActive }}" url="/home">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </x-link>

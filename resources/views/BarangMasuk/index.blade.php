@@ -73,7 +73,6 @@
                     'Kode Barang Masuk',
                     'Tanggal',
                     'Nota',
-                    'No.Warehouse',
                     'Nama Barang',
                     'Supplier',
                     'Sumber',

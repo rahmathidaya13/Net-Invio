@@ -30,7 +30,7 @@
         </td>
         <td class="kode_stok align-middle">{{ $data->kode_stok }}</td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
-        <td class="align-middle">{{ $data->no_warehouse }}</td>
+        <td class="warehouse align-middle">{{ $data->no_warehouse }}</td>
         <td class="nama_barang align-middle text-start">{{ ucwords($data->barang->nama_barang) }}</td>
         <td class="align-middle">{{ $data->jumlah_barang }}</td>
         <td class="align-middle text-start text-center">{{ ucwords($data->lokasi) }}</td>

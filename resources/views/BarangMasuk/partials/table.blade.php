@@ -32,7 +32,6 @@
         <td class="kode_brg_masuk align-middle ">{{ $data->kode_brg_masuk }}</td>
         <td class="align-middle">{{ Carbon\Carbon::parse($data->tanggal)->translatedFormat('d M Y') }}</td>
         <td class="align-middle ">{{ $data->nota }}</td>
-        <td class="align-middle ">{{ $data->no_warehouse }}</td>
         <td class="nama_barang align-middle text-start">{{ ucwords($data->barang->nama_barang) }}</td>
         <td class="nama_supplier align-middle">{{ ucwords($data->supplier->nama ?? '-') }}</td>
         <td class="align-middle ">{{ ucwords($data->sumber) }}</td>
@@ -45,6 +44,6 @@
 @endforeach
 @empty($data)
     <tr>
-        <td colspan="14" class="text-center">Tidak ada data ditemukan</td>
+        <td colspan="13" class="text-center">Tidak ada data ditemukan</td>
     </tr>
 @endempty

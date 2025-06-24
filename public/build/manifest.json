@@ -72,12 +72,12 @@
     "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BZCJvZmx.css",
+    "file": "assets/app-ANqtoflp.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-CBxsaOx9.js",
+    "file": "assets/app-B1arsyuQ.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -90,50 +90,85 @@
       "resources/js/partials/BarangMasuk.js",
       "resources/js/partials/BarangKeluar.js",
       "resources/js/partials/BarangKembali.js",
-      "resources/js/partials/Users.js"
+      "resources/js/partials/Users.js",
+      "resources/js/partials/Home.js",
+      "resources/js/partials/Restore.js"
     ]
   },
   "resources/js/partials/Barang.js": {
-    "file": "assets/Barang-MZmwxrFo.js",
+    "file": "assets/Barang-DWE6rBKn.js",
     "name": "Barang",
     "src": "resources/js/partials/Barang.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
   },
   "resources/js/partials/BarangKeluar.js": {
-    "file": "assets/BarangKeluar-72BwAlWt.js",
+    "file": "assets/BarangKeluar-CBlx7jH8.js",
     "name": "BarangKeluar",
     "src": "resources/js/partials/BarangKeluar.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
   },
   "resources/js/partials/BarangKembali.js": {
-    "file": "assets/BarangKembali-6YWJnpZG.js",
+    "file": "assets/BarangKembali-1WtUuLrP.js",
     "name": "BarangKembali",
     "src": "resources/js/partials/BarangKembali.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
   },
   "resources/js/partials/BarangMasuk.js": {
-    "file": "assets/BarangMasuk-DaNayyDI.js",
+    "file": "assets/BarangMasuk-DqKtvq6w.js",
     "name": "BarangMasuk",
     "src": "resources/js/partials/BarangMasuk.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/partials/Home.js": {
+    "file": "assets/Home-UcARMkVP.js",
+    "name": "Home",
+    "src": "resources/js/partials/Home.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/Pelanggan.js": {
-    "file": "assets/Pelanggan-Dos494cr.js",
+    "file": "assets/Pelanggan-DzruG8bi.js",
     "name": "Pelanggan",
     "src": "resources/js/partials/Pelanggan.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/partials/Restore.js": {
+    "file": "assets/Restore-Bw7WV6Z_.js",
+    "name": "Restore",
+    "src": "resources/js/partials/Restore.js",
     "isDynamicEntry": true
   },
   "resources/js/partials/Stok.js": {
-    "file": "assets/Stok-3FWXHiNJ.js",
+    "file": "assets/Stok-MZtwSPpV.js",
     "name": "Stok",
     "src": "resources/js/partials/Stok.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
   },
   "resources/js/partials/Supplier.js": {
-    "file": "assets/Supplier-6PfRIA68.js",
+    "file": "assets/Supplier-BxaPjj-n.js",
     "name": "Supplier",
     "src": "resources/js/partials/Supplier.js",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
   },
   "resources/js/partials/Users.js": {
     "file": "assets/Users-BPqWTWnc.js",

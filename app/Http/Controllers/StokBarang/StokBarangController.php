@@ -30,7 +30,8 @@ class StokBarangController extends Controller
             ->when($query, function ($q) use ($query) {
                 $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%')
-                        ->orWhere('kode_stok', 'like', '%' . $query . '%');
+                        ->orWhere('kode_stok', 'like', '%' . $query . '%')
+                        ->orWhere('no_warehouse', 'like', '%' . $query . '%');
                 });
             })
             ->orderBy('tb_barang.nama_barang', $sortOrder)
@@ -68,7 +69,6 @@ class StokBarangController extends Controller
         $stok = new StokBarangModel();
         $stok->id_barang = $request->input('nama_barang');
         $stok->tanggal = $request->input('tanggal');
-        $stok->no_warehouse = $request->input('no_warehouse');
         $stok->jumlah_barang =  (int) $request->input('jumlah');
         $stok->lokasi = $request->input('lokasi');
         $stok->keterangan = $request->input('keterangan');
@@ -120,7 +120,6 @@ class StokBarangController extends Controller
         $stok = StokBarangModel::findOrFail($id);
         $stok->id_barang = $request->input('nama_barang');
         $stok->tanggal = $request->input('tanggal');
-        $stok->no_warehouse = $request->input('no_warehouse');
         $stok->jumlah_barang = $request->input('jumlah');
         $stok->lokasi = $request->input('lokasi');
         $stok->keterangan = $request->input('keterangan');

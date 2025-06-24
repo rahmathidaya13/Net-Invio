@@ -20,7 +20,7 @@ class PelangganModelFactory extends Factory
         return [
             'id_pelanggan'    =>  Str::ulid(),
             'no_identitas'  => Str::random(15),
-            'tanggal'  => fake()->date('Y-m-d', 'now'),
+            'tanggal'  => fake()->dateTimeBetween('-3 days', 'now')->format('Y-m-d'),
             'nama'  =>  fake()->name(),
             'jenis_kelamin'  =>  fake()->randomElement(['laki-laki', 'perempuan']),
             'nohp' => fake()->numerify('08###########'),

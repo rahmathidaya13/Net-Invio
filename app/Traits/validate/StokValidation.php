@@ -30,7 +30,6 @@ trait StokValidation
                 'regex:/^[\pL\s\-0-9,\.]+$/u' // hanya huruf, angka, spasi, koma, titik
             ],
             'keterangan' => 'nullable|string|max:250',
-            'no_warehouse' => 'required|string|max:50',
         ], [
             'nama_barang.required' => 'Nama barang wajib dipilih.',
 
@@ -48,10 +47,6 @@ trait StokValidation
 
             'keterangan.string' => 'karakter yang digunakan tidak sesuai.',
             'keterangan.max' => 'Keterangan maksimal 250 karakter.',
-
-            'no_warehouse.required' => 'No warehouse wajib diisi.',
-            'no_warehouse.string' => 'Format No warehouse tidak valid.',
-            'no_warehouse.max' => 'No warehouse maksimal 50 karakter.',
 
         ])->validate();
     }

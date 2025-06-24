@@ -183,8 +183,8 @@
                     <td>{{ $data->kode_stok }}</td>
                     <td>{{ $data->no_warehouse }}</td>
                     <td>{{ $data->barang->nama_barang }}</td>
-                    <td>{{ $data->jumlah_barang }}</td>
-                    <td>{{ $data->lokasi }}</td>
+                    <td style="text-align: center">{{ $data->jumlah_barang }}</td>
+                    <td  style="text-align: center">{{ $data->lokasi }}</td>
                     <td>{{ $data->keterangan }}</td>
                 </tr>
             @endforeach

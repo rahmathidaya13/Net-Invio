@@ -11,7 +11,6 @@ trait ReceivingValidate
         $rules = [
             'supplier' => 'nullable|exists:tb_supplier,id_supplier',
             'tanggal' => 'required|date',
-            'no_warehouse' => 'required|string|max:50',
             'sumber' => 'required|string|in:internal,supplier',
             'pembeli' => 'nullable|string|max:50',
             'nota' => 'required|string|max:50',
@@ -60,9 +59,6 @@ trait ReceivingValidate
             'keterangan.max' => 'Keterangan maksimal 250 karakter.',
 
 
-            'no_warehouse.required' => 'No warehouse wajib diisi.',
-            'no_warehouse.string' => 'Format No warehouse tidak valid.',
-            'no_warehouse.max' => 'No warehouse maksimal 50 karakter.',
         ])->validate();
     }
 }

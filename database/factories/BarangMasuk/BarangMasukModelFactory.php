@@ -26,7 +26,6 @@ class BarangMasukModelFactory extends Factory
             'id_supplier' => SupplierModel::factory(),
             'tanggal' => fake()->dateTimeBetween('-3 days', 'now')->format('Y-m-d'),
             'kode_brg_masuk' => BarangMasukModel::generateInBound(),
-            'no_warehouse' => fake()->randomNumber(5, true),
             'sumber' => fake()->randomElement(['internal', 'supplier']),
             'pembeli' => fake()->name(),
             'nota' => fake()->sentence(3),

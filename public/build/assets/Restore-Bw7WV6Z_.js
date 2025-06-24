@@ -1,0 +1,1 @@
+function r(){$(function(){$(document).on("change","#restore",function(e){e.preventDefault();let t=e.target.files[0];if(t){let n=new FileReader;n.onload=function(){$("#preview").attr("src","/assets/icon/sql.png")},n.readAsDataURL(t)}})})}export{r as default};

@@ -34,12 +34,13 @@
                         $stok->kode_stok ?? \App\Models\StokBarang\StokBarangModel::generateCodeStock(),
                     )" />
 
+                    <x-horizontal-input disabled label="No.Warehouse" name="no_warehouse" :value="old(
+                        'no_warehouse',
+                        $stok->no_warehouse ?? \App\Models\StokBarang\StokBarangModel::noWarehouse(),
+                    )" />
+
                     <x-horizontal-input autofocus type="date" name="tanggal" label="Tanggal"
                         value="{{ old('tanggal', $stok->tanggal ?? '') }}" />
-
-                    <x-horizontal-input name="no_warehouse" label="No.Warehouse" placeholder="example:WH-0001"
-                        value="{{ old('no_warehouse', $stok->no_warehouse ?? '') }}" />
-
                     <div class="mb-3 row align-items-center">
                         <x-form-label for="nama_barang" value="Nama Barang" class="col-xl-2 col-form-label form-label" />
                         <div class="col-xl-5">
