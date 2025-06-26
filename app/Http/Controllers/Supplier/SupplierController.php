@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Supplier;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\TelegramNotification;
 use App\Models\Supplier\SupplierModel;
 use App\Traits\validate\supplierValidation;
-use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
@@ -64,6 +65,15 @@ class SupplierController extends Controller
         $supplier->email = $request->input('email');
         $supplier->alamat = $request->input('alamat');
         $supplier->save();
+
+        TelegramNotification::sendOrFail("➕ *Penambahan Supplier Baru*\n" .
+            "Nama Supplier: *{$supplier->nama}*\n" .
+            "kontak: *{$supplier->kontak}*\n" .
+            "Email: *{$supplier->email}*\n" .
+            "Alamat: *{$supplier->alamat}*\n" .
+            "Status: *" . 'Dibuat' . "*\n" .
+            "Created at: *" . auth()->user()->name . "*");
+
         return redirect()->route('supplier.list')->with('success', 'Data Supplier ' . ucwords($supplier->nama) . ' berhasil ditambahkan');
     }
 
@@ -96,6 +106,13 @@ class SupplierController extends Controller
         $supplier->email = $request->input('email');
         $supplier->alamat = $request->input('alamat');
         $supplier->update();
+        TelegramNotification::sendOrFail("📝 *Perubahan Data Supplier*\n" .
+            "Nama Supplier: *{$supplier->nama}*\n" .
+            "kontak: *{$supplier->kontak}*\n" .
+            "Email: *{$supplier->email}*\n" .
+            "Alamat: *{$supplier->alamat}*\n" .
+            "Status: *" . 'Diubah' . "*\n" .
+            "Updated at: *" . auth()->user()->name . "*");
         return redirect()->route('supplier.list')->with('success', 'Data Supplier ' . ucwords($supplier->nama) . ' berhasil diubah');
     }
 
@@ -106,6 +123,13 @@ class SupplierController extends Controller
     {
         $supplier = SupplierModel::findOrFail($id);
         $supplier->delete();
+        TelegramNotification::sendOrFail("🗑️ *Penghapusan Data Supplier*\n" .
+            "Nama Supplier: *{$supplier->nama}*\n" .
+            "kontak: *{$supplier->kontak}*\n" .
+            "Email: *{$supplier->email}*\n" .
+            "Alamat: *{$supplier->alamat}*\n" .
+            "Status: *" . 'Dihapus' . "*\n" .
+            "Deleted at: *" . auth()->user()->name . "*");
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\StokBarang;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Log\LogStokModel;
 use App\Models\Barang\BarangModel;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\TelegramNotification;
 use PhpParser\Node\Expr\Cast\String_;
 use App\Traits\validate\StokValidation;
 use App\Models\StokBarang\StokBarangModel;
@@ -85,6 +87,14 @@ class StokBarangController extends Controller
             'keterangan' => $stok->keterangan,
             'dibuat_oleh' => Auth::user()->name,
         ]);
+
+        TelegramNotification::sendOrFail("➕ *Penambahan Stok Barang*\n" .
+            "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$stok->barang->nama_barang}*\n" .
+            "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
+            "Lokasi: *{$stok->lokasi}*\n" .
+            "Status: *" . 'Dibuat' . "*\n" .
+            "Created at: *" . auth()->user()->name . "*");
         return redirect()->route('stok.list')->with('success', 'Penambahan Stok  Berhasil');
     }
 
@@ -137,6 +147,14 @@ class StokBarangController extends Controller
             'dibuat_oleh' => Auth::user()->name,
         ]);
 
+        TelegramNotification::sendOrFail("📝 *Perubahan Stok Barang*\n" .
+            "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$stok->barang->nama_barang}*\n" .
+            "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
+            "Lokasi: *{$stok->lokasi}*\n" .
+            "Status: *" . 'Diubah' . "*\n" .
+            "Updated at: *" . auth()->user()->name . "*");
+
         return redirect()->route('stok.list')->with('success', 'Perubahan Stok ' . ucwords($stok->barang->nama_barang) . '  Berhasil');
     }
 
@@ -147,6 +165,13 @@ class StokBarangController extends Controller
     {
         $stok = StokBarangModel::findOrFail($id);
         $stok->delete();
+        TelegramNotification::sendOrFail("🗑️ *Penghapusan Stok Barang*\n" .
+            "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$stok->barang->nama_barang}*\n" .
+            "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
+            "Lokasi: *{$stok->lokasi}*\n" .
+            "Status: *" . 'Dihapus' . "*\n" .
+            "Deleted at: *" . auth()->user()->name . "*");
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

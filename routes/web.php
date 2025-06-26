@@ -1,6 +1,5 @@
 <?php
 
-use App\Exports\StokBarangExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -21,6 +20,7 @@ use App\Http\Controllers\BarangKeluar\BarangKeluarExportController;
 use App\Http\Controllers\StokBarang\StokBarangExportController;
 use App\Http\Controllers\BarangMasuk\BarangMasukExportController;
 use App\Http\Controllers\Pelanggan\PelangganExportController;
+use App\Http\Controllers\Pelanggan\PelangganImport;
 use App\Http\Controllers\ReturBarang\BarangKembaliExportController;
 use App\Http\Controllers\Supplier\SupplierExportController;
 
@@ -165,6 +165,10 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     // Testing import only
     Route::controller(BarangImportController::class)->group(function () {
         Route::post('/barang/import', 'imports')->name('barang.import')->middleware('can:onlyDevelop');
+    });
+
+    Route::controller(PelangganImport::class)->group(function () {
+        Route::post('/pelanggan/import', 'imports')->name('barang.import')->middleware('can:onlyDevelop');
     });
 
     // this backup controller

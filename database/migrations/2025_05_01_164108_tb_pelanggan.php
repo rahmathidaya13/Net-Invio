@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama', 50); // nama pelanggan
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']); // jenis kelamin pelenggan
             $table->string('nohp', 13); //  nomor handphone
-            $table->string('email', 50)->nullable()->unique(); // email jika ada
+            $table->string('email', 50)->nullable(); // email jika ada
             $table->string('alamat', 150); // alamat pelanggan
             $table->softDeletes();
             $table->timestamps();

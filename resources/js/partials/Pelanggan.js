@@ -96,5 +96,19 @@ export default function Pelanggan() {
                 }
             }
         );
+
+        // import
+        $(document).on("change", "#file_import", function (e) {
+            e.preventDefault();
+            let file = e.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (data) {
+                    $("#preview").attr("src", "/assets/icon/icons-excel.svg");
+                };
+                reader.readAsDataURL(file);
+            }
+            $("#name-file").text(file.name);
+        });
     });
 }
