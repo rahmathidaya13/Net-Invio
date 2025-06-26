@@ -46,15 +46,13 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     });
 
     // this user controller
-    Route::controller(UserController::class)->group(function () {
-        Route::middleware('can:onlyDevelop')->group(function () {
-            Route::get('/user/list', 'index')->name('user.list');
-            Route::get('/user/create', 'create')->name('user.create');
-            Route::post('/user/store', 'store')->name('user.store');
-            Route::get('/user/edit/{id}', 'edit')->name('user.edit');
-            Route::put('/user/update/{id}', 'update')->name('user.update');
-            Route::delete('/user/destroy/{id}', 'destroy')->name('user.destroy');
-        });
+    Route::controller(UserController::class)->middleware('can:onlyDevelop')->group(function () {
+        Route::get('/user/list', 'index')->name('user.list');
+        Route::get('/user/create', 'create')->name('user.create');
+        Route::post('/user/store', 'store')->name('user.store');
+        Route::get('/user/edit/{id}', 'edit')->name('user.edit');
+        Route::put('/user/update/{id}', 'update')->name('user.update');
+        Route::delete('/user/destroy/{id}', 'destroy')->name('user.destroy');
     });
 
     // this barang controller

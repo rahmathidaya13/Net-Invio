@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Barang\BarangModel::factory(50)->create();
         \App\Models\Pelanggan\PelangganModel::factory(50)->create();
         \App\Models\StokBarang\StokBarangModel::factory(50)->create();
-        \App\Models\BarangMasuk\BarangMasukModel::factory(50)->create();
+        // \App\Models\BarangMasuk\BarangMasukModel::factory(50)->create();
         \App\Models\Supplier\SupplierModel::factory(50)->create();
 
         // \App\Models\User::factory()->create([

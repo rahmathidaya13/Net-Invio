@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backup;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Helpers\TelegramNotification;
 
 class BackupController extends Controller
 {
@@ -31,6 +33,11 @@ class BackupController extends Controller
         if ($result !== 0 || !file_exists($storagePath)) {
             return back()->with('error', 'Backup gagal. Periksa mysqldump atau koneksi.');
         }
+        TelegramNotification::sendOrFail("*Backup File Database*\n" .
+            "Tanggal: *" . Carbon::now()->format('d-m-Y') . "*\n" .
+            "File: *{$fileName}*\n" .
+            "Status: *" . 'Berhasil' . "*\n" .
+            "Created at: *" . auth()->user()->name . "*");
 
         return back()->with([
             'success' => 'Backup berhasil dibuat file ' . $fileName,
@@ -67,6 +74,11 @@ class BackupController extends Controller
         $sql = File::get($files->getRealPath());
         try {
             DB::unprepared($sql);
+            TelegramNotification::sendOrFail("*Restore Database*\n" .
+                "Tanggal: *" . Carbon::now()->format('d-m-Y') . "*\n" .
+                "File: *{$files->getClientOriginalName()}*\n" .
+                "Status: *" . 'Berhasil' . "*\n" .
+                "Import by: *" . auth()->user()->name . "*");
             return back()->with('success', 'Backup berhasil dikembalikan dari file ' . $files->getClientOriginalName());
         } catch (\Exception $err) {
             return back()->with('error', 'Backup gagal dikembalikan. Pastikan file backup valid ' . $err->getMessage());

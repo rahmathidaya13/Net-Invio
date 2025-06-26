@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\BarangMasuk;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Log\LogStokModel;
 use App\Models\Barang\BarangModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\TelegramNotification;
 use App\Models\Supplier\SupplierModel;
 use App\Models\StokBarang\StokBarangModel;
 use App\Traits\validate\ReceivingValidate;
@@ -83,6 +85,20 @@ class BarangMasukController extends Controller
         $barangMasuk->harga = floatval($request['harga']);
         $barangMasuk->keterangan = $request->input('keterangan');
         $barangMasuk->save();
+
+        TelegramNotification::sendOrFail("➕ *Penambahan Barang Masuk*\n" .
+            "Tanggal: *" . Carbon::parse($barangMasuk->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$barangMasuk->barang->nama_barang}*\n" .
+            "Nama Supplier: *{$barangMasuk->supplier?->nama}*\n" .
+            "Sumber: *{$barangMasuk->sumber}*\n" .
+            "Pembeli: *{$barangMasuk->pembeli}*\n" .
+            "Nota: *{$barangMasuk->nota}*\n" .
+            "Jumlah Barang: *{$barangMasuk->jumlah}*\n" .
+            "Lokasi: *{$barangMasuk->lokasi}*\n" .
+            "Harga: *" . 'Rp ' . number_format((int) $barangMasuk->harga, 0, ',', '.') . "*\n" .
+            "Status: *" . 'Dibuat' . "*\n" .
+            "Created at: *" . auth()->user()->name . "*");
+
 
         $currentStok = StokBarangModel::where('id_barang', $request->input('id_barang'))
             ->where('lokasi', $request->input('lokasi_barang'))
@@ -178,6 +194,19 @@ class BarangMasukController extends Controller
         $barang_masuk->keterangan = $request->input('keterangan');
         $barang_masuk->update();
 
+        TelegramNotification::sendOrFail("📝 *Perubahan Data Barang Masuk*\n" .
+            "Tanggal: *" . Carbon::parse($barang_masuk->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$barang_masuk->barang->nama_barang}*\n" .
+            "Nama Supplier: *{$barang_masuk->supplier?->nama}*\n" .
+            "Sumber: *{$barang_masuk->sumber}*\n" .
+            "Pembeli: *{$barang_masuk->pembeli}*\n" .
+            "Nota: *{$barang_masuk->nota}*\n" .
+            "Jumlah Barang: *{$barang_masuk->jumlah}*\n" .
+            "Lokasi: *{$barang_masuk->lokasi}*\n" .
+            "Harga: *" . 'Rp ' . number_format((int) $barang_masuk->harga, 0, ',', '.') . "*\n" .
+            "Status: *" . 'Diubah' . "*\n" .
+            "Updated at: *" . auth()->user()->name . "*");
+
         // ambil nilai terkakhir dari log stok model
         $logStok = LogStokModel::where('id_barang', $request->input('id_barang'))
             ->where('lokasi', $request->input('lokasi_barang'))
@@ -242,6 +271,19 @@ class BarangMasukController extends Controller
     {
         $barang_masuk = BarangMasukModel::findOrFail($id);
         $barang_masuk->delete();
+
+        TelegramNotification::sendOrFail("🗑️ *Pengahapusan Data Barang Masuk*\n" .
+            "Tanggal: *" . Carbon::parse($barang_masuk->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$barang_masuk->barang->nama_barang}*\n" .
+            "Nama Supplier: *{$barang_masuk->supplier?->nama}*\n" .
+            "Sumber: *{$barang_masuk->sumber}*\n" .
+            "Pembeli: *{$barang_masuk->pembeli}*\n" .
+            "Nota: *{$barang_masuk->nota}*\n" .
+            "Jumlah Barang: *{$barang_masuk->jumlah}*\n" .
+            "Lokasi: *{$barang_masuk->lokasi}*\n" .
+            "Harga: *" . 'Rp ' . number_format((int) $barang_masuk->harga, 0, ',', '.') . "*\n" .
+            "Status: *" . 'Dihapus' . "*\n" .
+            "Deleted at: *" . auth()->user()->name . "*");
         // hapus log
         LogStokModel::where('id_barang', $barang_masuk->id_barang)
             ->where('lokasi', $barang_masuk->lokasi)

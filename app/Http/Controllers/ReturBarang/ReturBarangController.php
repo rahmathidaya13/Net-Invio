@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\ReturBarang;
 
-use App\Http\Controllers\Controller;
-use App\Models\Barang\BarangModel;
-use App\Models\Pelanggan\PelangganModel;
-use App\Models\ReturBarang\ReturBarangModel;
-use App\Models\Supplier\SupplierModel;
-use App\Traits\validate\ReturValidation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\Barang\BarangModel;
+use App\Http\Controllers\Controller;
+use App\Helpers\TelegramNotification;
+use App\Models\Supplier\SupplierModel;
+use App\Models\Pelanggan\PelangganModel;
+use App\Traits\validate\ReturValidation;
+use App\Models\ReturBarang\ReturBarangModel;
 
 class ReturBarangController extends Controller
 {
@@ -91,6 +93,18 @@ class ReturBarangController extends Controller
         $barang_kembali->image = implode(',', $filesName);
         $barang_kembali->path = implode(',', $path);
         $barang_kembali->save();
+
+        TelegramNotification::sendOrFail("➕ *Barang Kembali/Retur*\n" .
+            "Tanggal: *" . Carbon::parse($barang_kembali->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$barang_kembali->barang->nama_barang}*\n" .
+            "Nama Pelanggan: *{$barang_kembali->pelanggan->nama}*\n" .
+            "Nama Supplier: *{$barang_kembali->supplier?->nama}*\n" .
+            "Jumlah Barang: *{$barang_kembali->jumlah}*\n" .
+            "Jenis Retur: *{$barang_kembali->tipe_retur}*\n" .
+            "Status Pergantian: *{$barang_kembali->status_pergantian}*\n" .
+            "Alasan Retur: *{$barang_kembali->alasan}*\n" .
+            "Status: *" . 'Dibuat' . "*\n" .
+            "Created at: *" . auth()->user()->name . "*");
         return redirect()->route('retur.list')->with('success', 'Barang Kembali ' . ucwords($barang_kembali->barang->nama_barang) . ' berhasil dibuat');
     }
 
@@ -169,6 +183,18 @@ class ReturBarangController extends Controller
             $barang_kembali->path = implode(',', $pathNew);
         }
         $barang_kembali->update();
+
+        TelegramNotification::sendOrFail("📝 *Perubahan Barang Kembali/Retur*\n" .
+            "Tanggal: *" . Carbon::parse($barang_kembali->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$barang_kembali->barang->nama_barang}*\n" .
+            "Nama Pelanggan: *{$barang_kembali->pelanggan->nama}*\n" .
+            "Nama Supplier: *{$barang_kembali->supplier?->nama}*\n" .
+            "Jumlah Barang: *{$barang_kembali->jumlah}*\n" .
+            "Jenis Retur: *{$barang_kembali->tipe_retur}*\n" .
+            "Status Pergantian: *{$barang_kembali->status_pergantian}*\n" .
+            "Alasan Retur: *{$barang_kembali->alasan}*\n" .
+            "Status: *" . 'Diubah' . "*\n" .
+            "Updated at: *" . auth()->user()->name . "*");
         return redirect()->route('retur.list')->with('success', 'Perubahan data barang Kembali ' . ucwords($barang_kembali->barang->nama_barang) . ' berhasil');
     }
 
@@ -188,6 +214,17 @@ class ReturBarangController extends Controller
             }
         }
         $barang_kembali->delete();
+        TelegramNotification::sendOrFail("🗑️ *Penghapusan Barang Kembali/Retur*\n" .
+            "Tanggal: *" . Carbon::parse($barang_kembali->tanggal)->format('d-m-Y') . "*\n" .
+            "Nama Barang: *{$barang_kembali->barang->nama_barang}*\n" .
+            "Nama Pelanggan: *{$barang_kembali->pelanggan->nama}*\n" .
+            "Nama Supplier: *{$barang_kembali->supplier?->nama}*\n" .
+            "Jumlah Barang: *{$barang_kembali->jumlah}*\n" .
+            "Jenis Retur: *{$barang_kembali->tipe_retur}*\n" .
+            "Status Pergantian: *{$barang_kembali->status_pergantian}*\n" .
+            "Alasan Retur: *{$barang_kembali->alasan}*\n" .
+            "Status: *" . 'Dihapus' . "*\n" .
+            "Deleted at: *" . auth()->user()->name . "*");
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

@@ -32,7 +32,7 @@ export default function SweatAlert(uri, data, method) {
                 error: function (xhr) {
                     Swal.fire({
                         icon: "error",
-                        title: "Terjadi kesalahan",
+                        title: "Terjadi kesalahan periksa sambungan koneksi internet",
                         text: "Saat menghapus item.",
                     });
                 },
