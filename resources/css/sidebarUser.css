@@ -21,9 +21,21 @@
     margin: 1rem 1rem;
 }
 
-.online {
-    font-size: 8px;
-    color: rgb(0, 172, 0);
+.online-status {
+    font-size: 10px;
+    color: rgb(90, 90, 90);
+}
+.online-status.green {
+    font-size: 10px;
+    color: rgb(132, 212, 12);
 }
 
+.online-status.yellow {
+    font-size: 10px;
+    color: yellow;
+}
 
+.online-status.red {
+    font-size: 10px;
+    color: red;
+}

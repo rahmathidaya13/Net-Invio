@@ -7,6 +7,7 @@ import "./routes";
 import "./GlobalHelper.js";
 import Logout from "./partials/Logout.js";
 import clock from "./partials/ClockMoment.js";
+import "./helpers/NetworkHelper.js";
 clock();
 Logout();
 document.addEventListener("DOMContentLoaded", function () {

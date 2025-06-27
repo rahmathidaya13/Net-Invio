@@ -12,8 +12,10 @@
                             class="d-block text-white profile-action text-decoration-none">
                             {{ ucwords(Auth::user()->name) }}
                         </a>
-                        <small class="d-block text-body-emphasis"> <i class="fas fa-circle online"></i>
-                            {{ Auth::user()->role }}</small>
+                        <small class="d-block text-body-emphasis">
+                            <i style="cursor: pointer" class="fas fa-circle online-status" title="checking..."></i>
+                            {{ Auth::user()->role }}
+                        </small>
                     </div>
                 </div>
                 @php

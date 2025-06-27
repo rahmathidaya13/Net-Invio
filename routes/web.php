@@ -1,13 +1,16 @@
 <?php
 
+use App\Helpers\NetworkHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Backup\BackupController;
 use App\Models\BarangKeluar\BarangKeluarModel;
+use App\Http\Controllers\Backup\BackupController;
 use App\Http\Controllers\Barang\BarangController;
+use App\Http\Controllers\Pelanggan\PelangganImport;
 use App\Http\Controllers\Supplier\SupplierController;
 use App\Http\Controllers\Barang\BarangExportController;
 use App\Http\Controllers\Barang\BarangImportController;
@@ -15,14 +18,13 @@ use App\Http\Controllers\Pelanggan\PelangganController;
 use App\Http\Controllers\StokBarang\StokBarangController;
 use App\Http\Controllers\BarangMasuk\BarangMasukController;
 use App\Http\Controllers\ReturBarang\ReturBarangController;
+use App\Http\Controllers\Supplier\SupplierExportController;
 use App\Http\Controllers\BarangKeluar\BarangKeluarController;
-use App\Http\Controllers\BarangKeluar\BarangKeluarExportController;
+use App\Http\Controllers\Pelanggan\PelangganExportController;
 use App\Http\Controllers\StokBarang\StokBarangExportController;
 use App\Http\Controllers\BarangMasuk\BarangMasukExportController;
-use App\Http\Controllers\Pelanggan\PelangganExportController;
-use App\Http\Controllers\Pelanggan\PelangganImport;
+use App\Http\Controllers\BarangKeluar\BarangKeluarExportController;
 use App\Http\Controllers\ReturBarang\BarangKembaliExportController;
-use App\Http\Controllers\Supplier\SupplierExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,4 +178,6 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
         Route::get('/restore/create', 'create')->name('restore.create');
         Route::post('/restore/store', 'store')->name('restore.store');
     });
+
+    Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.status');
 });

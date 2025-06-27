@@ -1,4 +1,5 @@
 @include('layouts.header')
+<div id="network-overlay" class="d-none"></div>
 @include('layouts.navbar')
 <div id="layoutSidenav">
     @include('layouts.sidebar')
@@ -18,7 +19,8 @@
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
                     <div class="text-muted">Copyright &copy; {{ \Carbon\Carbon::now()->format('Y') }} <a
-                            class="text-decoration-none text-uppercase" href="{{ route('home') }}">{{ config('app.name') }}</a> </div>
+                            class="text-decoration-none text-uppercase"
+                            href="{{ route('home') }}">{{ config('app.name') }}</a> </div>
                     <div>
                         <b class="text-muted">Version 0.0.1</b>
                     </div>
