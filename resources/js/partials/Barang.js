@@ -12,7 +12,7 @@ export default function barang() {
             getSortOrder: () => $("#sort_order").val() || "desc",
             tableId: "tbody#table_user",
             url: "/barang/list",
-            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number"
+            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number",
         });
 
         // field untuk set order  dalam table
@@ -22,8 +22,8 @@ export default function barang() {
             getLimit: () => parseInt($("#limit").val()),
             tableId: "tbody#table_user",
             url: "/barang/list",
-            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number"
-        })
+            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number",
+        });
 
         // field untuk ganti batas item dalam table
         Limit({
@@ -32,7 +32,7 @@ export default function barang() {
             getSortOrder: () => $("#sort_order").val() || "desc",
             tableId: "tbody#table_user",
             url: "/barang/list",
-            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number"
+            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number",
         });
 
         // set pagination parameters
@@ -42,14 +42,13 @@ export default function barang() {
             getLimit: () => parseInt($("#limit").val()),
             getSortOrder: () => $("#sort_order").val() || "desc",
             tableId: "tbody#table_user",
-            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number"
+            highlightText: ".kode,.nama_barang,.tipe_model,.serial_number",
         });
 
         // hapus data record
         destroy({
             selector: ".hapus",
-            data: () => $(".hapus").data("data"),
-            id: 'id_barang',
+            id: "id_barang",
             column: "nama_barang",
             url: "/barang/destroy",
         });

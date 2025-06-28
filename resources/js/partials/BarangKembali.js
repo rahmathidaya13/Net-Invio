@@ -120,7 +120,6 @@ export default function BarangKembali() {
 
         destroy({
             selector: ".hapus",
-            data: ()=> $(".hapus").data("data"),
             id: "id_retur",
             column: "nama_barang",
             url: "/retur/destroy"

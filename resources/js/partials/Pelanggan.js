@@ -66,7 +66,6 @@ export default function Pelanggan() {
         // hapuss per item
         destroy({
             selector: ".hapus",
-            data: () => $(".hapus").data("data"),
             id: 'id_pelanggan',
             column: "nama",
             url: "/pelanggan/destroy",

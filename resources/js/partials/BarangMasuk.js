@@ -81,7 +81,6 @@ export default function BarangMasuk() {
         // hapuss per item
         destroy({
             selector: ".hapus",
-            data: () => $(".hapus").data("data"),
             id: 'id_barang_masuk',
             column: "nama_barang",
             url: "/receiving/destroy",

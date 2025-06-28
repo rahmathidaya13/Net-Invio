@@ -1,13 +1,12 @@
-import HighlightText from './HighlightText'
+import HighlightText from "./HighlightText";
 export default function liveSearch(options) {
-
     const {
         inputSelector,
         getLimit,
         getSortOrder,
         tableId,
         url,
-        highlightText
+        highlightText,
     } = options;
 
     $(document)
@@ -32,8 +31,9 @@ export default function liveSearch(options) {
             ).get("page");
 
             // buat limit
-            let setLimit = typeof getLimit === 'function' ? getLimit() : 10;
-            let setOrder = typeof getSortOrder === 'function' ? getSortOrder() : "desc";
+            let setLimit = typeof getLimit === "function" ? getLimit() : 10;
+            let setOrder =
+                typeof getSortOrder === "function" ? getSortOrder() : "desc";
             $.ajax({
                 type: "GET",
                 url: url,
@@ -49,15 +49,14 @@ export default function liveSearch(options) {
                     $(tableId).html(data.table);
                     $(".pagination-wrapper").html(data.pagination);
                     $("#informasi").html(
-                        `Menampilkan <b>${data.info.firstItem ?? 0
-                        }</b> sampai <b>${data.info.lastItem ?? 0
+                        `Menampilkan <b>${
+                            data.info.firstItem ?? 0
+                        }</b> sampai <b>${
+                            data.info.lastItem ?? 0
                         }</b> dari <b>${data.info.total ?? 0}</b> item`
                     );
-                    HighlightText(
-                        keyword, highlightText,
-                    );
+                    HighlightText(keyword, highlightText);
                 },
             });
         });
-
 }

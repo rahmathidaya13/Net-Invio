@@ -82,7 +82,6 @@ export default function BarangKeluar() {
 
         destroy({
             selector: ".hapus",
-            data: () => $(".hapus").data("data"),
             id: 'id_barang_keluar',
             column: "nama_barang",
             url: "/outbound/destroy",

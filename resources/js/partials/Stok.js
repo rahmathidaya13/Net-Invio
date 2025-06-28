@@ -58,7 +58,6 @@ export default function Stok() {
         // hapuss per item
         destroy({
             selector: ".hapus",
-            data: () => $(".hapus").data("data"),
             id: "id_stok",
             column: "nama_barang",
             url: "/stok/destroy",

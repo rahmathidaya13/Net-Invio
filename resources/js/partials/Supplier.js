@@ -55,7 +55,6 @@ export default function Supplier() {
         // hapuss per item
         destroy({
             selector: ".hapus",
-            data: () => $(".hapus").data("data"),
             id: 'id_supplier',
             column: "nama",
             url: "/supplier/destroy",
