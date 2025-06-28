@@ -168,7 +168,7 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     });
 
     Route::controller(PelangganImport::class)->group(function () {
-        Route::post('/pelanggan/import', 'imports')->name('barang.import')->middleware('can:onlyDevelop');
+        Route::post('/pelanggan/import', 'imports')->name('pelanggan.import')->middleware('can:onlyDevelop');
     });
 
     // this backup controller

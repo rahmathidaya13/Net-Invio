@@ -61,7 +61,6 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        Cache::flush();
         $this->validationText($request->all());
         $pelanggan = new PelangganModel();
         $pelanggan->tanggal = $request->input('tanggal');
@@ -82,6 +81,8 @@ class PelangganController extends Controller
             "Tanggal Daftar: *" . Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
             "Status: *" . 'Dibuat' . "*\n" .
             "Created at: *" . auth()->user()->name . "*");
+        Cache::flush();
+
 
         return redirect()->route('pelanggan.list')->with('success', 'Data pelanggan ' . $pelanggan->nama . ' berhasil dibuat');
     }
@@ -108,7 +109,6 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Cache::flush();
         $this->validationText($request->all(), $id);
         $pelanggan = PelangganModel::findOrFail($id);
         $pelanggan->tanggal = $request->input('tanggal');
@@ -130,6 +130,7 @@ class PelangganController extends Controller
             "Status: *" . 'Diubah' . "*\n" .
             "Updated at: *" . auth()->user()->name . "*");
 
+        Cache::flush();
         return redirect()->route('pelanggan.list')->with('success', 'Data pelanggan ' . $pelanggan->nama . ' berhasil diubah');
     }
 
@@ -138,7 +139,6 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        Cache::flush();
         $pelanggan = PelangganModel::findOrFail($id);
         $pelanggan->delete();
 
@@ -151,6 +151,7 @@ class PelangganController extends Controller
             "Tanggal Daftar: *" . Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
             "Status: *" . 'Dihapus' . "*\n" .
             "Deleted at: *" . auth()->user()->name . "*");
+        Cache::flush();
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

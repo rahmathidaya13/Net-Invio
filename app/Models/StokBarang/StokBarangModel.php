@@ -41,11 +41,11 @@ class StokBarangModel extends Model
     }
     public static function generateCodeStock()
     {
-        $prefix = 'STK-';
+        $prefix = 'STK';
         $date = now()->format('dmy');
-        $time = now()->format('His');
-        $random = strtoupper(Str::random(3));
-        return $prefix . $date . $time . $random;
+        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        $random = strtoupper(Str::random(2));
+        return "$prefix.$date.$randomNumber$random";
     }
     public static function noWarehouse()
     {
@@ -53,7 +53,7 @@ class StokBarangModel extends Model
         $date = now()->format('dmy');
         $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
         $random = strtoupper(Str::random(3));
-        return $prefix . '.' . $date . '.' . $randomNumber . $random;
+        return "$prefix.$date.$randomNumber$random";
     }
     public function barang()
     {

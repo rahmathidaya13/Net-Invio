@@ -41,11 +41,11 @@ class BarangMasukModel extends Model
 
     public static function generateInBound()
     {
-        $prefix = 'INB-';
+        $prefix = 'INB';
         $date = now()->format('dmy');
-        $time = now()->format('His');
-        $random = strtoupper(Str::random(3));
-        return $prefix . $date . $time . $random;
+        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        $random = strtoupper(Str::random(2));
+        return "$prefix.$date.$randomNumber$random";
     }
     public function barang()
     {

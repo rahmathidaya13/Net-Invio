@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Barang\BarangModel;
 use App\Http\Controllers\Controller;
 use App\Helpers\TelegramNotification;
+use Illuminate\Support\Facades\Cache;
+use App\Repositories\BarangRepository;
 use App\Traits\validate\ItemValidation;
 
 class BarangController extends Controller
@@ -14,24 +16,21 @@ class BarangController extends Controller
      * Display a listing of the resource.
      */
     use ItemValidation;
+    protected $barangRepository;
+    public function __construct(BarangRepository $itemRepository)
+    {
+        $this->barangRepository = $itemRepository;
+    }
     public function index(Request $request)
     {
-        $limit = $request->get('limit', 10);
-        $query = $request->get('keyword', '');
-        $sortOrder = $request->get('sort_order', 'desc');
+        $filters = [
+            'limit' => $request->get('limit', 10),
+            'keyword' => $request->get('keyword', ''),
+            'sort_order' => $request->get('sort_order', 'desc'),
+            'page' => $request->get('page', 1),
+        ];
 
-        $barang = BarangModel::when($query, function ($q) use ($query) {
-            $q->where(function ($subQuery) use ($query) {
-                $subQuery->where('kode_barang', 'like', '%' . $query . '%')
-                    ->orWhere('nama_barang', 'like', '%' . $query . '%')
-                    ->orWhere('serial_number', 'like', '%' . $query . '%')
-                    ->orWhere('tipe_model', 'like', '%' . $query . '%');
-            });
-        })->latest()
-            ->orderBy('nama_barang', $sortOrder)
-            ->paginate($limit)
-            ->appends(['keyword' => $query, 'limit' => $limit, 'sort_order' => $sortOrder]);
-
+        $barang = $this->barangRepository->getListWithCache($filters)->appends($filters);
         if ($request->ajax()) {
             return response()->json([
                 'table' => view('Barang.partials.table', compact('barang'))->render(),
@@ -82,6 +81,7 @@ class BarangController extends Controller
             "Status: *" . 'Dibuat' . "*\n" .
             "Created at: *" . auth()->user()->name . "*");
 
+        Cache::flush();
         return redirect()->route('barang.list')->with('success', 'Data Barang ' . ucwords($barang->nama_barang) . ' Berhasil Ditambahkan');
     }
 
@@ -129,6 +129,7 @@ class BarangController extends Controller
             "Status: *" . 'Diubah' . "*\n" .
             "Created at: *" . auth()->user()->name . "*");
 
+        Cache::flush();
         return redirect()->route('barang.list')->with('success', 'Data Barang ' . ucwords($barang->nama_barang) . ' Berhasil Diubah');
     }
 
@@ -148,6 +149,7 @@ class BarangController extends Controller
             "Satuan: *{$barang->satuan}*\n" .
             "Status: *" . 'Dihapus' . "*\n" .
             "Created at: *" . auth()->user()->name . "*");
+        Cache::flush();
 
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }

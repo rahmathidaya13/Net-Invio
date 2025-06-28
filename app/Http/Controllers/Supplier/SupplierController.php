@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\TelegramNotification;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Supplier\SupplierModel;
+use App\Repositories\SupplierRepository;
 use App\Traits\validate\supplierValidation;
 
 class SupplierController extends Controller
@@ -14,22 +16,23 @@ class SupplierController extends Controller
      * Display a listing of the resource.
      */
     use supplierValidation;
+
+    protected $supplierRepository;
+
+    public function __construct(SupplierRepository $supplierRepository)
+    {
+        $this->supplierRepository = $supplierRepository;
+    }
     public function index(Request $request)
     {
-        $limit = $request->get('limit', 10);
-        $query = $request->get('keyword', '');
-        $sortOrder = $request->get('sort_order', 'desc');
+        $filters = [
+            'limit' => $request->get('limit', 10),
+            'keyword' => $request->get('keyword', ''),
+            'sort_order' => $request->get('sort_order', 'desc'),
+            'page' => $request->get('page', 1),
+        ];
 
-        $supplier = SupplierModel::when($query, function ($q) use ($query) {
-            $q->where(function ($subQuery) use ($query) {
-                $subQuery->where('nama', 'like', '%' . $query . '%')
-                    ->orWhere('kontak', 'like', '%' . $query . '%')
-                    ->orWhere('email', 'like', '%' . $query . '%');
-            });
-        })->latest()
-            ->orderBy('nama', $sortOrder)
-            ->paginate($limit)
-            ->appends(['keyword' => $query, 'limit' => $limit, 'sort_order' => $sortOrder]);
+        $supplier = $this->supplierRepository->getListWithCache($filters)->appends($filters);
 
         if ($request->ajax()) {
             return response()->json([
@@ -73,6 +76,7 @@ class SupplierController extends Controller
             "Alamat: *{$supplier->alamat}*\n" .
             "Status: *" . 'Dibuat' . "*\n" .
             "Created at: *" . auth()->user()->name . "*");
+        Cache::flush();
 
         return redirect()->route('supplier.list')->with('success', 'Data Supplier ' . ucwords($supplier->nama) . ' berhasil ditambahkan');
     }
@@ -113,6 +117,7 @@ class SupplierController extends Controller
             "Alamat: *{$supplier->alamat}*\n" .
             "Status: *" . 'Diubah' . "*\n" .
             "Updated at: *" . auth()->user()->name . "*");
+        Cache::flush();
         return redirect()->route('supplier.list')->with('success', 'Data Supplier ' . ucwords($supplier->nama) . ' berhasil diubah');
     }
 
@@ -130,6 +135,7 @@ class SupplierController extends Controller
             "Alamat: *{$supplier->alamat}*\n" .
             "Status: *" . 'Dihapus' . "*\n" .
             "Deleted at: *" . auth()->user()->name . "*");
+        Cache::flush();
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

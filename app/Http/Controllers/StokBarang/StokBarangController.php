@@ -8,8 +8,10 @@ use App\Models\Log\LogStokModel;
 use App\Models\Barang\BarangModel;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Repositories\StokRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\TelegramNotification;
+use Illuminate\Support\Facades\Cache;
 use PhpParser\Node\Expr\Cast\String_;
 use App\Traits\validate\StokValidation;
 use App\Models\StokBarang\StokBarangModel;
@@ -22,23 +24,20 @@ class StokBarangController extends Controller
      */
 
     use StokValidation;
+    protected $stokRepository;
+    public function __construct(StokRepository $stockRepository)
+    {
+        $this->stokRepository = $stockRepository;
+    }
     public function index(Request $request)
     {
-        $limit = $request->get('limit', 10);
-        $query = $request->get('keyword', '');
-        $sortOrder = $request->get('sort_order', 'desc');
-        $stok = StokBarangModel::join('tb_barang', 'tb_stok.id_barang', '=', 'tb_barang.id_barang')
-            ->select('tb_stok.*', 'tb_barang.nama_barang')
-            ->when($query, function ($q) use ($query) {
-                $q->where(function ($subQuery) use ($query) {
-                    $subQuery->where('tb_barang.nama_barang', 'like', '%' . $query . '%')
-                        ->orWhere('kode_stok', 'like', '%' . $query . '%')
-                        ->orWhere('no_warehouse', 'like', '%' . $query . '%');
-                });
-            })
-            ->orderBy('tb_barang.nama_barang', $sortOrder)
-            ->paginate($limit)
-            ->appends(['keyword' => $query, 'limit' => $limit, 'sort_order' => $sortOrder]);
+        $filters = [
+            'limit' => $request->get('limit', 10),
+            'keyword' => $request->get('keyword', ''),
+            'sort_order' => $request->get('sort_order', 'desc'),
+            'page' => $request->get('page', 1),
+        ];
+        $stok = $this->stokRepository->getListWithCache($filters)->appends($filters);
         if ($request->ajax()) {
             return response()->json([
                 'table' => view('StokBarang.partials.table', compact('stok'))->render(),
@@ -95,6 +94,7 @@ class StokBarangController extends Controller
             "Lokasi: *{$stok->lokasi}*\n" .
             "Status: *" . 'Dibuat' . "*\n" .
             "Created at: *" . auth()->user()->name . "*");
+        Cache::flush();
         return redirect()->route('stok.list')->with('success', 'Penambahan Stok  Berhasil');
     }
 
@@ -155,6 +155,7 @@ class StokBarangController extends Controller
             "Status: *" . 'Diubah' . "*\n" .
             "Updated at: *" . auth()->user()->name . "*");
 
+        Cache::flush();
         return redirect()->route('stok.list')->with('success', 'Perubahan Stok ' . ucwords($stok->barang->nama_barang) . '  Berhasil');
     }
 
@@ -172,6 +173,7 @@ class StokBarangController extends Controller
             "Lokasi: *{$stok->lokasi}*\n" .
             "Status: *" . 'Dihapus' . "*\n" .
             "Deleted at: *" . auth()->user()->name . "*");
+        Cache::flush();
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }

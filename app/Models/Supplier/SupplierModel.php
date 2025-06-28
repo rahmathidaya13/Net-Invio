@@ -5,7 +5,6 @@ namespace App\Models\Supplier;
 use App\Models\BarangMasuk\BarangMasukModel;
 use App\Models\ReturBarang\ReturBarangModel;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

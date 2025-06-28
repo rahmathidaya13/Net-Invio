@@ -43,7 +43,7 @@ class BarangModel extends Model
 
     public static function genarateKodeBarang()
     {
-        $prefix = 'BRG-';
+        $prefix = 'BRG';
         $datePart = now()->format('dmy');
 
         // Ambil data barang terakhir berdasarkan kode_barang (urut menurun)

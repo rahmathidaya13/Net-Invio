@@ -45,11 +45,11 @@ class BarangKeluarModel extends Model
 
     public static function generateOutBound()
     {
-        $prefix = 'OTB-';
+        $prefix = 'OTB';
         $date = now()->format('dmy');
-        $time = now()->format('His');
+        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
         $random = strtoupper(Str::random(3));
-        return $prefix . $date . $time . $random;
+        return"$prefix.$date.$randomNumber$random";
     }
     public function barang()
     {
