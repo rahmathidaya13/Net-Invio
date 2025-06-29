@@ -1,6 +1,6 @@
 @props(['label' => null, 'type' => 'submit', 'icon' => null, 'block' => false, 'variant' => 'primary'])
 @php
-    $classes = "btn btn-$variant rounded-0";
+    $classes = "btn btn-$variant";
     if ($block) {
         $classes .= ' w-100';
     }

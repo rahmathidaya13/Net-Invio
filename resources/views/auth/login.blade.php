@@ -6,6 +6,7 @@
             @if ($errors->has('error'))
                 <x-alert type="danger" message="{{ $errors->first('error') }}" />
             @endif
+
             {{-- overflow-hidden di .card mencegah elemen anak seperti  keluar dari batasnya. --}}
             <div class="card text-bg-light overflow-hidden shadow">
                 <div class="row g-0">
@@ -69,9 +70,14 @@
                                 </div>
                             </div>
                             <div class="d-grid mb-3">
-                                <x-base-button label="Login" variant="success" class="rounded-0" type="submit" />
+                                <x-base-button label="Login" variant="success" type="submit" />
                             </div>
                         </x-form>
+
+                        {{-- <div class="d-grid mb-3">
+                            <x-link class="btn btn-primary" icon="fab fa-google" label="Login with google"
+                                url="/auth/google" />
+                        </div> --}}
 
                         <footer class="pt-4 bg-light mt-5">
                             <div class="container-fluid px-4">

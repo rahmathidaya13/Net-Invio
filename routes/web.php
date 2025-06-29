@@ -1,10 +1,12 @@
 <?php
 
 use App\Helpers\NetworkHelper;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\BarangKeluar\BarangKeluarModel;
@@ -181,3 +183,7 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
 
     Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.status');
 });
+
+
+Route::get("/auth/google", [GoogleAuthController::class, 'redirect'])->name('google.login')->middleware('guest');
+Route::get("/auth/google/callback", [GoogleAuthController::class, 'callback'])->name('google.callback')->middleware('guest');

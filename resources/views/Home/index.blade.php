@@ -22,10 +22,9 @@
 
 
     <div class="callout callout-info d-grid">
-        <strong class="fs-3">Selamat datang kembali, {{ ucwords(auth()->user()->name) }}!</strong>
+        <strong class="fs-3">Selamat datang, {{ ucwords(auth()->user()->name) }}!</strong>
         <span class="text-capitalize">
-            Anda login sebagai <b>{{ auth()->user()->role }}</b>, Semoga harimu selalu produktif dan selalu
-            menyenangkan.</span>
+            Semoga harimu selalu produktif dan selalu menyenangkan.</span>
     </div>
 
     <div class="row gap-2 gap-xl-0 g-xl-2 row-cols-1 row-cols-xl-4">

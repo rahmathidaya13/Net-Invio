@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'admin',
+                'name' => 'Is admin',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('admin1234'),
                 'role' => 'admin',

@@ -34,6 +34,8 @@ class User extends Authenticatable
         'can_import',
         'can_download',
         'isActive',
+        'google_id',
+        'email_verified_at',
     ];
 
     /**
