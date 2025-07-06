@@ -31,6 +31,7 @@ class GoogleAuthController extends Controller
             'email_verified_at' => now()->toDateTimeString(),
             'can_download' => true,
         ]);
+        $user->profile()->create();
 
         // Jika google_id belum tersimpan, update (untuk user lama)
         if (!$user->google_id) {
