@@ -1,10 +1,7 @@
 .profile {
-    width: 3rem !important;
-    height: 3rem !important;
-
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
+    width: 7rem !important;
+    height: 7rem !important;
+    object-fit: fill;
 }
 
 .img-circle {
@@ -16,8 +13,8 @@
 }
 
 .user-panel .image img {
-    border-radius: 50%;
-    border: 2px solid #fff;
+    border-radius: 3px;
+    border: 1px solid #fff;
     margin: 1rem 1rem;
 }
 
@@ -25,6 +22,7 @@
     font-size: 10px;
     color: rgb(90, 90, 90);
 }
+
 .online-status.green {
     font-size: 10px;
     color: rgb(132, 212, 12);

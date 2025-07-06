@@ -42,18 +42,38 @@ class StokBarangModel extends Model
     public static function generateCodeStock()
     {
         $prefix = 'STK';
-        $date = now()->format('dmy');
-        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
-        $random = strtoupper(Str::random(2));
-        return "$prefix.$date.$randomNumber$random";
+        do {
+            // Buat angka acak 8 digit
+            $randomNumber = str_pad(mt_rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+
+            // Buat 3 huruf acak (A-Z)
+            $random = strtoupper(Str::random(3));
+
+            // Gabungkan semuanya
+            $kode = "$prefix$randomNumber$random";
+
+            // Ulangi jika sudah ada di database
+        } while (self::where('kode_stok', $kode)->exists());
+
+        return $kode;
     }
     public static function noWarehouse()
     {
         $prefix = 'WH';
-        $date = now()->format('dmy');
-        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
-        $random = strtoupper(Str::random(3));
-        return "$prefix.$date.$randomNumber$random";
+        do {
+            // Buat angka acak 8 digit
+            $randomNumber = str_pad(mt_rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+
+            // Buat 3 huruf acak (A-Z)
+            $random = strtoupper(Str::random(3));
+
+            // Gabungkan semuanya
+            $kode = "$prefix$randomNumber$random";
+
+            // Ulangi jika sudah ada di database
+        } while (self::where('no_warehouse', $kode)->exists());
+
+        return $kode;
     }
     public function barang()
     {

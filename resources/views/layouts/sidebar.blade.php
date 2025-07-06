@@ -2,16 +2,14 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu ">
             <div class="nav">
-                <div class="user-panel d-flex align-items-center">
+                <div class="user-panel d-block mx-auto align-items-center flex-wrap flex-grow-1">
                     <div class="image">
-                        <img src="{{ asset('assets/image/no-image.svg') }}" class="elevation-2 profile img-circle"
-                            alt="User Image">
+                        <img src="{{ asset(isset(Auth::user()->id) && Auth::user()->profile->image ? '/assets/profile/' . Auth::user()->profile->image : 'assets/image/no-image.svg') }}"
+                            class="elevation-2 profile img-circle" alt="User Image">
                     </div>
                     <div class="info">
-                        <a id="profile-action" href="#"
-                            class="d-block text-white profile-action text-decoration-none">
-                            {{ ucwords(Auth::user()->name) }}
-                        </a>
+                        <x-link url="/profile" :parameters="Auth::user()->id" :label="ucwords(Auth::user()->name)" id="profile-action"
+                            class="d-block text-white profile-action text-decoration-none" />
                         <small class="d-block text-body-emphasis">
                             <i style="cursor: pointer" class="fas fa-circle online-status" title="checking..."></i>
                             {{ Auth::user()->role }}

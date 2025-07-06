@@ -39,7 +39,8 @@ class DatabaseSeeder extends Seeder
             ],
         ];
         foreach ($data as $rows) {
-            \App\Models\User::factory()->create($rows);
+            $user = \App\Models\User::factory()->create($rows);
+            $user->profile()->create();
         }
         // \App\Models\User::factory(10)->create();
         \App\Models\Barang\BarangModel::factory(50)->create();

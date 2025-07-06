@@ -26,6 +26,7 @@ use App\Http\Controllers\Pelanggan\PelangganExportController;
 use App\Http\Controllers\StokBarang\StokBarangExportController;
 use App\Http\Controllers\BarangMasuk\BarangMasukExportController;
 use App\Http\Controllers\BarangKeluar\BarangKeluarExportController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReturBarang\BarangKembaliExportController;
 
 /*
@@ -182,6 +183,12 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     });
 
     Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.status');
+
+    // profile
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile/{id}', 'index')->name('profile');
+        Route::put('/profile/update/{id}', 'update')->name('profile.update');
+    });
 });
 
 

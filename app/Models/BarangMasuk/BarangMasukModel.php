@@ -38,14 +38,33 @@ class BarangMasukModel extends Model
             $barang_masuk->kode_brg_masuk = self::generateInBound();
         });
     }
-
+    /**
+     * Generate kode barang masuk dengan format:
+     * INB.{angka_acak_8_digit}.{3_huruf_acak}
+     * Contoh: INB.04231.XYZ
+     *
+     * Tidak menggunakan tanggal.
+     * Cek ke database untuk memastikan tidak duplikat.
+     *
+     * @return string Kode inbound unik
+     */
     public static function generateInBound()
     {
         $prefix = 'INB';
-        $date = now()->format('dmy');
-        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
-        $random = strtoupper(Str::random(2));
-        return "$prefix.$date.$randomNumber$random";
+        do {
+            // Buat angka acak 8 digit
+            $randomNumber = str_pad(mt_rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+
+            // Buat 3 huruf acak (A-Z)
+            $random = strtoupper(Str::random(3));
+
+            // Gabungkan semuanya
+            $kode = "$prefix$randomNumber$random";
+
+            // Ulangi jika sudah ada di database
+        } while (self::where('kode_brg_masuk', $kode)->exists());
+
+        return $kode;
     }
     public function barang()
     {

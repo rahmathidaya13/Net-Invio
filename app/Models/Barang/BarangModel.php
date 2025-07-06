@@ -4,6 +4,7 @@ namespace App\Models\Barang;
 
 use Carbon\Carbon;
 use Faker\UniqueGenerator;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\StokBarang\StokBarangModel;
 use App\Models\BarangMasuk\BarangMasukModel;
@@ -33,40 +34,39 @@ class BarangModel extends Model
     protected $dates     = ["deleted_at"];
     public $incrementing = false;
 
+
     public static function boot()
     {
         parent::boot();
         static::creating(function ($barang) {
-            $barang->kode_barang = self::genarateKodeBarang();
+            $barang->kode_barang = self::generateKodeBarang();
         });
     }
 
-    public static function genarateKodeBarang()
+    /**
+     * Generate kode barang otomatis dengan format BRG + 8 digit angka acak.
+     * Contoh hasil: BRG00012345, BRG98765432
+     *
+     * Kode ini akan dicek ke database untuk memastikan tidak terjadi duplikasi.
+     *
+     * @return string Kode barang yang unik dan terformat
+     */
+
+    public static function generateKodeBarang()
     {
-        $prefix = 'BRG';
-        $datePart = now()->format('dmy');
-
-        // Ambil data barang terakhir berdasarkan kode_barang (urut menurun)
-        $lastBarang = self::where('kode_barang', 'like', "$prefix%")
-            ->orderBy('kode_barang', 'desc')
-            ->first();
-
-        $lastNumber = 0;
-
-        // Cek apakah barang terakhir ada, dan ambil angka urutnya
-        // Ini adalah regular expression (regex) yang dipakai untuk menangkap tiga digit angka terakhir dari string kode_barang. Mari kita uraikan bagian per bagian:
-        if ($lastBarang && preg_match('/(\d{3})$/', $lastBarang->kode_barang, $matches)) {
-            $lastNumber = (int) $matches[1]; // $matches[1] → hasil dari group tangkap pertama, yaitu (\d{3}).
-        }
-
-        $nextNumber = $lastNumber + 1;
-
-        // Format angka 3 digit, contoh: 001, 002, dst.
-        $numberFormatted = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
-
-        // Gabungkan semua jadi kode lengkap
-        return "{$prefix}{$datePart}{$numberFormatted}";
+        $prefix = 'BRG'; // Awalan kode barang (prefix) yang konsisten
+        do {
+            // Buat angka acak antara 0 sampai 99.999.999
+            // Kemudian pad dengan nol di depan agar selalu menjadi 8 digit
+            $randomNumber = str_pad(mt_rand(0, 9999999999), 10, '0', STR_PAD_LEFT);
+            // Gabungkan prefix dan angka acak menjadi kode lengkap
+            $kode = $prefix . $randomNumber;
+            // Ulangi jika kode ini sudah ada di database (untuk menjaga keunikan)
+        } while (self::where('kode_barang', $kode)->exists());
+        // Kembalikan kode yang sudah dipastikan unik
+        return $kode;
     }
+
     // relasi dengan table stok
     public function stok()
     {

@@ -29,7 +29,7 @@
                 <x-form url="{{ isset($barang) ? '/barang/update' : '/barang/store' }}"
                     method="{{ isset($barang) ? 'put' : null }}" parameters="{{ $barang->id_barang ?? '' }}">
                     <x-horizontal-input readonly placeholder="R-001, KBL-009" autofocus name="kode_barang"
-                        label="Kode Barang" :value="$barang->kode_barang ?? \App\Models\Barang\BarangModel::genarateKodeBarang()" />
+                        label="Kode Barang" :value="$barang->kode_barang ?? \App\Models\Barang\BarangModel::generateKodeBarang()" />
                     <x-horizontal-input placeholder="102579851SN" name="sn" label="Serial Number"
                         value="{{ old('sn', $barang->serial_number ?? '') }}" />
                     <x-horizontal-input placeholder="Indihome Router " name="nama_barang" label="Nama Barang"

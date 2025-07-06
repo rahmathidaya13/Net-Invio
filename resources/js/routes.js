@@ -11,6 +11,7 @@ const routes = {
     "/user/": () => import("@/partials/Users.js"),
     "/home": () => import("@/partials/Home.js"),
     "/restore/": () => import("@/partials/Restore.js"),
+    "/profile/": () => import("@/partials/Profile.js"),
 };
 for (const route in routes) {
     // Cocokkan dengan semua variasi jika menggunakan method startwith

@@ -68,6 +68,7 @@ class UserController extends Controller
         $user->can_import = $request->boolean('can_import');
         $user->can_download = $request->boolean('can_download');
         $user->save();
+        $user->profile()->create();
         TelegramNotification::sendOrFail("➕ *Penambahan Akun Baru*\n" .
             "Nama: *{$user->name}*\n" .
             "Email: *{$user->email}*\n" .
@@ -121,6 +122,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
+
         TelegramNotification::sendOrFail("📝 *Hapus Data Akun*\n" .
             "Nama: *{$user->name}*\n" .
             "Email: *{$user->email}*\n" .
