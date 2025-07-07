@@ -49,7 +49,7 @@
                                         value="{{ old('email') }}" />
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-2">
                                 <x-form-label for="password" value="Password" />
                                 <div class="input-group">
                                     <span class="input-group-text rounded-0"> <i class="bi bi-file-lock2-fill "></i>
@@ -69,15 +69,23 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="mb-3 d-block d-xl-flex justify-content-between align-items-center">
+                                <div>
+                                    <x-form-check-box name="remember" label="Remember me" />
+                                </div>
+                                <small>
+                                    <x-link url="/password/forgot" label="Forget your password?" />
+                                </small>
+                            </div>
                             <div class="d-grid mb-3">
                                 <x-base-button label="Login" variant="success" type="submit" />
                             </div>
                         </x-form>
 
-                        {{-- <div class="d-grid mb-3">
+                        <div class="d-grid mb-3">
                             <x-link class="btn btn-primary" icon="fab fa-google" label="Login with google"
                                 url="/auth/google" />
-                        </div> --}}
+                        </div>
 
                         <footer class="pt-4 bg-light mt-5">
                             <div class="container-fluid px-4">

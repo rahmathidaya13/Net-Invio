@@ -1,4 +1,4 @@
-@props(['type' => 'text', 'name', 'value' => null])
+@props(['type' => 'text', 'name', 'value' => null, 'autocomplete' => 'off'])
 
 @php
     $inputClass = 'form-control';
@@ -6,8 +6,8 @@
         $inputClass .= ' is-invalid';
     }
 @endphp
-<input autocomplete="off" type="{{ $type }}" {{ $attributes->merge(['class' => $inputClass]) }} id="{{ $name }}"
-    name="{{ $name }}" value="{{ $type !== 'password' ? old($name, $value) : '' }}">
+<input autocomplete="{{ $autocomplete }}" type="{{ $type }}" {{ $attributes->merge(['class' => $inputClass]) }}
+    id="{{ $name }}" name="{{ $name }}" value="{{ $type !== 'password' ? old($name, $value) : '' }}">
 @error($name)
     <div class="invalid-feedback d-block" role="alert">
         {{ $message }}

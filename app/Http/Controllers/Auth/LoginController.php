@@ -57,7 +57,7 @@ class LoginController extends Controller
         if (!$user || !Hash::check($request->input('password'), $user->password)) {
             return back()->withErrors(['error' => 'Email atau password salah.']);
         }
-        Auth::login($user);
+        Auth::login($user, $request->has('remember'));
         if (!$user->isActive) {
             $user->isActive = true;
             $user->save();
@@ -102,11 +102,13 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $user = User::where('email', Auth::user()->email)->first();
-        if ($user->isActive) {
+        if ($user && $user->isActive) {
             $user->isActive = false;
+            $user->setRememberToken(null);
             $user->save();
         }
         Auth::logout();
+        // Hapus sesi & regenerasi token CSRF
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');

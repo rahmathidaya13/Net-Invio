@@ -1,19 +1,23 @@
 <?php
 
 use App\Helpers\NetworkHelper;
-use App\Http\Controllers\Auth\GoogleAuthController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\NetworkController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\BarangKeluar\BarangKeluarModel;
 use App\Http\Controllers\Backup\BackupController;
 use App\Http\Controllers\Barang\BarangController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Pelanggan\PelangganImport;
 use App\Http\Controllers\Supplier\SupplierController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Barang\BarangExportController;
 use App\Http\Controllers\Barang\BarangImportController;
 use App\Http\Controllers\Pelanggan\PelangganController;
@@ -26,7 +30,6 @@ use App\Http\Controllers\Pelanggan\PelangganExportController;
 use App\Http\Controllers\StokBarang\StokBarangExportController;
 use App\Http\Controllers\BarangMasuk\BarangMasukExportController;
 use App\Http\Controllers\BarangKeluar\BarangKeluarExportController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReturBarang\BarangKembaliExportController;
 
 /*
@@ -182,7 +185,6 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
         Route::post('/restore/store', 'store')->name('restore.store');
     });
 
-    Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.status');
 
     // profile
     Route::controller(ProfileController::class)->group(function () {
@@ -191,6 +193,16 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     });
 });
 
+Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.status');
 
 Route::get("/auth/google", [GoogleAuthController::class, 'redirect'])->name('google.login')->middleware('guest');
 Route::get("/auth/google/callback", [GoogleAuthController::class, 'callback'])->name('google.callback')->middleware('guest');
+
+Route::get('/password/forgot', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Tampilkan form reset password (klik dari email)
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+// Proses reset password
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
