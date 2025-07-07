@@ -15,9 +15,13 @@
     @if ($message = Session::get('error'))
         <x-alert type="danger" message="{{ $message }}" />
     @endif
+
     @if ($message = Session::get('success'))
         <x-alert type="success" message="{{ $message }}" />
         <iframe class="d-none" src="{{ route('backup.download', ['file' => session('fileBackup')]) }}"></iframe>
+    @endif
+    @if ($message = Session::get('status'))
+        <x-alert type="success" :message="$message" />
     @endif
 
 

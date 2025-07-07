@@ -2,75 +2,41 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-
+            @if ($message = Session::get('status'))
+                <x-alert type="success" :message="$message" />
+            @endif
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-header bg-primary text-white text-center rounded-top-4">
-                    <h4 class="mb-0">{{ __('🔐 Reset Password') }}</h4>
+                    <h4 class="mb-0">{{ __("🔐 Reset Password") }}</h4>
                 </div>
 
                 <div class="card-body p-4">
-
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        {{-- Email --}}
+                    <x-form url="/password/reset">
+                        <x-form-input name="token" :value="$token" type="hidden" />
                         <div class="mb-3">
-                            <label for="email" class="form-label">{{ __('Alamat Email') }}</label>
-                            <input id="email" type="email"
-                                   class="form-control rounded-3 @error('email') is-invalid @enderror"
-                                   name="email"
-                                   value="{{ $email ?? old('email') }}"
-                                   required autofocus autocomplete="email">
-
-                            @error('email')
-                                <div class="invalid-feedback d-block">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <x-form-label for="email" :value="__('Alamat Email')" />
+                            <x-form-input class="rounded-3" type="email" name="email" :value="$email ?? old('email')" autofocus
+                                autocomplete="email" />
                         </div>
-
-                        {{-- Password --}}
                         <div class="mb-3">
-                            <label for="password" class="form-label">{{ __('Password Baru') }}</label>
-                            <input id="password" type="password"
-                                   class="form-control rounded-3 @error('password') is-invalid @enderror"
-                                   name="password"
-                                   required autocomplete="new-password">
-
-                            @error('password')
-                                <div class="invalid-feedback d-block">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <x-form-label for="password" :value="__('Password Baru')" />
+                            <x-form-input class="rounded-3" type="password" name="password"
+                                autocomplete="new-password" />
+                        </div>
+                        <div class="mb-3">
+                            <x-form-label for="password-confirm" :value="__('Konfirmasi Password')" />
+                            <x-form-input class="rounded-3" type="password" name="password_confirmation"
+                                autocomplete="new-password" />
                         </div>
 
-                        {{-- Konfirmasi Password --}}
-                        <div class="mb-4">
-                            <label for="password-confirm" class="form-label">{{ __('Konfirmasi Password') }}</label>
-                            <input id="password-confirm" type="password"
-                                   class="form-control rounded-3"
-                                   name="password_confirmation"
-                                   required autocomplete="new-password">
-                        </div>
-
-                        {{-- Tombol Submit --}}
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg rounded-3">
-                                {{ __('🔄 Reset Password Sekarang') }}
-                            </button>
+                            <x-base-button :label="__('🔄 Reset Password Sekarang')" class="rounded-3 btn-lg" />
                         </div>
 
-                        {{-- Link kembali ke login --}}
                         <div class="text-center mt-3">
-                            <a href="{{ route('login') }}" class="text-decoration-none">
-                                ← Kembali ke halaman login
-                            </a>
+                            <x-link url="/login" class="text-decoration-none" :label="__('← Kembali ke halaman login')" />
                         </div>
-
-                    </form>
-
+                    </x-form>
                 </div>
             </div>
 

@@ -82,10 +82,10 @@
                             </div>
                         </x-form>
 
-                        <div class="d-grid mb-3">
+                        {{-- <div class="d-grid mb-3">
                             <x-link class="btn btn-primary" icon="fab fa-google" label="Login with google"
                                 url="/auth/google" />
-                        </div>
+                        </div> --}}
 
                         <footer class="pt-4 bg-light mt-5">
                             <div class="container-fluid px-4">
