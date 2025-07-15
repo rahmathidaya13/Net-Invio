@@ -1,11 +1,13 @@
 @section('title', 'Login')
 @include('layouts.header')
 <div class="container py-5">
-    <div class="row d-flex justify-content-center">
-        <div class="col-lg-8 col-12 align-items-center">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-12 align-items-center">
 
             @if (session('error'))
-                <x-alert type="danger" message="{{ session('error') }}" />
+                <x-alert :duration="10" type="danger" :message="session('error')" />
+            @elseif ($errors->has('error'))
+                <x-alert :duration="10" type="danger" :message="$errors->first('error')" />
             @endif
 
             {{-- overflow-hidden di .card mencegah elemen anak seperti  keluar dari batasnya. --}}

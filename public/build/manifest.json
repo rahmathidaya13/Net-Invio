@@ -1,10 +1,10 @@
 {
   "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
-    "file": "assets/bootstrap-icons-DIW_sQAl.woff",
+    "file": "assets/bootstrap-icons-BeopsB42.woff",
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
   },
   "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
-    "file": "assets/bootstrap-icons-pHno5dML.woff2",
+    "file": "assets/bootstrap-icons-mSm7cUeB.woff2",
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
   },
   "resources/assets/font/dameron/dameron.ttf": {
@@ -72,12 +72,12 @@
     "src": "resources/assets/plugin/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-ANqtoflp.css",
+    "file": "assets/app-DzyBUH4p.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BV_tMlzr.js",
+    "file": "assets/app-CS7JCJhx.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -92,11 +92,12 @@
       "resources/js/partials/BarangKembali.js",
       "resources/js/partials/Users.js",
       "resources/js/partials/Home.js",
-      "resources/js/partials/Restore.js"
+      "resources/js/partials/Restore.js",
+      "resources/js/partials/Profile.js"
     ]
   },
   "resources/js/partials/Barang.js": {
-    "file": "assets/Barang-DN-SVi_l.js",
+    "file": "assets/Barang-fIYsCLSk.js",
     "name": "Barang",
     "src": "resources/js/partials/Barang.js",
     "isDynamicEntry": true,
@@ -105,7 +106,7 @@
     ]
   },
   "resources/js/partials/BarangKeluar.js": {
-    "file": "assets/BarangKeluar-tiHsZQMG.js",
+    "file": "assets/BarangKeluar-DKCgG89C.js",
     "name": "BarangKeluar",
     "src": "resources/js/partials/BarangKeluar.js",
     "isDynamicEntry": true,
@@ -114,7 +115,7 @@
     ]
   },
   "resources/js/partials/BarangKembali.js": {
-    "file": "assets/BarangKembali-0Nqd10NV.js",
+    "file": "assets/BarangKembali-DL9Fahqy.js",
     "name": "BarangKembali",
     "src": "resources/js/partials/BarangKembali.js",
     "isDynamicEntry": true,
@@ -123,7 +124,7 @@
     ]
   },
   "resources/js/partials/BarangMasuk.js": {
-    "file": "assets/BarangMasuk-ChIpoyQC.js",
+    "file": "assets/BarangMasuk-BKUQHuRd.js",
     "name": "BarangMasuk",
     "src": "resources/js/partials/BarangMasuk.js",
     "isDynamicEntry": true,
@@ -138,13 +139,19 @@
     "isDynamicEntry": true
   },
   "resources/js/partials/Pelanggan.js": {
-    "file": "assets/Pelanggan-BHml89Zc.js",
+    "file": "assets/Pelanggan-BdUJRM_P.js",
     "name": "Pelanggan",
     "src": "resources/js/partials/Pelanggan.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
+  },
+  "resources/js/partials/Profile.js": {
+    "file": "assets/Profile-Bnd1I_BX.js",
+    "name": "Profile",
+    "src": "resources/js/partials/Profile.js",
+    "isDynamicEntry": true
   },
   "resources/js/partials/Restore.js": {
     "file": "assets/Restore-Bw7WV6Z_.js",
@@ -153,7 +160,7 @@
     "isDynamicEntry": true
   },
   "resources/js/partials/Stok.js": {
-    "file": "assets/Stok-CDU7QjW7.js",
+    "file": "assets/Stok-m0k6tJZs.js",
     "name": "Stok",
     "src": "resources/js/partials/Stok.js",
     "isDynamicEntry": true,
@@ -162,7 +169,7 @@
     ]
   },
   "resources/js/partials/Supplier.js": {
-    "file": "assets/Supplier-D2ReTH1s.js",
+    "file": "assets/Supplier-CRTiI644.js",
     "name": "Supplier",
     "src": "resources/js/partials/Supplier.js",
     "isDynamicEntry": true,

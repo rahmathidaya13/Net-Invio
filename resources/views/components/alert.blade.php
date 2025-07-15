@@ -12,10 +12,10 @@
     ];
 
     $iconClass = $icons[$type] ?? '';
-    $uniqueId = 'alert-' . uniqid();
+    $uniqueId = 'alert' . uniqid();
 @endphp
 
-<div id="{{ $uniqueId }}" class="alert alert-{{ $type }} fw-bold" role="alert" style="font-size: 16px;"
+<div id="{{ $uniqueId }}" class="alert alert-{{ $type }} fw-bold" role="alert"
     data-duration="{{ $duration }}" {{ $attributes }}>
     @if ($iconClass)
         <i class="{{ $iconClass }} me-2"></i>
