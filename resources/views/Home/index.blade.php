@@ -13,7 +13,7 @@
     @endcanany
 
     @if ($message = Session::get('error'))
-        <x-alert type="danger" message="{{ $message }}" />
+        <x-alert :duration="10" type="danger" message="{{ $message }}" />
     @endif
     @if ($message = Session::get('success'))
         <x-alert type="success" message="{{ $message }}" />

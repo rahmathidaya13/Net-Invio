@@ -10,7 +10,7 @@
             <x-alert-error-all type="danger" title="Alert!" />
 
             @if ($message = Session::get('success'))
-                <x-alert type="success" message="{{ $message }}" />
+                <x-alert :duration="10" type="success" message="{{ $message }}" />
             @endif
 
             <div class="callout callout-info d-grid">

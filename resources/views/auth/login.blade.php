@@ -3,8 +3,9 @@
 <div class="container py-5">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-8 col-12 align-items-center">
-            @if ($errors->has('error'))
-                <x-alert type="danger" message="{{ $errors->first('error') }}" />
+
+            @if (session('error'))
+                <x-alert type="danger" message="{{ session('error') }}" />
             @endif
 
             {{-- overflow-hidden di .card mencegah elemen anak seperti  keluar dari batasnya. --}}
@@ -15,10 +16,6 @@
                         {{-- h-100 dan w-100 + object-fit-cover membuat gambar menyesuaikan ukuran secara baik. --}}
                         <img class="img-login object-fit-cover rounded-start border-end"
                             src="{{ asset('assets/image/image-login2.jpeg') }}" alt="">
-
-                        {{-- Overlay gradient hitam di atas --}}
-                        {{-- <div class="gradient-overlay">
-                        </div> --}}
                         <div class="gradient-top"></div>
 
                         <div class="gradient-bottom"></div>

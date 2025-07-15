@@ -46,9 +46,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Gate::define('add-and-edit', function (User $user) {
-        //     return $user->can_add || $user->can_edit;
-        // });
         Gate::define('view', fn(User $user) => $user->can_view);
         Gate::define('add', fn(User $user) => $user->can_add);
         Gate::define('edit', fn(User $user) => $user->can_edit);

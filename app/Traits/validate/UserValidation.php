@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Traits\validate;
-
+use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 

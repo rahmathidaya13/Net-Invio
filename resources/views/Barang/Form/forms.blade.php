@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-12 col-xl-12">
             @if ($message = Session::get('success'))
-                <x-alert type="info" message="{{ $message }}" />
+                <x-alert :duration="10" type="info" message="{{ $message }}" />
             @endif
 
             <div class="row align-items-center mb-3">
