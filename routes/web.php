@@ -198,11 +198,9 @@ Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.
 Route::get("/auth/google", [GoogleAuthController::class, 'redirect'])->name('google.login')->middleware('guest');
 Route::get("/auth/google/callback", [GoogleAuthController::class, 'callback'])->name('google.callback')->middleware('guest');
 
-Route::get('/password/forgot', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
-// Tampilkan form reset password (klik dari email)
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-
-// Proses reset password
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+Route::middleware('web')->group(function () {
+    Route::get('/password/forgot', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+});
