@@ -72,9 +72,9 @@
                                 <div>
                                     <x-form-check-box name="remember" label="Remember me" />
                                 </div>
-                                <small>
+                                {{-- <small>
                                     <x-link url="/password/forgot" label="Forget your password?" />
-                                </small>
+                                </small> --}}
                             </div>
                             <div class="d-grid mb-3">
                                 <x-base-button label="Login" variant="success" type="submit" />

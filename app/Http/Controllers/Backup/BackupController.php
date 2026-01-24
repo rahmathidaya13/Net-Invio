@@ -17,8 +17,9 @@ class BackupController extends Controller
         $username = config('database.connections.mysql.username');
         $password = config('database.connections.mysql.password');
         $host = config('database.connections.mysql.host');
+
         $fileName = 'backup_' . now()->format('Y-m-d_H-i-s') . '.sql';
-        $folder = storage_path('app/backups/');
+        $folder = storage_path('app/backups');
         $storagePath = $folder . '/' . $fileName;
 
         // Pastikan folder ada
@@ -47,7 +48,7 @@ class BackupController extends Controller
 
     public function download($file)
     {
-        $path = storage_path('app/backups/' . $file);
+        $path = storage_path('app/backups' . $file);
         if (!file_exists($path)) {
             abort(404);
         }

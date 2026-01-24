@@ -56,7 +56,7 @@ class ProfileController extends Controller
             }
         }
 
-        auth()->user()->profile()->update([
+        auth()->user()->profile->update([
             'phone' => $request->input('phone'),
             'address' => $request->input('address'),
             'gender' => $request->input('gender'),
