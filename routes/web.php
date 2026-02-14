@@ -193,7 +193,8 @@ Route::middleware(['auth', 'role:develop,admin,user'])->group(function () {
     });
 });
 
-Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.status');
+// cek kondisi internet
+// Route::get("/ping", [NetworkController::class, 'networkStatus'])->name('network.status');
 
 Route::get("/auth/google", [GoogleAuthController::class, 'redirect'])->name('google.login')->middleware('guest');
 Route::get("/auth/google/callback", [GoogleAuthController::class, 'callback'])->name('google.callback')->middleware('guest');

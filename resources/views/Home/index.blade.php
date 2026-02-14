@@ -4,13 +4,13 @@
 @section('breadcrumb', Str::upper('Dashboard'))
 @section('content')
     <x-bread-crumbs :items="[['text' => 'Dashboard', 'url' => '/home']]" />
-
+{{--
     @canany(['onlyAdmin', 'onlyDevelop'])
         <div class="d-flex justify-content-end flex-wrap gap-1 mb-3 ">
             <x-link icon="fas fa-undo-alt" url="/restore/create" label="Restore" class="btn-sm btn btn-dark rounded-0" />
             <x-link icon="fas fa-database" url="/backup" label="Backup" class="btn-sm btn btn-primary rounded-0" />
         </div>
-    @endcanany
+    @endcanany --}}
 
     @if ($message = Session::get('error'))
         <x-alert :duration="10" type="danger" message="{{ $message }}" />

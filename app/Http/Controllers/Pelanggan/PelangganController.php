@@ -72,15 +72,15 @@ class PelangganController extends Controller
         $pelanggan->alamat = $request->input('alamat');
         $pelanggan->save();
 
-        TelegramNotification::sendOrFail("➕ *Penambahan Data Pelanggan*\n" .
-            "ID: *{$pelanggan->no_identitas}*\n" .
-            "Nama Pelanggan: *{$pelanggan->nama}*\n" .
-            "Jenis Kelamin: *{$pelanggan->jenis_kelamin}*\n" .
-            "No.Handphone: *{$pelanggan->nohp}*\n" .
-            "Alamat: *{$pelanggan->alamat}*\n" .
-            "Tanggal Daftar: *" . Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
-            "Status: *" . 'Dibuat' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("➕ *Penambahan Data Pelanggan*\n" .
+        //     "ID: *{$pelanggan->no_identitas}*\n" .
+        //     "Nama Pelanggan: *{$pelanggan->nama}*\n" .
+        //     "Jenis Kelamin: *{$pelanggan->jenis_kelamin}*\n" .
+        //     "No.Handphone: *{$pelanggan->nohp}*\n" .
+        //     "Alamat: *{$pelanggan->alamat}*\n" .
+        //     "Tanggal Daftar: *" . Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Status: *" . 'Dibuat' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
         Cache::flush();
 
 
@@ -120,15 +120,15 @@ class PelangganController extends Controller
         $pelanggan->alamat = $request->input('alamat');
         $pelanggan->update();
 
-        TelegramNotification::sendOrFail("📝 *Perubahan Data Pelanggan*\n" .
-            "ID: *{$pelanggan->no_identitas}*\n" .
-            "Nama Pelanggan: *{$pelanggan->nama}*\n" .
-            "Jenis Kelamin: *{$pelanggan->jenis_kelamin}*\n" .
-            "No.Handphone: *{$pelanggan->nohp}*\n" .
-            "Alamat: *{$pelanggan->alamat}*\n" .
-            "Tanggal Daftar: *" .  Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
-            "Status: *" . 'Diubah' . "*\n" .
-            "Updated at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("📝 *Perubahan Data Pelanggan*\n" .
+        //     "ID: *{$pelanggan->no_identitas}*\n" .
+        //     "Nama Pelanggan: *{$pelanggan->nama}*\n" .
+        //     "Jenis Kelamin: *{$pelanggan->jenis_kelamin}*\n" .
+        //     "No.Handphone: *{$pelanggan->nohp}*\n" .
+        //     "Alamat: *{$pelanggan->alamat}*\n" .
+        //     "Tanggal Daftar: *" .  Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Status: *" . 'Diubah' . "*\n" .
+        //     "Updated at: *" . auth()->user()->name . "*");
 
         Cache::flush();
         return redirect()->route('pelanggan.list')->with('success', 'Data pelanggan ' . $pelanggan->nama . ' berhasil diubah');
@@ -142,15 +142,15 @@ class PelangganController extends Controller
         $pelanggan = PelangganModel::findOrFail($id);
         $pelanggan->delete();
 
-        TelegramNotification::sendOrFail("🗑️ *Penghapusan Data Pelanggan*\n" .
-            "ID: *{$pelanggan->no_identitas}*\n" .
-            "Nama Pelanggan: *{$pelanggan->nama}*\n" .
-            "Jenis Kelamin: *{$pelanggan->jenis_kelamin}*\n" .
-            "No.Handphone: *{$pelanggan->nohp}*\n" .
-            "Alamat: *{$pelanggan->alamat}*\n" .
-            "Tanggal Daftar: *" . Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
-            "Status: *" . 'Dihapus' . "*\n" .
-            "Deleted at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("🗑️ *Penghapusan Data Pelanggan*\n" .
+        //     "ID: *{$pelanggan->no_identitas}*\n" .
+        //     "Nama Pelanggan: *{$pelanggan->nama}*\n" .
+        //     "Jenis Kelamin: *{$pelanggan->jenis_kelamin}*\n" .
+        //     "No.Handphone: *{$pelanggan->nohp}*\n" .
+        //     "Alamat: *{$pelanggan->alamat}*\n" .
+        //     "Tanggal Daftar: *" . Carbon::parse($pelanggan->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Status: *" . 'Dihapus' . "*\n" .
+        //     "Deleted at: *" . auth()->user()->name . "*");
         Cache::flush();
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }

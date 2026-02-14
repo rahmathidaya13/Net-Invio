@@ -69,13 +69,13 @@ class SupplierController extends Controller
         $supplier->alamat = $request->input('alamat');
         $supplier->save();
 
-        TelegramNotification::sendOrFail("➕ *Penambahan Supplier Baru*\n" .
-            "Nama Supplier: *{$supplier->nama}*\n" .
-            "kontak: *{$supplier->kontak}*\n" .
-            "Email: *{$supplier->email}*\n" .
-            "Alamat: *{$supplier->alamat}*\n" .
-            "Status: *" . 'Dibuat' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("➕ *Penambahan Supplier Baru*\n" .
+        //     "Nama Supplier: *{$supplier->nama}*\n" .
+        //     "kontak: *{$supplier->kontak}*\n" .
+        //     "Email: *{$supplier->email}*\n" .
+        //     "Alamat: *{$supplier->alamat}*\n" .
+        //     "Status: *" . 'Dibuat' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
         Cache::flush();
 
         return redirect()->route('supplier.list')->with('success', 'Data Supplier ' . ucwords($supplier->nama) . ' berhasil ditambahkan');
@@ -110,13 +110,13 @@ class SupplierController extends Controller
         $supplier->email = $request->input('email');
         $supplier->alamat = $request->input('alamat');
         $supplier->update();
-        TelegramNotification::sendOrFail("📝 *Perubahan Data Supplier*\n" .
-            "Nama Supplier: *{$supplier->nama}*\n" .
-            "kontak: *{$supplier->kontak}*\n" .
-            "Email: *{$supplier->email}*\n" .
-            "Alamat: *{$supplier->alamat}*\n" .
-            "Status: *" . 'Diubah' . "*\n" .
-            "Updated at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("📝 *Perubahan Data Supplier*\n" .
+        //     "Nama Supplier: *{$supplier->nama}*\n" .
+        //     "kontak: *{$supplier->kontak}*\n" .
+        //     "Email: *{$supplier->email}*\n" .
+        //     "Alamat: *{$supplier->alamat}*\n" .
+        //     "Status: *" . 'Diubah' . "*\n" .
+        //     "Updated at: *" . auth()->user()->name . "*");
         Cache::flush();
         return redirect()->route('supplier.list')->with('success', 'Data Supplier ' . ucwords($supplier->nama) . ' berhasil diubah');
     }
@@ -128,13 +128,13 @@ class SupplierController extends Controller
     {
         $supplier = SupplierModel::findOrFail($id);
         $supplier->delete();
-        TelegramNotification::sendOrFail("🗑️ *Penghapusan Data Supplier*\n" .
-            "Nama Supplier: *{$supplier->nama}*\n" .
-            "kontak: *{$supplier->kontak}*\n" .
-            "Email: *{$supplier->email}*\n" .
-            "Alamat: *{$supplier->alamat}*\n" .
-            "Status: *" . 'Dihapus' . "*\n" .
-            "Deleted at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("🗑️ *Penghapusan Data Supplier*\n" .
+        //     "Nama Supplier: *{$supplier->nama}*\n" .
+        //     "kontak: *{$supplier->kontak}*\n" .
+        //     "Email: *{$supplier->email}*\n" .
+        //     "Alamat: *{$supplier->alamat}*\n" .
+        //     "Status: *" . 'Dihapus' . "*\n" .
+        //     "Deleted at: *" . auth()->user()->name . "*");
         Cache::flush();
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }

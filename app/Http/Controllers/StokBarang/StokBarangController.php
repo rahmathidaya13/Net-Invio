@@ -87,13 +87,13 @@ class StokBarangController extends Controller
             'dibuat_oleh' => Auth::user()->name,
         ]);
 
-        TelegramNotification::sendOrFail("➕ *Penambahan Stok Barang*\n" .
-            "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
-            "Nama Barang: *{$stok->barang->nama_barang}*\n" .
-            "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
-            "Lokasi: *{$stok->lokasi}*\n" .
-            "Status: *" . 'Dibuat' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("➕ *Penambahan Stok Barang*\n" .
+        //     "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Nama Barang: *{$stok->barang->nama_barang}*\n" .
+        //     "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
+        //     "Lokasi: *{$stok->lokasi}*\n" .
+        //     "Status: *" . 'Dibuat' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
         Cache::flush();
         return redirect()->route('stok.list')->with('success', 'Penambahan Stok  Berhasil');
     }
@@ -147,13 +147,13 @@ class StokBarangController extends Controller
             'dibuat_oleh' => Auth::user()->name,
         ]);
 
-        TelegramNotification::sendOrFail("📝 *Perubahan Stok Barang*\n" .
-            "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
-            "Nama Barang: *{$stok->barang->nama_barang}*\n" .
-            "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
-            "Lokasi: *{$stok->lokasi}*\n" .
-            "Status: *" . 'Diubah' . "*\n" .
-            "Updated at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("📝 *Perubahan Stok Barang*\n" .
+        //     "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Nama Barang: *{$stok->barang->nama_barang}*\n" .
+        //     "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
+        //     "Lokasi: *{$stok->lokasi}*\n" .
+        //     "Status: *" . 'Diubah' . "*\n" .
+        //     "Updated at: *" . auth()->user()->name . "*");
 
         Cache::flush();
         return redirect()->route('stok.list')->with('success', 'Perubahan Stok ' . ucwords($stok->barang->nama_barang) . '  Berhasil');
@@ -166,13 +166,13 @@ class StokBarangController extends Controller
     {
         $stok = StokBarangModel::findOrFail($id);
         $stok->delete();
-        TelegramNotification::sendOrFail("🗑️ *Penghapusan Stok Barang*\n" .
-            "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
-            "Nama Barang: *{$stok->barang->nama_barang}*\n" .
-            "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
-            "Lokasi: *{$stok->lokasi}*\n" .
-            "Status: *" . 'Dihapus' . "*\n" .
-            "Deleted at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("🗑️ *Penghapusan Stok Barang*\n" .
+        //     "Tanggal: *" . Carbon::parse($stok->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Nama Barang: *{$stok->barang->nama_barang}*\n" .
+        //     "Jumlah Barang: *{$stok->jumlah_barang}*\n" .
+        //     "Lokasi: *{$stok->lokasi}*\n" .
+        //     "Status: *" . 'Dihapus' . "*\n" .
+        //     "Deleted at: *" . auth()->user()->name . "*");
         Cache::flush();
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }

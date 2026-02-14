@@ -83,17 +83,17 @@ class BarangKeluarController extends Controller
         $barang_keluar->keterangan = $request->input('keterangan');
         $barang_keluar->save();
 
-        TelegramNotification::sendOrFail("➕ *Penambahan Data Barang Keluar*\n" .
-            "Tanggal: *" . Carbon::parse($barang_keluar->tanggal)->format('d-m-Y') . "*\n" .
-            "Nama Barang: *{$barang_keluar->barang?->nama_barang}*\n" .
-            "Nama Pelanggan: *{$barang_keluar->pelanggan?->nama}*\n" .
-            "Tujuan Keluar: *{$barang_keluar->tujuan}*\n" .
-            "Satuan: *{$barang_keluar->satuan}*\n" .
-            "Petugas: *{$barang_keluar->petugas}*\n" .
-            "Jumlah Barang: *{$barang_keluar->jumlah}*\n" .
-            "Dikeluarkan dari: *{$barang_keluar->lokasi}*\n" .
-            "Status: *" . 'Dibuat' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("➕ *Penambahan Data Barang Keluar*\n" .
+        //     "Tanggal: *" . Carbon::parse($barang_keluar->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Nama Barang: *{$barang_keluar->barang?->nama_barang}*\n" .
+        //     "Nama Pelanggan: *{$barang_keluar->pelanggan?->nama}*\n" .
+        //     "Tujuan Keluar: *{$barang_keluar->tujuan}*\n" .
+        //     "Satuan: *{$barang_keluar->satuan}*\n" .
+        //     "Petugas: *{$barang_keluar->petugas}*\n" .
+        //     "Jumlah Barang: *{$barang_keluar->jumlah}*\n" .
+        //     "Dikeluarkan dari: *{$barang_keluar->lokasi}*\n" .
+        //     "Status: *" . 'Dibuat' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
 
         $currentStok = StokBarangModel::where('id_barang', $request->input('id_barang'))
             ->where('lokasi', $request->input('lokasi'))
@@ -156,17 +156,17 @@ class BarangKeluarController extends Controller
         $barang_keluar->keterangan = $request->input('keterangan');
         $barang_keluar->update();
 
-        TelegramNotification::sendOrFail("📝 *Perubahan Data Barang Keluar*\n" .
-            "Tanggal: *" . Carbon::parse($barang_keluar->tanggal)->format('d-m-Y') . "*\n" .
-            "Nama Barang: *{$barang_keluar->barang?->nama_barang}*\n" .
-            "Nama Pelanggan: *{$barang_keluar->pelanggan?->nama}*\n" .
-            "Tujuan Keluar: *{$barang_keluar->tujuan}*\n" .
-            "Satuan: *{$barang_keluar->satuan}*\n" .
-            "Petugas: *{$barang_keluar->petugas}*\n" .
-            "Jumlah Barang: *{$barang_keluar->jumlah}*\n" .
-            "Dikeluarkan dari: *{$barang_keluar->lokasi}*\n" .
-            "Status: *" . 'Diubah' . "*\n" .
-            "Updated at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("📝 *Perubahan Data Barang Keluar*\n" .
+        //     "Tanggal: *" . Carbon::parse($barang_keluar->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Nama Barang: *{$barang_keluar->barang?->nama_barang}*\n" .
+        //     "Nama Pelanggan: *{$barang_keluar->pelanggan?->nama}*\n" .
+        //     "Tujuan Keluar: *{$barang_keluar->tujuan}*\n" .
+        //     "Satuan: *{$barang_keluar->satuan}*\n" .
+        //     "Petugas: *{$barang_keluar->petugas}*\n" .
+        //     "Jumlah Barang: *{$barang_keluar->jumlah}*\n" .
+        //     "Dikeluarkan dari: *{$barang_keluar->lokasi}*\n" .
+        //     "Status: *" . 'Diubah' . "*\n" .
+        //     "Updated at: *" . auth()->user()->name . "*");
 
         // ambil nilai terkakhir dari log stok model
         $logStok = LogStokModel::where('id_barang', $request->input('id_barang'))
@@ -206,17 +206,17 @@ class BarangKeluarController extends Controller
         $barang_keluar = BarangKeluarModel::findOrFail($id);
         $barang_keluar->delete();
 
-        TelegramNotification::sendOrFail("🗑️ *Penghapusan Barang Keluar*\n" .
-            "Tanggal: *" . Carbon::parse($barang_keluar->tanggal)->format('d-m-Y') . "*\n" .
-            "Nama Barang: *{$barang_keluar->barang?->nama_barang}*\n" .
-            "Nama Pelanggan: *{$barang_keluar->pelanggan?->nama}*\n" .
-            "Tujuan Keluar: *{$barang_keluar->tujuan}*\n" .
-            "Satuan: *{$barang_keluar->satuan}*\n" .
-            "Petugas: *{$barang_keluar->petugas}*\n" .
-            "Jumlah Barang: *{$barang_keluar->jumlah}*\n" .
-            "Dikeluarkan dari: *{$barang_keluar->lokasi}*\n" .
-            "Status: *" . 'Dihapus' . "*\n" .
-            "Deleted at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("🗑️ *Penghapusan Barang Keluar*\n" .
+        //     "Tanggal: *" . Carbon::parse($barang_keluar->tanggal)->format('d-m-Y') . "*\n" .
+        //     "Nama Barang: *{$barang_keluar->barang?->nama_barang}*\n" .
+        //     "Nama Pelanggan: *{$barang_keluar->pelanggan?->nama}*\n" .
+        //     "Tujuan Keluar: *{$barang_keluar->tujuan}*\n" .
+        //     "Satuan: *{$barang_keluar->satuan}*\n" .
+        //     "Petugas: *{$barang_keluar->petugas}*\n" .
+        //     "Jumlah Barang: *{$barang_keluar->jumlah}*\n" .
+        //     "Dikeluarkan dari: *{$barang_keluar->lokasi}*\n" .
+        //     "Status: *" . 'Dihapus' . "*\n" .
+        //     "Deleted at: *" . auth()->user()->name . "*");
 
         // hapus log
         LogStokModel::where('id_barang', $barang_keluar->id_barang)

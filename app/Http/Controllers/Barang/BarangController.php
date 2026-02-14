@@ -71,15 +71,16 @@ class BarangController extends Controller
         $barang->keterangan = $request->input('keterangan', '-');
         $barang->save();
 
-        TelegramNotification::sendOrFail("➕ *Penambahan Data Barang*\n" .
-            "Nama Barang: *{$barang->nama_barang}*\n" .
-            "Serial Number: *{$barang->serial_number}*\n" .
-            "Jenis Barang: *{$barang->jenis}*\n" .
-            "Merek: *{$barang->merek}*\n" .
-            "Model: *{$barang->tipe_model}*\n" .
-            "Satuan: *{$barang->satuan}*\n" .
-            "Status: *" . 'Dibuat' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // pending request
+        // TelegramNotification::sendOrFail("➕ *Penambahan Data Barang*\n" .
+        //     "Nama Barang: *{$barang->nama_barang}*\n" .
+        //     "Serial Number: *{$barang->serial_number}*\n" .
+        //     "Jenis Barang: *{$barang->jenis}*\n" .
+        //     "Merek: *{$barang->merek}*\n" .
+        //     "Model: *{$barang->tipe_model}*\n" .
+        //     "Satuan: *{$barang->satuan}*\n" .
+        //     "Status: *" . 'Dibuat' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
 
         Cache::flush();
         return redirect()->route('barang.list')->with('success', 'Data Barang ' . ucwords($barang->nama_barang) . ' Berhasil Ditambahkan');
@@ -119,15 +120,15 @@ class BarangController extends Controller
         $barang->keterangan = $request->input('keterangan');
         $barang->update();
 
-        TelegramNotification::sendOrFail("📝 *Perubahan Data Barang*\n" .
-            "Nama Barang: *{$barang->nama_barang}*\n" .
-            "Serial Number: *{$barang->serial_number}*\n" .
-            "Jenis Barang: *{$barang->jenis}*\n" .
-            "Merek: *{$barang->merek}*\n" .
-            "Model: *{$barang->tipe_model}*\n" .
-            "Satuan: *{$barang->satuan}*\n" .
-            "Status: *" . 'Diubah' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("📝 *Perubahan Data Barang*\n" .
+        //     "Nama Barang: *{$barang->nama_barang}*\n" .
+        //     "Serial Number: *{$barang->serial_number}*\n" .
+        //     "Jenis Barang: *{$barang->jenis}*\n" .
+        //     "Merek: *{$barang->merek}*\n" .
+        //     "Model: *{$barang->tipe_model}*\n" .
+        //     "Satuan: *{$barang->satuan}*\n" .
+        //     "Status: *" . 'Diubah' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
 
         Cache::flush();
         return redirect()->route('barang.list')->with('success', 'Data Barang ' . ucwords($barang->nama_barang) . ' Berhasil Diubah');
@@ -140,15 +141,15 @@ class BarangController extends Controller
     {
         $barang = BarangModel::findOrFail($id);
         $barang->delete();
-        TelegramNotification::sendOrFail("🗑️ *Penghapusan Data Barang*\n" .
-            "Nama Barang: *{$barang->nama_barang}*\n" .
-            "Serial Number: *{$barang->serial_number}*\n" .
-            "Jenis Barang: *{$barang->jenis}*\n" .
-            "Merek: *{$barang->merek}*\n" .
-            "Model: *{$barang->tipe_model}*\n" .
-            "Satuan: *{$barang->satuan}*\n" .
-            "Status: *" . 'Dihapus' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("🗑️ *Penghapusan Data Barang*\n" .
+        //     "Nama Barang: *{$barang->nama_barang}*\n" .
+        //     "Serial Number: *{$barang->serial_number}*\n" .
+        //     "Jenis Barang: *{$barang->jenis}*\n" .
+        //     "Merek: *{$barang->merek}*\n" .
+        //     "Model: *{$barang->tipe_model}*\n" .
+        //     "Satuan: *{$barang->satuan}*\n" .
+        //     "Status: *" . 'Dihapus' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
         Cache::flush();
 
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);

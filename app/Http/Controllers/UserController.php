@@ -69,17 +69,17 @@ class UserController extends Controller
         $user->can_download = $request->boolean('can_download');
         $user->save();
         $user->profile()->create();
-        TelegramNotification::sendOrFail("➕ *Penambahan Akun Baru*\n" .
-            "Nama: *{$user->name}*\n" .
-            "Email: *{$user->email}*\n" .
-            "Can View: *" . boolval($user->can_view) . "*\n" .
-            "Can Add: *" . boolval($user->can_add) . "*\n" .
-            "Can Edit: *" . boolval($user->can_edit) . "*\n" .
-            "Can Delete: *" . boolval($user->can_delete) . "*\n" .
-            "Can Import: *" . boolval($user->can_import) . "*\n" .
-            "Can Download: *" . boolval($user->can_download) . "*\n" .
-            "Status: *" . 'Dibuat' . "*\n" .
-            "Created at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("➕ *Penambahan Akun Baru*\n" .
+        //     "Nama: *{$user->name}*\n" .
+        //     "Email: *{$user->email}*\n" .
+        //     "Can View: *" . boolval($user->can_view) . "*\n" .
+        //     "Can Add: *" . boolval($user->can_add) . "*\n" .
+        //     "Can Edit: *" . boolval($user->can_edit) . "*\n" .
+        //     "Can Delete: *" . boolval($user->can_delete) . "*\n" .
+        //     "Can Import: *" . boolval($user->can_import) . "*\n" .
+        //     "Can Download: *" . boolval($user->can_download) . "*\n" .
+        //     "Status: *" . 'Dibuat' . "*\n" .
+        //     "Created at: *" . auth()->user()->name . "*");
         return redirect()->route('user.list')->with('success', 'Pengguna Baru ' . ucwords($request->name) . ' Berhasil Ditambahkan');
     }
 
@@ -105,17 +105,17 @@ class UserController extends Controller
             $user['password'] = Hash::make($request->input('password'));
         }
         $user->update();
-        TelegramNotification::sendOrFail("📝 *Perubahan Data Akun*\n" .
-            "Nama: *{$user->name}*\n" .
-            "Email: *{$user->email}*\n" .
-            "Can View: *" . boolval($user->can_view) . "*\n" .
-            "Can Add: *" . boolval($user->can_add) . "*\n" .
-            "Can Edit: *" . boolval($user->can_edit) . "*\n" .
-            "Can Delete: *" . boolval($user->can_delete) . "*\n" .
-            "Can Import: *" . boolval($user->can_import) . "*\n" .
-            "Can Download: *" . boolval($user->can_download) . "*\n" .
-            "Status: *" . 'Diubah' . "*\n" .
-            "Updated at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("📝 *Perubahan Data Akun*\n" .
+        //     "Nama: *{$user->name}*\n" .
+        //     "Email: *{$user->email}*\n" .
+        //     "Can View: *" . boolval($user->can_view) . "*\n" .
+        //     "Can Add: *" . boolval($user->can_add) . "*\n" .
+        //     "Can Edit: *" . boolval($user->can_edit) . "*\n" .
+        //     "Can Delete: *" . boolval($user->can_delete) . "*\n" .
+        //     "Can Import: *" . boolval($user->can_import) . "*\n" .
+        //     "Can Download: *" . boolval($user->can_download) . "*\n" .
+        //     "Status: *" . 'Diubah' . "*\n" .
+        //     "Updated at: *" . auth()->user()->name . "*");
         return redirect()->route('user.list')->with('success', 'Pengguna ' . ucwords($user->name) . ' berhasil diperbarui.');
     }
     public function destroy(string $id)
@@ -123,17 +123,17 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        TelegramNotification::sendOrFail("📝 *Hapus Data Akun*\n" .
-            "Nama: *{$user->name}*\n" .
-            "Email: *{$user->email}*\n" .
-            "Can View: *" . boolval($user->can_view) . "*\n" .
-            "Can Add: *" . boolval($user->can_add) . "*\n" .
-            "Can Edit: *" . boolval($user->can_edit) . "*\n" .
-            "Can Delete: *" . boolval($user->can_delete) . "*\n" .
-            "Can Import: *" . boolval($user->can_import) . "*\n" .
-            "Can Download: *" . boolval($user->can_download) . "*\n" .
-            "Status: *" . 'Dihapus' . "*\n" .
-            "Deleted at: *" . auth()->user()->name . "*");
+        // TelegramNotification::sendOrFail("📝 *Hapus Data Akun*\n" .
+        //     "Nama: *{$user->name}*\n" .
+        //     "Email: *{$user->email}*\n" .
+        //     "Can View: *" . boolval($user->can_view) . "*\n" .
+        //     "Can Add: *" . boolval($user->can_add) . "*\n" .
+        //     "Can Edit: *" . boolval($user->can_edit) . "*\n" .
+        //     "Can Delete: *" . boolval($user->can_delete) . "*\n" .
+        //     "Can Import: *" . boolval($user->can_import) . "*\n" .
+        //     "Can Download: *" . boolval($user->can_download) . "*\n" .
+        //     "Status: *" . 'Dihapus' . "*\n" .
+        //     "Deleted at: *" . auth()->user()->name . "*");
         return response()->json(['success' => 'Data terpilih berhasil dihapus'], 200);
     }
 }
