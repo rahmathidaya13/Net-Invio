@@ -1,5 +1,10 @@
 # Aplikasi Data Barang Berbasis Web
 
+#image
+<img width="758" height="524" alt="login page netinvio" src="https://github.com/user-attachments/assets/0734caee-15d0-41a7-9d88-9001ac536957" />
+<img width="1366" height="644" alt="data barang net invio" src="https://github.com/user-attachments/assets/b3dd8c02-f950-4411-a7fd-53b15b9b560e" />
+<img width="1366" height="641" alt="stok barang net invio" src="https://github.com/user-attachments/assets/2c16e96e-4624-4379-85be-e89a59c636fb" />
+<img width="1366" height="635" alt="role netinvio" src="https://github.com/user-attachments/assets/240861a8-1668-419f-97fb-b66281882ff1" />
 
 ## Fitur
 
